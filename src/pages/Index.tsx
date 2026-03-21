@@ -1219,6 +1219,172 @@ const Index = () => {
 
       <SectionDivider />
 
+      {/* ───── TESTIMONIALS / CASE STUDY ───── */}
+      <section className="py-40 px-6 lg:px-12">
+        <div className="max-w-[1320px] mx-auto">
+          <FadeIn>
+            <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">
+              Risultati Reali
+            </span>
+          </FadeIn>
+          <FadeIn delay={0.08}>
+            <h2
+              className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-16"
+              style={{ fontSize: "clamp(32px, 4.5vw, 58px)" }}
+            >
+              Non lo diciamo noi.<br />
+              <span className="italic font-light text-primary">Lo dicono i numeri.</span>
+            </h2>
+          </FadeIn>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                quote: "In 3 mesi abbiamo eliminato 2 figure amministrative e dimezzato i tempi di preventivazione.",
+                result: "−€4.800/mese in costi fissi",
+                sector: "Impresa edile — Lombardia",
+                metric: "−60%",
+                metricLabel: "costi operativi",
+              },
+              {
+                quote: "L'agente AI risponde ai clienti anche alle 23. Il sabato. La domenica. Noi chiudiamo più contratti senza assumere nessuno.",
+                result: "+35% appuntamenti qualificati",
+                sector: "Serramentista — Veneto",
+                metric: "+35%",
+                metricLabel: "lead qualificati",
+              },
+              {
+                quote: "Prima spendevamo €3.000/mese in marketing senza sapere cosa funzionava. Ora paghiamo solo sulle vendite chiuse.",
+                result: "ROI 4.2x in 6 mesi",
+                sector: "Impiantista — Emilia-Romagna",
+                metric: "4.2x",
+                metricLabel: "ROI marketing",
+              },
+            ].map((t, i) => (
+              <FadeIn key={i} delay={0.1 * i}>
+                <div className="group relative p-8 rounded-lg border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)] hover:bg-[rgba(255,255,255,0.06)] transition-all hover:-translate-y-1 h-full flex flex-col">
+                  <div className="absolute top-0 left-0 right-0 h-0.5 bg-primary origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+                  <MessageSquareQuote className="text-primary/50 mb-4" size={24} />
+                  <p className="text-[15px] text-[rgba(255,255,255,0.75)] font-light leading-[1.8] italic mb-6 flex-1">
+                    "{t.quote}"
+                  </p>
+                  <div className="border-t border-[rgba(255,255,255,0.06)] pt-5 mt-auto">
+                    <div className="font-mono text-[28px] font-bold text-primary leading-none mb-1">{t.metric}</div>
+                    <div className="text-[12px] text-[rgba(255,255,255,0.55)] font-mono uppercase tracking-[2px] mb-3">{t.metricLabel}</div>
+                    <p className="text-[13px] text-green-impact font-medium mb-1">{t.result}</p>
+                    <p className="text-[12px] text-[rgba(255,255,255,0.45)] font-mono">{t.sector}</p>
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* ───── TECH STACK / PARTNER ───── */}
+      <section className="bg-alt py-32 px-6 lg:px-12">
+        <div className="max-w-[1000px] mx-auto text-center">
+          <FadeIn>
+            <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">
+              Il Nostro Stack
+            </span>
+            <h2
+              className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-6"
+              style={{ fontSize: "clamp(28px, 3.5vw, 48px)" }}
+            >
+              Costruito sulle migliori<br />
+              <span className="italic font-light text-primary">tecnologie al mondo.</span>
+            </h2>
+            <p className="text-[16px] text-[rgba(255,255,255,0.65)] font-light mb-16 max-w-[500px] mx-auto">
+              Non reinventiamo la ruota. Integriamo le tecnologie più potenti al mondo per costruire soluzioni su misura.
+            </p>
+          </FadeIn>
+
+          <FadeIn delay={0.12}>
+            <div className="flex flex-wrap items-center justify-center gap-10">
+              {[
+                { name: "OpenAI", icon: <Sparkles size={28} /> },
+                { name: "React", icon: <Globe size={28} /> },
+                { name: "Supabase", icon: <Database size={28} /> },
+                { name: "AWS", icon: <Cloud size={28} /> },
+                { name: "TypeScript", icon: <Cpu size={28} /> },
+                { name: "Stripe", icon: <Lock size={28} /> },
+              ].map((tech, i) => (
+                <motion.div
+                  key={i}
+                  className="flex flex-col items-center gap-2 opacity-50 hover:opacity-100 transition-opacity"
+                  whileHover={{ scale: 1.1, y: -3 }}
+                >
+                  <div className="w-16 h-16 rounded-xl border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.03)] flex items-center justify-center text-[rgba(255,255,255,0.7)]">
+                    {tech.icon}
+                  </div>
+                  <span className="font-mono text-[11px] uppercase tracking-[2px] text-[rgba(255,255,255,0.45)]">{tech.name}</span>
+                </motion.div>
+              ))}
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* ───── FAQ ───── */}
+      <section className="py-40 px-6 lg:px-12">
+        <div className="max-w-[800px] mx-auto">
+          <FadeIn>
+            <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6 text-center">
+              Domande Frequenti
+            </span>
+          </FadeIn>
+          <FadeIn delay={0.08}>
+            <h2
+              className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-16 text-center"
+              style={{ fontSize: "clamp(32px, 4.5vw, 58px)" }}
+            >
+              Hai domande.<br />
+              <span className="italic font-light text-primary">Noi abbiamo risposte.</span>
+            </h2>
+          </FadeIn>
+
+          <div className="space-y-0">
+            {[
+              {
+                q: "Quanto costa implementare l'AI nella mia azienda?",
+                a: "Dipende dalle esigenze, ma il nostro modello è pensato per le PMI: si parte da €200/mese per un agente AI operativo. Nessun costo di setup nascosto, nessun vincolo annuale. Il ROI medio dei nostri clienti è di 4.2x in 6 mesi.",
+              },
+              {
+                q: "Devo avere competenze tecniche per usare le vostre piattaforme?",
+                a: "Assolutamente no. Ogni piattaforma è progettata per imprenditori, non per programmatori. Configuriamo tutto noi, formiamo il tuo team in una sessione di 2 ore, e offriamo supporto continuo.",
+              },
+              {
+                q: "In quanto tempo vedo i primi risultati?",
+                a: "I primi risultati misurabili arrivano entro 4 settimane: lead generati, appuntamenti fissati, ore risparmiate. Il nostro processo è strutturato in 4 fasi da 1 settimana ciascuna.",
+              },
+              {
+                q: "L'AI sostituirà i miei dipendenti?",
+                a: "No. L'AI automatizza le attività ripetitive e a basso valore aggiunto, liberando il tuo team per concentrarsi su ciò che conta: vendere, gestire clienti, far crescere l'azienda. Non sostituisci persone — le potenzi.",
+              },
+              {
+                q: "Funziona anche nel mio settore?",
+                a: "Lavoriamo con imprese edili, serramentisti, impiantisti, studi tecnici, aziende di servizi, retail, ristorazione. Se hai un'azienda con clienti da gestire e processi da ottimizzare, funziona anche per te.",
+              },
+              {
+                q: "E se non funziona? Che rischio corro?",
+                a: "Zero. Il nostro modello di marketing è a performance: paghi solo sulle vendite chiuse. Per le piattaforme, offriamo un periodo di test. Se non vedi risultati, non paghi. Punto.",
+              },
+            ].map((faq, i) => (
+              <FadeIn key={i} delay={0.06 * i}>
+                <FAQItem question={faq.q} answer={faq.a} />
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider />
+
       {/* ───── CTA FINALE ───── */}
       <section id="cta-finale" className="relative py-[200px] px-6 lg:px-12 text-center overflow-hidden">
         {/* Background image */}
