@@ -859,7 +859,97 @@ const Index = () => {
 
       <SectionDivider />
 
-      {/* ───── CHI SIAMO ───── */}
+      {/* ───── AI vs SOCIAL MEDIA ───── */}
+      <section className="relative bg-alt py-40 px-6 lg:px-12 overflow-hidden">
+        {/* Background image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: "url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80')",
+          }}
+        />
+        <div className="absolute inset-0 bg-background/[0.93]" />
+
+        <div className="relative max-w-[1320px] mx-auto">
+          <FadeIn>
+            <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">
+              La Lezione della Storia
+            </span>
+          </FadeIn>
+          <FadeIn delay={0.08}>
+            <h2
+              className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-6"
+              style={{ fontSize: "clamp(28px, 4vw, 52px)" }}
+            >
+              Chi ha ignorato i social nel 2010<br />
+              ha perso un decennio.<br />
+              <span className="italic font-light text-primary">Chi ignora l'AI oggi perderà tutto.</span>
+            </h2>
+          </FadeIn>
+          <FadeIn delay={0.16}>
+            <p className="text-[17px] text-[rgba(255,255,255,0.4)] max-w-[600px] font-light mb-16">
+              La storia si ripete. Ogni rivoluzione tecnologica divide il mercato in due: chi si adatta e chi scompare. Stai scegliendo da che parte stare.
+            </p>
+          </FadeIn>
+
+          <div className="grid md:grid-cols-2 gap-8 mb-16">
+            {/* Social Media 2010 Column */}
+            <FadeIn delay={0.2}>
+              <div className="rounded-lg border border-[rgba(255,255,255,0.06)] overflow-hidden">
+                <div className="bg-[rgba(255,255,255,0.04)] px-8 py-5 border-b border-[rgba(255,255,255,0.06)]">
+                  <h3 className="font-mono text-[12px] uppercase tracking-[3px] text-[rgba(255,255,255,0.4)]">
+                    🕐 Social Media — 2010
+                  </h3>
+                </div>
+                {socialVsAi.map((row, i) => (
+                  <div key={i} className="px-8 py-6 border-b border-[rgba(255,255,255,0.04)] last:border-0">
+                    <p className="text-[15px] text-[rgba(255,255,255,0.35)] font-light line-through decoration-[rgba(255,100,100,0.4)] mb-2">
+                      {row.social.myth}
+                    </p>
+                    <p className="text-[14px] text-green-impact font-medium">
+                      → {row.social.reality}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </FadeIn>
+
+            {/* AI 2025 Column */}
+            <FadeIn delay={0.3}>
+              <div className="rounded-lg border border-primary/20 overflow-hidden">
+                <div className="bg-primary/[0.08] px-8 py-5 border-b border-primary/10">
+                  <h3 className="font-mono text-[12px] uppercase tracking-[3px] text-primary">
+                    ⚡ Intelligenza Artificiale — 2025
+                  </h3>
+                </div>
+                {socialVsAi.map((row, i) => (
+                  <div key={i} className="px-8 py-6 border-b border-[rgba(255,255,255,0.04)] last:border-0">
+                    <p className="text-[15px] text-[rgba(255,255,255,0.5)] font-light mb-2">
+                      {row.ai.myth}
+                    </p>
+                    <p className="text-[14px] text-primary font-semibold">
+                      → {row.ai.reality}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </FadeIn>
+          </div>
+
+          <FadeIn delay={0.4}>
+            <div className="text-center">
+              <button
+                onClick={() => scrollTo("cta-finale")}
+                className="shimmer-btn bg-primary text-primary-foreground font-bold text-[13px] uppercase tracking-[2px] px-12 py-[18px] hover:-translate-y-0.5 hover:shadow-[0_16px_48px_rgba(246,190,9,0.25)] transition-all relative overflow-hidden"
+              >
+                Non Restare Indietro →
+              </button>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      <SectionDivider />
       <section id="chi-siamo" className="py-40 px-6 lg:px-12">
         <div className="max-w-[1320px] mx-auto">
           <FadeIn>
