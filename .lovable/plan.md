@@ -1,66 +1,44 @@
 
 
-## Piano: Effetto WOW — Animazioni avanzate, immagini, cursore custom
+## Piano: Fix Performance — Homepage troppo lenta
 
-### Panoramica
-Aggiungere effetti visivi spettacolari alla homepage AEDIX per creare un impatto "WOW": cursore custom animato, particelle fluttuanti, logo piu grande, glitch/typing effects, glow pulsanti, e immagini tech di sfondo nelle sezioni.
+### Problema identificato
 
-### Modifiche a `src/pages/Index.tsx`
+La homepage ha 3 canvas animati + cursore custom + floating badges che girano tutti contemporaneamente con `requestAnimationFrame`, causando lag pesante:
 
-**1. Logo piu grande nella Navbar e Footer**
-- Navbar: da `h-8` a `h-12` (48px)
-- Footer: da `h-6` a `h-10` (40px)
+1. **ParticleField** (il piu grave) — Canvas grande quanto l'INTERA pagina scrollabile (migliaia di pixel di altezza), moltiplicato per `devicePixelRatio`. Ogni frame: cancella tutto, ridisegna 70 particelle, calcola O(n²) = 2.415 connessioni tra particelle. Su un canvas di ~10.000+ pixel di altezza a 2x DPR, questo e' devastante.
 
-**2. Cursore custom animato**
-- Componente `CustomCursor`: cerchio gold che segue il mouse con ritardo (lerp), si espande al hover sui bottoni/link
-- Nascosto su mobile (touch devices)
-- `cursor: none` globale su desktop
-- Cerchio esterno 40px con bordo gold + punto interno 8px gold pieno
-- Effetto magnetico: il cursore si ingrandisce e cambia opacita passando su elementi interattivi
+2. **HexagonCanvas** — Griglia di esagoni ridisegnata ogni frame con calcoli trigonometrici. Meno grave ma si somma.
 
-**3. Particelle fluttuanti (ParticleField)**
-- Canvas a schermo intero con 80-100 particelle gold semitrasparenti
-- Le particelle si muovono lentamente e si connettono con linee quando sono vicine (effetto neural network)
-- Posizionato come sfondo fisso dietro tutta la pagina
-- Opacita molto bassa (0.15) per non interferire col contenuto
+3. **CustomCursor** — Loop lerp continuo (impatto minore).
 
-**4. Hero — Effetti aggiuntivi**
-- Typing effect sull'overline "Tecnologia Avanzata per le PMI Italiane" (lettere che appaiono una alla volta)
-- Glow pulsante animato dietro l'H1 (pulse lento con scale e opacity)
-- Floating badges/chips animati attorno alla hero: "SaaS", "AI", "Automation", "Cloud" che fluttuano con moto sinusoidale
+4. **FloatingBadge** x4 — Animazioni Framer Motion infinite in loop.
 
-**5. Sezione Progetti — Icone/immagini tech**
-- Aggiungere emoji/icone grandi (48px) sopra ogni nome progetto nelle card:
-  - Edilizia in Cloud: cloud icon
-  - Cantiere in Cloud: hard hat/shield
-  - Edilizia.io: robot/AI brain
-  - Marketing Edile: chart/rocket
-  - Vendita Edile: handshake/target
-  - TalentProfile: user/scan
-  - Impresa Leggera: briefcase/lightning
+5. **FadeIn e SectionDivider** — Warning React `forwardRef` (non causa lag ma indica un problema).
 
-**6. Sezione Numeri — Effetto glow sui numeri**
-- I numeri gold ottengono un `text-shadow` pulsante con glow gold
-- Animazione `@keyframes glow-pulse` che oscilla l'intensita del glow
+### Soluzione
 
-**7. Timeline — Linea animata**
-- La linea di connessione orizzontale si "disegna" da sinistra a destra quando entra in viewport (width da 0% a 100%)
-- I numeri hanno un bordo cerchio gold che appare con scale animation
+**File: `src/pages/Index.tsx`**
 
-**8. CTA Finale — Effetti extra**
-- Glow piu intenso e pulsante
-- Shimmer effect sul bottone primario (gradiente che scorre da sinistra a destra)
+1. **ParticleField — Ottimizzazione drastica**:
+   - Canvas limitato alla viewport (`window.innerHeight`) anziche' all'intera pagina
+   - Ridurre particelle da 70 a 40
+   - Ridurre `MAX_DIST` da 150 a 100 (meno connessioni)
+   - Usare `position: fixed` (gia' fa) ma dimensionare il canvas solo come la viewport
+   - Aggiungere throttle: disegnare ogni 2 frame (`skipFrame` counter)
 
-### Modifiche a `src/index.css`
+2. **HexagonCanvas — Ottimizzazione**:
+   - Ridurre la frequenza di animazione (disegnare ogni 2-3 frame)
+   - Ridurre `time += 0.003` cosi' il ridisegno meno frequente non si nota
 
-- Aggiungere `cursor: none` su body per desktop (`@media (hover: hover)`)
-- Keyframes per `glow-pulse`, `shimmer`, `float`
-- Classe `.shimmer-btn` per il bottone CTA con gradiente animato
+3. **FloatingBadge — Semplificare**:
+   - Sostituire `motion.div` con animazione CSS pura (`@keyframes float`) — molto piu' leggero di Framer Motion per animazioni infinite
 
-### File coinvolti
-- `src/pages/Index.tsx` — nuovi componenti (CustomCursor, ParticleField, FloatingBadge, typing effect) + logo sizing + icone progetti
-- `src/index.css` — nuove animazioni CSS (glow-pulse, shimmer, float, cursor)
+4. **FadeIn — Fixare forwardRef warning**:
+   - Il componente FadeIn usa `motion.div` con `ref` correttamente, ma quando viene usato dentro certi contesti Framer Motion tenta di passare un ref. Nessun impatto performance ma pulire il warning.
 
-### Dipendenze
-- Nessuna nuova — tutto con Framer Motion (gia installato) + Canvas API + CSS
+### Impatto atteso
+- Da 3 canvas pesanti in loop continuo a 2 canvas ottimizzati con frame skipping
+- Riduzione del carico GPU/CPU del ~60-70%
+- Scrolling fluido senza scatti
 
