@@ -1,7 +1,18 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import aedixLogo from "@/assets/aedix_logo.png";
 import { motion, useInView, useMotionValue, animate, useScroll, useTransform } from "framer-motion";
-import { Menu, X, Shield, RefreshCw, Target, Cloud, HardHat, Brain, Rocket, Handshake, ScanFace, Briefcase, TrendingUp, DollarSign, Users, BarChart3, Building2, Zap, Clock, Bot, Gauge, BadgeCheck, MessageSquareQuote, HelpCircle, ChevronDown, Cpu, Database, Globe, Lock, Sparkles } from "lucide-react";
+import { Menu, X, Shield, RefreshCw, Target, Cloud, HardHat, Brain, Rocket, Handshake, ScanFace, Briefcase, TrendingUp, DollarSign, Users, BarChart3, Building2, Zap, Clock, Bot, Gauge, BadgeCheck, MessageSquareQuote, HelpCircle, ChevronDown, Cpu, Database, Globe, Lock, Sparkles, Linkedin, Twitter, Instagram, Mail, MapPin, Phone } from "lucide-react";
+
+// ─── Scroll Progress Bar ─────────────────────────────────────
+const ScrollProgressBar = () => {
+  const { scrollYProgress } = useScroll();
+  return (
+    <motion.div
+      className="fixed top-0 left-0 right-0 h-[3px] bg-primary z-[60] origin-left"
+      style={{ scaleX: scrollYProgress }}
+    />
+  );
+};
 
 // ─── Animated Progress Bar ───────────────────────────────────
 const AnimatedBar = ({ value, delay = 0 }: { value: number; delay?: number }) => {
@@ -29,7 +40,6 @@ const CustomCursor = () => {
   const pos = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
-    // Skip on touch devices
     if (window.matchMedia("(hover: none)").matches) return;
     setIsVisible(true);
 
@@ -144,7 +154,6 @@ const ParticleField = () => {
     let raf: number;
     const draw = () => {
       frameCount++;
-      // Only render every 2nd frame
       if (frameCount % 2 !== 0) {
         raf = requestAnimationFrame(draw);
         return;
@@ -230,7 +239,7 @@ const TypingText = ({ text, delay = 0 }: { text: string; delay?: number }) => {
   );
 };
 
-// ─── Floating Badge (CSS animation, no Framer Motion) ────────
+// ─── Floating Badge (CSS animation) ─────────────────────────
 const FloatingBadge = ({ text, x, y, delay }: { text: string; x: string; y: string; delay: number }) => (
   <div
     className="absolute hidden lg:block font-mono text-[10px] uppercase tracking-[3px] text-primary/40 border border-primary/10 rounded-full px-4 py-1.5 backdrop-blur-sm bg-background/30"
@@ -281,8 +290,22 @@ const FadeIn = ({ children, delay = 0, className = "" }: { children: React.React
   );
 };
 
-// ─── Section Divider ─────────────────────────────────────────
-const SectionDivider = () => <div className="section-divider w-full" />;
+// ─── Animated Section Divider ────────────────────────────────
+const SectionDivider = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  return (
+    <div ref={ref} className="w-full overflow-hidden">
+      <motion.div
+        className="section-divider w-full"
+        initial={{ scaleX: 0 }}
+        animate={isInView ? { scaleX: 1 } : {}}
+        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+        style={{ transformOrigin: "center" }}
+      />
+    </div>
+  );
+};
 
 // ─── Hexagon Canvas ──────────────────────────────────────────
 const HexagonCanvas = () => {
@@ -361,6 +384,48 @@ const HexagonCanvas = () => {
       className="absolute inset-0 w-full h-full pointer-events-none"
       style={{ opacity: 0.7 }}
     />
+  );
+};
+
+// ─── 3D Tilt Card ────────────────────────────────────────────
+const TiltCard = ({ children, className = "", style = {} }: { children: React.ReactNode; className?: string; style?: React.CSSProperties }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [tilt, setTilt] = useState({ rotateX: 0, rotateY: 0 });
+
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    setTilt({
+      rotateX: (y - 0.5) * -12,
+      rotateY: (x - 0.5) * 12,
+    });
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setTilt({ rotateX: 0, rotateY: 0 });
+  }, []);
+
+  return (
+    <motion.div
+      ref={cardRef}
+      className={className}
+      style={{
+        ...style,
+        perspective: "800px",
+        transformStyle: "preserve-3d",
+      }}
+      animate={{
+        rotateX: tilt.rotateX,
+        rotateY: tilt.rotateY,
+      }}
+      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      {children}
+    </motion.div>
   );
 };
 
@@ -506,15 +571,41 @@ const FAQItem = ({ question, answer }: { question: string; answer: string }) => 
   );
 };
 
+// ─── Nav sections for active tracking ────────────────────────
+const navSections = [
+  { label: "Cosa Facciamo", id: "cosa-facciamo" },
+  { label: "Progetti", id: "progetti" },
+  { label: "Chi Siamo", id: "chi-siamo" },
+];
+
 // ─── Main Component ──────────────────────────────────────────
 const Index = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
   const timelineRef = useRef(null);
   const timelineInView = useInView(timelineRef, { once: true, margin: "-100px" });
 
+  // Track scroll + active section
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 40);
+
+      // Find active section
+      const sections = navSections.map(s => ({
+        id: s.id,
+        el: document.getElementById(s.id),
+      }));
+      
+      let current = "";
+      for (const s of sections) {
+        if (s.el) {
+          const rect = s.el.getBoundingClientRect();
+          if (rect.top <= 200) current = s.id;
+        }
+      }
+      setActiveSection(current);
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -524,33 +615,54 @@ const Index = () => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   }, []);
 
+  // Parallax for manifesto
+  const { scrollYProgress: manifestoProgress } = useScroll();
+  const manifestoY = useTransform(manifestoProgress, [0, 1], [0, -100]);
+
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden custom-cursor-page">
+      <ScrollProgressBar />
       <CustomCursor />
       <ParticleField />
 
       {/* ───── NAVBAR ───── */}
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-[3px] left-0 right-0 z-50 transition-all duration-500 ${
           scrolled ? "border-b border-[rgba(255,255,255,0.04)]" : ""
         }`}
-        style={{ background: "rgba(10,19,34,0.7)", backdropFilter: "blur(24px)" }}
+        style={{
+          background: scrolled ? "rgba(10,19,34,0.85)" : "rgba(10,19,34,0.7)",
+          backdropFilter: "blur(24px)",
+        }}
       >
         <div className="max-w-[1320px] mx-auto flex items-center justify-between px-6 lg:px-12 py-[18px]">
-          <img src={aedixLogo} alt="AEDIX" className="h-12" />
+          <motion.img
+            src={aedixLogo}
+            alt="AEDIX"
+            className="h-12"
+            animate={{ height: scrolled ? 36 : 48 }}
+            transition={{ duration: 0.3 }}
+          />
 
           <div className="hidden md:flex items-center gap-10">
-            {[
-              { label: "Cosa Facciamo", id: "cosa-facciamo" },
-              { label: "Progetti", id: "progetti" },
-              { label: "Chi Siamo", id: "chi-siamo" },
-            ].map((l) => (
+            {navSections.map((l) => (
               <button
                 key={l.id}
                 onClick={() => scrollTo(l.id)}
-                className="font-mono text-[13px] uppercase tracking-[1.5px] text-[rgba(255,255,255,0.7)] hover:text-white transition-colors"
+                className={`font-mono text-[13px] uppercase tracking-[1.5px] transition-colors relative ${
+                  activeSection === l.id
+                    ? "text-primary"
+                    : "text-[rgba(255,255,255,0.7)] hover:text-white"
+                }`}
               >
                 {l.label}
+                {activeSection === l.id && (
+                  <motion.div
+                    layoutId="nav-indicator"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"
+                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  />
+                )}
               </button>
             ))}
           </div>
@@ -574,13 +686,13 @@ const Index = () => {
             className="md:hidden px-6 pb-6 flex flex-col gap-4"
             style={{ background: "rgba(10,19,34,0.95)" }}
           >
-            {["cosa-facciamo", "progetti", "chi-siamo"].map((id) => (
+            {navSections.map((s) => (
               <button
-                key={id}
-                onClick={() => scrollTo(id)}
+                key={s.id}
+                onClick={() => scrollTo(s.id)}
                 className="font-mono text-[13px] uppercase tracking-[1.5px] text-[rgba(255,255,255,0.7)] hover:text-white text-left"
               >
-                {id.replace(/-/g, " ")}
+                {s.label}
               </button>
             ))}
             <button
@@ -593,15 +705,19 @@ const Index = () => {
         )}
       </nav>
 
-      {/* ───── HERO ───── */}
+      {/* ───── HERO with Video Background ───── */}
       <section className="relative min-h-screen flex flex-col justify-center pt-[140px] pb-20 px-6 lg:px-12 overflow-hidden">
-        {/* Hero background image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1920&q=80')",
-          }}
-        />
+        {/* Video background */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          poster="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1920&q=80"
+        >
+          <source src="https://cdn.coverr.co/videos/coverr-abstract-technology-background-2774/1080p.mp4" type="video/mp4" />
+        </video>
         <div className="absolute inset-0 bg-background/[0.92]" />
         {/* Glow with parallax */}
         <motion.div
@@ -621,7 +737,6 @@ const Index = () => {
         <FloatingBadge text="Cloud" x="85%" y="70%" delay={1.8} />
 
         <div className="relative max-w-[1320px] mx-auto w-full">
-          {/* Overline with typing effect */}
           <FadeIn>
             <div className="flex items-center gap-4 mb-8">
               <div className="w-10 h-px bg-primary" />
@@ -629,10 +744,8 @@ const Index = () => {
             </div>
           </FadeIn>
 
-          {/* H1 with glow */}
           <FadeIn delay={0.1}>
             <div className="relative">
-              {/* Glow behind text */}
               <motion.div
                 className="absolute -inset-20 pointer-events-none"
                 style={{
@@ -651,7 +764,6 @@ const Index = () => {
             </div>
           </FadeIn>
 
-          {/* Subtitle */}
           <FadeIn delay={0.2}>
             <p className="text-[20px] leading-[1.75] text-[rgba(255,255,255,0.7)] max-w-[600px] font-light mb-10">
               Aedix è la tech company italiana che sviluppa{" "}
@@ -662,7 +774,6 @@ const Index = () => {
             </p>
           </FadeIn>
 
-          {/* CTAs */}
           <FadeIn delay={0.3}>
             <div className="flex flex-wrap gap-4">
               <button
@@ -680,7 +791,6 @@ const Index = () => {
             </div>
           </FadeIn>
 
-          {/* Stats bar */}
           <FadeIn delay={0.4}>
             <div className="flex flex-wrap gap-16 mt-16">
               {[
@@ -783,7 +893,6 @@ const Index = () => {
 
       {/* ───── LA RIVOLUZIONE AI IN NUMERI ───── */}
       <section className="relative py-40 px-6 lg:px-12 overflow-hidden">
-        {/* Background image */}
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -836,6 +945,8 @@ const Index = () => {
       </section>
 
       <SectionDivider />
+
+      {/* ───── PRIMA / DOPO ───── */}
       <section className="py-40 px-6 lg:px-12">
         <div className="max-w-[1320px] mx-auto">
           <FadeIn>
@@ -900,7 +1011,6 @@ const Index = () => {
 
       {/* ───── AI vs SOCIAL MEDIA ───── */}
       <section className="relative bg-alt py-40 px-6 lg:px-12 overflow-hidden">
-        {/* Background image */}
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -932,7 +1042,6 @@ const Index = () => {
           </FadeIn>
 
           <div className="grid md:grid-cols-2 gap-8 mb-16">
-            {/* Social Media 2010 Column */}
             <FadeIn delay={0.2}>
               <div className="rounded-lg border border-[rgba(255,255,255,0.06)] overflow-hidden">
                 <div className="bg-[rgba(255,255,255,0.04)] px-8 py-5 border-b border-[rgba(255,255,255,0.06)]">
@@ -953,7 +1062,6 @@ const Index = () => {
               </div>
             </FadeIn>
 
-            {/* AI 2025 Column */}
             <FadeIn delay={0.3}>
               <div className="rounded-lg border border-primary/20 overflow-hidden">
                 <div className="bg-primary/[0.08] px-8 py-5 border-b border-primary/10">
@@ -989,6 +1097,8 @@ const Index = () => {
       </section>
 
       <SectionDivider />
+
+      {/* ───── CHI SIAMO ───── */}
       <section id="chi-siamo" className="py-40 px-6 lg:px-12">
         <div className="max-w-[1320px] mx-auto">
           <FadeIn>
@@ -1051,7 +1161,6 @@ const Index = () => {
       <section className="relative py-40 px-6 lg:px-12 overflow-hidden">
         <div className="max-w-[1320px] mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left: Image */}
             <FadeIn>
               <div className="relative rounded-lg overflow-hidden aspect-[4/3]">
                 <img
@@ -1065,7 +1174,6 @@ const Index = () => {
               </div>
             </FadeIn>
 
-            {/* Right: Content */}
             <div>
               <FadeIn>
                 <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">
@@ -1106,6 +1214,44 @@ const Index = () => {
       </section>
 
       <SectionDivider />
+
+      {/* ───── MANIFESTO (parallax) ───── */}
+      <section className="relative py-48 px-6 lg:px-12 overflow-hidden bg-alt">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: "url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1920&q=80')",
+          }}
+        />
+        <div className="absolute inset-0 bg-background/[0.88]" />
+        <motion.div
+          className="absolute inset-0 flex items-center justify-center pointer-events-none"
+          style={{ y: manifestoY }}
+        >
+          <div className="w-[600px] h-[600px] rounded-full bg-primary/[0.04] blur-[100px]" />
+        </motion.div>
+
+        <div className="relative max-w-[1000px] mx-auto text-center">
+          <FadeIn>
+            <motion.h2
+              className="font-display font-bold leading-[1.06] tracking-[-2px]"
+              style={{ fontSize: "clamp(36px, 5.5vw, 72px)" }}
+            >
+              Le PMI italiane meritano<br />
+              <span className="italic font-light text-primary">tecnologia da Fortune 500.</span>
+            </motion.h2>
+          </FadeIn>
+          <FadeIn delay={0.15}>
+            <p className="text-[20px] text-[rgba(255,255,255,0.6)] font-light mt-8 max-w-[600px] mx-auto leading-[1.7]">
+              Non è un sogno. È quello che costruiamo ogni giorno. Piattaforma dopo piattaforma, agente dopo agente, risultato dopo risultato.
+            </p>
+          </FadeIn>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* ───── I NOSTRI PROGETTI (3D Tilt Cards) ───── */}
       <section id="progetti" className="bg-alt py-40 px-6 lg:px-12">
         <div className="max-w-[1320px] mx-auto">
           <FadeIn>
@@ -1131,9 +1277,8 @@ const Index = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {projects.map((p, i) => (
               <FadeIn key={i} delay={0.08 * i}>
-                <motion.div
-                  className="group relative p-8 rounded-lg border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)] transition-all"
-                  whileHover={{ y: -6, transition: { duration: 0.3 } }}
+                <TiltCard
+                  className="group relative p-8 rounded-lg border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)] transition-all hover:shadow-[0_20px_60px_rgba(0,0,0,0.3)]"
                   style={{ ["--brand-color" as string]: p.color }}
                 >
                   <div
@@ -1149,7 +1294,7 @@ const Index = () => {
                   <p className="text-[13px] text-[rgba(255,255,255,0.65)] font-light leading-[1.7]">
                     {p.desc}
                   </p>
-                </motion.div>
+                </TiltCard>
               </FadeIn>
             ))}
           </div>
@@ -1177,7 +1322,6 @@ const Index = () => {
           </FadeIn>
 
           <div ref={timelineRef} className="grid md:grid-cols-4 gap-8 relative">
-            {/* Animated connection line */}
             <motion.div
               className="hidden md:block absolute top-[28px] left-[60px] right-[60px] h-px bg-primary/20"
               initial={{ scaleX: 0 }}
@@ -1250,7 +1394,7 @@ const Index = () => {
 
       <SectionDivider />
 
-      {/* ───── TESTIMONIALS / CASE STUDY ───── */}
+      {/* ───── TESTIMONIALS ───── */}
       <section className="py-40 px-6 lg:px-12">
         <div className="max-w-[1320px] mx-auto">
           <FadeIn>
@@ -1314,7 +1458,7 @@ const Index = () => {
 
       <SectionDivider />
 
-      {/* ───── TECH STACK / PARTNER ───── */}
+      {/* ───── TECH STACK ───── */}
       <section className="bg-alt py-32 px-6 lg:px-12">
         <div className="max-w-[1000px] mx-auto text-center">
           <FadeIn>
@@ -1418,7 +1562,6 @@ const Index = () => {
 
       {/* ───── CTA FINALE ───── */}
       <section id="cta-finale" className="relative py-[200px] px-6 lg:px-12 text-center overflow-hidden">
-        {/* Background image */}
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -1426,7 +1569,6 @@ const Index = () => {
           }}
         />
         <div className="absolute inset-0 bg-background/[0.94]" />
-        {/* Animated glow */}
         <motion.div
           className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] pointer-events-none"
           style={{
@@ -1464,13 +1606,93 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ───── FOOTER ───── */}
-      <footer className="border-t border-[rgba(255,255,255,0.04)] py-12 px-6 lg:px-12">
-        <div className="max-w-[1320px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <img src={aedixLogo} alt="AEDIX" className="h-10" />
-          <span className="text-[12px] text-[rgba(255,255,255,0.2)] tracking-[1px]">
-            © 2026 AEDIX — Domus Group S.r.l. — Tutti i diritti riservati
-          </span>
+      {/* ───── FOOTER ESPANSO ───── */}
+      <footer className="border-t border-[rgba(255,255,255,0.04)] pt-16 pb-8 px-6 lg:px-12">
+        <div className="max-w-[1320px] mx-auto">
+          <div className="grid md:grid-cols-4 gap-12 mb-16">
+            {/* Brand */}
+            <div className="md:col-span-1">
+              <img src={aedixLogo} alt="AEDIX" className="h-10 mb-4" />
+              <p className="text-[14px] text-[rgba(255,255,255,0.5)] font-light leading-[1.7]">
+                La tech company italiana che costruisce il futuro delle PMI con AI, SaaS e sistemi di vendita.
+              </p>
+            </div>
+
+            {/* Piattaforme */}
+            <div>
+              <h4 className="font-mono text-[11px] uppercase tracking-[3px] text-primary mb-6">Piattaforme</h4>
+              <ul className="space-y-3">
+                {["Edilizia in Cloud", "Cantiere in Cloud", "Edilizia.io", "Marketing Edile", "Vendita Edile", "TalentProfile 360°", "Impresa Leggera"].map((name) => (
+                  <li key={name}>
+                    <span className="text-[13px] text-[rgba(255,255,255,0.5)] hover:text-white transition-colors cursor-pointer">
+                      {name}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Azienda */}
+            <div>
+              <h4 className="font-mono text-[11px] uppercase tracking-[3px] text-primary mb-6">Azienda</h4>
+              <ul className="space-y-3">
+                {[
+                  { label: "Chi Siamo", id: "chi-siamo" },
+                  { label: "Come Lavoriamo", id: "cosa-facciamo" },
+                  { label: "Progetti", id: "progetti" },
+                  { label: "FAQ", id: "" },
+                ].map((link) => (
+                  <li key={link.label}>
+                    <button
+                      onClick={() => link.id && scrollTo(link.id)}
+                      className="text-[13px] text-[rgba(255,255,255,0.5)] hover:text-white transition-colors"
+                    >
+                      {link.label}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Contatti */}
+            <div>
+              <h4 className="font-mono text-[11px] uppercase tracking-[3px] text-primary mb-6">Contatti</h4>
+              <ul className="space-y-3">
+                <li className="flex items-center gap-2 text-[13px] text-[rgba(255,255,255,0.5)]">
+                  <Mail size={14} className="text-primary/60" />
+                  info@aedix.io
+                </li>
+                <li className="flex items-center gap-2 text-[13px] text-[rgba(255,255,255,0.5)]">
+                  <MapPin size={14} className="text-primary/60" />
+                  Italia
+                </li>
+              </ul>
+              <div className="flex gap-3 mt-6">
+                {[
+                  { icon: <Linkedin size={18} />, href: "#" },
+                  { icon: <Instagram size={18} />, href: "#" },
+                ].map((social, i) => (
+                  <a
+                    key={i}
+                    href={social.href}
+                    className="w-9 h-9 rounded-full border border-[rgba(255,255,255,0.08)] flex items-center justify-center text-[rgba(255,255,255,0.4)] hover:text-primary hover:border-primary/30 transition-colors"
+                  >
+                    {social.icon}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom bar */}
+          <div className="border-t border-[rgba(255,255,255,0.04)] pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+            <span className="text-[12px] text-[rgba(255,255,255,0.2)] tracking-[1px]">
+              © 2026 AEDIX — Domus Group S.r.l. — Tutti i diritti riservati
+            </span>
+            <span className="text-[11px] text-[rgba(255,255,255,0.15)] font-mono">
+              Designed & Built with AI
+            </span>
+          </div>
         </div>
       </footer>
     </div>
