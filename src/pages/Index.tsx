@@ -584,35 +584,8 @@ const navSections = [
 const Index = () => {
   const timelineRef = useRef(null);
   const timelineInView = useInView(timelineRef, { once: true, margin: "-100px" });
-  const timelineRef = useRef(null);
-  const timelineInView = useInView(timelineRef, { once: true, margin: "-100px" });
-
-  // Track scroll + active section
-  useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 40);
-
-      // Find active section
-      const sections = navSections.map(s => ({
-        id: s.id,
-        el: document.getElementById(s.id),
-      }));
-      
-      let current = "";
-      for (const s of sections) {
-        if (s.el) {
-          const rect = s.el.getBoundingClientRect();
-          if (rect.top <= 200) current = s.id;
-        }
-      }
-      setActiveSection(current);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   const scrollTo = useCallback((id: string) => {
-    setMobileOpen(false);
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   }, []);
 
