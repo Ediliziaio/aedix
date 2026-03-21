@@ -475,7 +475,7 @@ const timeline = [
   { num: "04", title: "Risultati", text: "Primi numeri reali: lead generati, appuntamenti fissati, ore risparmiate, costi tagliati. Da qui si scala." },
 ];
 
-// ─── FAQ Item ────────────────────────────────────────────────
+// ─── FAQ Item Component ──────────────────────────────────────
 const FAQItem = ({ question, answer }: { question: string; answer: string }) => {
   const [open, setOpen] = useState(false);
   return (
