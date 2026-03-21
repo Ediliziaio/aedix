@@ -24,6 +24,13 @@ const projects = [
   { name: "Impresa Leggera", slug: "impresa-leggera", color: "#6366F1", icon: <Briefcase size={32} />, desc: "Back-office in outsourcing pay-per-use. Fatturazione, buste paga, adempimenti — senza assumere nessuno.", tag: "Operations" },
 ];
 
+const ecosystemStats = [
+  { value: "7", label: "Piattaforme" },
+  { value: "44", label: "Workflow automatizzati" },
+  { value: "11", label: "Agenti AI attivi" },
+  { value: "24/7", label: "Operativi" },
+];
+
 const Progetti = () => (
   <Layout>
     <section className="pt-[140px] pb-20 px-6 lg:px-12">
@@ -46,10 +53,7 @@ const Progetti = () => (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((p, i) => (
             <FadeIn key={i} delay={0.08 * i}>
-              <Link
-                to={`/progetti/${p.slug}`}
-                className="group relative p-8 rounded-lg border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)] hover:bg-[rgba(255,255,255,0.06)] transition-all hover:-translate-y-1 block h-full"
-              >
+              <Link to={`/progetti/${p.slug}`} className="group relative p-8 rounded-lg border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)] hover:bg-[rgba(255,255,255,0.06)] transition-all hover:-translate-y-1 block h-full">
                 <div className="absolute top-0 left-0 right-0 h-0.5 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-t-lg" style={{ background: p.color }} />
                 <div className="flex items-center justify-between mb-4">
                   <div className="opacity-60 group-hover:opacity-100 transition-opacity" style={{ color: p.color }}>{p.icon}</div>
@@ -64,6 +68,42 @@ const Progetti = () => (
             </FadeIn>
           ))}
         </div>
+      </div>
+    </section>
+
+    {/* Ecosystem Stats */}
+    <section className="py-20 px-6 lg:px-12 bg-alt">
+      <div className="max-w-[1320px] mx-auto">
+        <FadeIn>
+          <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6 text-center">L'Ecosistema in Numeri</span>
+        </FadeIn>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {ecosystemStats.map((s, i) => (
+            <FadeIn key={i} delay={0.1 * i}>
+              <div className="text-center p-8 rounded-lg border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)]">
+                <motion.div className="font-mono text-[40px] font-bold text-primary leading-none mb-2" initial={{ opacity: 0, scale: 0.5 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.15 * i, duration: 0.5 }}>
+                  {s.value}
+                </motion.div>
+                <div className="text-[13px] text-[rgba(255,255,255,0.6)] font-light">{s.label}</div>
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* CTA */}
+    <section className="py-32 px-6 lg:px-12">
+      <div className="max-w-[800px] mx-auto text-center">
+        <FadeIn>
+          <h2 className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-6" style={{ fontSize: "clamp(28px, 4vw, 48px)" }}>
+            Vuoi vedere l'ecosistema <span className="italic font-light text-primary">in azione?</span>
+          </h2>
+          <p className="text-[17px] text-[rgba(255,255,255,0.65)] font-light mb-10">Prenota una demo gratuita e scopri come le nostre piattaforme possono trasformare la tua azienda.</p>
+          <Link to="/contatti" className="shimmer-btn inline-flex items-center gap-3 bg-primary text-primary-foreground font-bold text-[13px] uppercase tracking-[2px] px-12 py-[18px] hover:-translate-y-0.5 hover:shadow-[0_16px_48px_rgba(246,190,9,0.25)] transition-all relative overflow-hidden">
+            Richiedi una Demo <ArrowRight size={16} />
+          </Link>
+        </FadeIn>
       </div>
     </section>
   </Layout>

@@ -1,6 +1,7 @@
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
-import { Rocket, Shield, Users, Zap, Target, Brain, TrendingUp, Heart } from "lucide-react";
+import { Shield, Users, Target, Heart, Building, Utensils, Wrench, ShoppingBag, ArrowRight } from "lucide-react";
 import Layout from "@/components/Layout";
 
 const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) => {
@@ -27,6 +28,20 @@ const values = [
   { icon: <Shield size={28} />, title: "Testato su noi stessi", desc: "Ogni piattaforma viene prima usata internamente sulle nostre aziende. Se non funziona per noi, non esiste per te." },
   { icon: <Users size={28} />, title: "Costruito per le PMI", desc: "Non siamo una big tech che si adatta verso il basso. Siamo nati dalle PMI, per le PMI." },
   { icon: <Heart size={28} />, title: "Partner, non fornitore", desc: "Il nostro fatturato dipende dal tuo. Lavoriamo a performance perché crediamo nel nostro lavoro." },
+];
+
+const stats = [
+  { value: "7", label: "Piattaforme attive" },
+  { value: "11", label: "Agenti AI operativi" },
+  { value: "44", label: "Workflow automatizzati" },
+  { value: "8+", label: "Anni di esperienza" },
+];
+
+const sectors = [
+  { icon: <Building size={24} />, name: "Edilizia" },
+  { icon: <Wrench size={24} />, name: "Impiantistica" },
+  { icon: <ShoppingBag size={24} />, name: "Retail" },
+  { icon: <Utensils size={24} />, name: "Ristorazione" },
 ];
 
 const team = [
@@ -58,6 +73,30 @@ const PercheNoi = () => (
       </div>
     </section>
 
+    {/* Stats */}
+    <section className="py-20 px-6 lg:px-12">
+      <div className="max-w-[1320px] mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          {stats.map((s, i) => (
+            <FadeIn key={i} delay={0.1 * i}>
+              <div className="text-center p-8 rounded-lg border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)]">
+                <motion.div
+                  className="font-mono text-[48px] font-bold text-primary leading-none mb-3"
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.15 * i, duration: 0.5 }}
+                >
+                  {s.value}
+                </motion.div>
+                <div className="text-[13px] text-[rgba(255,255,255,0.6)] font-light">{s.label}</div>
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+      </div>
+    </section>
+
     {/* Timeline */}
     <section className="py-20 px-6 lg:px-12 bg-alt">
       <div className="max-w-[1320px] mx-auto">
@@ -67,20 +106,13 @@ const PercheNoi = () => (
             Dal campo alla <span className="italic font-light text-primary">tecnologia.</span>
           </h2>
         </FadeIn>
-
         <div className="relative">
           <div className="hidden md:block absolute top-[28px] left-0 right-0 h-px bg-primary/20" />
           <div className="grid md:grid-cols-6 gap-8">
             {milestones.map((m, i) => (
               <FadeIn key={i} delay={0.1 * i}>
                 <div className="relative">
-                  <motion.div
-                    className="w-14 h-14 rounded-full border-2 border-primary/30 flex items-center justify-center mb-4 bg-background relative z-10"
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.15 * i, duration: 0.5 }}
-                  >
+                  <motion.div className="w-14 h-14 rounded-full border-2 border-primary/30 flex items-center justify-center mb-4 bg-background relative z-10" initial={{ scale: 0 }} whileInView={{ scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.15 * i, duration: 0.5 }}>
                     <span className="font-mono text-[14px] font-bold text-primary">{m.year}</span>
                   </motion.div>
                   <h3 className="font-display text-[16px] font-semibold mb-2">{m.title}</h3>
@@ -102,7 +134,6 @@ const PercheNoi = () => (
             Quello in cui <span className="italic font-light text-primary">crediamo.</span>
           </h2>
         </FadeIn>
-
         <div className="grid md:grid-cols-2 gap-px bg-[rgba(255,255,255,0.04)]">
           {values.map((v, i) => (
             <FadeIn key={i} delay={0.08 * i}>
@@ -118,8 +149,30 @@ const PercheNoi = () => (
       </div>
     </section>
 
+    {/* Settori serviti */}
+    <section className="py-20 px-6 lg:px-12 bg-alt">
+      <div className="max-w-[1320px] mx-auto">
+        <FadeIn>
+          <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6 text-center">Settori Serviti</span>
+          <h2 className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-16 text-center" style={{ fontSize: "clamp(28px, 3.5vw, 48px)" }}>
+            Dove facciamo la <span className="italic font-light text-primary">differenza.</span>
+          </h2>
+        </FadeIn>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {sectors.map((s, i) => (
+            <FadeIn key={i} delay={0.1 * i}>
+              <div className="text-center p-8 rounded-lg border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)] hover:border-primary/20 transition-colors">
+                <div className="text-primary mb-4 flex justify-center">{s.icon}</div>
+                <span className="text-[15px] font-medium">{s.name}</span>
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+      </div>
+    </section>
+
     {/* Team */}
-    <section className="py-32 px-6 lg:px-12 bg-alt">
+    <section className="py-32 px-6 lg:px-12">
       <div className="max-w-[1320px] mx-auto">
         <FadeIn>
           <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">Il Team</span>
@@ -127,7 +180,6 @@ const PercheNoi = () => (
             Le persone dietro la <span className="italic font-light text-primary">tecnologia.</span>
           </h2>
         </FadeIn>
-
         <div className="grid md:grid-cols-4 gap-6">
           {team.map((t, i) => (
             <FadeIn key={i} delay={0.1 * i}>
@@ -154,6 +206,24 @@ const PercheNoi = () => (
             "Costruiamo tecnologia per imprenditori che non hanno tempo di studiare la tecnologia.{" "}
             <span className="italic font-light text-primary">Funziona, o non esiste."</span>
           </h2>
+        </FadeIn>
+      </div>
+    </section>
+
+    {/* CTA */}
+    <section className="py-32 px-6 lg:px-12">
+      <div className="max-w-[800px] mx-auto text-center">
+        <FadeIn>
+          <h2 className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-6" style={{ fontSize: "clamp(28px, 4vw, 48px)" }}>
+            Pronto a scoprire come possiamo <span className="italic font-light text-primary">aiutarti?</span>
+          </h2>
+          <p className="text-[17px] text-[rgba(255,255,255,0.65)] font-light mb-10">Nessun impegno. Parliamo del tuo caso specifico.</p>
+          <Link
+            to="/contatti"
+            className="shimmer-btn inline-flex items-center gap-3 bg-primary text-primary-foreground font-bold text-[13px] uppercase tracking-[2px] px-12 py-[18px] hover:-translate-y-0.5 hover:shadow-[0_16px_48px_rgba(246,190,9,0.25)] transition-all relative overflow-hidden"
+          >
+            Contattaci <ArrowRight size={16} />
+          </Link>
         </FadeIn>
       </div>
     </section>
