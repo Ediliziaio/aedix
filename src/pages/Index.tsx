@@ -303,11 +303,17 @@ const HexagonCanvas = () => {
       ctx.stroke();
     };
 
+    let frameCount = 0;
     const draw = () => {
+      frameCount++;
+      if (frameCount % 3 !== 0) {
+        animId = requestAnimationFrame(draw);
+        return;
+      }
       const w = canvas.offsetWidth;
       const h = canvas.offsetHeight;
       ctx.clearRect(0, 0, w, h);
-      time += 0.003;
+      time += 0.009;
 
       const size = 60;
       const cols = Math.ceil(w / (size * 1.75)) + 2;
