@@ -517,7 +517,7 @@ const Index = () => {
               <button
                 key={l.id}
                 onClick={() => scrollTo(l.id)}
-                className="font-mono text-[13px] uppercase tracking-[1.5px] text-[rgba(255,255,255,0.45)] hover:text-white transition-colors"
+                className="font-mono text-[13px] uppercase tracking-[1.5px] text-[rgba(255,255,255,0.7)] hover:text-white transition-colors"
               >
                 {l.label}
               </button>
@@ -547,7 +547,7 @@ const Index = () => {
               <button
                 key={id}
                 onClick={() => scrollTo(id)}
-                className="font-mono text-[13px] uppercase tracking-[1.5px] text-[rgba(255,255,255,0.45)] hover:text-white text-left"
+                className="font-mono text-[13px] uppercase tracking-[1.5px] text-[rgba(255,255,255,0.7)] hover:text-white text-left"
               >
                 {id.replace(/-/g, " ")}
               </button>
@@ -622,7 +622,7 @@ const Index = () => {
 
           {/* Subtitle */}
           <FadeIn delay={0.2}>
-            <p className="text-[20px] leading-[1.75] text-[rgba(255,255,255,0.5)] max-w-[600px] font-light mb-10">
+            <p className="text-[20px] leading-[1.75] text-[rgba(255,255,255,0.7)] max-w-[600px] font-light mb-10">
               Aedix è la tech company italiana che sviluppa{" "}
               <span className="text-[rgba(255,255,255,0.85)] font-medium">
                 piattaforme SaaS, agenti AI e sistemi di vendita
@@ -661,7 +661,7 @@ const Index = () => {
                   <span className="font-mono text-[52px] font-bold text-white leading-none">
                     <AnimatedCounter value={s.val} suffix={s.suf} />
                   </span>
-                  <span className="font-mono text-[12px] uppercase tracking-[2.5px] text-[rgba(255,255,255,0.3)] mt-2">
+                  <span className="font-mono text-[12px] uppercase tracking-[2.5px] text-[rgba(255,255,255,0.55)] mt-2">
                     {s.label}
                   </span>
                 </div>
@@ -691,7 +691,7 @@ const Index = () => {
             </h2>
           </FadeIn>
           <FadeIn delay={0.16}>
-            <p className="text-[18px] text-[rgba(255,255,255,0.45)] max-w-[580px] font-light mb-20">
+            <p className="text-[18px] text-[rgba(255,255,255,0.7)] max-w-[580px] font-light mb-20">
               Non siamo una software house generica. Non siamo una web agency. Siamo un ecosistema tecnologico costruito per risolvere i problemi reali delle imprese italiane.
             </p>
           </FadeIn>
@@ -703,7 +703,7 @@ const Index = () => {
                   <div className="absolute top-0 left-0 right-0 h-0.5 bg-primary origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
                   <div className="text-primary mb-6">{s.icon}</div>
                   <h3 className="font-display text-[22px] font-semibold mb-4">{s.title}</h3>
-                  <p className="text-[15px] leading-[1.8] text-[rgba(255,255,255,0.45)] font-light">{s.text}</p>
+                  <p className="text-[15px] leading-[1.8] text-[rgba(255,255,255,0.7)] font-light">{s.text}</p>
                 </div>
               </FadeIn>
             ))}
@@ -738,7 +738,7 @@ const Index = () => {
                   <span className="font-mono text-[56px] font-bold text-primary leading-none block glow-text">
                     <AnimatedCounter value={s.value} suffix={s.suffix} />
                   </span>
-                  <span className="text-[14px] text-[rgba(255,255,255,0.4)] font-light mt-3 block">
+                  <span className="text-[14px] text-[rgba(255,255,255,0.65)] font-light mt-3 block">
                     {s.label}
                   </span>
                 </div>
@@ -777,7 +777,7 @@ const Index = () => {
             </h2>
           </FadeIn>
           <FadeIn delay={0.16}>
-            <p className="text-[18px] text-[rgba(255,255,255,0.45)] max-w-[600px] font-light mb-16">
+            <p className="text-[18px] text-[rgba(255,255,255,0.7)] max-w-[600px] font-light mb-16">
               Dati reali da fonti globali. Non opinioni — numeri che ogni imprenditore dovrebbe conoscere prima di decidere se "aspettare ancora un po'."
             </p>
           </FadeIn>
@@ -822,7 +822,7 @@ const Index = () => {
             </h2>
           </FadeIn>
           <FadeIn delay={0.16}>
-            <p className="text-[17px] text-[rgba(255,255,255,0.4)] max-w-[600px] font-light mb-[72px]">
+            <p className="text-[17px] text-[rgba(255,255,255,0.65)] max-w-[600px] font-light mb-[72px]">
               Ogni riga qui sotto è un costo che stai pagando adesso, un problema che puoi eliminare in 30 giorni, e un risultato misurabile. Nessuna promessa generica — solo numeri.
             </p>
           </FadeIn>
@@ -847,7 +847,7 @@ const Index = () => {
                       transition={{ delay: 0.1 * i, duration: 0.5 }}
                       className="border-b border-[rgba(255,255,255,0.04)] hover:bg-[rgba(246,190,9,0.03)] transition-colors"
                     >
-                      <td className="px-6 py-7 text-[15px] text-[rgba(255,255,255,0.35)] font-light line-through decoration-[rgba(255,100,100,0.4)]">
+                      <td className="px-6 py-7 text-[15px] text-[rgba(255,255,255,0.6)] font-light line-through decoration-[rgba(255,100,100,0.4)]">
                         {row.today}
                       </td>
                       <td className="px-6 py-7 text-[15px] text-[rgba(255,255,255,0.8)] font-medium">
@@ -895,7 +895,7 @@ const Index = () => {
             </h2>
           </FadeIn>
           <FadeIn delay={0.16}>
-            <p className="text-[17px] text-[rgba(255,255,255,0.4)] max-w-[600px] font-light mb-16">
+            <p className="text-[17px] text-[rgba(255,255,255,0.65)] max-w-[600px] font-light mb-16">
               La storia si ripete. Ogni rivoluzione tecnologica divide il mercato in due: chi si adatta e chi scompare. Stai scegliendo da che parte stare.
             </p>
           </FadeIn>
@@ -905,13 +905,13 @@ const Index = () => {
             <FadeIn delay={0.2}>
               <div className="rounded-lg border border-[rgba(255,255,255,0.06)] overflow-hidden">
                 <div className="bg-[rgba(255,255,255,0.04)] px-8 py-5 border-b border-[rgba(255,255,255,0.06)]">
-                  <h3 className="font-mono text-[12px] uppercase tracking-[3px] text-[rgba(255,255,255,0.4)]">
+                  <h3 className="font-mono text-[12px] uppercase tracking-[3px] text-[rgba(255,255,255,0.65)]">
                     🕐 Social Media — 2010
                   </h3>
                 </div>
                 {socialVsAi.map((row, i) => (
                   <div key={i} className="px-8 py-6 border-b border-[rgba(255,255,255,0.04)] last:border-0">
-                    <p className="text-[15px] text-[rgba(255,255,255,0.35)] font-light line-through decoration-[rgba(255,100,100,0.4)] mb-2">
+                    <p className="text-[15px] text-[rgba(255,255,255,0.6)] font-light line-through decoration-[rgba(255,100,100,0.4)] mb-2">
                       {row.social.myth}
                     </p>
                     <p className="text-[14px] text-green-impact font-medium">
@@ -932,7 +932,7 @@ const Index = () => {
                 </div>
                 {socialVsAi.map((row, i) => (
                   <div key={i} className="px-8 py-6 border-b border-[rgba(255,255,255,0.04)] last:border-0">
-                    <p className="text-[15px] text-[rgba(255,255,255,0.5)] font-light mb-2">
+                    <p className="text-[15px] text-[rgba(255,255,255,0.7)] font-light mb-2">
                       {row.ai.myth}
                     </p>
                     <p className="text-[14px] text-primary font-semibold">
@@ -977,7 +977,7 @@ const Index = () => {
 
           <div className="grid lg:grid-cols-2 gap-20 items-center">
             <FadeIn delay={0.16}>
-              <div className="text-[17px] leading-[1.9] text-[rgba(255,255,255,0.5)] font-light space-y-6">
+              <div className="text-[17px] leading-[1.9] text-[rgba(255,255,255,0.7)] font-light space-y-6">
                 <p>
                   Aedix nasce da un principio semplice:{" "}
                   <strong className="text-white font-semibold">
@@ -1061,7 +1061,7 @@ const Index = () => {
                         </div>
                         <div>
                           <span className="font-mono text-[28px] font-bold text-primary leading-none">{p.stat}</span>
-                          <p className="text-[14px] text-[rgba(255,255,255,0.5)] font-light mt-1">{p.label}</p>
+                          <p className="text-[14px] text-[rgba(255,255,255,0.7)] font-light mt-1">{p.label}</p>
                         </div>
                       </div>
                       <AnimatedBar value={p.bar} delay={0.1 * i + 0.3} />
@@ -1092,7 +1092,7 @@ const Index = () => {
             </h2>
           </FadeIn>
           <FadeIn delay={0.16}>
-            <p className="text-[18px] text-[rgba(255,255,255,0.45)] max-w-[580px] font-light mb-16">
+            <p className="text-[18px] text-[rgba(255,255,255,0.7)] max-w-[580px] font-light mb-16">
               Ogni brand risolve un problema specifico. Insieme, creano un vantaggio competitivo impossibile da replicare.
             </p>
           </FadeIn>
@@ -1115,7 +1115,7 @@ const Index = () => {
                   <h3 className="text-[18px] font-semibold mb-3" style={{ color: p.color }}>
                     {p.name}
                   </h3>
-                  <p className="text-[13px] text-[rgba(255,255,255,0.4)] font-light leading-[1.7]">
+                  <p className="text-[13px] text-[rgba(255,255,255,0.65)] font-light leading-[1.7]">
                     {p.desc}
                   </p>
                 </motion.div>
@@ -1168,7 +1168,7 @@ const Index = () => {
                     <span className="font-mono text-[24px] font-bold text-primary">{step.num}</span>
                   </motion.div>
                   <h3 className="font-display text-[20px] font-semibold mb-3">{step.title}</h3>
-                  <p className="text-[15px] text-[rgba(255,255,255,0.5)] font-light leading-[1.7]">
+                  <p className="text-[15px] text-[rgba(255,255,255,0.7)] font-light leading-[1.7]">
                     {step.text}
                   </p>
                 </div>
@@ -1209,7 +1209,7 @@ const Index = () => {
                   <div className="w-14 h-14 rounded-full border border-primary/20 flex items-center justify-center">
                     {b.icon}
                   </div>
-                  <p className="text-[14px] text-[rgba(255,255,255,0.5)] font-light">{b.text}</p>
+                  <p className="text-[14px] text-[rgba(255,255,255,0.7)] font-light">{b.text}</p>
                 </motion.div>
               ))}
             </div>
@@ -1250,7 +1250,7 @@ const Index = () => {
             </h2>
           </FadeIn>
           <FadeIn delay={0.1}>
-            <p className="text-[18px] text-[rgba(255,255,255,0.45)] max-w-[540px] mx-auto font-light leading-[1.7] mb-12">
+            <p className="text-[18px] text-[rgba(255,255,255,0.7)] max-w-[540px] mx-auto font-light leading-[1.7] mb-12">
               Meno costi fissi. Più vendite. Più controllo. Più libertà. Non è una promessa — è un sistema che funziona già per chi lo usa.
             </p>
           </FadeIn>
