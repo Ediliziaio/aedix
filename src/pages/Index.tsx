@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import clientiEdiliLogo from "@/assets/clientiedili_dark.png";
+import aedixLogo from "@/assets/aedix_logo.png";
 import { motion, useScroll, useSpring, useInView, useMotionValue, useTransform, animate, AnimatePresence } from "framer-motion";
 import {
   Phone, Mail, MapPin, Check, Star, ArrowUpRight, ArrowRight,
@@ -262,7 +262,7 @@ function Navbar({ bannerVisible }: { bannerVisible: boolean }) {
     <nav className={`fixed left-0 right-0 z-50 transition-all duration-300 ${bannerVisible ? "top-10" : "top-0"} ${scrolled ? "bg-background/90 backdrop-blur-lg border-b border-border" : "bg-transparent"}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
         <a href="#" className="flex items-center">
-          <img src={clientiEdiliLogo} alt="ClientiEdili" className="h-10" />
+          <img src={aedixLogo} alt="AEDIX" className="h-10" />
         </a>
 
         <div className="hidden md:flex items-center gap-8">
@@ -653,7 +653,7 @@ function BeforeAfterSection() {
                   <div className="w-10 h-10 rounded-full bg-destructive/20 flex items-center justify-center">
                     <ThumbsDown size={18} className="text-destructive" />
                   </div>
-                  <span className="font-ui font-semibold text-destructive">Senza ClientiEdili</span>
+                  <span className="font-ui font-semibold text-destructive">Senza AEDIX</span>
                 </div>
                 <ul className="space-y-3">
                   {["Sito datato o inesistente", "Zero richieste da Google", "Nessuna presenza su Maps", "Clienti solo dal passaparola"].map((item, i) => (
@@ -679,7 +679,7 @@ function BeforeAfterSection() {
                   <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
                     <ThumbsUp size={18} className="text-primary" />
                   </div>
-                  <span className="font-ui font-semibold text-primary">Con ClientiEdili</span>
+                  <span className="font-ui font-semibold text-primary">Con AEDIX</span>
                 </div>
                 <ul className="space-y-3">
                   {["Sito moderno e professionale", "10+ richieste al mese da Google", "Prima pagina su Google Maps", "Clienti nuovi ogni settimana"].map((item, i) => (
@@ -1166,7 +1166,7 @@ function ContactSection() {
             <div className="space-y-6">
               {[
                 { icon: Phone, label: "+39 02 1234 5678" },
-                { icon: Mail, label: "info@clientiedili.it" },
+                { icon: Mail, label: "info@aedix.it" },
                 { icon: MapPin, label: "Milano, Italia" },
               ].map((c, i) => (
                 <FadeIn key={i} delay={0.3 + i * 0.1}>
@@ -1286,7 +1286,7 @@ function Footer() {
         <div className="grid md:grid-cols-4 gap-10 mb-12">
           <div className="md:col-span-2">
             <div className="flex items-center mb-4">
-              <img src={clientiEdiliLogo} alt="ClientiEdili" className="h-10" />
+              <img src={aedixLogo} alt="AEDIX" className="h-10" />
             </div>
             <p className="text-muted-foreground max-w-sm leading-relaxed mb-6">
               Siti web professionali per imprese edili italiane. Più clienti, più lavoro, più crescita.
@@ -1335,7 +1335,7 @@ function Footer() {
             <h4 className="font-ui font-semibold mb-4 text-sm">Contatti</h4>
             <ul className="space-y-2 text-muted-foreground text-sm">
               <li>+39 02 1234 5678</li>
-              <li>info@clientiedili.it</li>
+              <li>info@aedix.it</li>
               <li>Milano, Italia</li>
             </ul>
 
@@ -1355,7 +1355,7 @@ function Footer() {
         </div>
 
         <div className="border-t border-border pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-muted-foreground text-sm">© 2026 ClientiEdili. Tutti i diritti riservati.</p>
+          <p className="text-muted-foreground text-sm">© 2026 AEDIX. Tutti i diritti riservati.</p>
           <div className="flex gap-6 text-muted-foreground text-sm">
             <a href="#" className="hover:text-foreground transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-foreground transition-colors">Cookie Policy</a>
