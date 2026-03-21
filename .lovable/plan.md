@@ -1,44 +1,79 @@
 
 
-## Piano: Fix Performance — Homepage troppo lenta
+## Piano: Nuove sezioni con dati reali AI, immagini potenti e confronto storico
 
-### Problema identificato
+### Panoramica
+Aggiungere 3 nuove sezioni alla homepage tra quelle esistenti, con dati reali sull'impatto dell'AI, un parallelo storico AI vs Social Media, e immagini potenti da Unsplash. Aggiornare anche le sezioni esistenti con immagini di sfondo.
 
-La homepage ha 3 canvas animati + cursore custom + floating badges che girano tutti contemporaneamente con `requestAnimationFrame`, causando lag pesante:
+### Nuove sezioni da aggiungere
 
-1. **ParticleField** (il piu grave) — Canvas grande quanto l'INTERA pagina scrollabile (migliaia di pixel di altezza), moltiplicato per `devicePixelRatio`. Ogni frame: cancella tutto, ridisegna 70 particelle, calcola O(n²) = 2.415 connessioni tra particelle. Su un canvas di ~10.000+ pixel di altezza a 2x DPR, questo e' devastante.
+**A. "La Rivoluzione AI in Numeri" (dopo "I Numeri", prima di "Prima/Dopo")**
 
-2. **HexagonCanvas** — Griglia di esagoni ridisegnata ogni frame con calcoli trigonometrici. Meno grave ma si somma.
+Sezione con dati reali e verificabili sull'impatto dell'AI:
+- Sfondo con immagine Unsplash di server/data center in overlay scuro (opacity 10%)
+- Griglia di 6 dati con icone e source attribution:
+  - **$15.7 trilioni** — Impatto economico globale dell'AI entro il 2030 (PwC)
+  - **40%** — Aumento produttività media con AI generativa (McKinsey)
+  - **97 milioni** — Nuovi posti di lavoro creati dall'AI entro il 2025 (World Economic Forum)
+  - **300%** — ROI medio delle aziende che adottano AI (Accenture)
+  - **75%** — Delle aziende adotterà AI entro il 2027 (Gartner)
+  - **€3.200/mese** — Risparmio medio per PMI con automazione AI (AEDIX internal)
+- Ogni dato con counter animato gold grande + label + fonte in monospace piccolo
+- Sfondo alternato con immagine tech in overlay
 
-3. **CustomCursor** — Loop lerp continuo (impatto minore).
+**B. "AI Oggi = Social Media nel 2010" (dopo "Prima/Dopo", prima di "Chi Siamo")**
 
-4. **FloatingBadge** x4 — Animazioni Framer Motion infinite in loop.
+Parallelo storico potente con timeline visiva:
+- Headline: "Chi ha ignorato i social nel 2010 ha perso un decennio. Chi ignora l'AI oggi perderà tutto."
+- Tabella/timeline a 2 colonne side-by-side:
+  - Colonna sinistra "Social Media 2010": "Sono una moda" → Oggi fatturano $200B/anno | "Non servono alla mia azienda" → Oggi sono il canale #1 | "Costa troppo, non ho tempo" → Chi ha iniziato prima ha vinto
+  - Colonna destra "AI 2025": "È troppo complicata" → Si configura in giorni | "Non serve nel mio settore" → Già usata in edilizia, ristorazione, retail | "Aspetto che maturi" → Chi aspetta, perde
+- Immagine di sfondo: grafico di crescita esponenziale o network/connections
+- CTA in basso: "Non restare indietro. → Parla con noi"
 
-5. **FadeIn e SectionDivider** — Warning React `forwardRef` (non causa lag ma indica un problema).
+**C. "Il Vantaggio Competitivo dell'AI" (dopo "Chi Siamo", prima di "Progetti")**
 
-### Soluzione
+Sezione visiva con immagine grande e dati affiancati:
+- Layout: immagine a sinistra (50%, Unsplash robot/AI/futuristico con overlay gold), contenuto a destra
+- Headline: "Mentre i tuoi competitor dormono, l'AI lavora per te."
+- 4 punti con icone animate:
+  - **24/7** — I tuoi agenti AI non dormono mai
+  - **0 errori umani** — Processi automatizzati = zero dimenticanze
+  - **10x velocità** — Preventivi, risposte, report in secondi
+  - **−60% costi** — Meno persone per le stesse attività
+- Ogni punto con barra di progresso animata che si riempie al scroll
 
-**File: `src/pages/Index.tsx`**
+### Immagini
 
-1. **ParticleField — Ottimizzazione drastica**:
-   - Canvas limitato alla viewport (`window.innerHeight`) anziche' all'intera pagina
-   - Ridurre particelle da 70 a 40
-   - Ridurre `MAX_DIST` da 150 a 100 (meno connessioni)
-   - Usare `position: fixed` (gia' fa) ma dimensionare il canvas solo come la viewport
-   - Aggiungere throttle: disegnare ogni 2 frame (`skipFrame` counter)
+Usare immagini Unsplash via URL diretto (no download):
+- Hero: aggiungere immagine di sfondo tech/futuristica con overlay scuro
+- Sezione AI Numeri: `https://images.unsplash.com/photo-1558494949-ef010cbdcc31` (data center)
+- Sezione AI vs Social: `https://images.unsplash.com/photo-1451187580459-43490279c0fa` (network globale)
+- Sezione Vantaggio: `https://images.unsplash.com/photo-1677442136019-21780ecad995` (AI abstract)
+- Chi Siamo: aggiungere immagine team/ufficio tech come sfondo sottile
 
-2. **HexagonCanvas — Ottimizzazione**:
-   - Ridurre la frequenza di animazione (disegnare ogni 2-3 frame)
-   - Ridurre `time += 0.003` cosi' il ridisegno meno frequente non si nota
+### Modifiche alle sezioni esistenti
 
-3. **FloatingBadge — Semplificare**:
-   - Sostituire `motion.div` con animazione CSS pura (`@keyframes float`) — molto piu' leggero di Framer Motion per animazioni infinite
+- **Hero**: aggiungere immagine di sfondo futuristica con overlay 90% opacità del navy
+- **Progetti**: aggiungere un'immagine piccola/icona per ogni card progetto
+- **CTA Finale**: aggiungere immagine di sfondo con overlay scuro e glow piu intenso
 
-4. **FadeIn — Fixare forwardRef warning**:
-   - Il componente FadeIn usa `motion.div` con `ref` correttamente, ma quando viene usato dentro certi contesti Framer Motion tenta di passare un ref. Nessun impatto performance ma pulire il warning.
+### File coinvolti
+- `src/pages/Index.tsx` — 3 nuove sezioni + immagini di sfondo nelle sezioni esistenti
 
-### Impatto atteso
-- Da 3 canvas pesanti in loop continuo a 2 canvas ottimizzati con frame skipping
-- Riduzione del carico GPU/CPU del ~60-70%
-- Scrolling fluido senza scatti
+### Ordine finale sezioni
+1. Navbar
+2. Hero (con immagine sfondo)
+3. Cosa Facciamo
+4. I Numeri
+5. **La Rivoluzione AI in Numeri** (NUOVA)
+6. Prima/Dopo
+7. **AI Oggi = Social Media nel 2010** (NUOVA)
+8. Chi Siamo
+9. **Il Vantaggio Competitivo dell'AI** (NUOVA)
+10. I Nostri Progetti
+11. Come Lavoriamo
+12. Social Proof
+13. CTA Finale (con immagine sfondo)
+14. Footer
 
