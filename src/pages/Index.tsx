@@ -1008,7 +1008,65 @@ const Index = () => {
 
       <SectionDivider />
 
-      {/* ───── I NOSTRI PROGETTI ───── */}
+      {/* ───── VANTAGGIO COMPETITIVO ───── */}
+      <section className="relative py-40 px-6 lg:px-12 overflow-hidden">
+        <div className="max-w-[1320px] mx-auto">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Left: Image */}
+            <FadeIn>
+              <div className="relative rounded-lg overflow-hidden aspect-[4/3]">
+                <img
+                  src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80"
+                  alt="AI Technology"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/40 to-transparent" />
+                <div className="absolute inset-0 bg-primary/[0.05]" />
+              </div>
+            </FadeIn>
+
+            {/* Right: Content */}
+            <div>
+              <FadeIn>
+                <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">
+                  Il Vantaggio
+                </span>
+              </FadeIn>
+              <FadeIn delay={0.08}>
+                <h2
+                  className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-12"
+                  style={{ fontSize: "clamp(28px, 3.5vw, 48px)" }}
+                >
+                  Mentre i tuoi competitor dormono,<br />
+                  <span className="italic font-light text-primary">l'AI lavora per te.</span>
+                </h2>
+              </FadeIn>
+
+              <div className="space-y-8">
+                {competitivePoints.map((p, i) => (
+                  <FadeIn key={i} delay={0.12 * i + 0.16}>
+                    <div className="group">
+                      <div className="flex items-center gap-4 mb-3">
+                        <div className="w-12 h-12 rounded-full border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary/10 transition-colors">
+                          {p.icon}
+                        </div>
+                        <div>
+                          <span className="font-mono text-[28px] font-bold text-primary leading-none">{p.stat}</span>
+                          <p className="text-[14px] text-[rgba(255,255,255,0.5)] font-light mt-1">{p.label}</p>
+                        </div>
+                      </div>
+                      <AnimatedBar value={p.bar} delay={0.1 * i + 0.3} />
+                    </div>
+                  </FadeIn>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider />
       <section id="progetti" className="bg-alt py-40 px-6 lg:px-12">
         <div className="max-w-[1320px] mx-auto">
           <FadeIn>
