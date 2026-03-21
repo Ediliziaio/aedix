@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import aedixLogo from "@/assets/aedix_logo.png";
 import { motion, useInView, useMotionValue, animate, useScroll, useTransform } from "framer-motion";
-import { Menu, X, Shield, RefreshCw, Target, Cloud, HardHat, Brain, Rocket, Handshake, ScanFace, Briefcase, TrendingUp, DollarSign, Users, BarChart3, Building2, Zap, Clock, Bot, Gauge, BadgeCheck } from "lucide-react";
+import { Menu, X, Shield, RefreshCw, Target, Cloud, HardHat, Brain, Rocket, Handshake, ScanFace, Briefcase, TrendingUp, DollarSign, Users, BarChart3, Building2, Zap, Clock, Bot, Gauge, BadgeCheck, MessageSquareQuote, HelpCircle, ChevronDown, Cpu, Database, Globe, Lock, Sparkles } from "lucide-react";
 
 // ─── Animated Progress Bar ───────────────────────────────────
 const AnimatedBar = ({ value, delay = 0 }: { value: number; delay?: number }) => {
@@ -475,6 +475,37 @@ const timeline = [
   { num: "04", title: "Risultati", text: "Primi numeri reali: lead generati, appuntamenti fissati, ore risparmiate, costi tagliati. Da qui si scala." },
 ];
 
+// ─── FAQ Item ────────────────────────────────────────────────
+const FAQItem = ({ question, answer }: { question: string; answer: string }) => {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="border-b border-[rgba(255,255,255,0.06)]">
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between py-6 text-left group"
+      >
+        <span className="text-[16px] font-medium text-[rgba(255,255,255,0.85)] group-hover:text-white transition-colors pr-4">
+          {question}
+        </span>
+        <ChevronDown
+          size={20}
+          className={`text-primary shrink-0 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+        />
+      </button>
+      <motion.div
+        initial={false}
+        animate={{ height: open ? "auto" : 0, opacity: open ? 1 : 0 }}
+        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+        className="overflow-hidden"
+      >
+        <p className="text-[15px] text-[rgba(255,255,255,0.6)] font-light leading-[1.8] pb-6">
+          {answer}
+        </p>
+      </motion.div>
+    </div>
+  );
+};
+
 // ─── Main Component ──────────────────────────────────────────
 const Index = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -517,7 +548,7 @@ const Index = () => {
               <button
                 key={l.id}
                 onClick={() => scrollTo(l.id)}
-                className="font-mono text-[13px] uppercase tracking-[1.5px] text-[rgba(255,255,255,0.45)] hover:text-white transition-colors"
+                className="font-mono text-[13px] uppercase tracking-[1.5px] text-[rgba(255,255,255,0.7)] hover:text-white transition-colors"
               >
                 {l.label}
               </button>
@@ -547,7 +578,7 @@ const Index = () => {
               <button
                 key={id}
                 onClick={() => scrollTo(id)}
-                className="font-mono text-[13px] uppercase tracking-[1.5px] text-[rgba(255,255,255,0.45)] hover:text-white text-left"
+                className="font-mono text-[13px] uppercase tracking-[1.5px] text-[rgba(255,255,255,0.7)] hover:text-white text-left"
               >
                 {id.replace(/-/g, " ")}
               </button>
@@ -622,7 +653,7 @@ const Index = () => {
 
           {/* Subtitle */}
           <FadeIn delay={0.2}>
-            <p className="text-[20px] leading-[1.75] text-[rgba(255,255,255,0.5)] max-w-[600px] font-light mb-10">
+            <p className="text-[20px] leading-[1.75] text-[rgba(255,255,255,0.7)] max-w-[600px] font-light mb-10">
               Aedix è la tech company italiana che sviluppa{" "}
               <span className="text-[rgba(255,255,255,0.85)] font-medium">
                 piattaforme SaaS, agenti AI e sistemi di vendita
@@ -661,7 +692,7 @@ const Index = () => {
                   <span className="font-mono text-[52px] font-bold text-white leading-none">
                     <AnimatedCounter value={s.val} suffix={s.suf} />
                   </span>
-                  <span className="font-mono text-[12px] uppercase tracking-[2.5px] text-[rgba(255,255,255,0.3)] mt-2">
+                  <span className="font-mono text-[12px] uppercase tracking-[2.5px] text-[rgba(255,255,255,0.55)] mt-2">
                     {s.label}
                   </span>
                 </div>
@@ -691,7 +722,7 @@ const Index = () => {
             </h2>
           </FadeIn>
           <FadeIn delay={0.16}>
-            <p className="text-[18px] text-[rgba(255,255,255,0.45)] max-w-[580px] font-light mb-20">
+            <p className="text-[18px] text-[rgba(255,255,255,0.7)] max-w-[580px] font-light mb-20">
               Non siamo una software house generica. Non siamo una web agency. Siamo un ecosistema tecnologico costruito per risolvere i problemi reali delle imprese italiane.
             </p>
           </FadeIn>
@@ -703,7 +734,7 @@ const Index = () => {
                   <div className="absolute top-0 left-0 right-0 h-0.5 bg-primary origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
                   <div className="text-primary mb-6">{s.icon}</div>
                   <h3 className="font-display text-[22px] font-semibold mb-4">{s.title}</h3>
-                  <p className="text-[15px] leading-[1.8] text-[rgba(255,255,255,0.45)] font-light">{s.text}</p>
+                  <p className="text-[15px] leading-[1.8] text-[rgba(255,255,255,0.7)] font-light">{s.text}</p>
                 </div>
               </FadeIn>
             ))}
@@ -738,7 +769,7 @@ const Index = () => {
                   <span className="font-mono text-[56px] font-bold text-primary leading-none block glow-text">
                     <AnimatedCounter value={s.value} suffix={s.suffix} />
                   </span>
-                  <span className="text-[14px] text-[rgba(255,255,255,0.4)] font-light mt-3 block">
+                  <span className="text-[14px] text-[rgba(255,255,255,0.65)] font-light mt-3 block">
                     {s.label}
                   </span>
                 </div>
@@ -777,7 +808,7 @@ const Index = () => {
             </h2>
           </FadeIn>
           <FadeIn delay={0.16}>
-            <p className="text-[18px] text-[rgba(255,255,255,0.45)] max-w-[600px] font-light mb-16">
+            <p className="text-[18px] text-[rgba(255,255,255,0.7)] max-w-[600px] font-light mb-16">
               Dati reali da fonti globali. Non opinioni — numeri che ogni imprenditore dovrebbe conoscere prima di decidere se "aspettare ancora un po'."
             </p>
           </FadeIn>
@@ -822,7 +853,7 @@ const Index = () => {
             </h2>
           </FadeIn>
           <FadeIn delay={0.16}>
-            <p className="text-[17px] text-[rgba(255,255,255,0.4)] max-w-[600px] font-light mb-[72px]">
+            <p className="text-[17px] text-[rgba(255,255,255,0.65)] max-w-[600px] font-light mb-[72px]">
               Ogni riga qui sotto è un costo che stai pagando adesso, un problema che puoi eliminare in 30 giorni, e un risultato misurabile. Nessuna promessa generica — solo numeri.
             </p>
           </FadeIn>
@@ -847,7 +878,7 @@ const Index = () => {
                       transition={{ delay: 0.1 * i, duration: 0.5 }}
                       className="border-b border-[rgba(255,255,255,0.04)] hover:bg-[rgba(246,190,9,0.03)] transition-colors"
                     >
-                      <td className="px-6 py-7 text-[15px] text-[rgba(255,255,255,0.35)] font-light line-through decoration-[rgba(255,100,100,0.4)]">
+                      <td className="px-6 py-7 text-[15px] text-[rgba(255,255,255,0.6)] font-light line-through decoration-[rgba(255,100,100,0.4)]">
                         {row.today}
                       </td>
                       <td className="px-6 py-7 text-[15px] text-[rgba(255,255,255,0.8)] font-medium">
@@ -895,7 +926,7 @@ const Index = () => {
             </h2>
           </FadeIn>
           <FadeIn delay={0.16}>
-            <p className="text-[17px] text-[rgba(255,255,255,0.4)] max-w-[600px] font-light mb-16">
+            <p className="text-[17px] text-[rgba(255,255,255,0.65)] max-w-[600px] font-light mb-16">
               La storia si ripete. Ogni rivoluzione tecnologica divide il mercato in due: chi si adatta e chi scompare. Stai scegliendo da che parte stare.
             </p>
           </FadeIn>
@@ -905,13 +936,13 @@ const Index = () => {
             <FadeIn delay={0.2}>
               <div className="rounded-lg border border-[rgba(255,255,255,0.06)] overflow-hidden">
                 <div className="bg-[rgba(255,255,255,0.04)] px-8 py-5 border-b border-[rgba(255,255,255,0.06)]">
-                  <h3 className="font-mono text-[12px] uppercase tracking-[3px] text-[rgba(255,255,255,0.4)]">
+                  <h3 className="font-mono text-[12px] uppercase tracking-[3px] text-[rgba(255,255,255,0.65)]">
                     🕐 Social Media — 2010
                   </h3>
                 </div>
                 {socialVsAi.map((row, i) => (
                   <div key={i} className="px-8 py-6 border-b border-[rgba(255,255,255,0.04)] last:border-0">
-                    <p className="text-[15px] text-[rgba(255,255,255,0.35)] font-light line-through decoration-[rgba(255,100,100,0.4)] mb-2">
+                    <p className="text-[15px] text-[rgba(255,255,255,0.6)] font-light line-through decoration-[rgba(255,100,100,0.4)] mb-2">
                       {row.social.myth}
                     </p>
                     <p className="text-[14px] text-green-impact font-medium">
@@ -932,7 +963,7 @@ const Index = () => {
                 </div>
                 {socialVsAi.map((row, i) => (
                   <div key={i} className="px-8 py-6 border-b border-[rgba(255,255,255,0.04)] last:border-0">
-                    <p className="text-[15px] text-[rgba(255,255,255,0.5)] font-light mb-2">
+                    <p className="text-[15px] text-[rgba(255,255,255,0.7)] font-light mb-2">
                       {row.ai.myth}
                     </p>
                     <p className="text-[14px] text-primary font-semibold">
@@ -977,7 +1008,7 @@ const Index = () => {
 
           <div className="grid lg:grid-cols-2 gap-20 items-center">
             <FadeIn delay={0.16}>
-              <div className="text-[17px] leading-[1.9] text-[rgba(255,255,255,0.5)] font-light space-y-6">
+              <div className="text-[17px] leading-[1.9] text-[rgba(255,255,255,0.7)] font-light space-y-6">
                 <p>
                   Aedix nasce da un principio semplice:{" "}
                   <strong className="text-white font-semibold">
@@ -1061,7 +1092,7 @@ const Index = () => {
                         </div>
                         <div>
                           <span className="font-mono text-[28px] font-bold text-primary leading-none">{p.stat}</span>
-                          <p className="text-[14px] text-[rgba(255,255,255,0.5)] font-light mt-1">{p.label}</p>
+                          <p className="text-[14px] text-[rgba(255,255,255,0.7)] font-light mt-1">{p.label}</p>
                         </div>
                       </div>
                       <AnimatedBar value={p.bar} delay={0.1 * i + 0.3} />
@@ -1092,7 +1123,7 @@ const Index = () => {
             </h2>
           </FadeIn>
           <FadeIn delay={0.16}>
-            <p className="text-[18px] text-[rgba(255,255,255,0.45)] max-w-[580px] font-light mb-16">
+            <p className="text-[18px] text-[rgba(255,255,255,0.7)] max-w-[580px] font-light mb-16">
               Ogni brand risolve un problema specifico. Insieme, creano un vantaggio competitivo impossibile da replicare.
             </p>
           </FadeIn>
@@ -1115,7 +1146,7 @@ const Index = () => {
                   <h3 className="text-[18px] font-semibold mb-3" style={{ color: p.color }}>
                     {p.name}
                   </h3>
-                  <p className="text-[13px] text-[rgba(255,255,255,0.4)] font-light leading-[1.7]">
+                  <p className="text-[13px] text-[rgba(255,255,255,0.65)] font-light leading-[1.7]">
                     {p.desc}
                   </p>
                 </motion.div>
@@ -1168,7 +1199,7 @@ const Index = () => {
                     <span className="font-mono text-[24px] font-bold text-primary">{step.num}</span>
                   </motion.div>
                   <h3 className="font-display text-[20px] font-semibold mb-3">{step.title}</h3>
-                  <p className="text-[15px] text-[rgba(255,255,255,0.5)] font-light leading-[1.7]">
+                  <p className="text-[15px] text-[rgba(255,255,255,0.7)] font-light leading-[1.7]">
                     {step.text}
                   </p>
                 </div>
@@ -1209,11 +1240,177 @@ const Index = () => {
                   <div className="w-14 h-14 rounded-full border border-primary/20 flex items-center justify-center">
                     {b.icon}
                   </div>
-                  <p className="text-[14px] text-[rgba(255,255,255,0.5)] font-light">{b.text}</p>
+                  <p className="text-[14px] text-[rgba(255,255,255,0.7)] font-light">{b.text}</p>
                 </motion.div>
               ))}
             </div>
           </FadeIn>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* ───── TESTIMONIALS / CASE STUDY ───── */}
+      <section className="py-40 px-6 lg:px-12">
+        <div className="max-w-[1320px] mx-auto">
+          <FadeIn>
+            <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">
+              Risultati Reali
+            </span>
+          </FadeIn>
+          <FadeIn delay={0.08}>
+            <h2
+              className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-16"
+              style={{ fontSize: "clamp(32px, 4.5vw, 58px)" }}
+            >
+              Non lo diciamo noi.<br />
+              <span className="italic font-light text-primary">Lo dicono i numeri.</span>
+            </h2>
+          </FadeIn>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                quote: "In 3 mesi abbiamo eliminato 2 figure amministrative e dimezzato i tempi di preventivazione.",
+                result: "−€4.800/mese in costi fissi",
+                sector: "Impresa edile — Lombardia",
+                metric: "−60%",
+                metricLabel: "costi operativi",
+              },
+              {
+                quote: "L'agente AI risponde ai clienti anche alle 23. Il sabato. La domenica. Noi chiudiamo più contratti senza assumere nessuno.",
+                result: "+35% appuntamenti qualificati",
+                sector: "Serramentista — Veneto",
+                metric: "+35%",
+                metricLabel: "lead qualificati",
+              },
+              {
+                quote: "Prima spendevamo €3.000/mese in marketing senza sapere cosa funzionava. Ora paghiamo solo sulle vendite chiuse.",
+                result: "ROI 4.2x in 6 mesi",
+                sector: "Impiantista — Emilia-Romagna",
+                metric: "4.2x",
+                metricLabel: "ROI marketing",
+              },
+            ].map((t, i) => (
+              <FadeIn key={i} delay={0.1 * i}>
+                <div className="group relative p-8 rounded-lg border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)] hover:bg-[rgba(255,255,255,0.06)] transition-all hover:-translate-y-1 h-full flex flex-col">
+                  <div className="absolute top-0 left-0 right-0 h-0.5 bg-primary origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+                  <MessageSquareQuote className="text-primary/50 mb-4" size={24} />
+                  <p className="text-[15px] text-[rgba(255,255,255,0.75)] font-light leading-[1.8] italic mb-6 flex-1">
+                    "{t.quote}"
+                  </p>
+                  <div className="border-t border-[rgba(255,255,255,0.06)] pt-5 mt-auto">
+                    <div className="font-mono text-[28px] font-bold text-primary leading-none mb-1">{t.metric}</div>
+                    <div className="text-[12px] text-[rgba(255,255,255,0.55)] font-mono uppercase tracking-[2px] mb-3">{t.metricLabel}</div>
+                    <p className="text-[13px] text-green-impact font-medium mb-1">{t.result}</p>
+                    <p className="text-[12px] text-[rgba(255,255,255,0.45)] font-mono">{t.sector}</p>
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* ───── TECH STACK / PARTNER ───── */}
+      <section className="bg-alt py-32 px-6 lg:px-12">
+        <div className="max-w-[1000px] mx-auto text-center">
+          <FadeIn>
+            <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">
+              Il Nostro Stack
+            </span>
+            <h2
+              className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-6"
+              style={{ fontSize: "clamp(28px, 3.5vw, 48px)" }}
+            >
+              Costruito sulle migliori<br />
+              <span className="italic font-light text-primary">tecnologie al mondo.</span>
+            </h2>
+            <p className="text-[16px] text-[rgba(255,255,255,0.65)] font-light mb-16 max-w-[500px] mx-auto">
+              Non reinventiamo la ruota. Integriamo le tecnologie più potenti al mondo per costruire soluzioni su misura.
+            </p>
+          </FadeIn>
+
+          <FadeIn delay={0.12}>
+            <div className="flex flex-wrap items-center justify-center gap-10">
+              {[
+                { name: "OpenAI", icon: <Sparkles size={28} /> },
+                { name: "React", icon: <Globe size={28} /> },
+                { name: "Supabase", icon: <Database size={28} /> },
+                { name: "AWS", icon: <Cloud size={28} /> },
+                { name: "TypeScript", icon: <Cpu size={28} /> },
+                { name: "Stripe", icon: <Lock size={28} /> },
+              ].map((tech, i) => (
+                <motion.div
+                  key={i}
+                  className="flex flex-col items-center gap-2 opacity-50 hover:opacity-100 transition-opacity"
+                  whileHover={{ scale: 1.1, y: -3 }}
+                >
+                  <div className="w-16 h-16 rounded-xl border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.03)] flex items-center justify-center text-[rgba(255,255,255,0.7)]">
+                    {tech.icon}
+                  </div>
+                  <span className="font-mono text-[11px] uppercase tracking-[2px] text-[rgba(255,255,255,0.45)]">{tech.name}</span>
+                </motion.div>
+              ))}
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* ───── FAQ ───── */}
+      <section className="py-40 px-6 lg:px-12">
+        <div className="max-w-[800px] mx-auto">
+          <FadeIn>
+            <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6 text-center">
+              Domande Frequenti
+            </span>
+          </FadeIn>
+          <FadeIn delay={0.08}>
+            <h2
+              className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-16 text-center"
+              style={{ fontSize: "clamp(32px, 4.5vw, 58px)" }}
+            >
+              Hai domande.<br />
+              <span className="italic font-light text-primary">Noi abbiamo risposte.</span>
+            </h2>
+          </FadeIn>
+
+          <div className="space-y-0">
+            {[
+              {
+                q: "Quanto costa implementare l'AI nella mia azienda?",
+                a: "Dipende dalle esigenze, ma il nostro modello è pensato per le PMI: si parte da €200/mese per un agente AI operativo. Nessun costo di setup nascosto, nessun vincolo annuale. Il ROI medio dei nostri clienti è di 4.2x in 6 mesi.",
+              },
+              {
+                q: "Devo avere competenze tecniche per usare le vostre piattaforme?",
+                a: "Assolutamente no. Ogni piattaforma è progettata per imprenditori, non per programmatori. Configuriamo tutto noi, formiamo il tuo team in una sessione di 2 ore, e offriamo supporto continuo.",
+              },
+              {
+                q: "In quanto tempo vedo i primi risultati?",
+                a: "I primi risultati misurabili arrivano entro 4 settimane: lead generati, appuntamenti fissati, ore risparmiate. Il nostro processo è strutturato in 4 fasi da 1 settimana ciascuna.",
+              },
+              {
+                q: "L'AI sostituirà i miei dipendenti?",
+                a: "No. L'AI automatizza le attività ripetitive e a basso valore aggiunto, liberando il tuo team per concentrarsi su ciò che conta: vendere, gestire clienti, far crescere l'azienda. Non sostituisci persone — le potenzi.",
+              },
+              {
+                q: "Funziona anche nel mio settore?",
+                a: "Lavoriamo con imprese edili, serramentisti, impiantisti, studi tecnici, aziende di servizi, retail, ristorazione. Se hai un'azienda con clienti da gestire e processi da ottimizzare, funziona anche per te.",
+              },
+              {
+                q: "E se non funziona? Che rischio corro?",
+                a: "Zero. Il nostro modello di marketing è a performance: paghi solo sulle vendite chiuse. Per le piattaforme, offriamo un periodo di test. Se non vedi risultati, non paghi. Punto.",
+              },
+            ].map((faq, i) => (
+              <FadeIn key={i} delay={0.06 * i}>
+                <FAQItem question={faq.q} answer={faq.a} />
+              </FadeIn>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -1250,7 +1447,7 @@ const Index = () => {
             </h2>
           </FadeIn>
           <FadeIn delay={0.1}>
-            <p className="text-[18px] text-[rgba(255,255,255,0.45)] max-w-[540px] mx-auto font-light leading-[1.7] mb-12">
+            <p className="text-[18px] text-[rgba(255,255,255,0.7)] max-w-[540px] mx-auto font-light leading-[1.7] mb-12">
               Meno costi fissi. Più vendite. Più controllo. Più libertà. Non è una promessa — è un sistema che funziona già per chi lo usa.
             </p>
           </FadeIn>
