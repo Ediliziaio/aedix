@@ -1,74 +1,79 @@
 
 
-## Piano: Creazione pagine + estrazione componenti condivisi
+## Piano: Aggiungere "Articoli" al menu + creare pagina Articoli + ottimizzare pagine esistenti
 
-### Panoramica
-Creare tutte le pagine del sito AEDIX, estrarre Navbar e Footer come componenti condivisi, e aggiornare il routing. "Chi Siamo" diventa "Perché Noi?".
+### 1. Navbar — aggiungere sezioni mancanti
 
-### File da creare/modificare
+Attualmente il menu ha solo 3 link: "Cosa Facciamo", "Progetti", "Perché Noi?". Manca "Articoli".
 
-**1. Estrazione componenti condivisi**
+**File: `src/components/Navbar.tsx`**
+- Aggiungere `{ label: "Articoli", to: "/articoli" }` ai `navLinks`
 
-- `src/components/Navbar.tsx` — Estrarre la navbar da Index.tsx (righe 628-706) in componente autonomo. Aggiungere supporto per navigazione tra pagine (react-router `Link`) oltre allo scroll interno. I link centrali diventano: "Cosa Facciamo" → `/servizi`, "Progetti" → `/progetti`, "Perché Noi?" → `/perche-noi`. CTA "Contattaci" → `/contatti`.
-- `src/components/Footer.tsx` — Estrarre il footer espanso (ultime ~60 righe) con le 4 colonne. Aggiornare i link per puntare alle pagine reali.
-- `src/components/Layout.tsx` — Wrapper con Navbar + children + Footer, usato da tutte le pagine.
+### 2. Creare pagina Articoli (`src/pages/Articoli.tsx`)
 
-**2. Aggiornare `src/pages/Index.tsx`**
-- Rimuovere navbar e footer inline, importare `Layout`
-- Aggiornare `navSections` per usare "Perché Noi?" al posto di "Chi Siamo"
-- Aggiornare la sezione `id="chi-siamo"` in `id="perche-noi"` e rinominare il titolo
+Pagina blog con 6-8 articoli hardcoded su AI, PMI, automazione. Ogni articolo con:
+- Immagine Unsplash, titolo, categoria (tag), data, excerpt
+- Card cliccabili verso `/articoli/:slug`
+- Filtro per categoria (Tutti, AI, PMI, Automazione, Marketing)
 
-**3. Nuove pagine**
+**File: `src/pages/ArticoloDettaglio.tsx`**
+- Pagina singolo articolo con contenuto lungo hardcoded
+- Layout: hero con immagine, titolo, data, autore → corpo articolo con paragrafi, citazioni, CTA finale
 
-- **`src/pages/Contatti.tsx`** (`/contatti`)
-  - Form contatto: nome, email, telefono, settore (select), messaggio
-  - Design coerente: sfondo navy, card form con bordo gold, CTA gold
-  - Info contatto a fianco: email, telefono, sede
-  - Validazione frontend con feedback visivo (toast)
+### 3. Aggiornare routing
 
-- **`src/pages/PerchéNoi.tsx`** (`/perche-noi`)
-  - Sezione hero con headline "Perché scegliere AEDIX?"
-  - Timeline aziendale: 2016 → 2026 con milestone
-  - Sezione valori/mission con 4 pilastri
-  - Sezione team placeholder (3-4 card con avatar placeholder, ruolo, bio breve)
-  - Quote/manifesto full-width
+**File: `src/App.tsx`**
+- Aggiungere route `/articoli` e `/articoli/:slug`
 
-- **`src/pages/Servizi.tsx`** (`/servizi`)
-  - Hero con headline
-  - 4 sezioni dettagliate per ogni pilastro (SaaS, AI, Marketing, Consulenza)
-  - Ogni pilastro: icona, titolo, descrizione lunga, lista feature (3-5 punti), CTA
-  - Tabella comparativa "Tradizionale vs AEDIX"
+### 4. Aggiornare Footer
 
-- **`src/pages/Progetti.tsx`** (`/progetti`)
-  - Griglia delle 7 piattaforme con card colorate (stesse di Index)
-  - Ogni card cliccabile verso dettaglio
+**File: `src/components/Footer.tsx`**
+- Aggiungere link "Articoli" nella colonna "Azienda"
 
-- **`src/pages/ProgettoDettaglio.tsx`** (`/progetti/:slug`)
-  - Hero con colore brand del progetto
-  - Descrizione estesa, feature list, use case
-  - CTA dedicata "Richiedi Demo"
-  - Dati dei 7 progetti hardcoded
+### 5. Ottimizzare pagine esistenti
 
-- **`src/pages/Privacy.tsx`** (`/privacy`)
-  - Testo placeholder privacy policy
+**Contatti (`src/pages/Contatti.tsx`)**:
+- Aggiungere sezione FAQ sotto il form ("Quanto costa?", "Quanto ci vuole?", "Siete affidabili?")
+- Aggiungere mappa/embed placeholder o indirizzo completo
+- Aggiungere social proof: "Rispondiamo entro 4 ore in media"
 
-- **`src/pages/Termini.tsx`** (`/termini`)
-  - Testo placeholder termini e condizioni
+**Perché Noi (`src/pages/PercheNoi.tsx`)**:
+- Aggiungere sezione "I Numeri" con 4 stat counter (7 piattaforme, 11 agenti, 44 workflow, 8+ anni)
+- Aggiungere sezione clienti/settori serviti con icone
+- Aggiungere CTA finale con glow prima del footer
 
-**4. Aggiornare `src/App.tsx`**
-- Importare tutte le nuove pagine
-- Aggiungere route: `/contatti`, `/perche-noi`, `/servizi`, `/progetti`, `/progetti/:slug`, `/privacy`, `/termini`
+**Servizi (`src/pages/Servizi.tsx`)**:
+- Aggiungere sezione FAQ specifica sui servizi (6 domande)
+- Aggiungere sezione "Come iniziare" con 3 step (Parla con noi → Configurazione → Risultati)
+- Aggiungere testimonial/social proof placeholder
 
-### Design coerente
-Tutte le pagine usano lo stesso design system: sfondo navy, testi bianchi con opacita' corrette, accent gold, font Space Grotesk per headline, DM Sans per body, JetBrains Mono per monospace. Animazioni fade-in con Framer Motion. ScrollProgressBar in ogni pagina tramite Layout.
+**Progetti (`src/pages/Progetti.tsx`)**:
+- Aggiungere sezione "L'ecosistema in numeri" con stat (7 piattaforme, 44 workflow, etc.)
+- Aggiungere CTA finale
+
+**ProgettoDettaglio (`src/pages/ProgettoDettaglio.tsx`)**:
+- Aggiungere sezione "Progetti correlati" con 2-3 card degli altri progetti
+- Aggiungere sezione FAQ specifica per ogni progetto
+- Aggiungere screenshot/mockup placeholder
+
+### File coinvolti
+- `src/components/Navbar.tsx` — aggiungere link Articoli
+- `src/components/Footer.tsx` — aggiungere link Articoli
+- `src/App.tsx` — nuove route
+- `src/pages/Articoli.tsx` — nuova pagina (lista articoli)
+- `src/pages/ArticoloDettaglio.tsx` — nuova pagina (singolo articolo)
+- `src/pages/Contatti.tsx` — FAQ + social proof
+- `src/pages/PercheNoi.tsx` — numeri + settori + CTA
+- `src/pages/Servizi.tsx` — FAQ + onboarding steps + social proof
+- `src/pages/Progetti.tsx` — stat + CTA
+- `src/pages/ProgettoDettaglio.tsx` — progetti correlati + FAQ
 
 ### Ordine di implementazione
-1. Componenti condivisi (Navbar, Footer, Layout)
-2. Aggiornamento Index.tsx (rimuovere navbar/footer, rinominare Chi Siamo)
-3. App.tsx con tutte le route
-4. Pagina Contatti
-5. Pagina Perché Noi
-6. Pagina Servizi
-7. Pagina Progetti + ProgettoDettaglio
-8. Pagine legali (Privacy, Termini)
+1. Navbar + Footer (link Articoli)
+2. App.tsx (route)
+3. Articoli.tsx + ArticoloDettaglio.tsx
+4. Ottimizzazione Contatti
+5. Ottimizzazione Perché Noi
+6. Ottimizzazione Servizi
+7. Ottimizzazione Progetti + ProgettoDettaglio
 
