@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { Link } from "react-router-dom";
 import aedixLogo from "@/assets/aedix_logo.png";
 import { motion, useInView, useMotionValue, animate, useScroll, useTransform } from "framer-motion";
-import { Menu, X, Shield, RefreshCw, Target, Cloud, HardHat, Brain, Rocket, Handshake, ScanFace, Briefcase, TrendingUp, DollarSign, Users, BarChart3, Building2, Zap, Clock, Bot, Gauge, BadgeCheck, MessageSquareQuote, HelpCircle, ChevronDown, Cpu, Database, Globe, Lock, Sparkles, Linkedin, Twitter, Instagram, Mail, MapPin, Phone } from "lucide-react";
+import { Shield, RefreshCw, Target, Cloud, Brain, Rocket, ScanFace, Briefcase, TrendingUp, DollarSign, Users, BarChart3, Building2, Zap, Clock, Gauge, BadgeCheck, MessageSquareQuote, ChevronDown, Cpu, Database, Globe, Lock, Sparkles } from "lucide-react";
+import Layout from "@/components/Layout";
 
 // ─── Scroll Progress Bar ─────────────────────────────────────
 const ScrollProgressBar = () => {
@@ -575,43 +577,15 @@ const FAQItem = ({ question, answer }: { question: string; answer: string }) => 
 const navSections = [
   { label: "Cosa Facciamo", id: "cosa-facciamo" },
   { label: "Progetti", id: "progetti" },
-  { label: "Chi Siamo", id: "chi-siamo" },
+  { label: "Perché Noi?", id: "perche-noi" },
 ];
 
 // ─── Main Component ──────────────────────────────────────────
 const Index = () => {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
   const timelineRef = useRef(null);
   const timelineInView = useInView(timelineRef, { once: true, margin: "-100px" });
 
-  // Track scroll + active section
-  useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 40);
-
-      // Find active section
-      const sections = navSections.map(s => ({
-        id: s.id,
-        el: document.getElementById(s.id),
-      }));
-      
-      let current = "";
-      for (const s of sections) {
-        if (s.el) {
-          const rect = s.el.getBoundingClientRect();
-          if (rect.top <= 200) current = s.id;
-        }
-      }
-      setActiveSection(current);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   const scrollTo = useCallback((id: string) => {
-    setMobileOpen(false);
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   }, []);
 
@@ -620,90 +594,11 @@ const Index = () => {
   const manifestoY = useTransform(manifestoProgress, [0, 1], [0, -100]);
 
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden custom-cursor-page">
-      <ScrollProgressBar />
+    <Layout>
+      <div className="custom-cursor-page">
       <CustomCursor />
       <ParticleField />
 
-      {/* ───── NAVBAR ───── */}
-      <nav
-        className={`fixed top-[3px] left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled ? "border-b border-[rgba(255,255,255,0.04)]" : ""
-        }`}
-        style={{
-          background: scrolled ? "rgba(10,19,34,0.85)" : "rgba(10,19,34,0.7)",
-          backdropFilter: "blur(24px)",
-        }}
-      >
-        <div className="max-w-[1320px] mx-auto flex items-center justify-between px-6 lg:px-12 py-[18px]">
-          <motion.img
-            src={aedixLogo}
-            alt="AEDIX"
-            className="h-12"
-            animate={{ height: scrolled ? 36 : 48 }}
-            transition={{ duration: 0.3 }}
-          />
-
-          <div className="hidden md:flex items-center gap-10">
-            {navSections.map((l) => (
-              <button
-                key={l.id}
-                onClick={() => scrollTo(l.id)}
-                className={`font-mono text-[13px] uppercase tracking-[1.5px] transition-colors relative ${
-                  activeSection === l.id
-                    ? "text-primary"
-                    : "text-[rgba(255,255,255,0.7)] hover:text-white"
-                }`}
-              >
-                {l.label}
-                {activeSection === l.id && (
-                  <motion.div
-                    layoutId="nav-indicator"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"
-                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                  />
-                )}
-              </button>
-            ))}
-          </div>
-
-          <button
-            onClick={() => scrollTo("cta-finale")}
-            className="hidden md:block bg-primary text-primary-foreground font-bold text-[12px] uppercase tracking-[2px] px-6 py-2.5 hover:bg-white transition-colors"
-          >
-            Contattaci
-          </button>
-
-          <button className="md:hidden text-white" onClick={() => setMobileOpen(!mobileOpen)}>
-            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="md:hidden px-6 pb-6 flex flex-col gap-4"
-            style={{ background: "rgba(10,19,34,0.95)" }}
-          >
-            {navSections.map((s) => (
-              <button
-                key={s.id}
-                onClick={() => scrollTo(s.id)}
-                className="font-mono text-[13px] uppercase tracking-[1.5px] text-[rgba(255,255,255,0.7)] hover:text-white text-left"
-              >
-                {s.label}
-              </button>
-            ))}
-            <button
-              onClick={() => scrollTo("cta-finale")}
-              className="bg-primary text-primary-foreground font-bold text-[12px] uppercase tracking-[2px] px-6 py-2.5 mt-2"
-            >
-              Contattaci
-            </button>
-          </motion.div>
-        )}
-      </nav>
 
       {/* ───── HERO with Video Background ───── */}
       <section className="relative min-h-screen flex flex-col justify-center pt-[140px] pb-20 px-6 lg:px-12 overflow-hidden">
@@ -1098,12 +993,12 @@ const Index = () => {
 
       <SectionDivider />
 
-      {/* ───── CHI SIAMO ───── */}
-      <section id="chi-siamo" className="py-40 px-6 lg:px-12">
+      {/* ───── PERCHÉ NOI ───── */}
+      <section id="perche-noi" className="py-40 px-6 lg:px-12">
         <div className="max-w-[1320px] mx-auto">
           <FadeIn>
             <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">
-              Chi Siamo
+              Perché Noi?
             </span>
           </FadeIn>
           <FadeIn delay={0.08}>
@@ -1595,107 +1490,19 @@ const Index = () => {
           </FadeIn>
           <FadeIn delay={0.2}>
             <div className="flex flex-wrap justify-center gap-4">
-              <button className="shimmer-btn bg-primary text-primary-foreground font-bold text-[13px] uppercase tracking-[2px] px-12 py-[18px] hover:-translate-y-0.5 hover:shadow-[0_16px_48px_rgba(246,190,9,0.25)] transition-all relative overflow-hidden">
+              <Link to="/contatti" className="shimmer-btn bg-primary text-primary-foreground font-bold text-[13px] uppercase tracking-[2px] px-12 py-[18px] hover:-translate-y-0.5 hover:shadow-[0_16px_48px_rgba(246,190,9,0.25)] transition-all relative overflow-hidden inline-block">
                 Parla Con Noi →
-              </button>
-              <button className="border border-[rgba(255,255,255,0.15)] text-white font-bold text-[13px] uppercase tracking-[2px] px-12 py-[18px] hover:border-primary hover:text-primary transition-all">
+              </Link>
+              <Link to="/progetti" className="border border-[rgba(255,255,255,0.15)] text-white font-bold text-[13px] uppercase tracking-[2px] px-12 py-[18px] hover:border-primary hover:text-primary transition-all inline-block">
                 Scopri Le Piattaforme
-              </button>
+              </Link>
             </div>
           </FadeIn>
         </div>
       </section>
 
-      {/* ───── FOOTER ESPANSO ───── */}
-      <footer className="border-t border-[rgba(255,255,255,0.04)] pt-16 pb-8 px-6 lg:px-12">
-        <div className="max-w-[1320px] mx-auto">
-          <div className="grid md:grid-cols-4 gap-12 mb-16">
-            {/* Brand */}
-            <div className="md:col-span-1">
-              <img src={aedixLogo} alt="AEDIX" className="h-10 mb-4" />
-              <p className="text-[14px] text-[rgba(255,255,255,0.5)] font-light leading-[1.7]">
-                La tech company italiana che costruisce il futuro delle PMI con AI, SaaS e sistemi di vendita.
-              </p>
-            </div>
-
-            {/* Piattaforme */}
-            <div>
-              <h4 className="font-mono text-[11px] uppercase tracking-[3px] text-primary mb-6">Piattaforme</h4>
-              <ul className="space-y-3">
-                {["Edilizia in Cloud", "Cantiere in Cloud", "Edilizia.io", "Marketing Edile", "Vendita Edile", "TalentProfile 360°", "Impresa Leggera"].map((name) => (
-                  <li key={name}>
-                    <span className="text-[13px] text-[rgba(255,255,255,0.5)] hover:text-white transition-colors cursor-pointer">
-                      {name}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Azienda */}
-            <div>
-              <h4 className="font-mono text-[11px] uppercase tracking-[3px] text-primary mb-6">Azienda</h4>
-              <ul className="space-y-3">
-                {[
-                  { label: "Chi Siamo", id: "chi-siamo" },
-                  { label: "Come Lavoriamo", id: "cosa-facciamo" },
-                  { label: "Progetti", id: "progetti" },
-                  { label: "FAQ", id: "" },
-                ].map((link) => (
-                  <li key={link.label}>
-                    <button
-                      onClick={() => link.id && scrollTo(link.id)}
-                      className="text-[13px] text-[rgba(255,255,255,0.5)] hover:text-white transition-colors"
-                    >
-                      {link.label}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Contatti */}
-            <div>
-              <h4 className="font-mono text-[11px] uppercase tracking-[3px] text-primary mb-6">Contatti</h4>
-              <ul className="space-y-3">
-                <li className="flex items-center gap-2 text-[13px] text-[rgba(255,255,255,0.5)]">
-                  <Mail size={14} className="text-primary/60" />
-                  info@aedix.io
-                </li>
-                <li className="flex items-center gap-2 text-[13px] text-[rgba(255,255,255,0.5)]">
-                  <MapPin size={14} className="text-primary/60" />
-                  Italia
-                </li>
-              </ul>
-              <div className="flex gap-3 mt-6">
-                {[
-                  { icon: <Linkedin size={18} />, href: "#" },
-                  { icon: <Instagram size={18} />, href: "#" },
-                ].map((social, i) => (
-                  <a
-                    key={i}
-                    href={social.href}
-                    className="w-9 h-9 rounded-full border border-[rgba(255,255,255,0.08)] flex items-center justify-center text-[rgba(255,255,255,0.4)] hover:text-primary hover:border-primary/30 transition-colors"
-                  >
-                    {social.icon}
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom bar */}
-          <div className="border-t border-[rgba(255,255,255,0.04)] pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-            <span className="text-[12px] text-[rgba(255,255,255,0.2)] tracking-[1px]">
-              © 2026 AEDIX — Domus Group S.r.l. — Tutti i diritti riservati
-            </span>
-            <span className="text-[11px] text-[rgba(255,255,255,0.15)] font-mono">
-              Designed & Built with AI
-            </span>
-          </div>
-        </div>
-      </footer>
-    </div>
+      </div>
+    </Layout>
   );
 };
 
