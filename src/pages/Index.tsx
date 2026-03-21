@@ -214,24 +214,18 @@ const TypingText = ({ text, delay = 0 }: { text: string; delay?: number }) => {
   );
 };
 
-// ─── Floating Badge ──────────────────────────────────────────
+// ─── Floating Badge (CSS animation, no Framer Motion) ────────
 const FloatingBadge = ({ text, x, y, delay }: { text: string; x: string; y: string; delay: number }) => (
-  <motion.div
+  <div
     className="absolute hidden lg:block font-mono text-[10px] uppercase tracking-[3px] text-primary/40 border border-primary/10 rounded-full px-4 py-1.5 backdrop-blur-sm bg-background/30"
-    style={{ left: x, top: y }}
-    animate={{
-      y: [0, -15, 0],
-      opacity: [0.3, 0.6, 0.3],
-    }}
-    transition={{
-      duration: 4 + delay,
-      repeat: Infinity,
-      ease: "easeInOut",
-      delay,
+    style={{
+      left: x,
+      top: y,
+      animation: `float ${4 + delay}s ease-in-out ${delay}s infinite`,
     }}
   >
     {text}
-  </motion.div>
+  </div>
 );
 
 // ─── Animated Counter ────────────────────────────────────────
