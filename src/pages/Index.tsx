@@ -1,7 +1,23 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import aedixLogo from "@/assets/aedix_logo.png";
 import { motion, useInView, useMotionValue, animate, useScroll, useTransform } from "framer-motion";
-import { Menu, X, Shield, RefreshCw, Target, Cloud, HardHat, Brain, Rocket, Handshake, ScanFace, Briefcase } from "lucide-react";
+import { Menu, X, Shield, RefreshCw, Target, Cloud, HardHat, Brain, Rocket, Handshake, ScanFace, Briefcase, TrendingUp, DollarSign, Users, BarChart3, Building2, Zap, Clock, Bot, Gauge, BadgeCheck } from "lucide-react";
+
+// ─── Animated Progress Bar ───────────────────────────────────
+const AnimatedBar = ({ value, delay = 0 }: { value: number; delay?: number }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  return (
+    <div ref={ref} className="w-full h-2 rounded-full bg-[rgba(255,255,255,0.06)] overflow-hidden">
+      <motion.div
+        className="h-full rounded-full bg-primary"
+        initial={{ width: 0 }}
+        animate={isInView ? { width: `${value}%` } : {}}
+        transition={{ duration: 1.2, delay, ease: [0.16, 1, 0.3, 1] }}
+      />
+    </div>
+  );
+};
 
 // ─── Custom Cursor ───────────────────────────────────────────
 const CustomCursor = () => {
