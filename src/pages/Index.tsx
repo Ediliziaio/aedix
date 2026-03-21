@@ -577,7 +577,7 @@ const FAQItem = ({ question, answer }: { question: string; answer: string }) => 
 const navSections = [
   { label: "Cosa Facciamo", id: "cosa-facciamo" },
   { label: "Progetti", id: "progetti" },
-  { label: "Chi Siamo", id: "chi-siamo" },
+  { label: "Perché Noi?", id: "perche-noi" },
 ];
 
 // ─── Main Component ──────────────────────────────────────────
