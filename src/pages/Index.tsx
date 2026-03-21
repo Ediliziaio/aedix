@@ -622,8 +622,8 @@ const Index = () => {
   const manifestoY = useTransform(manifestoProgress, [0, 1], [0, -100]);
 
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden custom-cursor-page">
-      <ScrollProgressBar />
+    <Layout>
+      <div className="custom-cursor-page">
       <CustomCursor />
       <ParticleField />
 
