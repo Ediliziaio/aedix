@@ -1,7 +1,230 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import aedixLogo from "@/assets/aedix_logo.png";
-import { motion, useInView, useMotionValue, animate } from "framer-motion";
-import { Menu, X, Shield, RefreshCw, Target } from "lucide-react";
+import { motion, useInView, useMotionValue, animate, useScroll, useTransform } from "framer-motion";
+import { Menu, X, Shield, RefreshCw, Target, Cloud, HardHat, Brain, Rocket, Handshake, ScanFace, Briefcase } from "lucide-react";
+
+// ─── Custom Cursor ───────────────────────────────────────────
+const CustomCursor = () => {
+  const outerRef = useRef<HTMLDivElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
+  const [isHovering, setIsHovering] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const mouse = useRef({ x: 0, y: 0 });
+  const pos = useRef({ x: 0, y: 0 });
+
+  useEffect(() => {
+    // Skip on touch devices
+    if (window.matchMedia("(hover: none)").matches) return;
+    setIsVisible(true);
+
+    const onMove = (e: MouseEvent) => {
+      mouse.current = { x: e.clientX, y: e.clientY };
+    };
+
+    const onOver = (e: MouseEvent) => {
+      const t = e.target as HTMLElement;
+      if (t.closest("button, a, [role='button'], input, textarea, select")) {
+        setIsHovering(true);
+      }
+    };
+    const onOut = () => setIsHovering(false);
+
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mouseover", onOver);
+    window.addEventListener("mouseout", onOut);
+
+    let raf: number;
+    const lerp = () => {
+      pos.current.x += (mouse.current.x - pos.current.x) * 0.15;
+      pos.current.y += (mouse.current.y - pos.current.y) * 0.15;
+      if (outerRef.current) {
+        outerRef.current.style.transform = `translate(${pos.current.x - 20}px, ${pos.current.y - 20}px)`;
+      }
+      if (innerRef.current) {
+        innerRef.current.style.transform = `translate(${mouse.current.x - 4}px, ${mouse.current.y - 4}px)`;
+      }
+      raf = requestAnimationFrame(lerp);
+    };
+    raf = requestAnimationFrame(lerp);
+
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mouseover", onOver);
+      window.removeEventListener("mouseout", onOut);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  if (!isVisible) return null;
+
+  return (
+    <>
+      <div
+        ref={outerRef}
+        className="fixed top-0 left-0 pointer-events-none z-[10000] transition-[width,height,opacity] duration-200"
+        style={{
+          width: isHovering ? 56 : 40,
+          height: isHovering ? 56 : 40,
+          marginLeft: isHovering ? -8 : 0,
+          marginTop: isHovering ? -8 : 0,
+          border: `1.5px solid rgba(246,190,9,${isHovering ? 0.8 : 0.4})`,
+          borderRadius: "50%",
+          mixBlendMode: "difference",
+        }}
+      />
+      <div
+        ref={innerRef}
+        className="fixed top-0 left-0 pointer-events-none z-[10000]"
+        style={{
+          width: 8,
+          height: 8,
+          background: "hsl(var(--gold))",
+          borderRadius: "50%",
+          opacity: isHovering ? 0 : 1,
+          transition: "opacity 0.2s",
+        }}
+      />
+    </>
+  );
+};
+
+// ─── Particle Field ──────────────────────────────────────────
+const ParticleField = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let w = 0, h = 0;
+    const particles: { x: number; y: number; vx: number; vy: number; size: number }[] = [];
+    const COUNT = 70;
+    const MAX_DIST = 150;
+
+    const resize = () => {
+      w = window.innerWidth;
+      h = document.documentElement.scrollHeight;
+      canvas.width = w * window.devicePixelRatio;
+      canvas.height = h * window.devicePixelRatio;
+      canvas.style.width = w + "px";
+      canvas.style.height = h + "px";
+      ctx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0);
+    };
+    resize();
+
+    for (let i = 0; i < COUNT; i++) {
+      particles.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        size: Math.random() * 2 + 0.5,
+      });
+    }
+
+    let raf: number;
+    const draw = () => {
+      ctx.clearRect(0, 0, w, h);
+
+      for (const p of particles) {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0) p.x = w;
+        if (p.x > w) p.x = 0;
+        if (p.y < 0) p.y = h;
+        if (p.y > h) p.y = 0;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(246,190,9,0.15)";
+        ctx.fill();
+      }
+
+      // Draw connections
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < MAX_DIST) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(246,190,9,${0.06 * (1 - dist / MAX_DIST)})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+      raf = requestAnimationFrame(draw);
+    };
+    draw();
+
+    window.addEventListener("resize", resize);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", resize);
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="fixed top-0 left-0 pointer-events-none z-0"
+      style={{ opacity: 0.5 }}
+    />
+  );
+};
+
+// ─── Typing Effect ───────────────────────────────────────────
+const TypingText = ({ text, delay = 0 }: { text: string; delay?: number }) => {
+  const [displayed, setDisplayed] = useState("");
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    if (!isInView) return;
+    let i = 0;
+    const timeout = setTimeout(() => {
+      const interval = setInterval(() => {
+        setDisplayed(text.slice(0, i + 1));
+        i++;
+        if (i >= text.length) clearInterval(interval);
+      }, 35);
+      return () => clearInterval(interval);
+    }, delay * 1000);
+    return () => clearTimeout(timeout);
+  }, [isInView, text, delay]);
+
+  return (
+    <span ref={ref} className="font-mono text-[12px] uppercase tracking-[6px] text-primary">
+      {displayed}
+      <span className="animate-pulse">|</span>
+    </span>
+  );
+};
+
+// ─── Floating Badge ──────────────────────────────────────────
+const FloatingBadge = ({ text, x, y, delay }: { text: string; x: string; y: string; delay: number }) => (
+  <motion.div
+    className="absolute hidden lg:block font-mono text-[10px] uppercase tracking-[3px] text-primary/40 border border-primary/10 rounded-full px-4 py-1.5 backdrop-blur-sm bg-background/30"
+    style={{ left: x, top: y }}
+    animate={{
+      y: [0, -15, 0],
+      opacity: [0.3, 0.6, 0.3],
+    }}
+    transition={{
+      duration: 4 + delay,
+      repeat: Infinity,
+      ease: "easeInOut",
+      delay,
+    }}
+  >
+    {text}
+  </motion.div>
+);
 
 // ─── Animated Counter ────────────────────────────────────────
 const AnimatedCounter = ({ value, suffix = "", duration = 2 }: { value: number; suffix?: string; duration?: number }) => {
@@ -179,6 +402,16 @@ const comparison = [
   { today: "Contabilità e burocrazia interna", aedix: "Outsourcing pay-per-use", impact: "−2 dipendenti" },
 ];
 
+const projectIcons: Record<string, React.ReactNode> = {
+  "Edilizia in Cloud": <Cloud size={32} />,
+  "Cantiere in Cloud": <Shield size={32} />,
+  "Edilizia.io": <Brain size={32} />,
+  "Marketing Edile": <Rocket size={32} />,
+  "Vendita Edile": <Target size={32} />,
+  "TalentProfile 360°": <ScanFace size={32} />,
+  "Impresa Leggera": <Briefcase size={32} />,
+};
+
 const projects = [
   { name: "Edilizia in Cloud", color: "#00D4FF", desc: "Il sistema operativo per le imprese edili. Gestionale, cantieri, documenti, team — tutto in una piattaforma." },
   { name: "Cantiere in Cloud", color: "#FF6B35", desc: "Sicurezza cantiere e documentazione a norma. Ogni obbligo di legge sotto controllo, in tempo reale." },
@@ -200,6 +433,8 @@ const timeline = [
 const Index = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const timelineRef = useRef(null);
+  const timelineInView = useInView(timelineRef, { once: true, margin: "-100px" });
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -213,7 +448,10 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden custom-cursor-page">
+      <CustomCursor />
+      <ParticleField />
+
       {/* ───── NAVBAR ───── */}
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -222,9 +460,8 @@ const Index = () => {
         style={{ background: "rgba(10,19,34,0.7)", backdropFilter: "blur(24px)" }}
       >
         <div className="max-w-[1320px] mx-auto flex items-center justify-between px-6 lg:px-12 py-[18px]">
-          <img src={aedixLogo} alt="AEDIX" className="h-8" />
+          <img src={aedixLogo} alt="AEDIX" className="h-12" />
 
-          {/* Desktop links */}
           <div className="hidden md:flex items-center gap-10">
             {[
               { label: "Cosa Facciamo", id: "cosa-facciamo" },
@@ -241,7 +478,6 @@ const Index = () => {
             ))}
           </div>
 
-          {/* Desktop CTA */}
           <button
             onClick={() => scrollTo("cta-finale")}
             className="hidden md:block bg-primary text-primary-foreground font-bold text-[12px] uppercase tracking-[2px] px-6 py-2.5 hover:bg-white transition-colors"
@@ -249,15 +485,18 @@ const Index = () => {
             Contattaci
           </button>
 
-          {/* Mobile hamburger */}
           <button className="md:hidden text-white" onClick={() => setMobileOpen(!mobileOpen)}>
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
-        {/* Mobile menu */}
         {mobileOpen && (
-          <div className="md:hidden px-6 pb-6 flex flex-col gap-4" style={{ background: "rgba(10,19,34,0.95)" }}>
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="md:hidden px-6 pb-6 flex flex-col gap-4"
+            style={{ background: "rgba(10,19,34,0.95)" }}
+          >
             {["cosa-facciamo", "progetti", "chi-siamo"].map((id) => (
               <button
                 key={id}
@@ -273,41 +512,58 @@ const Index = () => {
             >
               Contattaci
             </button>
-          </div>
+          </motion.div>
         )}
       </nav>
 
       {/* ───── HERO ───── */}
       <section className="relative min-h-screen flex flex-col justify-center pt-[140px] pb-20 px-6 lg:px-12">
-        {/* Glow */}
-        <div
-          className="absolute top-0 right-0 w-[600px] h-[600px] pointer-events-none"
+        {/* Glow with parallax */}
+        <motion.div
+          className="absolute top-0 right-0 w-[800px] h-[800px] pointer-events-none"
           style={{
-            background: "radial-gradient(circle, rgba(246,190,9,0.06) 0%, transparent 70%)",
+            background: "radial-gradient(circle, rgba(246,190,9,0.08) 0%, transparent 60%)",
           }}
+          animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
         <HexagonCanvas />
 
+        {/* Floating badges */}
+        <FloatingBadge text="SaaS" x="75%" y="25%" delay={0} />
+        <FloatingBadge text="AI" x="82%" y="45%" delay={1.2} />
+        <FloatingBadge text="Automation" x="70%" y="60%" delay={0.6} />
+        <FloatingBadge text="Cloud" x="85%" y="70%" delay={1.8} />
+
         <div className="relative max-w-[1320px] mx-auto w-full">
-          {/* Overline */}
+          {/* Overline with typing effect */}
           <FadeIn>
             <div className="flex items-center gap-4 mb-8">
               <div className="w-10 h-px bg-primary" />
-              <span className="font-mono text-[12px] uppercase tracking-[6px] text-primary">
-                Tecnologia Avanzata per le PMI Italiane
-              </span>
+              <TypingText text="Tecnologia Avanzata per le PMI Italiane" delay={0.5} />
             </div>
           </FadeIn>
 
-          {/* H1 */}
+          {/* H1 with glow */}
           <FadeIn delay={0.1}>
-            <h1
-              className="font-display font-bold leading-[1.04] tracking-[-3px] mb-8"
-              style={{ fontSize: "clamp(44px, 6.5vw, 88px)" }}
-            >
-              Costruiamo il Futuro<br />
-              con l'AI <span className="italic font-light text-primary">e le Persone.</span>
-            </h1>
+            <div className="relative">
+              {/* Glow behind text */}
+              <motion.div
+                className="absolute -inset-20 pointer-events-none"
+                style={{
+                  background: "radial-gradient(ellipse at 30% 50%, rgba(246,190,9,0.04) 0%, transparent 70%)",
+                }}
+                animate={{ scale: [1, 1.05, 1], opacity: [0.5, 1, 0.5] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <h1
+                className="font-display font-bold leading-[1.04] tracking-[-3px] mb-8 relative"
+                style={{ fontSize: "clamp(44px, 6.5vw, 88px)" }}
+              >
+                Costruiamo il Futuro<br />
+                con l'AI <span className="italic font-light text-primary">e le Persone.</span>
+              </h1>
+            </div>
           </FadeIn>
 
           {/* Subtitle */}
@@ -326,7 +582,7 @@ const Index = () => {
             <div className="flex flex-wrap gap-4">
               <button
                 onClick={() => scrollTo("cosa-facciamo")}
-                className="bg-primary text-primary-foreground font-bold text-[13px] uppercase tracking-[2px] px-12 py-[18px] hover:-translate-y-0.5 hover:shadow-[0_16px_48px_rgba(246,190,9,0.25)] transition-all"
+                className="shimmer-btn bg-primary text-primary-foreground font-bold text-[13px] uppercase tracking-[2px] px-12 py-[18px] hover:-translate-y-0.5 hover:shadow-[0_16px_48px_rgba(246,190,9,0.25)] transition-all relative overflow-hidden"
               >
                 Scopri L'Ecosistema →
               </button>
@@ -386,12 +642,10 @@ const Index = () => {
             </p>
           </FadeIn>
 
-          {/* 2x2 Grid */}
           <div className="grid md:grid-cols-2 gap-px bg-[rgba(255,255,255,0.04)]">
             {services.map((s, i) => (
               <FadeIn key={i} delay={0.08 * i}>
-                <div className="group relative bg-background p-14 hover:bg-[rgba(255,255,255,0.02)] transition-all">
-                  {/* Gold bar top */}
+                <div className="group relative bg-background p-14 hover:bg-[rgba(255,255,255,0.02)] transition-all hover:-translate-y-1">
                   <div className="absolute top-0 left-0 right-0 h-0.5 bg-primary origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
                   <div className="text-primary mb-6">{s.icon}</div>
                   <h3 className="font-display text-[22px] font-semibold mb-4">{s.title}</h3>
@@ -427,7 +681,7 @@ const Index = () => {
             {stats.map((s, i) => (
               <FadeIn key={i} delay={0.08 * i}>
                 <div className={`py-8 px-6 ${i > 0 ? "lg:border-l border-[rgba(255,255,255,0.06)]" : ""}`}>
-                  <span className="font-mono text-[56px] font-bold text-primary leading-none block">
+                  <span className="font-mono text-[56px] font-bold text-primary leading-none block glow-text">
                     <AnimatedCounter value={s.value} suffix={s.suffix} />
                   </span>
                   <span className="text-[14px] text-[rgba(255,255,255,0.4)] font-light mt-3 block">
@@ -470,21 +724,19 @@ const Index = () => {
               <table className="w-full min-w-[640px]">
                 <thead>
                   <tr className="border-b border-[rgba(255,255,255,0.08)]">
-                    <th className="font-mono text-[10px] uppercase tracking-[3px] text-[rgba(255,255,255,0.25)] text-left px-6 py-4 font-normal">
-                      Oggi
-                    </th>
-                    <th className="font-mono text-[10px] uppercase tracking-[3px] text-[rgba(255,255,255,0.25)] text-left px-6 py-4 font-normal">
-                      Con AEDIX
-                    </th>
-                    <th className="font-mono text-[10px] uppercase tracking-[3px] text-[rgba(255,255,255,0.25)] text-right px-6 py-4 font-normal">
-                      Impatto
-                    </th>
+                    <th className="font-mono text-[10px] uppercase tracking-[3px] text-[rgba(255,255,255,0.25)] text-left px-6 py-4 font-normal">Oggi</th>
+                    <th className="font-mono text-[10px] uppercase tracking-[3px] text-[rgba(255,255,255,0.25)] text-left px-6 py-4 font-normal">Con AEDIX</th>
+                    <th className="font-mono text-[10px] uppercase tracking-[3px] text-[rgba(255,255,255,0.25)] text-right px-6 py-4 font-normal">Impatto</th>
                   </tr>
                 </thead>
                 <tbody>
                   {comparison.map((row, i) => (
-                    <tr
+                    <motion.tr
                       key={i}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.1 * i, duration: 0.5 }}
                       className="border-b border-[rgba(255,255,255,0.04)] hover:bg-[rgba(246,190,9,0.03)] transition-colors"
                     >
                       <td className="px-6 py-7 text-[15px] text-[rgba(255,255,255,0.35)] font-light line-through decoration-[rgba(255,100,100,0.4)]">
@@ -496,7 +748,7 @@ const Index = () => {
                       <td className="px-6 py-7 text-right font-mono text-[14px] font-bold text-green-impact">
                         {row.impact}
                       </td>
-                    </tr>
+                    </motion.tr>
                   ))}
                 </tbody>
               </table>
@@ -592,24 +844,25 @@ const Index = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {projects.map((p, i) => (
               <FadeIn key={i} delay={0.08 * i}>
-                <div
-                  className="group relative p-8 rounded-lg border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)] hover:-translate-y-1 hover:shadow-lg transition-all"
-                  style={{
-                    ["--brand-color" as string]: p.color,
-                  }}
+                <motion.div
+                  className="group relative p-8 rounded-lg border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)] transition-all"
+                  whileHover={{ y: -6, transition: { duration: 0.3 } }}
+                  style={{ ["--brand-color" as string]: p.color }}
                 >
-                  {/* Brand bar */}
                   <div
                     className="absolute top-0 left-0 right-0 h-0.5 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-t-lg"
                     style={{ background: p.color }}
                   />
+                  <div className="mb-4 opacity-60 group-hover:opacity-100 transition-opacity" style={{ color: p.color }}>
+                    {projectIcons[p.name]}
+                  </div>
                   <h3 className="text-[18px] font-semibold mb-3" style={{ color: p.color }}>
                     {p.name}
                   </h3>
                   <p className="text-[13px] text-[rgba(255,255,255,0.4)] font-light leading-[1.7]">
                     {p.desc}
                   </p>
-                </div>
+                </motion.div>
               </FadeIn>
             ))}
           </div>
@@ -636,17 +889,28 @@ const Index = () => {
             </h2>
           </FadeIn>
 
-          {/* Timeline */}
-          <div className="grid md:grid-cols-4 gap-8 relative">
-            {/* Connection line (desktop) */}
-            <div className="hidden md:block absolute top-[28px] left-[60px] right-[60px] h-px bg-[rgba(255,255,255,0.08)]" />
+          <div ref={timelineRef} className="grid md:grid-cols-4 gap-8 relative">
+            {/* Animated connection line */}
+            <motion.div
+              className="hidden md:block absolute top-[28px] left-[60px] right-[60px] h-px bg-primary/20"
+              initial={{ scaleX: 0 }}
+              animate={timelineInView ? { scaleX: 1 } : {}}
+              transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+              style={{ transformOrigin: "left" }}
+            />
 
             {timeline.map((step, i) => (
-              <FadeIn key={i} delay={0.12 * i}>
+              <FadeIn key={i} delay={0.15 * i + 0.3}>
                 <div className="relative">
-                  <span className="font-mono text-[48px] font-bold text-primary leading-none block mb-4">
-                    {step.num}
-                  </span>
+                  <motion.div
+                    className="inline-flex items-center justify-center w-16 h-16 rounded-full border-2 border-primary/30 mb-4"
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 * i + 0.5, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <span className="font-mono text-[24px] font-bold text-primary">{step.num}</span>
+                  </motion.div>
                   <h3 className="font-display text-[20px] font-semibold mb-3">{step.title}</h3>
                   <p className="text-[15px] text-[rgba(255,255,255,0.5)] font-light leading-[1.7]">
                     {step.text}
@@ -680,10 +944,17 @@ const Index = () => {
                 { icon: <RefreshCw className="text-primary" size={28} />, text: "Performance-based: se non funziona, non ci paghi" },
                 { icon: <Target className="text-primary" size={28} />, text: "Verticale sulle PMI italiane dal 2016" },
               ].map((b, i) => (
-                <div key={i} className="flex flex-col items-center gap-3 max-w-[200px]">
-                  {b.icon}
+                <motion.div
+                  key={i}
+                  className="flex flex-col items-center gap-3 max-w-[200px]"
+                  whileHover={{ scale: 1.05, y: -3 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <div className="w-14 h-14 rounded-full border border-primary/20 flex items-center justify-center">
+                    {b.icon}
+                  </div>
                   <p className="text-[14px] text-[rgba(255,255,255,0.5)] font-light">{b.text}</p>
-                </div>
+                </motion.div>
               ))}
             </div>
           </FadeIn>
@@ -694,12 +965,14 @@ const Index = () => {
 
       {/* ───── CTA FINALE ───── */}
       <section id="cta-finale" className="relative py-[200px] px-6 lg:px-12 text-center">
-        {/* Glow */}
-        <div
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] pointer-events-none"
+        {/* Animated glow */}
+        <motion.div
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] pointer-events-none"
           style={{
-            background: "radial-gradient(circle, rgba(246,190,9,0.05) 0%, transparent 70%)",
+            background: "radial-gradient(circle, rgba(246,190,9,0.08) 0%, transparent 60%)",
           }}
+          animate={{ scale: [1, 1.15, 1], opacity: [0.5, 1, 0.5] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
         />
 
         <div className="relative max-w-[900px] mx-auto">
@@ -719,7 +992,7 @@ const Index = () => {
           </FadeIn>
           <FadeIn delay={0.2}>
             <div className="flex flex-wrap justify-center gap-4">
-              <button className="bg-primary text-primary-foreground font-bold text-[13px] uppercase tracking-[2px] px-12 py-[18px] hover:-translate-y-0.5 hover:shadow-[0_16px_48px_rgba(246,190,9,0.25)] transition-all">
+              <button className="shimmer-btn bg-primary text-primary-foreground font-bold text-[13px] uppercase tracking-[2px] px-12 py-[18px] hover:-translate-y-0.5 hover:shadow-[0_16px_48px_rgba(246,190,9,0.25)] transition-all relative overflow-hidden">
                 Parla Con Noi →
               </button>
               <button className="border border-[rgba(255,255,255,0.15)] text-white font-bold text-[13px] uppercase tracking-[2px] px-12 py-[18px] hover:border-primary hover:text-primary transition-all">
@@ -733,7 +1006,7 @@ const Index = () => {
       {/* ───── FOOTER ───── */}
       <footer className="border-t border-[rgba(255,255,255,0.04)] py-12 px-6 lg:px-12">
         <div className="max-w-[1320px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <img src={aedixLogo} alt="AEDIX" className="h-6" />
+          <img src={aedixLogo} alt="AEDIX" className="h-10" />
           <span className="text-[12px] text-[rgba(255,255,255,0.2)] tracking-[1px]">
             © 2026 AEDIX — Domus Group S.r.l. — Tutti i diritti riservati
           </span>
