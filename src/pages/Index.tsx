@@ -679,7 +679,7 @@ function BeforeAfterSection() {
                   <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
                     <ThumbsUp size={18} className="text-primary" />
                   </div>
-                  <span className="font-ui font-semibold text-primary">Con ClientiEdili</span>
+                  <span className="font-ui font-semibold text-primary">Con AEDIX</span>
                 </div>
                 <ul className="space-y-3">
                   {["Sito moderno e professionale", "10+ richieste al mese da Google", "Prima pagina su Google Maps", "Clienti nuovi ogni settimana"].map((item, i) => (
