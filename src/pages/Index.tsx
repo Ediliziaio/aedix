@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import clientiEdiliLogo from "@/assets/clientiedili_dark.png";
+import aedixLogo from "@/assets/aedix_logo.png";
 import { motion, useScroll, useSpring, useInView, useMotionValue, useTransform, animate, AnimatePresence } from "framer-motion";
 import {
   Phone, Mail, MapPin, Check, Star, ArrowUpRight, ArrowRight,
