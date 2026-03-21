@@ -88,7 +88,7 @@ const CustomCursor = () => {
   );
 };
 
-// ─── Particle Field ──────────────────────────────────────────
+// ─── Particle Field (optimized) ──────────────────────────────
 const ParticleField = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -100,12 +100,13 @@ const ParticleField = () => {
 
     let w = 0, h = 0;
     const particles: { x: number; y: number; vx: number; vy: number; size: number }[] = [];
-    const COUNT = 70;
-    const MAX_DIST = 150;
+    const COUNT = 35;
+    const MAX_DIST = 100;
+    let frameCount = 0;
 
     const resize = () => {
       w = window.innerWidth;
-      h = document.documentElement.scrollHeight;
+      h = window.innerHeight;
       canvas.width = w * window.devicePixelRatio;
       canvas.height = h * window.devicePixelRatio;
       canvas.style.width = w + "px";
@@ -118,14 +119,21 @@ const ParticleField = () => {
       particles.push({
         x: Math.random() * w,
         y: Math.random() * h,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        size: Math.random() * 2 + 0.5,
+        vx: (Math.random() - 0.5) * 0.25,
+        vy: (Math.random() - 0.5) * 0.25,
+        size: Math.random() * 1.5 + 0.5,
       });
     }
 
     let raf: number;
     const draw = () => {
+      frameCount++;
+      // Only render every 2nd frame
+      if (frameCount % 2 !== 0) {
+        raf = requestAnimationFrame(draw);
+        return;
+      }
+
       ctx.clearRect(0, 0, w, h);
 
       for (const p of particles) {
@@ -142,13 +150,13 @@ const ParticleField = () => {
         ctx.fill();
       }
 
-      // Draw connections
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < MAX_DIST) {
+          const distSq = dx * dx + dy * dy;
+          if (distSq < MAX_DIST * MAX_DIST) {
+            const dist = Math.sqrt(distSq);
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
