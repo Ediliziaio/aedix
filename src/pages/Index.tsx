@@ -742,7 +742,61 @@ const Index = () => {
 
       <SectionDivider />
 
-      {/* ───── PRIMA / DOPO ───── */}
+      {/* ───── LA RIVOLUZIONE AI IN NUMERI ───── */}
+      <section className="relative py-40 px-6 lg:px-12 overflow-hidden">
+        {/* Background image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: "url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1920&q=80')",
+          }}
+        />
+        <div className="absolute inset-0 bg-background/[0.92]" />
+
+        <div className="relative max-w-[1320px] mx-auto">
+          <FadeIn>
+            <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">
+              La Rivoluzione AI
+            </span>
+          </FadeIn>
+          <FadeIn delay={0.08}>
+            <h2
+              className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-6"
+              style={{ fontSize: "clamp(32px, 4.5vw, 58px)" }}
+            >
+              L'AI non è il futuro.<br />
+              <span className="italic font-light text-primary">È il presente che stai ignorando.</span>
+            </h2>
+          </FadeIn>
+          <FadeIn delay={0.16}>
+            <p className="text-[18px] text-[rgba(255,255,255,0.45)] max-w-[600px] font-light mb-16">
+              Dati reali da fonti globali. Non opinioni — numeri che ogni imprenditore dovrebbe conoscere prima di decidere se "aspettare ancora un po'."
+            </p>
+          </FadeIn>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {aiStats.map((s, i) => (
+              <FadeIn key={i} delay={0.08 * i}>
+                <div className="group relative p-8 rounded-lg border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)] hover:bg-[rgba(255,255,255,0.06)] transition-all hover:-translate-y-1">
+                  <div className="absolute top-0 left-0 right-0 h-0.5 bg-primary origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+                  <div className="text-primary mb-4 opacity-70">{s.icon}</div>
+                  <div className="font-mono text-[36px] font-bold text-primary leading-none mb-3 glow-text">
+                    {s.value}
+                  </div>
+                  <p className="text-[14px] text-[rgba(255,255,255,0.55)] font-light leading-[1.6] mb-3">
+                    {s.label}
+                  </p>
+                  <span className="font-mono text-[10px] uppercase tracking-[2px] text-[rgba(255,255,255,0.2)]">
+                    Fonte: {s.source}
+                  </span>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider />
       <section className="py-40 px-6 lg:px-12">
         <div className="max-w-[1320px] mx-auto">
           <FadeIn>
