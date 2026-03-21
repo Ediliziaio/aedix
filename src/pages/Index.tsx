@@ -653,7 +653,7 @@ function BeforeAfterSection() {
                   <div className="w-10 h-10 rounded-full bg-destructive/20 flex items-center justify-center">
                     <ThumbsDown size={18} className="text-destructive" />
                   </div>
-                  <span className="font-ui font-semibold text-destructive">Senza ClientiEdili</span>
+                  <span className="font-ui font-semibold text-destructive">Senza AEDIX</span>
                 </div>
                 <ul className="space-y-3">
                   {["Sito datato o inesistente", "Zero richieste da Google", "Nessuna presenza su Maps", "Clienti solo dal passaparola"].map((item, i) => (
