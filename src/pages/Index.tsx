@@ -563,7 +563,15 @@ const Index = () => {
       </nav>
 
       {/* ───── HERO ───── */}
-      <section className="relative min-h-screen flex flex-col justify-center pt-[140px] pb-20 px-6 lg:px-12">
+      <section className="relative min-h-screen flex flex-col justify-center pt-[140px] pb-20 px-6 lg:px-12 overflow-hidden">
+        {/* Hero background image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: "url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1920&q=80')",
+          }}
+        />
+        <div className="absolute inset-0 bg-background/[0.92]" />
         {/* Glow with parallax */}
         <motion.div
           className="absolute top-0 right-0 w-[800px] h-[800px] pointer-events-none"
