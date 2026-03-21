@@ -1220,7 +1220,15 @@ const Index = () => {
       <SectionDivider />
 
       {/* ───── CTA FINALE ───── */}
-      <section id="cta-finale" className="relative py-[200px] px-6 lg:px-12 text-center">
+      <section id="cta-finale" className="relative py-[200px] px-6 lg:px-12 text-center overflow-hidden">
+        {/* Background image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: "url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1920&q=80')",
+          }}
+        />
+        <div className="absolute inset-0 bg-background/[0.94]" />
         {/* Animated glow */}
         <motion.div
           className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] pointer-events-none"
