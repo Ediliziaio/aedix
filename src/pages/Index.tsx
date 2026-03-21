@@ -582,9 +582,8 @@ const navSections = [
 
 // ─── Main Component ──────────────────────────────────────────
 const Index = () => {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("");
+  const timelineRef = useRef(null);
+  const timelineInView = useInView(timelineRef, { once: true, margin: "-100px" });
   const timelineRef = useRef(null);
   const timelineInView = useInView(timelineRef, { once: true, margin: "-100px" });
 
