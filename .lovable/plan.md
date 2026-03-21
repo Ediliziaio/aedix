@@ -1,33 +1,74 @@
 
 
-## Piano: Testi più leggibili + sezioni mancanti
+## Piano: Creazione pagine + estrazione componenti condivisi
 
-### 1. Fix leggibilità testi
+### Panoramica
+Creare tutte le pagine del sito AEDIX, estrarre Navbar e Footer come componenti condivisi, e aggiornare il routing. "Chi Siamo" diventa "Perché Noi?".
 
-Il problema: molti testi usano `rgba(255,255,255,0.3)`, `0.35`, `0.4`, `0.45` — troppo scuri sul navy. L'occhio fa fatica.
+### File da creare/modificare
 
-**Sostituzione globale in `src/pages/Index.tsx`**:
-- `rgba(255,255,255,0.3)` → `rgba(255,255,255,0.55)` (label piccole, stat labels)
-- `rgba(255,255,255,0.35)` → `rgba(255,255,255,0.6)` (testo barrato tabella)
-- `rgba(255,255,255,0.4)` → `rgba(255,255,255,0.65)` (sottotitoli, descrizioni)
-- `rgba(255,255,255,0.45)` → `rgba(255,255,255,0.7)` (body text, card descriptions, nav links)
+**1. Estrazione componenti condivisi**
 
-In pratica: alzare ogni opacità di circa +0.25 per rendere tutto più leggibile mantenendo la gerarchia visiva.
+- `src/components/Navbar.tsx` — Estrarre la navbar da Index.tsx (righe 628-706) in componente autonomo. Aggiungere supporto per navigazione tra pagine (react-router `Link`) oltre allo scroll interno. I link centrali diventano: "Cosa Facciamo" → `/servizi`, "Progetti" → `/progetti`, "Perché Noi?" → `/perche-noi`. CTA "Contattaci" → `/contatti`.
+- `src/components/Footer.tsx` — Estrarre il footer espanso (ultime ~60 righe) con le 4 colonne. Aggiornare i link per puntare alle pagine reali.
+- `src/components/Layout.tsx` — Wrapper con Navbar + children + Footer, usato da tutte le pagine.
 
-### 2. Sezioni che mancano (suggerimenti)
+**2. Aggiornare `src/pages/Index.tsx`**
+- Rimuovere navbar e footer inline, importare `Layout`
+- Aggiornare `navSections` per usare "Perché Noi?" al posto di "Chi Siamo"
+- Aggiornare la sezione `id="chi-siamo"` in `id="perche-noi"` e rinominare il titolo
 
-Il sito attuale ha: Hero, Cosa Facciamo, I Numeri, AI Revolution, Prima/Dopo, AI vs Social, Chi Siamo, Vantaggio Competitivo, Progetti, Come Lavoriamo, Social Proof, CTA, Footer.
+**3. Nuove pagine**
 
-Sezioni che un sito tech company serio dovrebbe avere e che mancano:
+- **`src/pages/Contatti.tsx`** (`/contatti`)
+  - Form contatto: nome, email, telefono, settore (select), messaggio
+  - Design coerente: sfondo navy, card form con bordo gold, CTA gold
+  - Info contatto a fianco: email, telefono, sede
+  - Validazione frontend con feedback visivo (toast)
 
-- **FAQ** — Domande frequenti su AI, costi, tempi, come funziona. Riduce l'attrito pre-contatto. Accordion con 6-8 domande.
-- **Testimonial / Case Study** — Risultati concreti ottenuti con clienti reali (anche anonimi). Numeri + citazione. Dà credibilità.
-- **Team / Founder** — Chi c'è dietro AEDIX. Foto, ruolo, una riga. Un investitore vuole vedere le facce.
-- **Partner / Tecnologie** — Loghi delle tecnologie usate (OpenAI, Supabase, AWS, ecc.) o partner. Dà autorevolezza.
-- **Blog / Risorse** — Link a contenuti, guide, articoli. Posizionamento SEO e thought leadership.
+- **`src/pages/PerchéNoi.tsx`** (`/perche-noi`)
+  - Sezione hero con headline "Perché scegliere AEDIX?"
+  - Timeline aziendale: 2016 → 2026 con milestone
+  - Sezione valori/mission con 4 pilastri
+  - Sezione team placeholder (3-4 card con avatar placeholder, ruolo, bio breve)
+  - Quote/manifesto full-width
 
-Vuoi che implementi il fix leggibilità e aggiunga alcune di queste sezioni? Dimmi quali ti interessano.
+- **`src/pages/Servizi.tsx`** (`/servizi`)
+  - Hero con headline
+  - 4 sezioni dettagliate per ogni pilastro (SaaS, AI, Marketing, Consulenza)
+  - Ogni pilastro: icona, titolo, descrizione lunga, lista feature (3-5 punti), CTA
+  - Tabella comparativa "Tradizionale vs AEDIX"
 
-### File coinvolti
-- `src/pages/Index.tsx` — aggiornamento opacità testi + eventuali nuove sezioni
+- **`src/pages/Progetti.tsx`** (`/progetti`)
+  - Griglia delle 7 piattaforme con card colorate (stesse di Index)
+  - Ogni card cliccabile verso dettaglio
+
+- **`src/pages/ProgettoDettaglio.tsx`** (`/progetti/:slug`)
+  - Hero con colore brand del progetto
+  - Descrizione estesa, feature list, use case
+  - CTA dedicata "Richiedi Demo"
+  - Dati dei 7 progetti hardcoded
+
+- **`src/pages/Privacy.tsx`** (`/privacy`)
+  - Testo placeholder privacy policy
+
+- **`src/pages/Termini.tsx`** (`/termini`)
+  - Testo placeholder termini e condizioni
+
+**4. Aggiornare `src/App.tsx`**
+- Importare tutte le nuove pagine
+- Aggiungere route: `/contatti`, `/perche-noi`, `/servizi`, `/progetti`, `/progetti/:slug`, `/privacy`, `/termini`
+
+### Design coerente
+Tutte le pagine usano lo stesso design system: sfondo navy, testi bianchi con opacita' corrette, accent gold, font Space Grotesk per headline, DM Sans per body, JetBrains Mono per monospace. Animazioni fade-in con Framer Motion. ScrollProgressBar in ogni pagina tramite Layout.
+
+### Ordine di implementazione
+1. Componenti condivisi (Navbar, Footer, Layout)
+2. Aggiornamento Index.tsx (rimuovere navbar/footer, rinominare Chi Siamo)
+3. App.tsx con tutte le route
+4. Pagina Contatti
+5. Pagina Perché Noi
+6. Pagina Servizi
+7. Pagina Progetti + ProgettoDettaglio
+8. Pagine legali (Privacy, Termini)
 
