@@ -1335,7 +1335,7 @@ function Footer() {
             <h4 className="font-ui font-semibold mb-4 text-sm">Contatti</h4>
             <ul className="space-y-2 text-muted-foreground text-sm">
               <li>+39 02 1234 5678</li>
-              <li>info@clientiedili.it</li>
+              <li>info@aedix.it</li>
               <li>Milano, Italia</li>
             </ul>
 
