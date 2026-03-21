@@ -106,6 +106,48 @@
   }
 }
 
+/* Custom cursor — hide default on desktop */
+@media (hover: hover) {
+  .custom-cursor-page,
+  .custom-cursor-page * {
+    cursor: none !important;
+  }
+}
+
+/* Glow effect on gold numbers */
+.glow-text {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    text-shadow: 0 0 8px rgba(246, 190, 9, 0.2), 0 0 24px rgba(246, 190, 9, 0.1);
+  }
+  50% {
+    text-shadow: 0 0 16px rgba(246, 190, 9, 0.4), 0 0 48px rgba(246, 190, 9, 0.2);
+  }
+}
+
+/* Shimmer button effect */
+.shimmer-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.25) 50%,
+    transparent 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
