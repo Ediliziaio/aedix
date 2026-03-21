@@ -1355,7 +1355,7 @@ function Footer() {
         </div>
 
         <div className="border-t border-border pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-muted-foreground text-sm">© 2026 ClientiEdili. Tutti i diritti riservati.</p>
+          <p className="text-muted-foreground text-sm">© 2026 AEDIX. Tutti i diritti riservati.</p>
           <div className="flex gap-6 text-muted-foreground text-sm">
             <a href="#" className="hover:text-foreground transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-foreground transition-colors">Cookie Policy</a>
