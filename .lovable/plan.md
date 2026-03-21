@@ -1,79 +1,33 @@
 
 
-## Piano: Nuove sezioni con dati reali AI, immagini potenti e confronto storico
+## Piano: Testi più leggibili + sezioni mancanti
 
-### Panoramica
-Aggiungere 3 nuove sezioni alla homepage tra quelle esistenti, con dati reali sull'impatto dell'AI, un parallelo storico AI vs Social Media, e immagini potenti da Unsplash. Aggiornare anche le sezioni esistenti con immagini di sfondo.
+### 1. Fix leggibilità testi
 
-### Nuove sezioni da aggiungere
+Il problema: molti testi usano `rgba(255,255,255,0.3)`, `0.35`, `0.4`, `0.45` — troppo scuri sul navy. L'occhio fa fatica.
 
-**A. "La Rivoluzione AI in Numeri" (dopo "I Numeri", prima di "Prima/Dopo")**
+**Sostituzione globale in `src/pages/Index.tsx`**:
+- `rgba(255,255,255,0.3)` → `rgba(255,255,255,0.55)` (label piccole, stat labels)
+- `rgba(255,255,255,0.35)` → `rgba(255,255,255,0.6)` (testo barrato tabella)
+- `rgba(255,255,255,0.4)` → `rgba(255,255,255,0.65)` (sottotitoli, descrizioni)
+- `rgba(255,255,255,0.45)` → `rgba(255,255,255,0.7)` (body text, card descriptions, nav links)
 
-Sezione con dati reali e verificabili sull'impatto dell'AI:
-- Sfondo con immagine Unsplash di server/data center in overlay scuro (opacity 10%)
-- Griglia di 6 dati con icone e source attribution:
-  - **$15.7 trilioni** — Impatto economico globale dell'AI entro il 2030 (PwC)
-  - **40%** — Aumento produttività media con AI generativa (McKinsey)
-  - **97 milioni** — Nuovi posti di lavoro creati dall'AI entro il 2025 (World Economic Forum)
-  - **300%** — ROI medio delle aziende che adottano AI (Accenture)
-  - **75%** — Delle aziende adotterà AI entro il 2027 (Gartner)
-  - **€3.200/mese** — Risparmio medio per PMI con automazione AI (AEDIX internal)
-- Ogni dato con counter animato gold grande + label + fonte in monospace piccolo
-- Sfondo alternato con immagine tech in overlay
+In pratica: alzare ogni opacità di circa +0.25 per rendere tutto più leggibile mantenendo la gerarchia visiva.
 
-**B. "AI Oggi = Social Media nel 2010" (dopo "Prima/Dopo", prima di "Chi Siamo")**
+### 2. Sezioni che mancano (suggerimenti)
 
-Parallelo storico potente con timeline visiva:
-- Headline: "Chi ha ignorato i social nel 2010 ha perso un decennio. Chi ignora l'AI oggi perderà tutto."
-- Tabella/timeline a 2 colonne side-by-side:
-  - Colonna sinistra "Social Media 2010": "Sono una moda" → Oggi fatturano $200B/anno | "Non servono alla mia azienda" → Oggi sono il canale #1 | "Costa troppo, non ho tempo" → Chi ha iniziato prima ha vinto
-  - Colonna destra "AI 2025": "È troppo complicata" → Si configura in giorni | "Non serve nel mio settore" → Già usata in edilizia, ristorazione, retail | "Aspetto che maturi" → Chi aspetta, perde
-- Immagine di sfondo: grafico di crescita esponenziale o network/connections
-- CTA in basso: "Non restare indietro. → Parla con noi"
+Il sito attuale ha: Hero, Cosa Facciamo, I Numeri, AI Revolution, Prima/Dopo, AI vs Social, Chi Siamo, Vantaggio Competitivo, Progetti, Come Lavoriamo, Social Proof, CTA, Footer.
 
-**C. "Il Vantaggio Competitivo dell'AI" (dopo "Chi Siamo", prima di "Progetti")**
+Sezioni che un sito tech company serio dovrebbe avere e che mancano:
 
-Sezione visiva con immagine grande e dati affiancati:
-- Layout: immagine a sinistra (50%, Unsplash robot/AI/futuristico con overlay gold), contenuto a destra
-- Headline: "Mentre i tuoi competitor dormono, l'AI lavora per te."
-- 4 punti con icone animate:
-  - **24/7** — I tuoi agenti AI non dormono mai
-  - **0 errori umani** — Processi automatizzati = zero dimenticanze
-  - **10x velocità** — Preventivi, risposte, report in secondi
-  - **−60% costi** — Meno persone per le stesse attività
-- Ogni punto con barra di progresso animata che si riempie al scroll
+- **FAQ** — Domande frequenti su AI, costi, tempi, come funziona. Riduce l'attrito pre-contatto. Accordion con 6-8 domande.
+- **Testimonial / Case Study** — Risultati concreti ottenuti con clienti reali (anche anonimi). Numeri + citazione. Dà credibilità.
+- **Team / Founder** — Chi c'è dietro AEDIX. Foto, ruolo, una riga. Un investitore vuole vedere le facce.
+- **Partner / Tecnologie** — Loghi delle tecnologie usate (OpenAI, Supabase, AWS, ecc.) o partner. Dà autorevolezza.
+- **Blog / Risorse** — Link a contenuti, guide, articoli. Posizionamento SEO e thought leadership.
 
-### Immagini
-
-Usare immagini Unsplash via URL diretto (no download):
-- Hero: aggiungere immagine di sfondo tech/futuristica con overlay scuro
-- Sezione AI Numeri: `https://images.unsplash.com/photo-1558494949-ef010cbdcc31` (data center)
-- Sezione AI vs Social: `https://images.unsplash.com/photo-1451187580459-43490279c0fa` (network globale)
-- Sezione Vantaggio: `https://images.unsplash.com/photo-1677442136019-21780ecad995` (AI abstract)
-- Chi Siamo: aggiungere immagine team/ufficio tech come sfondo sottile
-
-### Modifiche alle sezioni esistenti
-
-- **Hero**: aggiungere immagine di sfondo futuristica con overlay 90% opacità del navy
-- **Progetti**: aggiungere un'immagine piccola/icona per ogni card progetto
-- **CTA Finale**: aggiungere immagine di sfondo con overlay scuro e glow piu intenso
+Vuoi che implementi il fix leggibilità e aggiunga alcune di queste sezioni? Dimmi quali ti interessano.
 
 ### File coinvolti
-- `src/pages/Index.tsx` — 3 nuove sezioni + immagini di sfondo nelle sezioni esistenti
-
-### Ordine finale sezioni
-1. Navbar
-2. Hero (con immagine sfondo)
-3. Cosa Facciamo
-4. I Numeri
-5. **La Rivoluzione AI in Numeri** (NUOVA)
-6. Prima/Dopo
-7. **AI Oggi = Social Media nel 2010** (NUOVA)
-8. Chi Siamo
-9. **Il Vantaggio Competitivo dell'AI** (NUOVA)
-10. I Nostri Progetti
-11. Come Lavoriamo
-12. Social Proof
-13. CTA Finale (con immagine sfondo)
-14. Footer
+- `src/pages/Index.tsx` — aggiornamento opacità testi + eventuali nuove sezioni
 
