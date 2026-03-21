@@ -993,12 +993,12 @@ const Index = () => {
 
       <SectionDivider />
 
-      {/* ───── CHI SIAMO ───── */}
-      <section id="chi-siamo" className="py-40 px-6 lg:px-12">
+      {/* ───── PERCHÉ NOI ───── */}
+      <section id="perche-noi" className="py-40 px-6 lg:px-12">
         <div className="max-w-[1320px] mx-auto">
           <FadeIn>
             <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">
-              Chi Siamo
+              Perché Noi?
             </span>
           </FadeIn>
           <FadeIn delay={0.08}>
