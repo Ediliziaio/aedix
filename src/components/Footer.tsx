@@ -38,6 +38,7 @@ const Footer = () => (
               { label: "Perché Noi?", to: "/perche-noi" },
               { label: "Servizi", to: "/servizi" },
               { label: "Progetti", to: "/progetti" },
+              { label: "Articoli", to: "/articoli" },
               { label: "Contatti", to: "/contatti" },
               { label: "Privacy", to: "/privacy" },
               { label: "Termini", to: "/termini" },

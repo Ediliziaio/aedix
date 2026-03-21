@@ -9,6 +9,8 @@ import PercheNoi from "./pages/PercheNoi.tsx";
 import Servizi from "./pages/Servizi.tsx";
 import Progetti from "./pages/Progetti.tsx";
 import ProgettoDettaglio from "./pages/ProgettoDettaglio.tsx";
+import Articoli from "./pages/Articoli.tsx";
+import ArticoloDettaglio from "./pages/ArticoloDettaglio.tsx";
 import Privacy from "./pages/Privacy.tsx";
 import Termini from "./pages/Termini.tsx";
 import NotFound from "./pages/NotFound.tsx";
@@ -28,6 +30,8 @@ const App = () => (
           <Route path="/servizi" element={<Servizi />} />
           <Route path="/progetti" element={<Progetti />} />
           <Route path="/progetti/:slug" element={<ProgettoDettaglio />} />
+          <Route path="/articoli" element={<Articoli />} />
+          <Route path="/articoli/:slug" element={<ArticoloDettaglio />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/termini" element={<Termini />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
