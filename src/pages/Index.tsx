@@ -1286,7 +1286,7 @@ function Footer() {
         <div className="grid md:grid-cols-4 gap-10 mb-12">
           <div className="md:col-span-2">
             <div className="flex items-center mb-4">
-              <img src={clientiEdiliLogo} alt="ClientiEdili" className="h-10" />
+              <img src={aedixLogo} alt="AEDIX" className="h-10" />
             </div>
             <p className="text-muted-foreground max-w-sm leading-relaxed mb-6">
               Siti web professionali per imprese edili italiane. Più clienti, più lavoro, più crescita.
