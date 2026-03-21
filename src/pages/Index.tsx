@@ -262,7 +262,7 @@ function Navbar({ bannerVisible }: { bannerVisible: boolean }) {
     <nav className={`fixed left-0 right-0 z-50 transition-all duration-300 ${bannerVisible ? "top-10" : "top-0"} ${scrolled ? "bg-background/90 backdrop-blur-lg border-b border-border" : "bg-transparent"}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
         <a href="#" className="flex items-center">
-          <img src={clientiEdiliLogo} alt="ClientiEdili" className="h-10" />
+          <img src={aedixLogo} alt="AEDIX" className="h-10" />
         </a>
 
         <div className="hidden md:flex items-center gap-8">
