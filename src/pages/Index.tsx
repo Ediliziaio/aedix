@@ -475,6 +475,37 @@ const timeline = [
   { num: "04", title: "Risultati", text: "Primi numeri reali: lead generati, appuntamenti fissati, ore risparmiate, costi tagliati. Da qui si scala." },
 ];
 
+// ─── FAQ Item ────────────────────────────────────────────────
+const FAQItem = ({ question, answer }: { question: string; answer: string }) => {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="border-b border-[rgba(255,255,255,0.06)]">
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between py-6 text-left group"
+      >
+        <span className="text-[16px] font-medium text-[rgba(255,255,255,0.85)] group-hover:text-white transition-colors pr-4">
+          {question}
+        </span>
+        <ChevronDown
+          size={20}
+          className={`text-primary shrink-0 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+        />
+      </button>
+      <motion.div
+        initial={false}
+        animate={{ height: open ? "auto" : 0, opacity: open ? 1 : 0 }}
+        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+        className="overflow-hidden"
+      >
+        <p className="text-[15px] text-[rgba(255,255,255,0.6)] font-light leading-[1.8] pb-6">
+          {answer}
+        </p>
+      </motion.div>
+    </div>
+  );
+};
+
 // ─── Main Component ──────────────────────────────────────────
 const Index = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
