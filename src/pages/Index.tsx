@@ -1166,7 +1166,7 @@ function ContactSection() {
             <div className="space-y-6">
               {[
                 { icon: Phone, label: "+39 02 1234 5678" },
-                { icon: Mail, label: "info@clientiedili.it" },
+                { icon: Mail, label: "info@aedix.it" },
                 { icon: MapPin, label: "Milano, Italia" },
               ].map((c, i) => (
                 <FadeIn key={i} delay={0.3 + i * 0.1}>
