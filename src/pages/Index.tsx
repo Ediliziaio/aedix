@@ -1,7 +1,23 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import aedixLogo from "@/assets/aedix_logo.png";
 import { motion, useInView, useMotionValue, animate, useScroll, useTransform } from "framer-motion";
-import { Menu, X, Shield, RefreshCw, Target, Cloud, HardHat, Brain, Rocket, Handshake, ScanFace, Briefcase } from "lucide-react";
+import { Menu, X, Shield, RefreshCw, Target, Cloud, HardHat, Brain, Rocket, Handshake, ScanFace, Briefcase, TrendingUp, DollarSign, Users, BarChart3, Building2, Zap, Clock, Bot, Gauge, BadgeCheck } from "lucide-react";
+
+// ─── Animated Progress Bar ───────────────────────────────────
+const AnimatedBar = ({ value, delay = 0 }: { value: number; delay?: number }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  return (
+    <div ref={ref} className="w-full h-2 rounded-full bg-[rgba(255,255,255,0.06)] overflow-hidden">
+      <motion.div
+        className="h-full rounded-full bg-primary"
+        initial={{ width: 0 }}
+        animate={isInView ? { width: `${value}%` } : {}}
+        transition={{ duration: 1.2, delay, ease: [0.16, 1, 0.3, 1] }}
+      />
+    </div>
+  );
+};
 
 // ─── Custom Cursor ───────────────────────────────────────────
 const CustomCursor = () => {
@@ -430,6 +446,28 @@ const projects = [
   { name: "Impresa Leggera", color: "#6366F1", desc: "Back-office in outsourcing pay-per-use. Fatturazione, buste paga, adempimenti — senza assumere nessuno." },
 ];
 
+const aiStats = [
+  { value: "$15.7T", label: "Impatto economico globale dell'AI entro il 2030", source: "PwC", icon: <DollarSign size={24} /> },
+  { value: "40%", label: "Aumento produttività media con AI generativa", source: "McKinsey", icon: <TrendingUp size={24} /> },
+  { value: "97M", label: "Nuovi posti di lavoro creati dall'AI entro il 2025", source: "World Economic Forum", icon: <Users size={24} /> },
+  { value: "300%", label: "ROI medio delle aziende che adottano AI", source: "Accenture", icon: <BarChart3 size={24} /> },
+  { value: "75%", label: "Delle aziende adotterà AI entro il 2027", source: "Gartner", icon: <Building2 size={24} /> },
+  { value: "€3.200", label: "Risparmio medio mensile per PMI con AI", source: "AEDIX internal", icon: <Zap size={24} /> },
+];
+
+const socialVsAi = [
+  { social: { myth: '"Sono una moda"', reality: "Oggi fatturano $200B/anno" }, ai: { myth: '"È troppo complicata"', reality: "Si configura in giorni, non mesi" } },
+  { social: { myth: '"Non servono alla mia azienda"', reality: "Oggi sono il canale di vendita #1" }, ai: { myth: '"Non serve nel mio settore"', reality: "Già usata in edilizia, retail, ristorazione" } },
+  { social: { myth: '"Costa troppo, non ho tempo"', reality: "Chi ha iniziato prima ha vinto" }, ai: { myth: '"Aspetto che maturi"', reality: "Chi aspetta, perde. Per sempre." } },
+];
+
+const competitivePoints = [
+  { icon: <Clock size={28} />, stat: "24/7", label: "I tuoi agenti AI non dormono mai", bar: 100 },
+  { icon: <BadgeCheck size={28} />, stat: "0", label: "Errori umani — processi automatizzati = zero dimenticanze", bar: 95 },
+  { icon: <Gauge size={28} />, stat: "10x", label: "Velocità — preventivi, risposte, report in secondi", bar: 90 },
+  { icon: <DollarSign size={28} />, stat: "−60%", label: "Costi — meno persone per le stesse attività", bar: 85 },
+];
+
 const timeline = [
   { num: "01", title: "Analisi", text: "Analizziamo la tua impresa: costi, processi, team, vendite. Identifichiamo dove stai perdendo soldi e dove puoi guadagnare di più." },
   { num: "02", title: "Strategia", text: "Disegniamo il piano d'azione: quali piattaforme attivare, quali agenti AI configurare, quali processi automatizzare per primi." },
@@ -525,7 +563,15 @@ const Index = () => {
       </nav>
 
       {/* ───── HERO ───── */}
-      <section className="relative min-h-screen flex flex-col justify-center pt-[140px] pb-20 px-6 lg:px-12">
+      <section className="relative min-h-screen flex flex-col justify-center pt-[140px] pb-20 px-6 lg:px-12 overflow-hidden">
+        {/* Hero background image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: "url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1920&q=80')",
+          }}
+        />
+        <div className="absolute inset-0 bg-background/[0.92]" />
         {/* Glow with parallax */}
         <motion.div
           className="absolute top-0 right-0 w-[800px] h-[800px] pointer-events-none"
@@ -704,7 +750,61 @@ const Index = () => {
 
       <SectionDivider />
 
-      {/* ───── PRIMA / DOPO ───── */}
+      {/* ───── LA RIVOLUZIONE AI IN NUMERI ───── */}
+      <section className="relative py-40 px-6 lg:px-12 overflow-hidden">
+        {/* Background image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: "url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1920&q=80')",
+          }}
+        />
+        <div className="absolute inset-0 bg-background/[0.92]" />
+
+        <div className="relative max-w-[1320px] mx-auto">
+          <FadeIn>
+            <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">
+              La Rivoluzione AI
+            </span>
+          </FadeIn>
+          <FadeIn delay={0.08}>
+            <h2
+              className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-6"
+              style={{ fontSize: "clamp(32px, 4.5vw, 58px)" }}
+            >
+              L'AI non è il futuro.<br />
+              <span className="italic font-light text-primary">È il presente che stai ignorando.</span>
+            </h2>
+          </FadeIn>
+          <FadeIn delay={0.16}>
+            <p className="text-[18px] text-[rgba(255,255,255,0.45)] max-w-[600px] font-light mb-16">
+              Dati reali da fonti globali. Non opinioni — numeri che ogni imprenditore dovrebbe conoscere prima di decidere se "aspettare ancora un po'."
+            </p>
+          </FadeIn>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {aiStats.map((s, i) => (
+              <FadeIn key={i} delay={0.08 * i}>
+                <div className="group relative p-8 rounded-lg border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)] hover:bg-[rgba(255,255,255,0.06)] transition-all hover:-translate-y-1">
+                  <div className="absolute top-0 left-0 right-0 h-0.5 bg-primary origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+                  <div className="text-primary mb-4 opacity-70">{s.icon}</div>
+                  <div className="font-mono text-[36px] font-bold text-primary leading-none mb-3 glow-text">
+                    {s.value}
+                  </div>
+                  <p className="text-[14px] text-[rgba(255,255,255,0.55)] font-light leading-[1.6] mb-3">
+                    {s.label}
+                  </p>
+                  <span className="font-mono text-[10px] uppercase tracking-[2px] text-[rgba(255,255,255,0.2)]">
+                    Fonte: {s.source}
+                  </span>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider />
       <section className="py-40 px-6 lg:px-12">
         <div className="max-w-[1320px] mx-auto">
           <FadeIn>
@@ -767,7 +867,97 @@ const Index = () => {
 
       <SectionDivider />
 
-      {/* ───── CHI SIAMO ───── */}
+      {/* ───── AI vs SOCIAL MEDIA ───── */}
+      <section className="relative bg-alt py-40 px-6 lg:px-12 overflow-hidden">
+        {/* Background image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: "url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80')",
+          }}
+        />
+        <div className="absolute inset-0 bg-background/[0.93]" />
+
+        <div className="relative max-w-[1320px] mx-auto">
+          <FadeIn>
+            <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">
+              La Lezione della Storia
+            </span>
+          </FadeIn>
+          <FadeIn delay={0.08}>
+            <h2
+              className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-6"
+              style={{ fontSize: "clamp(28px, 4vw, 52px)" }}
+            >
+              Chi ha ignorato i social nel 2010<br />
+              ha perso un decennio.<br />
+              <span className="italic font-light text-primary">Chi ignora l'AI oggi perderà tutto.</span>
+            </h2>
+          </FadeIn>
+          <FadeIn delay={0.16}>
+            <p className="text-[17px] text-[rgba(255,255,255,0.4)] max-w-[600px] font-light mb-16">
+              La storia si ripete. Ogni rivoluzione tecnologica divide il mercato in due: chi si adatta e chi scompare. Stai scegliendo da che parte stare.
+            </p>
+          </FadeIn>
+
+          <div className="grid md:grid-cols-2 gap-8 mb-16">
+            {/* Social Media 2010 Column */}
+            <FadeIn delay={0.2}>
+              <div className="rounded-lg border border-[rgba(255,255,255,0.06)] overflow-hidden">
+                <div className="bg-[rgba(255,255,255,0.04)] px-8 py-5 border-b border-[rgba(255,255,255,0.06)]">
+                  <h3 className="font-mono text-[12px] uppercase tracking-[3px] text-[rgba(255,255,255,0.4)]">
+                    🕐 Social Media — 2010
+                  </h3>
+                </div>
+                {socialVsAi.map((row, i) => (
+                  <div key={i} className="px-8 py-6 border-b border-[rgba(255,255,255,0.04)] last:border-0">
+                    <p className="text-[15px] text-[rgba(255,255,255,0.35)] font-light line-through decoration-[rgba(255,100,100,0.4)] mb-2">
+                      {row.social.myth}
+                    </p>
+                    <p className="text-[14px] text-green-impact font-medium">
+                      → {row.social.reality}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </FadeIn>
+
+            {/* AI 2025 Column */}
+            <FadeIn delay={0.3}>
+              <div className="rounded-lg border border-primary/20 overflow-hidden">
+                <div className="bg-primary/[0.08] px-8 py-5 border-b border-primary/10">
+                  <h3 className="font-mono text-[12px] uppercase tracking-[3px] text-primary">
+                    ⚡ Intelligenza Artificiale — 2025
+                  </h3>
+                </div>
+                {socialVsAi.map((row, i) => (
+                  <div key={i} className="px-8 py-6 border-b border-[rgba(255,255,255,0.04)] last:border-0">
+                    <p className="text-[15px] text-[rgba(255,255,255,0.5)] font-light mb-2">
+                      {row.ai.myth}
+                    </p>
+                    <p className="text-[14px] text-primary font-semibold">
+                      → {row.ai.reality}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </FadeIn>
+          </div>
+
+          <FadeIn delay={0.4}>
+            <div className="text-center">
+              <button
+                onClick={() => scrollTo("cta-finale")}
+                className="shimmer-btn bg-primary text-primary-foreground font-bold text-[13px] uppercase tracking-[2px] px-12 py-[18px] hover:-translate-y-0.5 hover:shadow-[0_16px_48px_rgba(246,190,9,0.25)] transition-all relative overflow-hidden"
+              >
+                Non Restare Indietro →
+              </button>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      <SectionDivider />
       <section id="chi-siamo" className="py-40 px-6 lg:px-12">
         <div className="max-w-[1320px] mx-auto">
           <FadeIn>
@@ -826,7 +1016,65 @@ const Index = () => {
 
       <SectionDivider />
 
-      {/* ───── I NOSTRI PROGETTI ───── */}
+      {/* ───── VANTAGGIO COMPETITIVO ───── */}
+      <section className="relative py-40 px-6 lg:px-12 overflow-hidden">
+        <div className="max-w-[1320px] mx-auto">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Left: Image */}
+            <FadeIn>
+              <div className="relative rounded-lg overflow-hidden aspect-[4/3]">
+                <img
+                  src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80"
+                  alt="AI Technology"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/40 to-transparent" />
+                <div className="absolute inset-0 bg-primary/[0.05]" />
+              </div>
+            </FadeIn>
+
+            {/* Right: Content */}
+            <div>
+              <FadeIn>
+                <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">
+                  Il Vantaggio
+                </span>
+              </FadeIn>
+              <FadeIn delay={0.08}>
+                <h2
+                  className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-12"
+                  style={{ fontSize: "clamp(28px, 3.5vw, 48px)" }}
+                >
+                  Mentre i tuoi competitor dormono,<br />
+                  <span className="italic font-light text-primary">l'AI lavora per te.</span>
+                </h2>
+              </FadeIn>
+
+              <div className="space-y-8">
+                {competitivePoints.map((p, i) => (
+                  <FadeIn key={i} delay={0.12 * i + 0.16}>
+                    <div className="group">
+                      <div className="flex items-center gap-4 mb-3">
+                        <div className="w-12 h-12 rounded-full border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary/10 transition-colors">
+                          {p.icon}
+                        </div>
+                        <div>
+                          <span className="font-mono text-[28px] font-bold text-primary leading-none">{p.stat}</span>
+                          <p className="text-[14px] text-[rgba(255,255,255,0.5)] font-light mt-1">{p.label}</p>
+                        </div>
+                      </div>
+                      <AnimatedBar value={p.bar} delay={0.1 * i + 0.3} />
+                    </div>
+                  </FadeIn>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider />
       <section id="progetti" className="bg-alt py-40 px-6 lg:px-12">
         <div className="max-w-[1320px] mx-auto">
           <FadeIn>
@@ -972,7 +1220,15 @@ const Index = () => {
       <SectionDivider />
 
       {/* ───── CTA FINALE ───── */}
-      <section id="cta-finale" className="relative py-[200px] px-6 lg:px-12 text-center">
+      <section id="cta-finale" className="relative py-[200px] px-6 lg:px-12 text-center overflow-hidden">
+        {/* Background image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: "url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1920&q=80')",
+          }}
+        />
+        <div className="absolute inset-0 bg-background/[0.94]" />
         {/* Animated glow */}
         <motion.div
           className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] pointer-events-none"
