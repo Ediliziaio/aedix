@@ -8,6 +8,7 @@ const navLinks = [
   { label: "Cosa Facciamo", to: "/servizi" },
   { label: "Progetti", to: "/progetti" },
   { label: "Perché Noi?", to: "/perche-noi" },
+  { label: "Articoli", to: "/articoli" },
 ];
 
 const Navbar = () => {
