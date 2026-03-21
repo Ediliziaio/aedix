@@ -1,1418 +1,746 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import aedixLogo from "@/assets/aedix_logo.png";
-import { motion, useScroll, useSpring, useInView, useMotionValue, useTransform, animate, AnimatePresence } from "framer-motion";
-import {
-  Phone, Mail, MapPin, Check, Star, ArrowUpRight, ArrowRight,
-  Shield, Clock, Zap, Menu, X, Send, User, Briefcase,
-  MessageSquare, Globe, Search, Share2, BarChart3, FileText,
-  Plus, Minus, Quote, Users, Award, Headphones, Calendar,
-  TrendingUp, ThumbsDown, ThumbsUp, Instagram, Facebook, MessageCircle,
-  Gift
-} from "lucide-react";
+import { motion, useInView, useMotionValue, animate } from "framer-motion";
+import { Menu, X, Shield, RefreshCw, Target } from "lucide-react";
 
-// ─── Images ──────────────────────────────────────────────────
-import serviceConstruction from "@/assets/service-construction.jpg";
-import serviceSeo from "@/assets/service-seo.jpg";
-import serviceGmb from "@/assets/service-gmb.jpg";
-import serviceSocial from "@/assets/service-social.jpg";
-import project1 from "@/assets/project-1.jpg";
-import project2 from "@/assets/project-2.jpg";
-import project3 from "@/assets/project-3.jpg";
-import ctaAerial from "@/assets/cta-aerial.jpg";
-import ctaInline from "@/assets/cta-inline.jpg";
-import blog1 from "@/assets/blog-1.jpg";
-import blog2 from "@/assets/blog-2.jpg";
-import blog3 from "@/assets/blog-3.jpg";
-import heroBg from "@/assets/hero-bg.jpg";
-import beforeSite from "@/assets/before-site.jpg";
-import afterSite from "@/assets/after-site.jpg";
-
-// ─── Data ─────────────────────────────────────────────────────
-
-const companies = [
-  "Rossi Costruzioni", "Edil Bianchi", "Muratori Uniti", "Costruzioni Ferrari",
-  "Impresa Colombo", "Edilizia Moretti", "Fratelli Ricci", "Cantieri Lombardi",
-  "Edil Service Roma", "Costruzioni Napoli", "Impresa Greco", "Edil Pro Milano"
-];
-
-const services = [
-  { icon: Globe, title: "Sito Web Professionale", desc: "Design moderno e responsive, ottimizzato per convertire visitatori in clienti.", image: serviceConstruction },
-  { icon: Search, title: "SEO Locale", desc: "Posizionamento su Google per le ricerche nella tua zona. Più visibilità, più clienti.", image: serviceSeo },
-  { icon: Share2, title: "Google My Business", desc: "Profilo ottimizzato per apparire nelle ricerche locali e su Google Maps.", image: serviceGmb },
-  { icon: BarChart3, title: "Social Media", desc: "Pagine Facebook e Instagram configurate e collegate al tuo sito web.", image: serviceSocial },
-];
-
-const projects = [
-  { title: "Sito Web Rossi Costruzioni", category: "Sito Web Completo", desc: "Sito moderno con portfolio lavori, galleria fotografica e form contatto integrato.", image: project1 },
-  { title: "Landing Page Edil Bianchi", category: "Lead Generation", desc: "Landing page ottimizzata per generare preventivi con SEO locale integrato.", image: project2 },
-  { title: "Portale Costruzioni Ferrari", category: "Portale Aziendale", desc: "Portale completo con galleria progetti, preventivi online e area clienti.", image: project3 },
-];
-
-const blogPosts = [
-  { title: "Come un sito web può raddoppiare i tuoi clienti in edilizia", date: "15 Mar 2026", image: blog1, category: "Marketing" },
-  { title: "5 errori che le imprese edili fanno online", date: "10 Mar 2026", image: blog2, category: "Strategia" },
-  { title: "SEO locale: la guida per imprese di costruzione", date: "5 Mar 2026", image: blog3, category: "SEO" },
-];
-
-const whyUs = [
-  { icon: Shield, title: "Zero Anticipo", desc: "Paghi solo a sito completato e approvato da te." },
-  { icon: Clock, title: "Consegna 48h", desc: "Il tuo sito online in soli 2 giorni lavorativi." },
-  { icon: Zap, title: "Soddisfatto o Rimborsato", desc: "Non ti piace? Ti restituiamo tutto, senza domande." },
-  { icon: Headphones, title: "Supporto Dedicato", desc: "30 giorni di assistenza gratuita dopo la consegna." },
-];
-
-const steps = [
-  { num: "01", title: "Chiamata Conoscitiva", desc: "15 minuti per capire la tua impresa, i tuoi servizi e i tuoi obiettivi. Nessun impegno.", time: "15 min" },
-  { num: "02", title: "Anteprima in 24 Ore", desc: "Ti mostriamo la prima bozza del tuo sito. Tu approvi o chiedi modifiche illimitate.", time: "24 ore" },
-  { num: "03", title: "Online in 48 Ore", desc: "Sito pubblicato, ottimizzato per Google e pronto a ricevere clienti ogni giorno.", time: "48 ore" },
-];
-
-const reviews = [
-  { name: "Marco Rossi", company: "Rossi Costruzioni", city: "Milano", text: "In 2 giorni avevo il sito online. Il mese dopo ho ricevuto 12 richieste di preventivo. Mai visto nulla di simile.", rating: 5, avatar: "MR" },
-  { name: "Giuseppe Bianchi", company: "Edil Bianchi", city: "Roma", text: "Finalmente un'agenzia che capisce le esigenze di chi lavora in cantiere. Professionali, veloci e il risultato è eccezionale.", rating: 5, avatar: "GB" },
-  { name: "Antonio Ferrari", company: "Costruzioni Ferrari", city: "Napoli", text: "Il sito ha dato una svolta alla mia attività. Ora i clienti mi trovano su Google e mi chiamano ogni settimana.", rating: 5, avatar: "AF" },
-  { name: "Luca Colombo", company: "Impresa Colombo", city: "Torino", text: "Zero anticipo e risultato eccellente. Lo consiglio a tutti i colleghi del settore edile.", rating: 5, avatar: "LC" },
-  { name: "Salvatore Greco", company: "Impresa Greco", city: "Palermo", text: "Pensavo fosse impossibile avere un sito professionale in 48 ore. Mi sbagliavo. Lavoro impeccabile.", rating: 5, avatar: "SG" },
-  { name: "Roberto Conti", company: "Edil Pro Milano", city: "Milano", text: "Il mio vecchio sito non portava nessun cliente. Con il nuovo sito ricevo 3-4 richieste a settimana.", rating: 5, avatar: "RC" },
-];
-
-const stats = [
-  { value: 127, suffix: "+", label: "Imprese Servite" },
-  { value: 12, suffix: "+", label: "Anni di Esperienza" },
-  { value: 98, suffix: "%", label: "Clienti Soddisfatti" },
-  { value: 48, suffix: "h", label: "Tempo di Consegna" },
-];
-
-const offerFeatures = [
-  "Sito web professionale su misura",
-  "Ottimizzato per Google (SEO)",
-  "Design responsive (mobile-first)",
-  "Galleria lavori fotografica",
-  "Form contatto integrato",
-  "Velocità di caricamento ottimale",
-  "Dominio e hosting per 1 anno",
-  "Certificato SSL incluso",
-];
-
-const bonuses = [
-  { title: "Setup Google My Business", value: "€200" },
-  { title: "Pagine Facebook & Instagram", value: "€150" },
-  { title: "Google Analytics configurato", value: "€100" },
-  { title: "Guida PDF marketing edile", value: "€50" },
-];
-
-const faqs = [
-  { q: "Quanto costa il sito web?", a: "Il prezzo è di €1.000 (invece di €1.400) tutto incluso. Dominio, hosting, SSL, design, copywriting e ottimizzazione SEO. Nessun costo nascosto." },
-  { q: "Devo pagare un anticipo?", a: "No, zero anticipo. Paghi solo dopo aver visto e approvato il sito completato. Se non ti piace, non paghi nulla." },
-  { q: "In quanto tempo sarà pronto?", a: "Il sito viene consegnato in 48 ore lavorative dalla chiamata conoscitiva. Riceverai un'anteprima entro le prime 24 ore." },
-  { q: "Il sito sarà visibile su Google?", a: "Assolutamente sì. Ogni sito viene ottimizzato SEO per posizionarsi nelle ricerche locali della tua zona." },
-  { q: "Cosa succede se non mi piace?", a: "Garanzia soddisfatti o rimborsati. Se il risultato non ti convince, ti restituiamo l'intero importo senza domande." },
-];
-
-const tickerLine1 = "PORTIAMO CLIENTI IN CANTIERE";
-const tickerLine2 = "SITI WEB ◆ SEO ◆ GOOGLE MY BUSINESS ◆ SOCIAL MEDIA ◆ BRANDING ◆ MARKETING";
-
-// ─── Helpers ──────────────────────────────────────────────────
-
-function AnimatedCounter({ value, suffix = "", prefix = "" }: { value: number; suffix?: string; prefix?: string }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+// ─── Animated Counter ────────────────────────────────────────
+const AnimatedCounter = ({ value, suffix = "", duration = 2 }: { value: number; suffix?: string; duration?: number }) => {
+  const ref = useRef<HTMLSpanElement>(null);
   const motionVal = useMotionValue(0);
-  const rounded = useTransform(motionVal, (v) => Math.round(v));
-  const [display, setDisplay] = useState(0);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   useEffect(() => {
     if (isInView) {
-      const controls = animate(motionVal, value, { duration: 2, ease: "easeOut" });
-      return controls.stop;
+      animate(motionVal, value, { duration, ease: [0.16, 1, 0.3, 1] });
+      const unsub = motionVal.on("change", (v) => {
+        if (ref.current) ref.current.textContent = Math.round(v) + suffix;
+      });
+      return unsub;
     }
-  }, [isInView, value, motionVal]);
+  }, [isInView, value, suffix, duration, motionVal]);
 
-  useEffect(() => {
-    const unsub = rounded.on("change", (v) => setDisplay(v));
-    return unsub;
-  }, [rounded]);
+  return <span ref={ref}>0{suffix}</span>;
+};
 
-  return <span ref={ref}>{prefix}{display}{suffix}</span>;
-}
-
-function FadeIn({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-60px" });
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay, ease: "easeOut" }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-function ScaleIn({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-60px" });
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, scale: 0.92 }}
-      animate={isInView ? { opacity: 1, scale: 1 } : {}}
-      transition={{ duration: 0.7, delay, ease: "easeOut" }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-function ParallaxImage({ src, alt, className = "", speed = 0.2 }: { src: string; alt: string; className?: string; speed?: number }) {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], [speed * -100, speed * 100]);
-  return (
-    <div ref={ref} className={`overflow-hidden ${className}`}>
-      <motion.img src={src} alt={alt} loading="lazy" style={{ y }} className="w-full h-full object-cover scale-[1.2]" />
-    </div>
-  );
-}
-
-function ClipReveal({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+// ─── FadeIn ──────────────────────────────────────────────────
+const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
+
   return (
     <motion.div
       ref={ref}
-      initial={{ clipPath: "inset(100% 0 0 0)" }}
-      animate={isInView ? { clipPath: "inset(0% 0 0 0)" } : {}}
-      transition={{ duration: 0.9, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
+      initial={{ opacity: 0, y: 50 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] }}
       className={className}
     >
       {children}
     </motion.div>
   );
-}
+};
 
-function SectionLabel({ children }: { children: string }) {
-  return <p className="section-label mb-6">( {children} )</p>;
-}
+// ─── Section Divider ─────────────────────────────────────────
+const SectionDivider = () => <div className="section-divider w-full" />;
 
-function CarinoButton({ children, href, variant = "filled" }: { children: string; href: string; variant?: "filled" | "outline" }) {
-  const cls = variant === "filled" ? "btn-carino" : "btn-carino-outline";
-  return (
-    <a href={href} className={cls}>
-      {children}
-      <span className="arrow-circle">
-        <ArrowUpRight size={18} />
-      </span>
-    </a>
-  );
-}
-
-// ─── Scroll Progress ──────────────────────────────────────────
-
-function ScrollProgress() {
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
-  return <motion.div className="fixed top-0 left-0 right-0 h-1 bg-primary origin-left z-[60]" style={{ scaleX }} />;
-}
-
-// ─── Top Offer Banner ─────────────────────────────────────────
-
-function TopBanner({ visible, onClose }: { visible: boolean; onClose: () => void }) {
-  if (!visible) return null;
-  return (
-    <div className="fixed top-0 left-0 right-0 z-[60] bg-primary text-primary-foreground">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center gap-3 h-10 relative">
-        <Gift size={16} className="shrink-0 hidden sm:block" />
-        <p className="text-xs sm:text-sm font-ui font-bold tracking-wide text-center">
-          Offerta: Se non sei soddisfatto del nostro servizio, il sito te lo lasciamo <span className="underline underline-offset-2">GRATIS</span>
-        </p>
-        <button onClick={onClose} className="absolute right-4 top-1/2 -translate-y-1/2 hover:opacity-70 transition-opacity" aria-label="Chiudi">
-          <X size={16} />
-        </button>
-      </div>
-    </div>
-  );
-}
-
-// ─── Navbar ───────────────────────────────────────────────────
-
-function Navbar({ bannerVisible }: { bannerVisible: boolean }) {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
+// ─── Hexagon Canvas ──────────────────────────────────────────
+const HexagonCanvas = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handler);
-    return () => window.removeEventListener("scroll", handler);
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let animId: number;
+    let time = 0;
+
+    const resize = () => {
+      canvas.width = canvas.offsetWidth * window.devicePixelRatio;
+      canvas.height = canvas.offsetHeight * window.devicePixelRatio;
+      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+    };
+    resize();
+    window.addEventListener("resize", resize);
+
+    const drawHex = (cx: number, cy: number, r: number, alpha: number) => {
+      ctx.beginPath();
+      for (let i = 0; i < 6; i++) {
+        const angle = (Math.PI / 3) * i - Math.PI / 6;
+        const x = cx + r * Math.cos(angle);
+        const y = cy + r * Math.sin(angle);
+        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.closePath();
+      ctx.strokeStyle = `rgba(246, 190, 9, ${alpha})`;
+      ctx.lineWidth = 0.5;
+      ctx.stroke();
+    };
+
+    const draw = () => {
+      const w = canvas.offsetWidth;
+      const h = canvas.offsetHeight;
+      ctx.clearRect(0, 0, w, h);
+      time += 0.003;
+
+      const size = 60;
+      const cols = Math.ceil(w / (size * 1.75)) + 2;
+      const rows = Math.ceil(h / (size * 1.5)) + 2;
+
+      for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
+          const cx = col * size * 1.75 + (row % 2 ? size * 0.875 : 0);
+          const cy = row * size * 1.5;
+          const dist = Math.sqrt((cx - w * 0.7) ** 2 + (cy - h * 0.3) ** 2);
+          const wave = Math.sin(dist * 0.008 - time * 2) * 0.5 + 0.5;
+          const alpha = wave * 0.06;
+          if (alpha > 0.01) drawHex(cx, cy, size * 0.5, alpha);
+        }
+      }
+      animId = requestAnimationFrame(draw);
+    };
+    draw();
+
+    return () => {
+      cancelAnimationFrame(animId);
+      window.removeEventListener("resize", resize);
+    };
   }, []);
 
-  const links = [
-    { label: "Servizi", href: "#servizi" },
-    { label: "Progetti", href: "#progetti" },
-    { label: "Recensioni", href: "#recensioni" },
-    { label: "Blog", href: "#blog" },
-    { label: "FAQ", href: "#faq" },
-  ];
-
   return (
-    <nav className={`fixed left-0 right-0 z-50 transition-all duration-300 ${bannerVisible ? "top-10" : "top-0"} ${scrolled ? "bg-background/90 backdrop-blur-lg border-b border-border" : "bg-transparent"}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
-        <a href="#" className="flex items-center">
-          <img src={aedixLogo} alt="AEDIX" className="h-10" />
-        </a>
-
-        <div className="hidden md:flex items-center gap-8">
-          {links.map((l) => (
-            <a key={l.href} href={l.href} className="text-muted-foreground hover:text-foreground transition-colors text-sm font-ui">
-              {l.label}
-            </a>
-          ))}
-        </div>
-
-        <div className="hidden md:block">
-          <CarinoButton href="#contatti">Contattaci</CarinoButton>
-        </div>
-
-        <button className="md:hidden text-foreground" onClick={() => setMobileOpen(!mobileOpen)}>
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-
-      {mobileOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="md:hidden bg-background/95 backdrop-blur-lg border-b border-border px-4 pb-6 pt-2 flex flex-col gap-4"
-        >
-          {links.map((l) => (
-            <a key={l.href} href={l.href} onClick={() => setMobileOpen(false)} className="text-muted-foreground hover:text-foreground py-2 font-ui">{l.label}</a>
-          ))}
-          <a href="#contatti" onClick={() => setMobileOpen(false)} className="btn-carino text-center justify-center mt-2">
-            Contattaci
-            <span className="arrow-circle"><ArrowUpRight size={18} /></span>
-          </a>
-        </motion.div>
-      )}
-    </nav>
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full pointer-events-none"
+      style={{ opacity: 0.7 }}
+    />
   );
-}
+};
 
-// ─── Hero ─────────────────────────────────────────────────────
+// ─── Data ────────────────────────────────────────────────────
+const services = [
+  {
+    icon: (
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+        <rect x="2" y="2" width="14" height="14" rx="2" stroke="currentColor" strokeWidth="1.5" />
+        <rect x="20" y="2" width="14" height="14" rx="2" stroke="currentColor" strokeWidth="1.5" />
+        <rect x="2" y="20" width="14" height="14" rx="2" stroke="currentColor" strokeWidth="1.5" />
+        <rect x="20" y="20" width="14" height="14" rx="6" stroke="currentColor" strokeWidth="1.5" />
+      </svg>
+    ),
+    title: "Piattaforme SaaS Verticali",
+    text: "Software gestionale, sicurezza, back-office in outsourcing. Ogni piattaforma elimina un costo fisso dalla tua azienda e ti restituisce ore. Non giorni — ore.",
+  },
+  {
+    icon: (
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+        <circle cx="18" cy="18" r="15" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="18" y1="18" x2="18" y2="8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        <line x1="18" y1="18" x2="26" y2="18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      </svg>
+    ),
+    title: "Agenti AI Operativi",
+    text: "Non chatbot decorativi. Agenti che rispondono ai clienti, qualificano lead, compilano preventivi e gestiscono appuntamenti. Lavorano di notte. Non chiedono ferie.",
+  },
+  {
+    icon: (
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+        <polyline points="4,28 12,20 20,24 32,8" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+        <circle cx="32" cy="8" r="3" fill="currentColor" />
+      </svg>
+    ),
+    title: "Marketing & Vendita a Performance",
+    text: "L'unica struttura in Italia che lavora a commissione sulle vendite chiuse. Se non vendi, non ci paghi. Il nostro fatturato dipende dal tuo.",
+  },
+  {
+    icon: (
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+        <path d="M18 4L30 12V24L18 32L6 24V12L18 4Z" stroke="currentColor" strokeWidth="1.5" fill="none" />
+        <path d="M18 4V18M18 18L30 12M18 18L6 12M18 18V32M18 18L30 24M18 18L6 24" stroke="currentColor" strokeWidth="0.5" opacity="0.4" />
+      </svg>
+    ),
+    title: "Consulenza e Formazione",
+    text: "Vendita, gestione aziendale, recruiting. Metodi testati su imprese reali — non teoria da manuale. Ogni strategia che insegniamo, la usiamo prima su noi stessi.",
+  },
+];
 
-function Hero() {
+const stats = [
+  { value: 7, suffix: "", label: "Piattaforme sviluppate e operative" },
+  { value: 11, suffix: "", label: "Agenti AI attivi 24/7" },
+  { value: 44, suffix: "", label: "Workflow automatizzati" },
+  { value: 8, suffix: "+", label: "Anni nel mercato italiano" },
+];
+
+const comparison = [
+  { today: "Segretaria a tempo pieno", aedix: "Agente AI a €200/mese", impact: "−80%" },
+  { today: "Agenzia marketing a canone", aedix: "Paghi solo sulle vendite chiuse", impact: "−100% rischio" },
+  { today: "Gestionale generico inadatto", aedix: "Piattaforma verticale per il tuo settore", impact: "+3h/giorno" },
+  { today: "Commerciale che non chiude", aedix: "Metodo di vendita testato e replicabile", impact: "+35% chiusure" },
+  { today: "Contabilità e burocrazia interna", aedix: "Outsourcing pay-per-use", impact: "−2 dipendenti" },
+];
+
+const projects = [
+  { name: "Edilizia in Cloud", color: "#00D4FF", desc: "Il sistema operativo per le imprese edili. Gestionale, cantieri, documenti, team — tutto in una piattaforma." },
+  { name: "Cantiere in Cloud", color: "#FF6B35", desc: "Sicurezza cantiere e documentazione a norma. Ogni obbligo di legge sotto controllo, in tempo reale." },
+  { name: "Edilizia.io", color: "#A855F7", desc: "Agenti AI as a Service. 11 agenti operativi che lavorano per la tua impresa 24 ore su 24." },
+  { name: "Marketing Edile", color: "#10B981", desc: "Marketing a performance. Paghi solo sulle vendite chiuse. Zero canone, zero rischio." },
+  { name: "Vendita Edile", color: "#F59E0B", desc: "Il metodo di vendita ibrido per imprese tecniche. Chiudi di più, chiudi meglio, chiudi prima." },
+  { name: "TalentProfile 360°", color: "#EC4899", desc: "242 domande. 15 tratti comportamentali. Assumi la persona giusta al primo colpo." },
+  { name: "Impresa Leggera", color: "#6366F1", desc: "Back-office in outsourcing pay-per-use. Fatturazione, buste paga, adempimenti — senza assumere nessuno." },
+];
+
+const timeline = [
+  { num: "01", title: "Analisi", text: "Analizziamo la tua impresa: costi, processi, team, vendite. Identifichiamo dove stai perdendo soldi e dove puoi guadagnare di più." },
+  { num: "02", title: "Strategia", text: "Disegniamo il piano d'azione: quali piattaforme attivare, quali agenti AI configurare, quali processi automatizzare per primi." },
+  { num: "03", title: "Attivazione", text: "Configuriamo tutto. Le piattaforme vanno online, gli agenti AI iniziano a lavorare, i flussi di vendita partono. Tu non devi toccare niente." },
+  { num: "04", title: "Risultati", text: "Primi numeri reali: lead generati, appuntamenti fissati, ore risparmiate, costi tagliati. Da qui si scala." },
+];
+
+// ─── Main Component ──────────────────────────────────────────
+const Index = () => {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const scrollTo = useCallback((id: string) => {
+    setMobileOpen(false);
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  }, []);
+
   return (
-    <section className="relative min-h-screen flex items-center pt-28 overflow-hidden">
-      {/* Background image with overlay */}
-      <div className="absolute inset-0 z-0">
-        <ParallaxImage src={heroBg} alt="" className="absolute inset-0 w-full h-full" speed={0.1} />
-        <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/60 to-background" />
-      </div>
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      {/* ───── NAVBAR ───── */}
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled ? "border-b border-[rgba(255,255,255,0.04)]" : ""
+        }`}
+        style={{ background: "rgba(10,19,34,0.7)", backdropFilter: "blur(24px)" }}
+      >
+        <div className="max-w-[1320px] mx-auto flex items-center justify-between px-6 lg:px-12 py-[18px]">
+          <img src={aedixLogo} alt="AEDIX" className="h-8" />
 
-      {/* Social sidebar */}
-      <div className="hidden lg:flex flex-col gap-4 fixed left-6 top-1/2 -translate-y-1/2 z-40">
-        {[
-          { icon: Facebook, href: "#", label: "Facebook" },
-          { icon: Instagram, href: "#", label: "Instagram" },
-          { icon: MessageCircle, href: "https://wa.me/390212345678", label: "WhatsApp" },
-        ].map((s, i) => (
-          <a key={i} href={s.href} aria-label={s.label} className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300">
-            <s.icon size={16} />
-          </a>
-        ))}
-      </div>
+          {/* Desktop links */}
+          <div className="hidden md:flex items-center gap-10">
+            {[
+              { label: "Cosa Facciamo", id: "cosa-facciamo" },
+              { label: "Progetti", id: "progetti" },
+              { label: "Chi Siamo", id: "chi-siamo" },
+            ].map((l) => (
+              <button
+                key={l.id}
+                onClick={() => scrollTo(l.id)}
+                className="font-mono text-[13px] uppercase tracking-[1.5px] text-[rgba(255,255,255,0.45)] hover:text-white transition-colors"
+              >
+                {l.label}
+              </button>
+            ))}
+          </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-20 items-center py-16 lg:py-0 relative z-10">
-        {/* Left */}
-        <div className="space-y-8">
+          {/* Desktop CTA */}
+          <button
+            onClick={() => scrollTo("cta-finale")}
+            className="hidden md:block bg-primary text-primary-foreground font-bold text-[12px] uppercase tracking-[2px] px-6 py-2.5 hover:bg-white transition-colors"
+          >
+            Contattaci
+          </button>
 
+          {/* Mobile hamburger */}
+          <button className="md:hidden text-white" onClick={() => setMobileOpen(!mobileOpen)}>
+            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+
+        {/* Mobile menu */}
+        {mobileOpen && (
+          <div className="md:hidden px-6 pb-6 flex flex-col gap-4" style={{ background: "rgba(10,19,34,0.95)" }}>
+            {["cosa-facciamo", "progetti", "chi-siamo"].map((id) => (
+              <button
+                key={id}
+                onClick={() => scrollTo(id)}
+                className="font-mono text-[13px] uppercase tracking-[1.5px] text-[rgba(255,255,255,0.45)] hover:text-white text-left"
+              >
+                {id.replace(/-/g, " ")}
+              </button>
+            ))}
+            <button
+              onClick={() => scrollTo("cta-finale")}
+              className="bg-primary text-primary-foreground font-bold text-[12px] uppercase tracking-[2px] px-6 py-2.5 mt-2"
+            >
+              Contattaci
+            </button>
+          </div>
+        )}
+      </nav>
+
+      {/* ───── HERO ───── */}
+      <section className="relative min-h-screen flex flex-col justify-center pt-[140px] pb-20 px-6 lg:px-12">
+        {/* Glow */}
+        <div
+          className="absolute top-0 right-0 w-[600px] h-[600px] pointer-events-none"
+          style={{
+            background: "radial-gradient(circle, rgba(246,190,9,0.06) 0%, transparent 70%)",
+          }}
+        />
+        <HexagonCanvas />
+
+        <div className="relative max-w-[1320px] mx-auto w-full">
+          {/* Overline */}
+          <FadeIn>
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-10 h-px bg-primary" />
+              <span className="font-mono text-[12px] uppercase tracking-[6px] text-primary">
+                Tecnologia Avanzata per le PMI Italiane
+              </span>
+            </div>
+          </FadeIn>
+
+          {/* H1 */}
           <FadeIn delay={0.1}>
-            <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl leading-[1.05] font-bold">
-              Il sito che porta{" "}
-              <span className="text-gradient-lime">clienti</span>{" "}
-              alla tua impresa.{" "}
-              <span className="text-primary">In 48 ore.</span>
+            <h1
+              className="font-display font-bold leading-[1.04] tracking-[-3px] mb-8"
+              style={{ fontSize: "clamp(44px, 6.5vw, 88px)" }}
+            >
+              Costruiamo il Futuro<br />
+              con l'AI <span className="italic font-light text-primary">e le Persone.</span>
             </h1>
           </FadeIn>
 
+          {/* Subtitle */}
           <FadeIn delay={0.2}>
-            <div className="border-l-2 border-primary pl-5">
-              <p className="text-muted-foreground text-lg leading-relaxed max-w-lg">
-                Creiamo siti web professionali per imprese edili italiane. Zero anticipo, consegna in 48 ore, garanzia soddisfatti o rimborsati.
-              </p>
-            </div>
+            <p className="text-[20px] leading-[1.75] text-[rgba(255,255,255,0.5)] max-w-[600px] font-light mb-10">
+              Aedix è la tech company italiana che sviluppa{" "}
+              <span className="text-[rgba(255,255,255,0.85)] font-medium">
+                piattaforme SaaS, agenti AI e sistemi di vendita
+              </span>{" "}
+              per le piccole e medie imprese. Un unico ecosistema per tagliare i costi fissi, vendere di più e riprendere il controllo della tua azienda.
+            </p>
           </FadeIn>
 
+          {/* CTAs */}
           <FadeIn delay={0.3}>
             <div className="flex flex-wrap gap-4">
-              <CarinoButton href="#contatti">Parliamone Subito</CarinoButton>
-              <CarinoButton href="#offerta" variant="outline">Scopri l'Offerta</CarinoButton>
+              <button
+                onClick={() => scrollTo("cosa-facciamo")}
+                className="bg-primary text-primary-foreground font-bold text-[13px] uppercase tracking-[2px] px-12 py-[18px] hover:-translate-y-0.5 hover:shadow-[0_16px_48px_rgba(246,190,9,0.25)] transition-all"
+              >
+                Scopri L'Ecosistema →
+              </button>
+              <button
+                onClick={() => scrollTo("cta-finale")}
+                className="border border-[rgba(255,255,255,0.15)] text-white font-bold text-[13px] uppercase tracking-[2px] px-12 py-[18px] hover:border-primary hover:text-primary transition-all"
+              >
+                Prenota Una Demo
+              </button>
             </div>
           </FadeIn>
-        </div>
 
-        {/* Right — Testimonial card + floating image */}
-        <FadeIn delay={0.3} className="hidden lg:block">
-          <div className="relative">
-            {/* Project image card */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="img-card aspect-[4/3] rounded-2xl overflow-hidden glow-lime"
-            >
-              <img src={project1} alt="Progetto villa moderna" className="w-full h-full object-cover" />
-              <div className="img-overlay" />
-              <div className="absolute bottom-6 left-6 right-6">
-                <p className="font-ui text-xs text-primary tracking-wider uppercase mb-1">Progetto Recente</p>
-                <p className="font-display text-xl text-foreground font-semibold">Sito Web Rossi Costruzioni</p>
-              </div>
-            </motion.div>
-
-            {/* Testimonial card floating */}
-            <motion.div
-              animate={{ y: [0, -6, 0] }}
-              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-              className="absolute -bottom-8 -left-8 bg-card border border-border rounded-xl p-5 max-w-[280px] backdrop-blur-lg"
-            >
-              <Quote size={24} className="text-primary/30 mb-2" />
-              <p className="text-foreground/80 text-sm leading-relaxed italic mb-3">
-                "In 2 giorni avevo il sito online. 12 richieste di preventivo il mese dopo."
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-primary/20 text-primary font-bold flex items-center justify-center text-xs">
-                  MR
-                </div>
-                <div>
-                  <p className="font-ui font-semibold text-sm">Marco Rossi</p>
-                  <p className="text-muted-foreground text-xs">Milano</p>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Avatar cluster */}
-            <motion.div
-              animate={{ y: [0, 6, 0] }}
-              transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut", delay: 0.5 }}
-              className="absolute -top-6 -right-6 bg-primary text-primary-foreground px-5 py-3 rounded-xl font-ui font-bold text-sm"
-            >
-              <div className="flex items-center gap-2">
-                <div className="flex -space-x-1.5">
-                  {["MR", "GB", "AF"].map((initials, i) => (
-                    <div key={i} className="w-6 h-6 rounded-full bg-primary-foreground/20 text-[10px] font-bold flex items-center justify-center border border-primary">
-                      {initials}
-                    </div>
-                  ))}
-                </div>
-                <span>+127 imprese</span>
-              </div>
-            </motion.div>
-          </div>
-        </FadeIn>
-      </div>
-    </section>
-  );
-}
-
-// ─── Clients Ticker ───────────────────────────────────────────
-
-function ClientsTicker() {
-  return (
-    <section className="py-10 border-y border-border">
-      <FadeIn>
-        <div className="flex items-center gap-6 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
-          <div className="h-px flex-1 bg-border" />
-          <span className="section-label whitespace-nowrap">Alcuni dei Nostri Clienti</span>
-          <div className="h-px flex-1 bg-border" />
-        </div>
-      </FadeIn>
-      <div className="overflow-hidden">
-        <div className="flex animate-ticker whitespace-nowrap">
-          {[...companies, ...companies].map((name, i) => (
-            <span key={i} className="mx-8 text-muted-foreground/30 font-ui text-xl tracking-widest uppercase">
-              {name}
-            </span>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ─── About / Stats ────────────────────────────────────────────
-
-function AboutSection() {
-  return (
-    <section className="py-24 sm:py-32">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style={{ maxWidth: "80rem", marginLeft: "auto", marginRight: "auto" }}>
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
-          <div>
-            <FadeIn>
-              <SectionLabel>Chi Siamo</SectionLabel>
-            </FadeIn>
-            <FadeIn delay={0.1}>
-              <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.1] mb-8 font-bold">
-                La tua visione, la nostra{" "}
-                <span className="text-gradient-lime">esperienza.</span>{" "}
-                Insieme costruiamo il tuo successo online.
-              </h2>
-            </FadeIn>
-            <FadeIn delay={0.2}>
-              <p className="text-muted-foreground text-lg leading-relaxed max-w-xl">
-                Siamo specializzati nella creazione di siti web per imprese edili italiane.
-                Conosciamo il tuo settore, i tuoi clienti e le sfide che affronti ogni giorno.
-                La nostra missione è semplice: portarti più clienti con un sito che funziona davvero.
-              </p>
-            </FadeIn>
-          </div>
-
-          <FadeIn delay={0.2}>
-            <div className="grid grid-cols-2 gap-6">
-              {stats.map((s, i) => (
-                <div key={i} className="bg-card border border-border rounded-xl p-6 hover:border-primary/30 hover:-translate-y-2 transition-all duration-500">
-                  <div className="font-display text-5xl sm:text-6xl text-primary mb-2 font-bold">
-                    <AnimatedCounter value={s.value} suffix={s.suffix} />
-                  </div>
-                  <p className="text-muted-foreground text-sm">{s.label}</p>
+          {/* Stats bar */}
+          <FadeIn delay={0.4}>
+            <div className="flex flex-wrap gap-16 mt-16">
+              {[
+                { val: 7, suf: "", label: "Piattaforme Attive" },
+                { val: 11, suf: "", label: "Agenti AI Operativi" },
+                { val: 8, suf: "+", label: "Anni di R&D" },
+              ].map((s, i) => (
+                <div key={i} className="flex flex-col">
+                  <span className="font-mono text-[52px] font-bold text-white leading-none">
+                    <AnimatedCounter value={s.val} suffix={s.suf} />
+                  </span>
+                  <span className="font-mono text-[12px] uppercase tracking-[2.5px] text-[rgba(255,255,255,0.3)] mt-2">
+                    {s.label}
+                  </span>
                 </div>
               ))}
             </div>
           </FadeIn>
         </div>
-      </div>
-    </section>
-  );
-}
+      </section>
 
-// ─── Services with Images ─────────────────────────────────────
+      <SectionDivider />
 
-function ServicesSection() {
-  return (
-    <section id="servizi" className="py-24 sm:py-32">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <FadeIn>
-          <SectionLabel>I Nostri Servizi</SectionLabel>
-        </FadeIn>
-        <FadeIn delay={0.1}>
-          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.1] mb-4 max-w-3xl font-bold">
-            Tutto quello che ti serve per portare{" "}
-            <span className="text-gradient-lime">clienti</span> in cantiere
-          </h2>
-        </FadeIn>
-        <FadeIn delay={0.15}>
-          <p className="text-muted-foreground text-lg mb-16 max-w-xl">
-            Servizi completi di web marketing specifici per il settore edile.
-          </p>
-        </FadeIn>
-
-        <div className="grid md:grid-cols-2 gap-6">
-          {services.map((s, i) => (
-            <ClipReveal key={i} delay={i * 0.12}>
-              <div className="img-card group cursor-pointer h-[400px]">
-                <img src={s.image} alt={s.title} loading="lazy" />
-                <div className="img-overlay" />
-                <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-12 h-12 rounded-full bg-primary/20 backdrop-blur-sm flex items-center justify-center">
-                      <s.icon size={22} className="text-primary" />
-                    </div>
-                    <span className="font-ui text-xs tracking-wider uppercase text-primary">Servizio {String(i + 1).padStart(2, "0")}</span>
-                  </div>
-                  <h3 className="font-display text-2xl sm:text-3xl text-foreground mb-2">{s.title}</h3>
-                  <p className="text-foreground/70 text-sm leading-relaxed max-w-sm opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
-                    {s.desc}
-                  </p>
-                </div>
-                <div className="absolute top-6 right-6 w-12 h-12 rounded-full border border-foreground/20 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:rotate-0 rotate-45 transition-all duration-500">
-                  <ArrowUpRight size={20} className="text-foreground" />
-                </div>
-              </div>
-            </ClipReveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ─── Projects Section (NEW) ──────────────────────────────────
-
-function ProjectsSection() {
-  return (
-    <section id="progetti" className="py-24 sm:py-32">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-          <div>
-            <FadeIn>
-              <SectionLabel>Progetti Recenti</SectionLabel>
-            </FadeIn>
-            <FadeIn delay={0.1}>
-              <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.1] max-w-2xl font-bold">
-                I siti che abbiamo{" "}
-                <span className="text-gradient-lime">costruito</span>
-              </h2>
-            </FadeIn>
-          </div>
-          <FadeIn delay={0.2}>
-            <CarinoButton href="#contatti" variant="outline">Vedi Tutti i Progetti</CarinoButton>
-          </FadeIn>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-6">
-          {projects.map((p, i) => (
-            <FadeIn key={i} delay={i * 0.15}>
-              <div className="img-card group cursor-pointer h-[500px]">
-                <ParallaxImage src={p.image} alt={p.title} className="absolute inset-0 w-full h-full" speed={0.2} />
-                <div className="img-overlay" />
-                <div className="absolute inset-0 p-8 flex flex-col justify-end relative z-10">
-                  <span className="font-ui text-xs tracking-wider uppercase text-primary mb-2">{p.category}</span>
-                  <h3 className="font-display text-2xl text-foreground mb-2">{p.title}</h3>
-                  <p className="text-foreground/60 text-sm opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500">
-                    {p.desc}
-                  </p>
-                </div>
-                <div className="absolute top-6 right-6 w-12 h-12 rounded-full bg-card/50 backdrop-blur-sm border border-border flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-all duration-500 z-10">
-                  <ArrowUpRight size={18} className="text-foreground group-hover:text-primary-foreground transition-colors" />
-                </div>
-              </div>
-            </FadeIn>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ─── Results Section (NEW) ────────────────────────────────────
-
-const results = [
-  { value: 340, suffix: "%", prefix: "+", label: "Aumento Traffico", desc: "Media di crescita del traffico organico per i nostri clienti nei primi 3 mesi." },
-  { value: 12, suffix: "", prefix: "", label: "Preventivi / Mese", desc: "Richieste di preventivo mensili medie generate dai siti che creiamo." },
-  { value: 180, suffix: "k", prefix: "€", label: "Fatturato Generato", desc: "Volume d'affari generato per i nostri clienti nell'ultimo anno." },
-];
-
-function ResultsSection() {
-  return (
-    <section className="py-24 sm:py-32 border-y border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <FadeIn>
-          <SectionLabel>Risultati Concreti</SectionLabel>
-        </FadeIn>
-        <FadeIn delay={0.1}>
-          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.1] mb-16 max-w-3xl font-bold">
-            Numeri che <span className="text-gradient-lime">parlano</span> da soli
-          </h2>
-        </FadeIn>
-        <div className="grid md:grid-cols-3 gap-8">
-          {results.map((r, i) => (
-            <FadeIn key={i} delay={i * 0.15}>
-              <div className="relative bg-card border border-border rounded-2xl p-10 hover:border-primary/40 transition-all duration-500 group overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/0 via-primary to-primary/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="font-display text-6xl sm:text-7xl text-primary font-bold mb-4">
-                  <AnimatedCounter value={r.value} suffix={r.suffix} prefix={r.prefix} />
-                </div>
-                <h3 className="font-ui font-semibold text-lg mb-2">{r.label}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{r.desc}</p>
-              </div>
-            </FadeIn>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ─── Before & After Section (NEW) ─────────────────────────────
-
-function BeforeAfterSection() {
-  return (
-    <section className="py-24 sm:py-32">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <FadeIn>
-          <SectionLabel>Prima & Dopo</SectionLabel>
-        </FadeIn>
-        <FadeIn delay={0.1}>
-          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.1] mb-16 max-w-3xl font-bold">
-            La differenza è <span className="text-gradient-lime">evidente</span>
-          </h2>
-        </FadeIn>
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* Before */}
-          <FadeIn delay={0.1}>
-            <div className="bg-card border border-destructive/30 rounded-2xl overflow-hidden group">
-              <div className="relative h-[280px] overflow-hidden">
-                <img src={beforeSite} alt="Sito web vecchio e datato" className="w-full h-full object-cover opacity-70" />
-                <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
-              </div>
-              <div className="p-8">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-full bg-destructive/20 flex items-center justify-center">
-                    <ThumbsDown size={18} className="text-destructive" />
-                  </div>
-                  <span className="font-ui font-semibold text-destructive">Senza AEDIX</span>
-                </div>
-                <ul className="space-y-3">
-                  {["Sito datato o inesistente", "Zero richieste da Google", "Nessuna presenza su Maps", "Clienti solo dal passaparola"].map((item, i) => (
-                    <li key={i} className="flex items-center gap-2 text-muted-foreground text-sm">
-                      <X size={14} className="text-destructive shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </FadeIn>
-
-          {/* After */}
-          <FadeIn delay={0.25}>
-            <div className="bg-card border border-primary/30 rounded-2xl overflow-hidden group glow-lime">
-              <div className="relative h-[280px] overflow-hidden">
-                <img src={afterSite} alt="Sito web moderno e professionale" className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent" />
-              </div>
-              <div className="p-8">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-                    <ThumbsUp size={18} className="text-primary" />
-                  </div>
-                  <span className="font-ui font-semibold text-primary">Con AEDIX</span>
-                </div>
-                <ul className="space-y-3">
-                  {["Sito moderno e professionale", "10+ richieste al mese da Google", "Prima pagina su Google Maps", "Clienti nuovi ogni settimana"].map((item, i) => (
-                    <li key={i} className="flex items-center gap-2 text-foreground/80 text-sm">
-                      <Check size={14} className="text-primary shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </FadeIn>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ─── Why Choose Us ────────────────────────────────────────────
-
-function WhyUsSection() {
-  return (
-    <section className="py-24 sm:py-32">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <FadeIn>
-          <SectionLabel>Perché Noi</SectionLabel>
-        </FadeIn>
-        <FadeIn delay={0.1}>
-          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.1] mb-16 max-w-3xl font-bold">
-            Garanzie che nessun altro ti <span className="text-gradient-lime">offre</span>
-          </h2>
-        </FadeIn>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {whyUs.map((w, i) => (
-            <FadeIn key={i} delay={i * 0.1}>
-              <div className="bg-card border border-border rounded-2xl p-8 hover:border-primary/40 hover:-translate-y-2 glow-lime transition-all duration-500 group h-full">
-                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
-                  <w.icon size={26} className="text-primary" />
-                </div>
-                <h3 className="font-display text-xl mb-3">{w.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{w.desc}</p>
-              </div>
-            </FadeIn>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ─── Double Marquee Ticker ────────────────────────────────────
-
-function DoubleMarquee() {
-  const repeat = (text: string, count: number) => Array(count).fill(text).join(" ◆ ");
-  return (
-    <section className="py-12 border-y border-border overflow-hidden">
-      <div className="mb-4">
-        <div className="flex animate-ticker whitespace-nowrap">
-          <span className="font-display text-5xl sm:text-7xl lg:text-8xl text-foreground/5 mx-4">
-            {repeat(tickerLine1, 6)}
-          </span>
-        </div>
-      </div>
-      <div>
-        <div className="flex animate-ticker-reverse whitespace-nowrap">
-          <span className="font-ui text-lg sm:text-xl text-muted-foreground/20 tracking-[0.2em] uppercase mx-4">
-            {repeat(tickerLine2, 4)}
-          </span>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ─── Process ──────────────────────────────────────────────────
-
-function ProcessSection() {
-  return (
-    <section id="processo" className="py-24 sm:py-32">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <FadeIn>
-          <SectionLabel>Come Funziona</SectionLabel>
-        </FadeIn>
-        <FadeIn delay={0.1}>
-          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.1] mb-16 max-w-3xl font-bold">
-            Tre passi per il tuo <span className="text-gradient-lime">nuovo sito</span>
-          </h2>
-        </FadeIn>
-
-        {/* Timeline layout */}
-        <div className="relative max-w-3xl mx-auto">
-          {/* Vertical connector line */}
-          <div className="absolute left-6 top-0 bottom-0 w-px bg-border hidden md:block" />
-
-          {steps.map((s, i) => (
-            <FadeIn key={i} delay={i * 0.2}>
-              <div className="relative flex gap-8 mb-12 last:mb-0">
-                {/* Timeline dot */}
-                <div className="hidden md:flex shrink-0 w-12 h-12 rounded-full bg-primary text-primary-foreground font-display font-bold text-lg items-center justify-center relative z-10">
-                  {s.num}
-                </div>
-
-                {/* Content card */}
-                <div className="flex-1 bg-card border border-border rounded-2xl p-8 hover:border-primary/30 hover:-translate-y-1 transition-all duration-500 group relative overflow-hidden">
-                  <span className="font-display text-8xl text-primary/5 absolute -top-4 -right-2 group-hover:text-primary/10 transition-colors">
-                    {s.num}
-                  </span>
-                  <div className="relative z-10">
-                    <div className="flex items-center gap-3 mb-4">
-                      <span className="md:hidden font-display text-sm font-bold text-primary">{s.num}</span>
-                      <div className="inline-block bg-primary/10 text-primary rounded-full px-4 py-1.5 font-ui text-xs font-semibold">
-                        {s.time}
-                      </div>
-                    </div>
-                    <h3 className="font-display text-2xl mb-3">{s.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed">{s.desc}</p>
-                  </div>
-                </div>
-              </div>
-            </FadeIn>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ─── Testimonials ─────────────────────────────────────────────
-
-function TestimonialsSection() {
-  return (
-    <section id="recensioni" className="py-24 sm:py-32">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <FadeIn>
-          <SectionLabel>Recensioni</SectionLabel>
-        </FadeIn>
-        <FadeIn delay={0.1}>
-          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.1] mb-16 max-w-3xl font-bold">
-            Cosa dicono i nostri <span className="text-gradient-lime">clienti</span>
-          </h2>
-        </FadeIn>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {reviews.map((r, i) => (
-            <FadeIn key={i} delay={i * 0.1}>
-              <div className="bg-card border border-border rounded-2xl p-8 hover:border-primary/30 hover:-translate-y-2 transition-all duration-500 group h-full flex flex-col">
-                <Quote size={32} className="text-primary/20 mb-4" />
-                <div className="flex gap-1 mb-4">
-                  {Array.from({ length: r.rating }).map((_, j) => (
-                    <Star key={j} size={14} className="text-primary fill-primary" />
-                  ))}
-                </div>
-                <p className="text-foreground/80 leading-relaxed mb-6 flex-1 italic">"{r.text}"</p>
-                <div className="flex items-center gap-3 pt-4 border-t border-border">
-                  <div className="w-11 h-11 rounded-full bg-primary/20 text-primary font-bold flex items-center justify-center text-sm">
-                    {r.avatar}
-                  </div>
-                  <div>
-                    <p className="font-ui font-semibold text-sm">{r.name}</p>
-                    <p className="text-muted-foreground text-xs">{r.company}, {r.city}</p>
-                  </div>
-                  <div className="ml-auto">
-                    <span className="text-[10px] font-ui font-semibold bg-primary/10 text-primary px-2 py-1 rounded-full">
-                      ✓ Verificato
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </FadeIn>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ─── CTA Banner with Inline Images ───────────────────────────
-
-function CTABanner() {
-  return (
-    <section className="py-24 sm:py-32 border-y border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <FadeIn>
-          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[1.05] text-center font-bold">
-            Trasformiamo la tua{" "}
-            <span className="inline-flex items-center align-middle mx-2">
-              <img src={ctaAerial} alt="" className="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 rounded-full object-cover inline-block border-2 border-primary" />
-            </span>{" "}
-            impresa edile in un{" "}
-            <span className="text-gradient-lime">magnete</span>{" "}
-            <span className="inline-flex items-center align-middle mx-2">
-              <img src={ctaInline} alt="" className="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 rounded-full object-cover inline-block border-2 border-primary" />
-            </span>{" "}
-            per clienti
-          </h2>
-        </FadeIn>
-        <FadeIn delay={0.2}>
-          <div className="flex justify-center mt-12">
-            <CarinoButton href="#contatti">Inizia Ora</CarinoButton>
-          </div>
-        </FadeIn>
-      </div>
-    </section>
-  );
-}
-
-// ─── Pricing ──────────────────────────────────────────────────
-
-function PricingSection() {
-  return (
-    <section id="offerta" className="py-24 sm:py-32">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <FadeIn>
-          <SectionLabel>L'Offerta</SectionLabel>
-        </FadeIn>
-        <FadeIn delay={0.1}>
-          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.1] mb-16 max-w-3xl font-bold">
-            Un investimento che si <span className="text-gradient-lime">ripaga</span> da solo
-          </h2>
-        </FadeIn>
-        <FadeIn delay={0.2}>
-          <div className="max-w-2xl mx-auto">
-            {/* Urgency Banner */}
-            <div className="animate-urgency-glow bg-primary/10 border border-primary/30 rounded-2xl p-4 mb-6 text-center">
-              <p className="font-ui font-semibold text-sm text-primary">
-                ⚡ Solo 5 posti disponibili a Marzo — <span className="underline">Prenota ora</span>
-              </p>
-            </div>
-
-            <div className="bg-card border-2 border-primary rounded-3xl overflow-hidden glow-lime">
-              <div className="bg-primary/10 p-8 text-center">
-                <span className="font-ui text-xs tracking-wider uppercase text-primary">Pacchetto Completo</span>
-                <div className="mt-4 flex items-baseline justify-center gap-3">
-                  <span className="text-muted-foreground line-through text-2xl">€1.400</span>
-                  <span className="font-display text-6xl sm:text-7xl text-primary">€1.000</span>
-                </div>
-                <p className="text-muted-foreground mt-2 text-sm">Pagamento unico · Zero anticipo</p>
-              </div>
-              <div className="p-8 space-y-4">
-                {offerFeatures.map((f, i) => (
-                  <div key={i} className="flex items-center gap-3">
-                    <Check size={18} className="text-primary shrink-0" />
-                    <span className="text-foreground/90">{f}</span>
-                  </div>
-                ))}
-                <div className="pt-6 border-t border-border mt-6">
-                  <p className="font-ui font-semibold text-sm text-primary mb-4">🎁 Bonus Inclusi (valore €500)</p>
-                  {bonuses.map((b, i) => (
-                    <div key={i} className="flex items-center justify-between py-2">
-                      <div className="flex items-center gap-2">
-                        <Check size={14} className="text-primary" />
-                        <span className="text-sm text-foreground/80">{b.title}</span>
-                      </div>
-                      <span className="text-xs text-muted-foreground line-through">{b.value}</span>
-                    </div>
-                  ))}
-                </div>
-                <div className="pt-6 flex justify-center">
-                  <CarinoButton href="#contatti">Parliamone Subito</CarinoButton>
-                </div>
-              </div>
-            </div>
-          </div>
-        </FadeIn>
-      </div>
-    </section>
-  );
-}
-
-// ─── Guarantee Section ────────────────────────────────────────
-
-function GuaranteeSection() {
-  return (
-    <section className="py-24 sm:py-32 bg-card/50">
-      <div className="container max-w-4xl mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7 }}
-          className="relative rounded-3xl border border-primary/30 bg-card p-10 sm:p-16 text-center glow-lime-lg"
-        >
-          {/* Badge */}
-          <div className="absolute -top-5 left-1/2 -translate-x-1/2">
-            <span className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2 font-ui text-xs font-bold uppercase tracking-widest text-primary-foreground">
-              <Award size={16} /> Garanzia 100%
+      {/* ───── COSA FACCIAMO ───── */}
+      <section id="cosa-facciamo" className="py-40 px-6 lg:px-12">
+        <div className="max-w-[1320px] mx-auto">
+          <FadeIn>
+            <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">
+              Cosa Facciamo
             </span>
-          </div>
-
-          {/* Icon */}
-          <div className="mx-auto mb-8 flex h-24 w-24 items-center justify-center rounded-full bg-primary/15 animate-urgency-glow">
-            <Shield size={48} className="text-primary" />
-          </div>
-
-          {/* Title */}
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-6">
-            Se non sei soddisfatto,{" "}
-            <br className="hidden sm:block" />
-            il sito è <span className="text-gradient-lime">GRATIS</span>
-          </h2>
-
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-12">
-            Crediamo così tanto nel nostro lavoro che ci mettiamo la faccia. Se il risultato non ti convince, non paghi nulla e il sito resta tuo. Zero rischi, zero sorprese.
-          </p>
-
-          {/* 3 Points */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-12">
-            {[
-              { icon: Shield, label: "Zero rischio", desc: "Non paghi se non sei soddisfatto" },
-              { icon: Check, label: "Nessun vincolo", desc: "Libertà totale, nessun contratto lungo" },
-              { icon: Users, label: "Trasparenza totale", desc: "Comunicazione chiara in ogni fase" },
-            ].map((item, i) => (
-              <motion.div
-                key={item.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 + i * 0.15, duration: 0.5 }}
-                className="flex flex-col items-center gap-3"
-              >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10">
-                  <item.icon size={24} className="text-primary" />
-                </div>
-                <span className="font-ui font-semibold text-foreground">{item.label}</span>
-                <span className="text-sm text-muted-foreground">{item.desc}</span>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* CTA */}
-          <a href="#contatti" className="btn-carino">
-            Inizia Senza Rischi
-            <span className="arrow-circle"><ArrowUpRight size={18} /></span>
-          </a>
-        </motion.div>
-      </div>
-    </section>
-  );
-}
-
-// ─── Blog Section (NEW) ──────────────────────────────────────
-
-function BlogSection() {
-  return (
-    <section id="blog" className="py-24 sm:py-32">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-          <div>
-            <FadeIn>
-              <SectionLabel>Insights</SectionLabel>
-            </FadeIn>
-            <FadeIn delay={0.1}>
-              <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.1] max-w-2xl font-bold">
-                Risorse per far crescere la tua <span className="text-gradient-lime">impresa</span>
-              </h2>
-            </FadeIn>
-          </div>
-          <FadeIn delay={0.2}>
-            <CarinoButton href="#" variant="outline">Tutti gli Articoli</CarinoButton>
           </FadeIn>
-        </div>
+          <FadeIn delay={0.08}>
+            <h2
+              className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-6"
+              style={{ fontSize: "clamp(32px, 4.5vw, 58px)" }}
+            >
+              Tutto ciò che serve alla tua PMI<br />
+              per <span className="italic font-light text-primary">dominare</span> i prossimi 10 anni.
+            </h2>
+          </FadeIn>
+          <FadeIn delay={0.16}>
+            <p className="text-[18px] text-[rgba(255,255,255,0.45)] max-w-[580px] font-light mb-20">
+              Non siamo una software house generica. Non siamo una web agency. Siamo un ecosistema tecnologico costruito per risolvere i problemi reali delle imprese italiane.
+            </p>
+          </FadeIn>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {blogPosts.map((post, i) => (
-            <ScaleIn key={i} delay={i * 0.15}>
-              <div className="group cursor-pointer">
-                <div className="img-card aspect-[4/3] mb-5">
-                  <img src={post.image} alt={post.title} loading="lazy" />
-                  <div className="absolute inset-0 bg-background/0 group-hover:bg-background/20 transition-colors duration-500" />
-                </div>
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="font-ui text-xs tracking-wider uppercase text-primary">{post.category}</span>
-                  <span className="text-muted-foreground text-xs">·</span>
-                  <span className="text-muted-foreground text-xs flex items-center gap-1">
-                    <Calendar size={12} /> {post.date}
-                  </span>
-                </div>
-                <h3 className="font-display text-xl group-hover:text-primary transition-colors duration-300 leading-snug">
-                  {post.title}
-                </h3>
-              </div>
-            </ScaleIn>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ─── FAQ ──────────────────────────────────────────────────────
-
-function FAQSection() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-  return (
-    <section id="faq" className="py-24 sm:py-32">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-16">
-          <div>
-            <FadeIn>
-              <SectionLabel>Domande Frequenti</SectionLabel>
-            </FadeIn>
-            <FadeIn delay={0.1}>
-              <h2 className="font-display text-4xl sm:text-5xl leading-[1.1] mb-6 font-bold">
-                Hai qualche <span className="text-gradient-lime">domanda?</span>
-              </h2>
-            </FadeIn>
-            <FadeIn delay={0.2}>
-              <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-                Ecco le risposte alle domande più frequenti. Non trovi quello che cerchi? Contattaci direttamente.
-              </p>
-              <CarinoButton href="#contatti" variant="outline">Contattaci</CarinoButton>
-            </FadeIn>
-          </div>
-
-          <div className="space-y-3">
-            {faqs.map((faq, i) => (
-              <FadeIn key={i} delay={i * 0.08}>
-                <div
-                  className={`border rounded-xl transition-all duration-300 overflow-hidden ${openIndex === i ? "border-primary/40 bg-card" : "border-border hover:border-primary/20"}`}
-                >
-                  <button
-                    className="w-full text-left px-6 py-5 flex items-center justify-between gap-4"
-                    onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                  >
-                    <span className="font-ui font-semibold text-sm sm:text-base">{faq.q}</span>
-                    <div className={`w-8 h-8 rounded-full border border-border flex items-center justify-center shrink-0 transition-all duration-300 ${openIndex === i ? "bg-primary border-primary rotate-180" : ""}`}>
-                      {openIndex === i ?
-                        <Minus size={14} className="text-primary-foreground" /> :
-                        <Plus size={14} className="text-muted-foreground" />
-                      }
-                    </div>
-                  </button>
-                  <AnimatePresence>
-                    {openIndex === i && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <p className="px-6 pb-5 text-muted-foreground leading-relaxed">{faq.a}</p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+          {/* 2x2 Grid */}
+          <div className="grid md:grid-cols-2 gap-px bg-[rgba(255,255,255,0.04)]">
+            {services.map((s, i) => (
+              <FadeIn key={i} delay={0.08 * i}>
+                <div className="group relative bg-background p-14 hover:bg-[rgba(255,255,255,0.02)] transition-all">
+                  {/* Gold bar top */}
+                  <div className="absolute top-0 left-0 right-0 h-0.5 bg-primary origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+                  <div className="text-primary mb-6">{s.icon}</div>
+                  <h3 className="font-display text-[22px] font-semibold mb-4">{s.title}</h3>
+                  <p className="text-[15px] leading-[1.8] text-[rgba(255,255,255,0.45)] font-light">{s.text}</p>
                 </div>
               </FadeIn>
             ))}
           </div>
         </div>
-      </div>
-    </section>
-  );
-}
+      </section>
 
-// ─── Contact ──────────────────────────────────────────────────
+      <SectionDivider />
 
-function ContactSection() {
-  const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "" });
-  const [submitted, setSubmitted] = useState(false);
+      {/* ───── I NUMERI ───── */}
+      <section className="bg-alt py-40 px-6 lg:px-12">
+        <div className="max-w-[1320px] mx-auto">
+          <FadeIn>
+            <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">
+              I Numeri
+            </span>
+          </FadeIn>
+          <FadeIn delay={0.08}>
+            <h2
+              className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-16"
+              style={{ fontSize: "clamp(32px, 4.5vw, 58px)" }}
+            >
+              Non promettiamo risultati.<br />
+              <span className="italic font-light text-primary">Li misuriamo.</span>
+            </h2>
+          </FadeIn>
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
-
-  return (
-    <section id="contatti" className="py-24 sm:py-32">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16">
-          <div>
-            <FadeIn>
-              <SectionLabel>Contattaci</SectionLabel>
-            </FadeIn>
-            <FadeIn delay={0.1}>
-              <h2 className="font-display text-4xl sm:text-5xl leading-[1.1] mb-8 font-bold">
-                Pronto a portare <span className="text-gradient-lime">clienti</span> in cantiere?
-              </h2>
-            </FadeIn>
-            <FadeIn delay={0.2}>
-              <p className="text-muted-foreground text-lg leading-relaxed mb-10">
-                Compila il form o contattaci direttamente. Ti rispondiamo entro 2 ore lavorative.
-              </p>
-            </FadeIn>
-
-            <div className="space-y-6">
-              {[
-                { icon: Phone, label: "+39 02 1234 5678" },
-                { icon: Mail, label: "info@aedix.it" },
-                { icon: MapPin, label: "Milano, Italia" },
-              ].map((c, i) => (
-                <FadeIn key={i} delay={0.3 + i * 0.1}>
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                      <c.icon size={20} className="text-primary" />
-                    </div>
-                    <span className="text-foreground">{c.label}</span>
-                  </div>
-                </FadeIn>
-              ))}
-            </div>
+          <div className="grid grid-cols-2 lg:grid-cols-4">
+            {stats.map((s, i) => (
+              <FadeIn key={i} delay={0.08 * i}>
+                <div className={`py-8 px-6 ${i > 0 ? "lg:border-l border-[rgba(255,255,255,0.06)]" : ""}`}>
+                  <span className="font-mono text-[56px] font-bold text-primary leading-none block">
+                    <AnimatedCounter value={s.value} suffix={s.suffix} />
+                  </span>
+                  <span className="text-[14px] text-[rgba(255,255,255,0.4)] font-light mt-3 block">
+                    {s.label}
+                  </span>
+                </div>
+              </FadeIn>
+            ))}
           </div>
+        </div>
+      </section>
 
-          <FadeIn delay={0.2}>
-            {submitted ? (
-              <div className="bg-card border border-primary/40 rounded-2xl p-10 text-center glow-lime flex flex-col items-center justify-center h-full">
-                <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mb-6">
-                  <Check size={28} className="text-primary" />
-                </div>
-                <h3 className="font-display text-2xl mb-4">Messaggio Inviato!</h3>
-                <p className="text-muted-foreground">Ti ricontattiamo entro 2 ore lavorative.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="bg-card border border-border rounded-2xl p-8 space-y-5">
-                <div className="grid sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="block font-ui text-xs uppercase tracking-wider text-muted-foreground mb-2">Nome *</label>
-                    <input
-                      required
-                      type="text"
-                      className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    />
-                  </div>
-                  <div>
-                    <label className="block font-ui text-xs uppercase tracking-wider text-muted-foreground mb-2">Email *</label>
-                    <input
-                      required
-                      type="email"
-                      className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label className="block font-ui text-xs uppercase tracking-wider text-muted-foreground mb-2">Telefono</label>
-                  <input
-                    type="tel"
-                    className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  />
-                </div>
-                <div>
-                  <label className="block font-ui text-xs uppercase tracking-wider text-muted-foreground mb-2">Messaggio *</label>
-                  <textarea
-                    required
-                    rows={4}
-                    className="w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all resize-none"
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  />
-                </div>
-                <button type="submit" className="btn-carino w-full justify-center">
-                  Invia Messaggio
-                  <span className="arrow-circle"><Send size={16} /></span>
-                </button>
-              </form>
-            )}
+      <SectionDivider />
+
+      {/* ───── PRIMA / DOPO ───── */}
+      <section className="py-40 px-6 lg:px-12">
+        <div className="max-w-[1320px] mx-auto">
+          <FadeIn>
+            <span className="font-mono text-[11px] uppercase tracking-[5px] text-gold-light block mb-6">
+              Prima → Dopo
+            </span>
+          </FadeIn>
+          <FadeIn delay={0.08}>
+            <h2
+              className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-6"
+              style={{ fontSize: "clamp(32px, 4.5vw, 58px)" }}
+            >
+              Il tuo business oggi costa troppo<br />
+              e <span className="italic font-light text-primary">produce troppo poco.</span>
+            </h2>
+          </FadeIn>
+          <FadeIn delay={0.16}>
+            <p className="text-[17px] text-[rgba(255,255,255,0.4)] max-w-[600px] font-light mb-[72px]">
+              Ogni riga qui sotto è un costo che stai pagando adesso, un problema che puoi eliminare in 30 giorni, e un risultato misurabile. Nessuna promessa generica — solo numeri.
+            </p>
+          </FadeIn>
+
+          <FadeIn delay={0.24}>
+            <div className="w-full overflow-x-auto">
+              <table className="w-full min-w-[640px]">
+                <thead>
+                  <tr className="border-b border-[rgba(255,255,255,0.08)]">
+                    <th className="font-mono text-[10px] uppercase tracking-[3px] text-[rgba(255,255,255,0.25)] text-left px-6 py-4 font-normal">
+                      Oggi
+                    </th>
+                    <th className="font-mono text-[10px] uppercase tracking-[3px] text-[rgba(255,255,255,0.25)] text-left px-6 py-4 font-normal">
+                      Con AEDIX
+                    </th>
+                    <th className="font-mono text-[10px] uppercase tracking-[3px] text-[rgba(255,255,255,0.25)] text-right px-6 py-4 font-normal">
+                      Impatto
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {comparison.map((row, i) => (
+                    <tr
+                      key={i}
+                      className="border-b border-[rgba(255,255,255,0.04)] hover:bg-[rgba(246,190,9,0.03)] transition-colors"
+                    >
+                      <td className="px-6 py-7 text-[15px] text-[rgba(255,255,255,0.35)] font-light line-through decoration-[rgba(255,100,100,0.4)]">
+                        {row.today}
+                      </td>
+                      <td className="px-6 py-7 text-[15px] text-[rgba(255,255,255,0.8)] font-medium">
+                        {row.aedix}
+                      </td>
+                      <td className="px-6 py-7 text-right font-mono text-[14px] font-bold text-green-impact">
+                        {row.impact}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </FadeIn>
         </div>
-      </div>
-    </section>
-  );
-}
+      </section>
 
-// ─── Final CTA ────────────────────────────────────────────────
+      <SectionDivider />
 
-function FinalCTA() {
-  return (
-    <section className="py-24 sm:py-32">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <FadeIn>
-          <SectionLabel>Inizia Oggi</SectionLabel>
-        </FadeIn>
-        <FadeIn delay={0.1}>
-          <h2 className="font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl leading-[1.05] mb-8 font-bold">
-            Collaboriamo<span className="text-primary">!</span>
-          </h2>
-        </FadeIn>
-        <FadeIn delay={0.2}>
-          <p className="text-muted-foreground text-lg max-w-xl mx-auto mb-10">
-            Il tuo prossimo cliente sta cercando su Google un'impresa come la tua. Fatti trovare.
-          </p>
-        </FadeIn>
-        <FadeIn delay={0.3}>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <CarinoButton href="#contatti">Parliamone Subito</CarinoButton>
-            <CarinoButton href="tel:+390212345678" variant="outline">Chiama Ora</CarinoButton>
-          </div>
-        </FadeIn>
-      </div>
-    </section>
-  );
-}
+      {/* ───── CHI SIAMO ───── */}
+      <section id="chi-siamo" className="py-40 px-6 lg:px-12">
+        <div className="max-w-[1320px] mx-auto">
+          <FadeIn>
+            <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">
+              Chi Siamo
+            </span>
+          </FadeIn>
+          <FadeIn delay={0.08}>
+            <h2
+              className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-16"
+              style={{ fontSize: "clamp(32px, 4.5vw, 58px)" }}
+            >
+              Non parliamo di innovazione.<br />
+              <span className="italic font-light text-primary">La costruiamo.</span>
+            </h2>
+          </FadeIn>
 
-// ─── Footer ───────────────────────────────────────────────────
-
-function Footer() {
-  const [email, setEmail] = useState("");
-  return (
-    <footer className="border-t border-border py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-4 gap-10 mb-12">
-          <div className="md:col-span-2">
-            <div className="flex items-center mb-4">
-              <img src={aedixLogo} alt="AEDIX" className="h-10" />
-            </div>
-            <p className="text-muted-foreground max-w-sm leading-relaxed mb-6">
-              Siti web professionali per imprese edili italiane. Più clienti, più lavoro, più crescita.
-            </p>
-
-            {/* Google Reviews badge */}
-            <div className="inline-flex items-center gap-3 bg-card border border-border rounded-xl px-4 py-3 mb-6">
-              <div className="flex gap-0.5">
-                {[1,2,3,4,5].map(i => (
-                  <Star key={i} size={14} className="text-primary fill-primary" />
-                ))}
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
+            <FadeIn delay={0.16}>
+              <div className="text-[17px] leading-[1.9] text-[rgba(255,255,255,0.5)] font-light space-y-6">
+                <p>
+                  Aedix nasce da un principio semplice:{" "}
+                  <strong className="text-white font-semibold">
+                    le PMI italiane meritano la stessa tecnologia delle multinazionali
+                  </strong>
+                  , ma costruita per il loro mondo — fatto di clienti da seguire, cantieri da gestire, burocrazia da sbrigare e margini da proteggere.
+                </p>
+                <p>
+                  Non abbiamo iniziato da un ufficio. Abbiamo iniziato sul campo — gestendo un'impresa vera, vendendo ai clienti finali, sbattendo la testa su problemi che nessun software generico riusciva a risolvere.
+                </p>
+                <p>
+                  Ogni piattaforma che sviluppiamo viene{" "}
+                  <strong className="text-white font-semibold">prima testata internamente</strong>{" "}
+                  sulle nostre stesse aziende. Se non funziona per noi, non esiste per te.
+                </p>
+                <p>
+                  Oggi Aedix è un ecosistema di brand e piattaforme che coprono l'intera catena del valore di una PMI:{" "}
+                  <strong className="text-white font-semibold">
+                    dall'acquisizione clienti alla gestione operativa, dalla vendita al back-office, dall'intelligenza artificiale alla formazione del team.
+                  </strong>
+                </p>
               </div>
-              <span className="text-sm text-foreground font-semibold">4.9/5</span>
-              <span className="text-xs text-muted-foreground">su Google Reviews</span>
-            </div>
+            </FadeIn>
 
-            {/* Newsletter */}
-            <div>
-              <p className="font-ui text-xs uppercase tracking-wider text-muted-foreground mb-3">Newsletter</p>
-              <form onSubmit={(e) => { e.preventDefault(); setEmail(""); }} className="flex gap-2">
-                <input
-                  type="email"
-                  placeholder="La tua email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="flex-1 bg-background border border-border rounded-lg px-4 py-2.5 text-sm text-foreground focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
-                />
-                <button type="submit" className="bg-primary text-primary-foreground rounded-lg px-4 py-2.5 font-ui text-sm font-semibold hover:bg-primary/90 transition-colors">
-                  Iscriviti
-                </button>
-              </form>
-            </div>
+            <FadeIn delay={0.24}>
+              <blockquote
+                className="italic font-light text-[rgba(255,255,255,0.75)] leading-[1.55] border-l-[3px] border-primary pl-8"
+                style={{ fontSize: "clamp(22px, 2.8vw, 32px)" }}
+              >
+                "Costruiamo tecnologia per imprenditori che non hanno tempo di studiare la tecnologia. Funziona, o non esiste."
+              </blockquote>
+            </FadeIn>
           </div>
+        </div>
+      </section>
 
-          <div>
-            <h4 className="font-ui font-semibold mb-4 text-sm">Link Utili</h4>
-            <ul className="space-y-2 text-muted-foreground text-sm">
-              <li><a href="#servizi" className="hover:text-foreground transition-colors">Servizi</a></li>
-              <li><a href="#progetti" className="hover:text-foreground transition-colors">Progetti</a></li>
-              <li><a href="#recensioni" className="hover:text-foreground transition-colors">Recensioni</a></li>
-              <li><a href="#faq" className="hover:text-foreground transition-colors">FAQ</a></li>
-            </ul>
+      <SectionDivider />
+
+      {/* ───── I NOSTRI PROGETTI ───── */}
+      <section id="progetti" className="bg-alt py-40 px-6 lg:px-12">
+        <div className="max-w-[1320px] mx-auto">
+          <FadeIn>
+            <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">
+              I Nostri Progetti
+            </span>
+          </FadeIn>
+          <FadeIn delay={0.08}>
+            <h2
+              className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-6"
+              style={{ fontSize: "clamp(32px, 4.5vw, 58px)" }}
+            >
+              Sette piattaforme.<br />
+              Un unico <span className="italic font-light text-primary">ecosistema.</span>
+            </h2>
+          </FadeIn>
+          <FadeIn delay={0.16}>
+            <p className="text-[18px] text-[rgba(255,255,255,0.45)] max-w-[580px] font-light mb-16">
+              Ogni brand risolve un problema specifico. Insieme, creano un vantaggio competitivo impossibile da replicare.
+            </p>
+          </FadeIn>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {projects.map((p, i) => (
+              <FadeIn key={i} delay={0.08 * i}>
+                <div
+                  className="group relative p-8 rounded-lg border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)] hover:-translate-y-1 hover:shadow-lg transition-all"
+                  style={{
+                    ["--brand-color" as string]: p.color,
+                  }}
+                >
+                  {/* Brand bar */}
+                  <div
+                    className="absolute top-0 left-0 right-0 h-0.5 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-t-lg"
+                    style={{ background: p.color }}
+                  />
+                  <h3 className="text-[18px] font-semibold mb-3" style={{ color: p.color }}>
+                    {p.name}
+                  </h3>
+                  <p className="text-[13px] text-[rgba(255,255,255,0.4)] font-light leading-[1.7]">
+                    {p.desc}
+                  </p>
+                </div>
+              </FadeIn>
+            ))}
           </div>
+        </div>
+      </section>
 
-          <div>
-            <h4 className="font-ui font-semibold mb-4 text-sm">Contatti</h4>
-            <ul className="space-y-2 text-muted-foreground text-sm">
-              <li>+39 02 1234 5678</li>
-              <li>info@aedix.it</li>
-              <li>Milano, Italia</li>
-            </ul>
+      <SectionDivider />
 
-            {/* Social icons */}
-            <div className="flex gap-3 mt-6">
+      {/* ───── COME LAVORIAMO ───── */}
+      <section className="py-40 px-6 lg:px-12">
+        <div className="max-w-[1320px] mx-auto">
+          <FadeIn>
+            <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">
+              Come Lavoriamo
+            </span>
+          </FadeIn>
+          <FadeIn delay={0.08}>
+            <h2
+              className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-16"
+              style={{ fontSize: "clamp(32px, 4.5vw, 58px)" }}
+            >
+              Dal primo contatto ai risultati.<br />
+              <span className="italic font-light text-primary">In 4 settimane.</span>
+            </h2>
+          </FadeIn>
+
+          {/* Timeline */}
+          <div className="grid md:grid-cols-4 gap-8 relative">
+            {/* Connection line (desktop) */}
+            <div className="hidden md:block absolute top-[28px] left-[60px] right-[60px] h-px bg-[rgba(255,255,255,0.08)]" />
+
+            {timeline.map((step, i) => (
+              <FadeIn key={i} delay={0.12 * i}>
+                <div className="relative">
+                  <span className="font-mono text-[48px] font-bold text-primary leading-none block mb-4">
+                    {step.num}
+                  </span>
+                  <h3 className="font-display text-[20px] font-semibold mb-3">{step.title}</h3>
+                  <p className="text-[15px] text-[rgba(255,255,255,0.5)] font-light leading-[1.7]">
+                    {step.text}
+                  </p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* ───── SOCIAL PROOF ───── */}
+      <section className="bg-alt py-40 px-6 lg:px-12">
+        <div className="max-w-[800px] mx-auto text-center">
+          <FadeIn>
+            <h2
+              className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-16"
+              style={{ fontSize: "clamp(32px, 4.5vw, 58px)" }}
+            >
+              Costruito da chi fa impresa.<br />
+              <span className="italic font-light text-primary">Per chi fa impresa.</span>
+            </h2>
+          </FadeIn>
+
+          <FadeIn delay={0.12}>
+            <div className="flex flex-col md:flex-row items-center justify-center gap-12">
               {[
-                { icon: Facebook, href: "#" },
-                { icon: Instagram, href: "#" },
-                { icon: MessageCircle, href: "https://wa.me/390212345678" },
-              ].map((s, i) => (
-                <a key={i} href={s.href} className="w-9 h-9 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300">
-                  <s.icon size={14} />
-                </a>
+                { icon: <Shield className="text-primary" size={28} />, text: "Ogni tecnologia testata prima sulle nostre aziende" },
+                { icon: <RefreshCw className="text-primary" size={28} />, text: "Performance-based: se non funziona, non ci paghi" },
+                { icon: <Target className="text-primary" size={28} />, text: "Verticale sulle PMI italiane dal 2016" },
+              ].map((b, i) => (
+                <div key={i} className="flex flex-col items-center gap-3 max-w-[200px]">
+                  {b.icon}
+                  <p className="text-[14px] text-[rgba(255,255,255,0.5)] font-light">{b.text}</p>
+                </div>
               ))}
             </div>
-          </div>
+          </FadeIn>
         </div>
+      </section>
 
-        <div className="border-t border-border pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-muted-foreground text-sm">© 2026 AEDIX. Tutti i diritti riservati.</p>
-          <div className="flex gap-6 text-muted-foreground text-sm">
-            <a href="#" className="hover:text-foreground transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-foreground transition-colors">Cookie Policy</a>
-          </div>
+      <SectionDivider />
+
+      {/* ───── CTA FINALE ───── */}
+      <section id="cta-finale" className="relative py-[200px] px-6 lg:px-12 text-center">
+        {/* Glow */}
+        <div
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] pointer-events-none"
+          style={{
+            background: "radial-gradient(circle, rgba(246,190,9,0.05) 0%, transparent 70%)",
+          }}
+        />
+
+        <div className="relative max-w-[900px] mx-auto">
+          <FadeIn>
+            <h2
+              className="font-display font-bold leading-[1.06] tracking-[-2px] mb-8"
+              style={{ fontSize: "clamp(36px, 5.5vw, 72px)" }}
+            >
+              La tua azienda tra 12 mesi<br />
+              sarà <span className="italic font-light text-primary">irriconoscibile.</span>
+            </h2>
+          </FadeIn>
+          <FadeIn delay={0.1}>
+            <p className="text-[18px] text-[rgba(255,255,255,0.45)] max-w-[540px] mx-auto font-light leading-[1.7] mb-12">
+              Meno costi fissi. Più vendite. Più controllo. Più libertà. Non è una promessa — è un sistema che funziona già per chi lo usa.
+            </p>
+          </FadeIn>
+          <FadeIn delay={0.2}>
+            <div className="flex flex-wrap justify-center gap-4">
+              <button className="bg-primary text-primary-foreground font-bold text-[13px] uppercase tracking-[2px] px-12 py-[18px] hover:-translate-y-0.5 hover:shadow-[0_16px_48px_rgba(246,190,9,0.25)] transition-all">
+                Parla Con Noi →
+              </button>
+              <button className="border border-[rgba(255,255,255,0.15)] text-white font-bold text-[13px] uppercase tracking-[2px] px-12 py-[18px] hover:border-primary hover:text-primary transition-all">
+                Scopri Le Piattaforme
+              </button>
+            </div>
+          </FadeIn>
         </div>
-      </div>
-    </footer>
-  );
-}
+      </section>
 
-// ─── Floating WhatsApp Button ─────────────────────────────────
-
-function FloatingWhatsApp() {
-  return (
-    <a
-      href="https://wa.me/390212345678"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Contattaci su WhatsApp"
-      className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center animate-whatsapp-pulse transition-transform hover:scale-110"
-      style={{ backgroundColor: "hsl(142 70% 49%)" }}
-    >
-      <MessageCircle size={26} className="text-white" />
-    </a>
-  );
-}
-
-// ─── Page ─────────────────────────────────────────────────────
-
-export default function Index() {
-  const [bannerVisible, setBannerVisible] = useState(true);
-
-  return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-      <TopBanner visible={bannerVisible} onClose={() => setBannerVisible(false)} />
-      <ScrollProgress />
-      <Navbar bannerVisible={bannerVisible} />
-      <Hero />
-      <ClientsTicker />
-      <AboutSection />
-      <ServicesSection />
-      <ProjectsSection />
-      <ResultsSection />
-      <BeforeAfterSection />
-      <WhyUsSection />
-      <DoubleMarquee />
-      <ProcessSection />
-      <TestimonialsSection />
-      <CTABanner />
-      <PricingSection />
-      <GuaranteeSection />
-      <BlogSection />
-      <FAQSection />
-      <ContactSection />
-      <FinalCTA />
-      <Footer />
-      <FloatingWhatsApp />
+      {/* ───── FOOTER ───── */}
+      <footer className="border-t border-[rgba(255,255,255,0.04)] py-12 px-6 lg:px-12">
+        <div className="max-w-[1320px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+          <img src={aedixLogo} alt="AEDIX" className="h-6" />
+          <span className="text-[12px] text-[rgba(255,255,255,0.2)] tracking-[1px]">
+            © 2026 AEDIX — Domus Group S.r.l. — Tutti i diritti riservati
+          </span>
+        </div>
+      </footer>
     </div>
   );
-}
+};
+
+export default Index;
