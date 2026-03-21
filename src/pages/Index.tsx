@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import aedixLogo from "@/assets/aedix_logo.png";
 import { motion, useInView, useMotionValue, animate, useScroll, useTransform } from "framer-motion";
-import { Menu, X, Shield, RefreshCw, Target, Cloud, HardHat, Brain, Rocket, Handshake, ScanFace, Briefcase, TrendingUp, DollarSign, Users, BarChart3, Building2, Zap, Clock, Bot, Gauge, BadgeCheck } from "lucide-react";
+import { Menu, X, Shield, RefreshCw, Target, Cloud, HardHat, Brain, Rocket, Handshake, ScanFace, Briefcase, TrendingUp, DollarSign, Users, BarChart3, Building2, Zap, Clock, Bot, Gauge, BadgeCheck, MessageSquareQuote, HelpCircle, ChevronDown, Cpu, Database, Globe, Lock, Sparkles } from "lucide-react";
 
 // ─── Animated Progress Bar ───────────────────────────────────
 const AnimatedBar = ({ value, delay = 0 }: { value: number; delay?: number }) => {
