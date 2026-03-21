@@ -446,6 +446,28 @@ const projects = [
   { name: "Impresa Leggera", color: "#6366F1", desc: "Back-office in outsourcing pay-per-use. Fatturazione, buste paga, adempimenti — senza assumere nessuno." },
 ];
 
+const aiStats = [
+  { value: "$15.7T", label: "Impatto economico globale dell'AI entro il 2030", source: "PwC", icon: <DollarSign size={24} /> },
+  { value: "40%", label: "Aumento produttività media con AI generativa", source: "McKinsey", icon: <TrendingUp size={24} /> },
+  { value: "97M", label: "Nuovi posti di lavoro creati dall'AI entro il 2025", source: "World Economic Forum", icon: <Users size={24} /> },
+  { value: "300%", label: "ROI medio delle aziende che adottano AI", source: "Accenture", icon: <BarChart3 size={24} /> },
+  { value: "75%", label: "Delle aziende adotterà AI entro il 2027", source: "Gartner", icon: <Building2 size={24} /> },
+  { value: "€3.200", label: "Risparmio medio mensile per PMI con AI", source: "AEDIX internal", icon: <Zap size={24} /> },
+];
+
+const socialVsAi = [
+  { social: { myth: '"Sono una moda"', reality: "Oggi fatturano $200B/anno" }, ai: { myth: '"È troppo complicata"', reality: "Si configura in giorni, non mesi" } },
+  { social: { myth: '"Non servono alla mia azienda"', reality: "Oggi sono il canale di vendita #1" }, ai: { myth: '"Non serve nel mio settore"', reality: "Già usata in edilizia, retail, ristorazione" } },
+  { social: { myth: '"Costa troppo, non ho tempo"', reality: "Chi ha iniziato prima ha vinto" }, ai: { myth: '"Aspetto che maturi"', reality: "Chi aspetta, perde. Per sempre." } },
+];
+
+const competitivePoints = [
+  { icon: <Clock size={28} />, stat: "24/7", label: "I tuoi agenti AI non dormono mai", bar: 100 },
+  { icon: <BadgeCheck size={28} />, stat: "0", label: "Errori umani — processi automatizzati = zero dimenticanze", bar: 95 },
+  { icon: <Gauge size={28} />, stat: "10x", label: "Velocità — preventivi, risposte, report in secondi", bar: 90 },
+  { icon: <DollarSign size={28} />, stat: "−60%", label: "Costi — meno persone per le stesse attività", bar: 85 },
+];
+
 const timeline = [
   { num: "01", title: "Analisi", text: "Analizziamo la tua impresa: costi, processi, team, vendite. Identifichiamo dove stai perdendo soldi e dove puoi guadagnare di più." },
   { num: "02", title: "Strategia", text: "Disegniamo il piano d'azione: quali piattaforme attivare, quali agenti AI configurare, quali processi automatizzare per primi." },
