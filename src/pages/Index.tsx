@@ -1518,107 +1518,19 @@ const Index = () => {
           </FadeIn>
           <FadeIn delay={0.2}>
             <div className="flex flex-wrap justify-center gap-4">
-              <button className="shimmer-btn bg-primary text-primary-foreground font-bold text-[13px] uppercase tracking-[2px] px-12 py-[18px] hover:-translate-y-0.5 hover:shadow-[0_16px_48px_rgba(246,190,9,0.25)] transition-all relative overflow-hidden">
+              <Link to="/contatti" className="shimmer-btn bg-primary text-primary-foreground font-bold text-[13px] uppercase tracking-[2px] px-12 py-[18px] hover:-translate-y-0.5 hover:shadow-[0_16px_48px_rgba(246,190,9,0.25)] transition-all relative overflow-hidden inline-block">
                 Parla Con Noi →
-              </button>
-              <button className="border border-[rgba(255,255,255,0.15)] text-white font-bold text-[13px] uppercase tracking-[2px] px-12 py-[18px] hover:border-primary hover:text-primary transition-all">
+              </Link>
+              <Link to="/progetti" className="border border-[rgba(255,255,255,0.15)] text-white font-bold text-[13px] uppercase tracking-[2px] px-12 py-[18px] hover:border-primary hover:text-primary transition-all inline-block">
                 Scopri Le Piattaforme
-              </button>
+              </Link>
             </div>
           </FadeIn>
         </div>
       </section>
 
-      {/* ───── FOOTER ESPANSO ───── */}
-      <footer className="border-t border-[rgba(255,255,255,0.04)] pt-16 pb-8 px-6 lg:px-12">
-        <div className="max-w-[1320px] mx-auto">
-          <div className="grid md:grid-cols-4 gap-12 mb-16">
-            {/* Brand */}
-            <div className="md:col-span-1">
-              <img src={aedixLogo} alt="AEDIX" className="h-10 mb-4" />
-              <p className="text-[14px] text-[rgba(255,255,255,0.5)] font-light leading-[1.7]">
-                La tech company italiana che costruisce il futuro delle PMI con AI, SaaS e sistemi di vendita.
-              </p>
-            </div>
-
-            {/* Piattaforme */}
-            <div>
-              <h4 className="font-mono text-[11px] uppercase tracking-[3px] text-primary mb-6">Piattaforme</h4>
-              <ul className="space-y-3">
-                {["Edilizia in Cloud", "Cantiere in Cloud", "Edilizia.io", "Marketing Edile", "Vendita Edile", "TalentProfile 360°", "Impresa Leggera"].map((name) => (
-                  <li key={name}>
-                    <span className="text-[13px] text-[rgba(255,255,255,0.5)] hover:text-white transition-colors cursor-pointer">
-                      {name}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Azienda */}
-            <div>
-              <h4 className="font-mono text-[11px] uppercase tracking-[3px] text-primary mb-6">Azienda</h4>
-              <ul className="space-y-3">
-                {[
-                  { label: "Chi Siamo", id: "chi-siamo" },
-                  { label: "Come Lavoriamo", id: "cosa-facciamo" },
-                  { label: "Progetti", id: "progetti" },
-                  { label: "FAQ", id: "" },
-                ].map((link) => (
-                  <li key={link.label}>
-                    <button
-                      onClick={() => link.id && scrollTo(link.id)}
-                      className="text-[13px] text-[rgba(255,255,255,0.5)] hover:text-white transition-colors"
-                    >
-                      {link.label}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Contatti */}
-            <div>
-              <h4 className="font-mono text-[11px] uppercase tracking-[3px] text-primary mb-6">Contatti</h4>
-              <ul className="space-y-3">
-                <li className="flex items-center gap-2 text-[13px] text-[rgba(255,255,255,0.5)]">
-                  <Mail size={14} className="text-primary/60" />
-                  info@aedix.io
-                </li>
-                <li className="flex items-center gap-2 text-[13px] text-[rgba(255,255,255,0.5)]">
-                  <MapPin size={14} className="text-primary/60" />
-                  Italia
-                </li>
-              </ul>
-              <div className="flex gap-3 mt-6">
-                {[
-                  { icon: <Linkedin size={18} />, href: "#" },
-                  { icon: <Instagram size={18} />, href: "#" },
-                ].map((social, i) => (
-                  <a
-                    key={i}
-                    href={social.href}
-                    className="w-9 h-9 rounded-full border border-[rgba(255,255,255,0.08)] flex items-center justify-center text-[rgba(255,255,255,0.4)] hover:text-primary hover:border-primary/30 transition-colors"
-                  >
-                    {social.icon}
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom bar */}
-          <div className="border-t border-[rgba(255,255,255,0.04)] pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-            <span className="text-[12px] text-[rgba(255,255,255,0.2)] tracking-[1px]">
-              © 2026 AEDIX — Domus Group S.r.l. — Tutti i diritti riservati
-            </span>
-            <span className="text-[11px] text-[rgba(255,255,255,0.15)] font-mono">
-              Designed & Built with AI
-            </span>
-          </div>
-        </div>
-      </footer>
-    </div>
+      </div>
+    </Layout>
   );
 };
 
