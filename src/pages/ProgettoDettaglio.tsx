@@ -57,14 +57,14 @@ const projectData: Record<string, {
   },
   "marketing-edile": {
     name: "Marketing Edile", color: "#10B981", icon: <Rocket size={48} />,
-    tagline: "Marketing a performance. Zero rischio.",
-    desc: "L'unica struttura di marketing in Italia che lavora a commissione sulle vendite chiuse. Nessun canone fisso, nessun budget minimo — se non vendi, non ci paghi.",
-    features: ["Campagne ads su Google, Meta, LinkedIn", "Landing page e funnel ottimizzati dall'AI", "Tracking completo dal click alla vendita", "Ottimizzazione continua basata su dati reali", "Report trasparenti e condivisi", "Modello 100% a performance"],
-    useCases: ["Imprese che spendono in marketing senza risultati", "Aziende che vogliono crescere senza rischio", "PMI senza reparto marketing interno"],
+    tagline: "Marketing digitale con ROI misurabile.",
+    desc: "Strategie di marketing digitale su misura per la tua impresa. Campagne ads, funnel, landing page e lead generation — tutto gestito e ottimizzato dall'AI per massimizzare i tuoi risultati.",
+    features: ["Campagne ads su Google, Meta, LinkedIn", "Landing page e funnel ottimizzati dall'AI", "Tracking completo dal click alla vendita", "Ottimizzazione continua basata su dati reali", "Report trasparenti e condivisi", "Investimento calibrato sui tuoi obiettivi"],
+    useCases: ["PMI che vogliono crescere con il digitale", "Aziende che cercano ROI misurabile sul marketing", "PMI senza reparto marketing interno"],
     stat: "4.2x", statLabel: "ROI medio in 6 mesi",
     faqs: [
-      { q: "Devo anticipare il budget ads?", a: "No. Gestiamo tutto noi, incluso il budget pubblicitario." },
-      { q: "Come tracciate le vendite chiuse?", a: "CRM integrato con tracking end-to-end: dal click all'annuncio alla firma del contratto." },
+      { q: "Come viene gestito il budget ads?", a: "Definiamo insieme il budget ideale per i tuoi obiettivi. Gestiamo le campagne con ottimizzazione continua e report trasparenti." },
+      { q: "Come tracciate i risultati?", a: "CRM integrato con tracking end-to-end: dal click all'annuncio alla conversione finale." },
     ],
   },
   "vendita-edile": {

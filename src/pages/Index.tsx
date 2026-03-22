@@ -463,8 +463,8 @@ const services = [
         <circle cx="32" cy="8" r="3" fill="currentColor" />
       </svg>
     ),
-    title: "Marketing & Vendita a Performance",
-    text: "L'unica struttura in Italia che lavora a commissione sulle vendite chiuse. Se non vendi, non ci paghi. Il nostro fatturato dipende dal tuo.",
+    title: "Marketing & Vendita Digitale",
+    text: "Campagne ads, funnel, landing page, lead generation — tutto gestito e ottimizzato dall'AI. Strategie su misura con ROI misurabile e investimento calibrato sui tuoi obiettivi.",
   },
   {
     icon: (
@@ -507,7 +507,7 @@ const projects = [
   { name: "Edilizia in Cloud", color: "#00D4FF", desc: "Il sistema operativo per le imprese edili. Gestionale, cantieri, documenti, team — tutto in una piattaforma." },
   { name: "Cantiere in Cloud", color: "#FF6B35", desc: "Sicurezza cantiere e documentazione a norma. Ogni obbligo di legge sotto controllo, in tempo reale." },
   { name: "Edilizia.io", color: "#A855F7", desc: "Agenti AI as a Service. 11 agenti operativi che lavorano per la tua impresa 24 ore su 24." },
-  { name: "Marketing Edile", color: "#10B981", desc: "Marketing a performance. Paghi solo sulle vendite chiuse. Zero canone, zero rischio." },
+  { name: "Marketing Edile", color: "#10B981", desc: "Marketing digitale con strategie su misura e ROI misurabile. Campagne, funnel e lead generation ottimizzati dall'AI." },
   { name: "Vendita Edile", color: "#F59E0B", desc: "Il metodo di vendita ibrido per imprese tecniche. Chiudi di più, chiudi meglio, chiudi prima." },
   { name: "TalentProfile 360°", color: "#EC4899", desc: "242 domande. 15 tratti comportamentali. Assumi la persona giusta al primo colpo." },
   { name: "Impresa Leggera", color: "#6366F1", desc: "Back-office in outsourcing pay-per-use. Fatturazione, buste paga, adempimenti — senza assumere nessuno." },
@@ -524,7 +524,7 @@ const aiStats = [
 
 const socialVsAi = [
   { social: { myth: '"Sono una moda"', reality: "Oggi fatturano $200B/anno" }, ai: { myth: '"È troppo complicata"', reality: "Si configura in giorni, non mesi" } },
-  { social: { myth: '"Non servono alla mia azienda"', reality: "Oggi sono il canale di vendita #1" }, ai: { myth: '"Non serve nel mio settore"', reality: "Già usata in edilizia, retail, ristorazione" } },
+  { social: { myth: '"Non servono alla mia azienda"', reality: "Oggi sono il canale di vendita #1" }, ai: { myth: '"Non serve nel mio settore"', reality: "Già usata in ogni tipo di PMI italiana" } },
   { social: { myth: '"Costa troppo, non ho tempo"', reality: "Chi ha iniziato prima ha vinto" }, ai: { myth: '"Aspetto che maturi"', reality: "Chi aspetta, perde. Per sempre." } },
 ];
 
@@ -1267,7 +1267,7 @@ const Index = () => {
             <div className="flex flex-col md:flex-row items-center justify-center gap-12">
               {[
                 { icon: <Shield className="text-primary" size={28} />, text: "Ogni tecnologia testata prima sulle nostre aziende" },
-                { icon: <RefreshCw className="text-primary" size={28} />, text: "Performance-based: se non funziona, non ci paghi" },
+                { icon: <RefreshCw className="text-primary" size={28} />, text: "ROI misurabile: ogni euro investito è tracciato" },
                 { icon: <Target className="text-primary" size={28} />, text: "Verticale sulle PMI italiane dal 2016" },
               ].map((b, i) => (
                 <motion.div
@@ -1438,11 +1438,11 @@ const Index = () => {
               },
               {
                 q: "Funziona anche nel mio settore?",
-                a: "Lavoriamo con imprese edili, serramentisti, impiantisti, studi tecnici, aziende di servizi, retail, ristorazione. Se hai un'azienda con clienti da gestire e processi da ottimizzare, funziona anche per te.",
+                a: "Le nostre piattaforme e agenti AI sono progettati per qualsiasi PMI italiana. Se hai un'azienda con clienti da gestire e processi da ottimizzare, funziona anche per te.",
               },
               {
                 q: "E se non funziona? Che rischio corro?",
-                a: "Zero. Il nostro modello di marketing è a performance: paghi solo sulle vendite chiuse. Per le piattaforme, offriamo un periodo di test. Se non vedi risultati, non paghi. Punto.",
+                a: "Minimo. Offriamo demo gratuite per tutte le piattaforme e periodi di test. Ogni investimento è calibrato sui tuoi obiettivi con ROI misurabile. Se non vedi risultati, puoi interrompere in qualsiasi momento.",
               },
             ].map((faq, i) => (
               <FadeIn key={i} delay={0.06 * i}>

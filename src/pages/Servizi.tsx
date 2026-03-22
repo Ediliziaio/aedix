@@ -28,9 +28,9 @@ const pillars = [
     color: "#A855F7",
   },
   {
-    icon: <Rocket size={36} />, title: "Marketing & Vendita a Performance",
-    desc: "L'unica struttura in Italia che lavora a commissione sulle vendite chiuse. Se non vendi, non ci paghi. Il nostro fatturato dipende dal tuo.",
-    features: ["Campagne ads gestite e ottimizzate dall'AI", "Landing page e funnel di conversione personalizzati", "Metodo di vendita ibrido: AI + persone", "Tracking completo: dal click alla vendita chiusa", "Zero canone fisso — paghi solo sui risultati"],
+    icon: <Rocket size={36} />, title: "Marketing & Vendita Digitale",
+    desc: "Strategie di marketing digitale su misura con ROI misurabile. Campagne ads, funnel, landing page e lead generation — tutto gestito e ottimizzato dall'AI per massimizzare i tuoi risultati.",
+    features: ["Campagne ads gestite e ottimizzate dall'AI", "Landing page e funnel di conversione personalizzati", "Metodo di vendita ibrido: AI + persone", "Tracking completo: dal click alla vendita chiusa", "Investimento calibrato sui tuoi obiettivi"],
     color: "#10B981",
   },
   {
@@ -46,7 +46,7 @@ const comparison = [
   { feature: "Costo mensile", traditional: "€2.000 – €5.000", aedix: "Da €200/mese" },
   { feature: "Personalizzazione", traditional: "Generica", aedix: "Verticale per settore" },
   { feature: "AI integrata", traditional: "No", aedix: "11 agenti attivi 24/7" },
-  { feature: "Marketing", traditional: "Canone fisso", aedix: "A performance" },
+  { feature: "Marketing", traditional: "Canone fisso", aedix: "ROI misurabile" },
   { feature: "Supporto", traditional: "Ticket standard", aedix: "Partner dedicato" },
   { feature: "ROI medio", traditional: "Incerto", aedix: "4.2x in 6 mesi" },
 ];
@@ -60,10 +60,10 @@ const steps = [
 const serviceFaqs = [
   { q: "Posso usare solo una piattaforma?", a: "Assolutamente sì. Ogni piattaforma funziona in autonomia. Puoi iniziare con una e aggiungerne altre quando vuoi." },
   { q: "Serve personale tecnico interno?", a: "No. Le nostre piattaforme sono progettate per imprenditori e team non tecnici. Forniamo formazione e supporto dedicato." },
-  { q: "Come funziona il marketing a performance?", a: "Zero canone fisso. Noi creiamo e gestiamo le campagne. Tu paghi solo una commissione sulle vendite effettivamente chiuse." },
+  { q: "Come funziona il marketing digitale?", a: "Creiamo e gestiamo le campagne con pacchetti su misura per i tuoi obiettivi. Ogni euro investito è tracciato con ROI misurabile e report trasparenti." },
   { q: "Gli agenti AI sostituiscono i dipendenti?", a: "No. Gli agenti AI automatizzano le attività ripetitive, liberando i tuoi dipendenti per attività a più alto valore." },
-  { q: "Quanto costa iniziare?", a: "Le piattaforme SaaS partono da €200/mese. Il marketing è a performance. La consulenza ha un costo personalizzato. Contattaci per un preventivo." },
-  { q: "Offrite un periodo di prova?", a: "Sì. Offriamo demo gratuite per tutte le piattaforme e il marketing a performance è per definizione senza rischio." },
+  { q: "Quanto costa iniziare?", a: "Le piattaforme SaaS partono da €200/mese. Il marketing ha pacchetti personalizzati. La consulenza ha un costo su misura. Contattaci per un preventivo gratuito." },
+  { q: "Offrite un periodo di prova?", a: "Sì. Offriamo demo gratuite per tutte le piattaforme e periodi di test per verificare i risultati prima di impegnarti." },
 ];
 
 const FAQItem = ({ faq, index }: { faq: typeof serviceFaqs[0]; index: number }) => {
