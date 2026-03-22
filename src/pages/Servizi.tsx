@@ -28,9 +28,9 @@ const pillars = [
     color: "#A855F7",
   },
   {
-    icon: <Rocket size={36} />, title: "Marketing & Vendita a Performance",
-    desc: "L'unica struttura in Italia che lavora a commissione sulle vendite chiuse. Se non vendi, non ci paghi. Il nostro fatturato dipende dal tuo.",
-    features: ["Campagne ads gestite e ottimizzate dall'AI", "Landing page e funnel di conversione personalizzati", "Metodo di vendita ibrido: AI + persone", "Tracking completo: dal click alla vendita chiusa", "Zero canone fisso — paghi solo sui risultati"],
+    icon: <Rocket size={36} />, title: "Marketing & Vendita Digitale",
+    desc: "Strategie di marketing digitale su misura con ROI misurabile. Campagne ads, funnel, landing page e lead generation — tutto gestito e ottimizzato dall'AI per massimizzare i tuoi risultati.",
+    features: ["Campagne ads gestite e ottimizzate dall'AI", "Landing page e funnel di conversione personalizzati", "Metodo di vendita ibrido: AI + persone", "Tracking completo: dal click alla vendita chiusa", "Investimento calibrato sui tuoi obiettivi"],
     color: "#10B981",
   },
   {
