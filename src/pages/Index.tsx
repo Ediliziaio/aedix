@@ -1267,7 +1267,7 @@ const Index = () => {
             <div className="flex flex-col md:flex-row items-center justify-center gap-12">
               {[
                 { icon: <Shield className="text-primary" size={28} />, text: "Ogni tecnologia testata prima sulle nostre aziende" },
-                { icon: <RefreshCw className="text-primary" size={28} />, text: "Performance-based: se non funziona, non ci paghi" },
+                { icon: <RefreshCw className="text-primary" size={28} />, text: "ROI misurabile: ogni euro investito è tracciato" },
                 { icon: <Target className="text-primary" size={28} />, text: "Verticale sulle PMI italiane dal 2016" },
               ].map((b, i) => (
                 <motion.div
