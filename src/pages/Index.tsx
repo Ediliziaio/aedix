@@ -524,7 +524,7 @@ const aiStats = [
 
 const socialVsAi = [
   { social: { myth: '"Sono una moda"', reality: "Oggi fatturano $200B/anno" }, ai: { myth: '"È troppo complicata"', reality: "Si configura in giorni, non mesi" } },
-  { social: { myth: '"Non servono alla mia azienda"', reality: "Oggi sono il canale di vendita #1" }, ai: { myth: '"Non serve nel mio settore"', reality: "Già usata in edilizia, retail, ristorazione" } },
+  { social: { myth: '"Non servono alla mia azienda"', reality: "Oggi sono il canale di vendita #1" }, ai: { myth: '"Non serve nel mio settore"', reality: "Già usata in ogni tipo di PMI italiana" } },
   { social: { myth: '"Costa troppo, non ho tempo"', reality: "Chi ha iniziato prima ha vinto" }, ai: { myth: '"Aspetto che maturi"', reality: "Chi aspetta, perde. Per sempre." } },
 ];
 
