@@ -1442,7 +1442,7 @@ const Index = () => {
               },
               {
                 q: "E se non funziona? Che rischio corro?",
-                a: "Zero. Il nostro modello di marketing è a performance: paghi solo sulle vendite chiuse. Per le piattaforme, offriamo un periodo di test. Se non vedi risultati, non paghi. Punto.",
+                a: "Minimo. Offriamo demo gratuite per tutte le piattaforme e periodi di test. Ogni investimento è calibrato sui tuoi obiettivi con ROI misurabile. Se non vedi risultati, puoi interrompere in qualsiasi momento.",
               },
             ].map((faq, i) => (
               <FadeIn key={i} delay={0.06 * i}>

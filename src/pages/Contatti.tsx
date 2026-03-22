@@ -15,11 +15,11 @@ const FadeIn = ({ children, delay = 0, className = "" }: { children: React.React
 };
 
 const faqs = [
-  { q: "Quanto costa?", a: "Dipende dal servizio. Le piattaforme SaaS partono da €200/mese. Il marketing è a performance (paghi solo sulle vendite). Contattaci per un preventivo personalizzato — è gratuito." },
-  { q: "Quanto ci vuole per partire?", a: "Le piattaforme SaaS si configurano in 3-5 giorni. Gli agenti AI sono operativi in 7-14 giorni. Il marketing a performance parte entro 2 settimane dall'onboarding." },
+  { q: "Quanto costa?", a: "Dipende dal servizio. Le piattaforme SaaS partono da €200/mese. Il marketing ha pacchetti su misura in base ai tuoi obiettivi. Contattaci per un preventivo personalizzato — è gratuito." },
+  { q: "Quanto ci vuole per partire?", a: "Le piattaforme SaaS si configurano in 3-5 giorni. Gli agenti AI sono operativi in 7-14 giorni. Le campagne marketing partono entro 2 settimane dall'onboarding." },
   { q: "Siete affidabili?", a: "Usiamo le stesse piattaforme sulle nostre imprese. Se non funzionassero, noi per primi avremmo un problema. 8+ anni di esperienza, 7 piattaforme attive, 44 workflow operativi." },
-  { q: "Funziona anche per il mio settore?", a: "Le nostre piattaforme nascono per l'edilizia ma i principi di automazione, AI e marketing a performance si applicano a qualsiasi PMI. Parliamone." },
-  { q: "Posso provare prima di impegnarmi?", a: "Certo. Offriamo demo gratuite per tutte le piattaforme e il marketing è a performance — se non vendi, non ci paghi. Zero rischio." },
+  { q: "Funziona anche per il mio settore?", a: "Le nostre piattaforme e agenti AI sono progettati per qualsiasi PMI italiana. Automazione, AI e marketing digitale si applicano a ogni settore. Parliamone." },
+  { q: "Posso provare prima di impegnarmi?", a: "Certo. Offriamo demo gratuite per tutte le piattaforme e periodi di test. Se non vedi risultati, puoi interrompere quando vuoi." },
 ];
 
 const FAQItem = ({ faq, index }: { faq: typeof faqs[0]; index: number }) => {

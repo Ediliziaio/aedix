@@ -60,10 +60,10 @@ const steps = [
 const serviceFaqs = [
   { q: "Posso usare solo una piattaforma?", a: "Assolutamente sì. Ogni piattaforma funziona in autonomia. Puoi iniziare con una e aggiungerne altre quando vuoi." },
   { q: "Serve personale tecnico interno?", a: "No. Le nostre piattaforme sono progettate per imprenditori e team non tecnici. Forniamo formazione e supporto dedicato." },
-  { q: "Come funziona il marketing a performance?", a: "Zero canone fisso. Noi creiamo e gestiamo le campagne. Tu paghi solo una commissione sulle vendite effettivamente chiuse." },
+  { q: "Come funziona il marketing digitale?", a: "Creiamo e gestiamo le campagne con pacchetti su misura per i tuoi obiettivi. Ogni euro investito è tracciato con ROI misurabile e report trasparenti." },
   { q: "Gli agenti AI sostituiscono i dipendenti?", a: "No. Gli agenti AI automatizzano le attività ripetitive, liberando i tuoi dipendenti per attività a più alto valore." },
-  { q: "Quanto costa iniziare?", a: "Le piattaforme SaaS partono da €200/mese. Il marketing è a performance. La consulenza ha un costo personalizzato. Contattaci per un preventivo." },
-  { q: "Offrite un periodo di prova?", a: "Sì. Offriamo demo gratuite per tutte le piattaforme e il marketing a performance è per definizione senza rischio." },
+  { q: "Quanto costa iniziare?", a: "Le piattaforme SaaS partono da €200/mese. Il marketing ha pacchetti personalizzati. La consulenza ha un costo su misura. Contattaci per un preventivo gratuito." },
+  { q: "Offrite un periodo di prova?", a: "Sì. Offriamo demo gratuite per tutte le piattaforme e periodi di test per verificare i risultati prima di impegnarti." },
 ];
 
 const FAQItem = ({ faq, index }: { faq: typeof serviceFaqs[0]; index: number }) => {
