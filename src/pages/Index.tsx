@@ -507,7 +507,7 @@ const projects = [
   { name: "Edilizia in Cloud", color: "#00D4FF", desc: "Il sistema operativo per le imprese edili. Gestionale, cantieri, documenti, team — tutto in una piattaforma." },
   { name: "Cantiere in Cloud", color: "#FF6B35", desc: "Sicurezza cantiere e documentazione a norma. Ogni obbligo di legge sotto controllo, in tempo reale." },
   { name: "Edilizia.io", color: "#A855F7", desc: "Agenti AI as a Service. 11 agenti operativi che lavorano per la tua impresa 24 ore su 24." },
-  { name: "Marketing Edile", color: "#10B981", desc: "Marketing a performance. Paghi solo sulle vendite chiuse. Zero canone, zero rischio." },
+  { name: "Marketing Edile", color: "#10B981", desc: "Marketing digitale con strategie su misura e ROI misurabile. Campagne, funnel e lead generation ottimizzati dall'AI." },
   { name: "Vendita Edile", color: "#F59E0B", desc: "Il metodo di vendita ibrido per imprese tecniche. Chiudi di più, chiudi meglio, chiudi prima." },
   { name: "TalentProfile 360°", color: "#EC4899", desc: "242 domande. 15 tratti comportamentali. Assumi la persona giusta al primo colpo." },
   { name: "Impresa Leggera", color: "#6366F1", desc: "Back-office in outsourcing pay-per-use. Fatturazione, buste paga, adempimenti — senza assumere nessuno." },
