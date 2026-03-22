@@ -1,79 +1,41 @@
 
 
-## Piano: Aggiungere "Articoli" al menu + creare pagina Articoli + ottimizzare pagine esistenti
+## Piano: Fix FAQ e riferimenti errati
 
-### 1. Navbar — aggiungere sezioni mancanti
+### Problemi identificati
 
-Attualmente il menu ha solo 3 link: "Cosa Facciamo", "Progetti", "Perché Noi?". Manca "Articoli".
+1. **FAQ troppo focalizzate sull'edilizia** — Le FAQ nella homepage, Contatti e Servizi menzionano spesso "imprese edili", "serramentisti", "cantiere", dando l'impressione che AEDIX lavori solo nell'edilizia. Vanno rese più generiche per tutte le PMI.
 
-**File: `src/components/Navbar.tsx`**
-- Aggiungere `{ label: "Articoli", to: "/articoli" }` ai `navLinks`
+2. **"Marketing a performance" è sbagliato** — In più punti il sito dice "lavoriamo a performance", "paghi solo sulle vendite chiuse", "a commissione". Questo va corretto in tutte le pagine.
 
-### 2. Creare pagina Articoli (`src/pages/Articoli.tsx`)
+### File e modifiche
 
-Pagina blog con 6-8 articoli hardcoded su AI, PMI, automazione. Ogni articolo con:
-- Immagine Unsplash, titolo, categoria (tag), data, excerpt
-- Card cliccabili verso `/articoli/:slug`
-- Filtro per categoria (Tutti, AI, PMI, Automazione, Marketing)
+**`src/pages/Index.tsx`** (FAQ sezione + servizi + progetti)
+- FAQ "Funziona anche nel mio settore?" → rimuovere lista "imprese edili, serramentisti, impiantisti" e generalizzare
+- FAQ "E se non funziona?" → rimuovere "modello di marketing è a performance: paghi solo sulle vendite chiuse"
+- Servizio "Marketing & Vendita a Performance" → rinominare (es. "Marketing & Vendita Digitale") e riscrivere descrizione senza "a performance/commissione"
+- Card progetti: "Marketing Edile" desc → rimuovere "a performance. Paghi solo sulle vendite chiuse"
+- Social proof badge "Performance-based: se non funziona, non ci paghi" → riscrivere
 
-**File: `src/pages/ArticoloDettaglio.tsx`**
-- Pagina singolo articolo con contenuto lungo hardcoded
-- Layout: hero con immagine, titolo, data, autore → corpo articolo con paragrafi, citazioni, CTA finale
+**`src/pages/Contatti.tsx`** (FAQ)
+- "Il marketing è a performance (paghi solo sulle vendite)" → correggere
+- "Il marketing a performance parte entro 2 settimane" → correggere
+- "marketing a performance si applicano a qualsiasi PMI" → correggere
+- "il marketing è a performance — se non vendi, non ci paghi" → correggere
 
-### 3. Aggiornare routing
+**`src/pages/Servizi.tsx`** (pilastro + tabella + FAQ)
+- Pilastro "Marketing & Vendita a Performance" → rinominare e riscrivere
+- Riga tabella "Marketing: A performance" → correggere
+- FAQ "Come funziona il marketing a performance?" → riscrivere
+- FAQ "Quanto costa iniziare?" → rimuovere "Il marketing è a performance"
+- FAQ "il marketing a performance è per definizione senza rischio" → correggere
 
-**File: `src/App.tsx`**
-- Aggiungere route `/articoli` e `/articoli/:slug`
+**`src/pages/ProgettoDettaglio.tsx`** (progetto Marketing Edile)
+- Descrizione e FAQ del progetto Marketing Edile → rimuovere riferimenti a performance
 
-### 4. Aggiornare Footer
+### Sostituzione contenuti
 
-**File: `src/components/Footer.tsx`**
-- Aggiungere link "Articoli" nella colonna "Azienda"
+Dove dice "a performance / paghi solo sulle vendite" → sostituire con modello reale (es. "pacchetti su misura", "canone mensile + gestione campagne", "ROI misurabile", o qualsiasi sia il vero modello di business). Se preferisci posso usare un testo generico tipo "investimento calibrato sui tuoi obiettivi" finché non mi indichi il modello corretto.
 
-### 5. Ottimizzare pagine esistenti
-
-**Contatti (`src/pages/Contatti.tsx`)**:
-- Aggiungere sezione FAQ sotto il form ("Quanto costa?", "Quanto ci vuole?", "Siete affidabili?")
-- Aggiungere mappa/embed placeholder o indirizzo completo
-- Aggiungere social proof: "Rispondiamo entro 4 ore in media"
-
-**Perché Noi (`src/pages/PercheNoi.tsx`)**:
-- Aggiungere sezione "I Numeri" con 4 stat counter (7 piattaforme, 11 agenti, 44 workflow, 8+ anni)
-- Aggiungere sezione clienti/settori serviti con icone
-- Aggiungere CTA finale con glow prima del footer
-
-**Servizi (`src/pages/Servizi.tsx`)**:
-- Aggiungere sezione FAQ specifica sui servizi (6 domande)
-- Aggiungere sezione "Come iniziare" con 3 step (Parla con noi → Configurazione → Risultati)
-- Aggiungere testimonial/social proof placeholder
-
-**Progetti (`src/pages/Progetti.tsx`)**:
-- Aggiungere sezione "L'ecosistema in numeri" con stat (7 piattaforme, 44 workflow, etc.)
-- Aggiungere CTA finale
-
-**ProgettoDettaglio (`src/pages/ProgettoDettaglio.tsx`)**:
-- Aggiungere sezione "Progetti correlati" con 2-3 card degli altri progetti
-- Aggiungere sezione FAQ specifica per ogni progetto
-- Aggiungere screenshot/mockup placeholder
-
-### File coinvolti
-- `src/components/Navbar.tsx` — aggiungere link Articoli
-- `src/components/Footer.tsx` — aggiungere link Articoli
-- `src/App.tsx` — nuove route
-- `src/pages/Articoli.tsx` — nuova pagina (lista articoli)
-- `src/pages/ArticoloDettaglio.tsx` — nuova pagina (singolo articolo)
-- `src/pages/Contatti.tsx` — FAQ + social proof
-- `src/pages/PercheNoi.tsx` — numeri + settori + CTA
-- `src/pages/Servizi.tsx` — FAQ + onboarding steps + social proof
-- `src/pages/Progetti.tsx` — stat + CTA
-- `src/pages/ProgettoDettaglio.tsx` — progetti correlati + FAQ
-
-### Ordine di implementazione
-1. Navbar + Footer (link Articoli)
-2. App.tsx (route)
-3. Articoli.tsx + ArticoloDettaglio.tsx
-4. Ottimizzazione Contatti
-5. Ottimizzazione Perché Noi
-6. Ottimizzazione Servizi
-7. Ottimizzazione Progetti + ProgettoDettaglio
+Dove le FAQ sono troppo edilizia-centriche → generalizzare con "PMI italiane di qualsiasi settore" senza elenchi specifici di settori.
 
