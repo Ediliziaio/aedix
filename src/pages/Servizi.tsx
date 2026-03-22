@@ -46,7 +46,7 @@ const comparison = [
   { feature: "Costo mensile", traditional: "€2.000 – €5.000", aedix: "Da €200/mese" },
   { feature: "Personalizzazione", traditional: "Generica", aedix: "Verticale per settore" },
   { feature: "AI integrata", traditional: "No", aedix: "11 agenti attivi 24/7" },
-  { feature: "Marketing", traditional: "Canone fisso", aedix: "A performance" },
+  { feature: "Marketing", traditional: "Canone fisso", aedix: "ROI misurabile" },
   { feature: "Supporto", traditional: "Ticket standard", aedix: "Partner dedicato" },
   { feature: "ROI medio", traditional: "Incerto", aedix: "4.2x in 6 mesi" },
 ];
