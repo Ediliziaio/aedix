@@ -1438,7 +1438,7 @@ const Index = () => {
               },
               {
                 q: "Funziona anche nel mio settore?",
-                a: "Lavoriamo con imprese edili, serramentisti, impiantisti, studi tecnici, aziende di servizi, retail, ristorazione. Se hai un'azienda con clienti da gestire e processi da ottimizzare, funziona anche per te.",
+                a: "Le nostre piattaforme e agenti AI sono progettati per qualsiasi PMI italiana. Se hai un'azienda con clienti da gestire e processi da ottimizzare, funziona anche per te.",
               },
               {
                 q: "E se non funziona? Che rischio corro?",
