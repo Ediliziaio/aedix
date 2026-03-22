@@ -463,8 +463,8 @@ const services = [
         <circle cx="32" cy="8" r="3" fill="currentColor" />
       </svg>
     ),
-    title: "Marketing & Vendita a Performance",
-    text: "L'unica struttura in Italia che lavora a commissione sulle vendite chiuse. Se non vendi, non ci paghi. Il nostro fatturato dipende dal tuo.",
+    title: "Marketing & Vendita Digitale",
+    text: "Campagne ads, funnel, landing page, lead generation — tutto gestito e ottimizzato dall'AI. Strategie su misura con ROI misurabile e investimento calibrato sui tuoi obiettivi.",
   },
   {
     icon: (
