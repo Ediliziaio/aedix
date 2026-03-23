@@ -161,18 +161,20 @@ const PercheNoi = () => (
             Quello in cui <span className="italic font-light text-primary">crediamo.</span>
           </h2>
         </FadeIn>
-        <div className="grid md:grid-cols-2 gap-px bg-[rgba(255,255,255,0.04)]">
+        <motion.div className="grid md:grid-cols-2 gap-px bg-[rgba(255,255,255,0.04)]" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={{ visible: { transition: { staggerChildren: 0.12 } } }}>
           {values.map((v, i) => (
-            <FadeIn key={i} delay={0.08 * i}>
-              <div className="group relative bg-background p-14 hover:bg-[rgba(255,255,255,0.02)] transition-all">
-                <div className="absolute top-0 left-0 right-0 h-0.5 bg-primary origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-                <div className="text-primary mb-6">{v.icon}</div>
-                <h3 className="font-display text-[22px] font-semibold mb-4">{v.title}</h3>
-                <p className="text-[15px] leading-[1.8] text-[rgba(255,255,255,0.7)] font-light">{v.desc}</p>
-              </div>
-            </FadeIn>
+            <motion.div key={i} variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } } }}>
+              <TiltCard className="h-full" tiltAmount={5}>
+                <div className="group relative bg-background p-14 hover:bg-[rgba(255,255,255,0.02)] transition-all h-full">
+                  <div className="absolute top-0 left-0 right-0 h-0.5 bg-primary origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+                  <motion.div className="text-primary mb-6" whileHover={{ rotate: 15, scale: 1.2 }} transition={{ type: "spring", stiffness: 300 }}>{v.icon}</motion.div>
+                  <h3 className="font-display text-[22px] font-semibold mb-4">{v.title}</h3>
+                  <p className="text-[15px] leading-[1.8] text-[rgba(255,255,255,0.7)] font-light">{v.desc}</p>
+                </div>
+              </TiltCard>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
 
