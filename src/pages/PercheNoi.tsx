@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
-import { Shield, Users, Target, Heart, Building, Utensils, Wrench, ShoppingBag, ArrowRight } from "lucide-react";
+import { Shield, Users, Target, Heart, Building, Utensils, Wrench, ShoppingBag, ArrowRight, Code, Database, BrainCircuit, Server } from "lucide-react";
 import Layout from "@/components/Layout";
 
 const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) => {
@@ -24,10 +24,10 @@ const milestones = [
 ];
 
 const values = [
-  { icon: <Target size={28} />, title: "Risultati, non promesse", desc: "Ogni euro che spendi con noi ha un ROI misurabile. Se non funziona, non ci paghi." },
+  { icon: <Target size={28} />, title: "Risultati, non promesse", desc: "Ogni euro che spendi con noi ha un ROI misurabile. Monitoriamo tutto in tempo reale." },
   { icon: <Shield size={28} />, title: "Testato su noi stessi", desc: "Ogni piattaforma viene prima usata internamente sulle nostre aziende. Se non funziona per noi, non esiste per te." },
   { icon: <Users size={28} />, title: "Costruito per le PMI", desc: "Non siamo una big tech che si adatta verso il basso. Siamo nati dalle PMI, per le PMI." },
-  { icon: <Heart size={28} />, title: "Partner, non fornitore", desc: "Il nostro fatturato dipende dal tuo. Lavoriamo a performance perché crediamo nel nostro lavoro." },
+  { icon: <Heart size={28} />, title: "Partner, non fornitore", desc: "Il nostro successo dipende dal tuo. Lavoriamo fianco a fianco per raggiungere i tuoi obiettivi." },
 ];
 
 const stats = [
@@ -51,24 +51,48 @@ const team = [
   { name: "Head of Operations", role: "Processi, Automazione, Customer Success", initials: "HO" },
 ];
 
+const technologies = [
+  { icon: <BrainCircuit size={28} />, name: "OpenAI", desc: "AI & NLP" },
+  { icon: <Database size={28} />, name: "Supabase", desc: "Database & Auth" },
+  { icon: <Code size={28} />, name: "React", desc: "Frontend" },
+  { icon: <Server size={28} />, name: "AWS", desc: "Cloud Infra" },
+];
+
 const PercheNoi = () => (
   <Layout>
-    {/* Hero */}
-    <section className="pt-[140px] pb-20 px-6 lg:px-12">
-      <div className="max-w-[1320px] mx-auto">
-        <FadeIn>
-          <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">Perché Noi?</span>
-        </FadeIn>
-        <FadeIn delay={0.08}>
-          <h1 className="font-display font-bold leading-[1.08] tracking-[-2px] mb-6" style={{ fontSize: "clamp(36px, 5vw, 64px)" }}>
-            Non siamo una software house.<br />
-            <span className="italic font-light text-primary">Siamo imprenditori come te.</span>
-          </h1>
-        </FadeIn>
-        <FadeIn delay={0.16}>
-          <p className="text-[18px] text-[rgba(255,255,255,0.7)] max-w-[600px] font-light mb-8">
-            Abbiamo costruito, gestito e fatto crescere imprese reali. Ogni piattaforma che sviluppiamo nasce da un problema che abbiamo vissuto in prima persona — e risolto.
-          </p>
+    {/* Hero — split layout */}
+    <section className="pt-[140px] pb-20 px-6 lg:px-12 overflow-hidden">
+      <div className="max-w-[1320px] mx-auto grid lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <FadeIn>
+            <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">Perché Noi?</span>
+          </FadeIn>
+          <FadeIn delay={0.08}>
+            <h1 className="font-display font-bold leading-[1.08] tracking-[-2px] mb-6" style={{ fontSize: "clamp(36px, 5vw, 64px)" }}>
+              Non siamo una software house.<br />
+              <span className="italic font-light text-primary">Siamo imprenditori come te.</span>
+            </h1>
+          </FadeIn>
+          <FadeIn delay={0.16}>
+            <p className="text-[18px] text-[rgba(255,255,255,0.7)] max-w-[600px] font-light mb-8">
+              Abbiamo costruito, gestito e fatto crescere imprese reali. Ogni piattaforma che sviluppiamo nasce da un problema che abbiamo vissuto in prima persona — e risolto.
+            </p>
+          </FadeIn>
+        </div>
+        <FadeIn delay={0.2}>
+          <div className="relative">
+            <div className="relative rounded-lg overflow-hidden aspect-[4/3]">
+              <img
+                src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80"
+                alt="AI Technology"
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-background/60" />
+            </div>
+            {/* Gold glow */}
+            <div className="absolute -inset-4 rounded-2xl opacity-20 blur-2xl" style={{ background: "radial-gradient(circle, hsl(var(--primary)) 0%, transparent 70%)" }} />
+          </div>
         </FadeIn>
       </div>
     </section>
@@ -149,8 +173,31 @@ const PercheNoi = () => (
       </div>
     </section>
 
-    {/* Settori serviti */}
+    {/* Tecnologie */}
     <section className="py-20 px-6 lg:px-12 bg-alt">
+      <div className="max-w-[1320px] mx-auto">
+        <FadeIn>
+          <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6 text-center">Il Nostro Stack</span>
+          <h2 className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-16 text-center" style={{ fontSize: "clamp(28px, 3.5vw, 48px)" }}>
+            Tecnologie che <span className="italic font-light text-primary">usiamo.</span>
+          </h2>
+        </FadeIn>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {technologies.map((t, i) => (
+            <FadeIn key={i} delay={0.1 * i}>
+              <div className="text-center p-8 rounded-lg border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)] hover:border-primary/20 transition-colors group">
+                <div className="text-primary mb-4 flex justify-center group-hover:scale-110 transition-transform">{t.icon}</div>
+                <span className="text-[16px] font-semibold block mb-1">{t.name}</span>
+                <span className="text-[12px] text-[rgba(255,255,255,0.5)] font-light">{t.desc}</span>
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* Settori serviti */}
+    <section className="py-20 px-6 lg:px-12">
       <div className="max-w-[1320px] mx-auto">
         <FadeIn>
           <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6 text-center">Settori Serviti</span>
@@ -172,7 +219,7 @@ const PercheNoi = () => (
     </section>
 
     {/* Team */}
-    <section className="py-32 px-6 lg:px-12">
+    <section className="py-32 px-6 lg:px-12 bg-alt">
       <div className="max-w-[1320px] mx-auto">
         <FadeIn>
           <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">Il Team</span>
@@ -199,7 +246,8 @@ const PercheNoi = () => (
     {/* Manifesto */}
     <section className="relative py-48 px-6 lg:px-12 overflow-hidden">
       <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1920&q=80')" }} />
-      <div className="absolute inset-0 bg-background/[0.88]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background/[0.85] via-background/[0.75] to-background/[0.90]" />
+      <div className="absolute inset-0" style={{ background: "radial-gradient(circle at center, hsl(var(--primary) / 0.08) 0%, transparent 60%)" }} />
       <div className="relative max-w-[900px] mx-auto text-center">
         <FadeIn>
           <h2 className="font-display font-bold leading-[1.06] tracking-[-2px]" style={{ fontSize: "clamp(32px, 5vw, 64px)" }}>

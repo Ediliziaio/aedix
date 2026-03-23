@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Cloud, CheckCircle, ArrowRight, Brain, Rocket, BookOpen, ChevronDown, MessageSquare, Settings, BarChart3 } from "lucide-react";
+import { Cloud, CheckCircle, ArrowRight, Brain, Rocket, BookOpen, ChevronDown, MessageSquare, Settings, BarChart3, X, Check } from "lucide-react";
 import Layout from "@/components/Layout";
 
 const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) => {
@@ -13,6 +13,13 @@ const FadeIn = ({ children, delay = 0, className = "" }: { children: React.React
     </motion.div>
   );
 };
+
+const pillarImages = [
+  "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+  "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80",
+  "https://images.unsplash.com/photo-1533750349088-cd871a92f312?auto=format&fit=crop&w=800&q=80",
+  "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80",
+];
 
 const pillars = [
   {
@@ -42,13 +49,13 @@ const pillars = [
 ];
 
 const comparison = [
-  { feature: "Setup e configurazione", traditional: "Settimane / mesi", aedix: "Giorni" },
-  { feature: "Costo mensile", traditional: "€2.000 – €5.000", aedix: "Da €200/mese" },
-  { feature: "Personalizzazione", traditional: "Generica", aedix: "Verticale per settore" },
-  { feature: "AI integrata", traditional: "No", aedix: "11 agenti attivi 24/7" },
-  { feature: "Marketing", traditional: "Canone fisso", aedix: "ROI misurabile" },
-  { feature: "Supporto", traditional: "Ticket standard", aedix: "Partner dedicato" },
-  { feature: "ROI medio", traditional: "Incerto", aedix: "4.2x in 6 mesi" },
+  { feature: "Setup e configurazione", traditional: "Settimane / mesi", aedix: "Giorni", aedixWins: true },
+  { feature: "Costo mensile", traditional: "€2.000 – €5.000", aedix: "Da €200/mese", aedixWins: true },
+  { feature: "Personalizzazione", traditional: "Generica", aedix: "Verticale per settore", aedixWins: true },
+  { feature: "AI integrata", traditional: "No", aedix: "11 agenti attivi 24/7", aedixWins: true },
+  { feature: "Marketing", traditional: "Canone fisso", aedix: "ROI misurabile", aedixWins: true },
+  { feature: "Supporto", traditional: "Ticket standard", aedix: "Partner dedicato", aedixWins: true },
+  { feature: "ROI medio", traditional: "Incerto", aedix: "4.2x in 6 mesi", aedixWins: true },
 ];
 
 const steps = [
@@ -85,9 +92,11 @@ const FAQItem = ({ faq, index }: { faq: typeof serviceFaqs[0]; index: number }) 
 
 const Servizi = () => (
   <Layout>
-    {/* Hero */}
-    <section className="pt-[140px] pb-20 px-6 lg:px-12">
-      <div className="max-w-[1320px] mx-auto">
+    {/* Hero with background image */}
+    <section className="relative pt-[140px] pb-20 px-6 lg:px-12 overflow-hidden">
+      <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80')" }} />
+      <div className="absolute inset-0 bg-background/[0.92]" />
+      <div className="relative max-w-[1320px] mx-auto">
         <FadeIn>
           <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">I Nostri Servizi</span>
         </FadeIn>
@@ -109,8 +118,8 @@ const Servizi = () => (
     {pillars.map((p, i) => (
       <section key={i} className={`py-32 px-6 lg:px-12 ${i % 2 === 0 ? "bg-alt" : ""}`}>
         <div className="max-w-[1320px] mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
-            <FadeIn>
+          <div className={`grid lg:grid-cols-2 gap-16 items-start ${i % 2 !== 0 ? "lg:grid-flow-dense" : ""}`}>
+            <FadeIn className={i % 2 !== 0 ? "lg:col-start-2" : ""}>
               <div>
                 <div className="mb-6 opacity-80" style={{ color: p.color }}>{p.icon}</div>
                 <h2 className="font-display font-bold text-[32px] leading-[1.15] tracking-[-1px] mb-6">{p.title}</h2>
@@ -120,17 +129,24 @@ const Servizi = () => (
                 </Link>
               </div>
             </FadeIn>
-            <FadeIn delay={0.15}>
-              <div className="rounded-lg border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)] p-8">
-                <h3 className="font-mono text-[11px] uppercase tracking-[3px] text-[rgba(255,255,255,0.5)] mb-6">Cosa include</h3>
-                <ul className="space-y-4">
-                  {p.features.map((f, fi) => (
-                    <li key={fi} className="flex items-start gap-3">
-                      <CheckCircle size={18} className="text-primary shrink-0 mt-0.5" />
-                      <span className="text-[15px] text-[rgba(255,255,255,0.75)] font-light">{f}</span>
-                    </li>
-                  ))}
-                </ul>
+            <FadeIn delay={0.15} className={i % 2 !== 0 ? "lg:col-start-1" : ""}>
+              <div>
+                {/* Pillar image */}
+                <div className="relative rounded-lg overflow-hidden mb-6 aspect-video">
+                  <img src={pillarImages[i]} alt={p.title} className="w-full h-full object-cover" loading="lazy" />
+                  <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, ${p.color}30, transparent)` }} />
+                </div>
+                <div className="rounded-lg border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)] p-8">
+                  <h3 className="font-mono text-[11px] uppercase tracking-[3px] text-[rgba(255,255,255,0.5)] mb-6">Cosa include</h3>
+                  <ul className="space-y-4">
+                    {p.features.map((f, fi) => (
+                      <li key={fi} className="flex items-start gap-3">
+                        <CheckCircle size={18} className="text-primary shrink-0 mt-0.5" />
+                        <span className="text-[15px] text-[rgba(255,255,255,0.75)] font-light">{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </FadeIn>
           </div>
@@ -161,8 +177,18 @@ const Servizi = () => (
                 {comparison.map((row, i) => (
                   <motion.tr key={i} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.08 * i }} className="border-b border-[rgba(255,255,255,0.04)] hover:bg-[rgba(246,190,9,0.03)] transition-colors">
                     <td className="px-6 py-5 text-[14px] text-[rgba(255,255,255,0.8)] font-medium">{row.feature}</td>
-                    <td className="px-6 py-5 text-[14px] text-[rgba(255,255,255,0.5)] font-light">{row.traditional}</td>
-                    <td className="px-6 py-5 text-[14px] text-primary font-semibold">{row.aedix}</td>
+                    <td className="px-6 py-5 text-[14px] text-[rgba(255,255,255,0.5)] font-light">
+                      <span className="inline-flex items-center gap-2">
+                        <X size={14} className="text-red-400 shrink-0" />
+                        {row.traditional}
+                      </span>
+                    </td>
+                    <td className="px-6 py-5 text-[14px] text-primary font-semibold">
+                      <span className="inline-flex items-center gap-2">
+                        <Check size={14} className="text-emerald-400 shrink-0" />
+                        {row.aedix}
+                      </span>
+                    </td>
                   </motion.tr>
                 ))}
               </tbody>
@@ -181,10 +207,12 @@ const Servizi = () => (
             Tre passi verso il <span className="italic font-light text-primary">futuro.</span>
           </h2>
         </FadeIn>
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="relative grid md:grid-cols-3 gap-8">
+          {/* Connecting line */}
+          <div className="hidden md:block absolute top-1/2 left-[16.67%] right-[16.67%] h-px bg-gradient-to-r from-primary/40 via-primary/20 to-primary/40 -translate-y-1/2 z-0" />
           {steps.map((step, i) => (
             <FadeIn key={i} delay={0.12 * i}>
-              <div className="relative text-center p-10 rounded-lg border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)]">
+              <div className="relative text-center p-10 rounded-lg border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)] backdrop-blur-sm z-10">
                 <div className="absolute -top-5 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-mono font-bold text-[14px]">{i + 1}</div>
                 <div className="text-primary mb-6 flex justify-center mt-4">{step.icon}</div>
                 <h3 className="font-display text-[20px] font-semibold mb-3">{step.title}</h3>
