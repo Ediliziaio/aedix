@@ -128,7 +128,7 @@ const Servizi = () => (
           <div className={`grid lg:grid-cols-2 gap-16 items-start ${i % 2 !== 0 ? "lg:grid-flow-dense" : ""}`}>
             <FadeIn className={i % 2 !== 0 ? "lg:col-start-2" : ""}>
               <div>
-                <div className="mb-6 opacity-80" style={{ color: p.color }}>{p.icon}</div>
+                <motion.div className="mb-6 opacity-80" style={{ color: p.color }} whileHover={{ rotate: 12, scale: 1.15 }} transition={{ type: "spring", stiffness: 300 }}>{p.icon}</motion.div>
                 <h2 className="font-display font-bold text-[32px] leading-[1.15] tracking-[-1px] mb-6">{p.title}</h2>
                 <p className="text-[17px] text-[rgba(255,255,255,0.7)] font-light leading-[1.8] mb-8">{p.desc}</p>
                 <Link to="/contatti" className="inline-flex items-center gap-2 text-primary font-semibold text-[14px] uppercase tracking-[1.5px] hover:gap-4 transition-all">
@@ -137,24 +137,23 @@ const Servizi = () => (
               </div>
             </FadeIn>
             <FadeIn delay={0.15} className={i % 2 !== 0 ? "lg:col-start-1" : ""}>
-              <div>
-                {/* Pillar image */}
+              <TiltCard className="rounded-lg" glowColor={p.color}>
                 <div className="relative rounded-lg overflow-hidden mb-6 aspect-video">
-                  <img src={pillarImages[i]} alt={p.title} className="w-full h-full object-cover" loading="lazy" />
+                  <motion.img src={pillarImages[i]} alt={p.title} className="w-full h-full object-cover" loading="lazy" whileHover={{ scale: 1.08 }} transition={{ duration: 0.7 }} />
                   <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, ${p.color}30, transparent)` }} />
                 </div>
                 <div className="rounded-lg border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)] p-8">
                   <h3 className="font-mono text-[11px] uppercase tracking-[3px] text-[rgba(255,255,255,0.5)] mb-6">Cosa include</h3>
                   <ul className="space-y-4">
                     {p.features.map((f, fi) => (
-                      <li key={fi} className="flex items-start gap-3">
+                      <motion.li key={fi} className="flex items-start gap-3" initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.08 * fi }}>
                         <CheckCircle size={18} className="text-primary shrink-0 mt-0.5" />
                         <span className="text-[15px] text-[rgba(255,255,255,0.75)] font-light">{f}</span>
-                      </li>
+                      </motion.li>
                     ))}
                   </ul>
                 </div>
-              </div>
+              </TiltCard>
             </FadeIn>
           </div>
         </div>

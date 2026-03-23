@@ -250,8 +250,13 @@ const PercheNoi = () => (
 
     {/* Manifesto */}
     <section className="relative py-48 px-6 lg:px-12 overflow-hidden">
-      <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1920&q=80')" }} />
-      <div className="absolute inset-0 bg-gradient-to-b from-background/[0.85] via-background/[0.75] to-background/[0.90]" />
+      <ParallaxImage
+        src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1920&q=80"
+        alt="Office"
+        className="absolute inset-0"
+        speed={0.3}
+        overlay={<div className="absolute inset-0 bg-gradient-to-b from-background/[0.85] via-background/[0.75] to-background/[0.90]" />}
+      />
       <div className="absolute inset-0" style={{ background: "radial-gradient(circle at center, hsl(var(--primary) / 0.08) 0%, transparent 60%)" }} />
       <div className="relative max-w-[900px] mx-auto text-center">
         <FadeIn>
