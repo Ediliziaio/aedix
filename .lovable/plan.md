@@ -1,41 +1,47 @@
 
 
-## Piano: Fix FAQ e riferimenti errati
+## Piano: Migliorare UX + aggiungere immagini AI nelle pagine Servizi, Progetti, Perché Noi
 
-### Problemi identificati
+### Problemi attuali
+- Le 3 pagine sono solo testo + icone Lucide — visivamente piatte, mancano immagini
+- Progetti.tsx ha ancora testo "Marketing a performance" (bug non fixato)
+- PercheNoi ha ancora "Lavoriamo a performance" nei valori
+- Le sezioni sono funzionali ma mancano di impatto visivo
 
-1. **FAQ troppo focalizzate sull'edilizia** — Le FAQ nella homepage, Contatti e Servizi menzionano spesso "imprese edili", "serramentisti", "cantiere", dando l'impressione che AEDIX lavori solo nell'edilizia. Vanno rese più generiche per tutte le PMI.
+### Modifiche per pagina
 
-2. **"Marketing a performance" è sbagliato** — In più punti il sito dice "lavoriamo a performance", "paghi solo sulle vendite chiuse", "a commissione". Questo va corretto in tutte le pagine.
+**1. Servizi (`src/pages/Servizi.tsx`)**
+- Hero: aggiungere immagine Unsplash di sfondo (tech/AI) con overlay scuro 90%
+- Ogni pilastro: aggiungere immagine Unsplash tematica nella colonna features (sopra la lista), con bordo gold sottile e rounded corners
+  - SaaS: `photo-1460925895917-afdab827c52f` (dashboard)
+  - AI: `photo-1677442136019-21780ecad995` (AI abstract)
+  - Marketing: `photo-1460925895917-afdab827c52f` (analytics)
+  - Consulenza: `photo-1552664730-d307ca884978` (team meeting)
+- Tabella comparativa: aggiungere icone check/X per rendere più scannable
+- "Come iniziare": aggiungere linea di connessione tra i 3 step
 
-### File e modifiche
+**2. Progetti (`src/pages/Progetti.tsx`)**
+- Fix bug: "Marketing a performance" → descrizione corretta
+- Hero: aggiungere immagine sfondo con overlay
+- Ogni card progetto: aggiungere immagine Unsplash piccola (aspect ratio 16:9) sopra il contenuto, con overlay del colore brand
+  - Edilizia in Cloud: `photo-1504307651254-35680f356dfd` (cantiere)
+  - Cantiere in Cloud: `photo-1581094794329-c8112a89af12` (safety)
+  - Edilizia.io: `photo-1485827404703-89b55fcc595e` (robot)
+  - Marketing Edile: `photo-1533750349088-cd871a92f312` (marketing)
+  - Vendita Edile: `photo-1556745757-8d76bdb6984b` (sales)
+  - TalentProfile: `photo-1573497019940-1c28c88b4f3e` (people)
+  - Impresa Leggera: `photo-1554224155-8d04cb21cd6c` (office)
+- Aggiungere sezione "Come funziona l'ecosistema" con schema visivo (3 blocchi connessi: Input → AI Processing → Output)
 
-**`src/pages/Index.tsx`** (FAQ sezione + servizi + progetti)
-- FAQ "Funziona anche nel mio settore?" → rimuovere lista "imprese edili, serramentisti, impiantisti" e generalizzare
-- FAQ "E se non funziona?" → rimuovere "modello di marketing è a performance: paghi solo sulle vendite chiuse"
-- Servizio "Marketing & Vendita a Performance" → rinominare (es. "Marketing & Vendita Digitale") e riscrivere descrizione senza "a performance/commissione"
-- Card progetti: "Marketing Edile" desc → rimuovere "a performance. Paghi solo sulle vendite chiuse"
-- Social proof badge "Performance-based: se non funziona, non ci paghi" → riscrivere
+**3. Perché Noi (`src/pages/PercheNoi.tsx`)**
+- Fix: valore "Partner, non fornitore" → rimuovere "Lavoriamo a performance"
+- Hero: layout split — testo a sinistra, immagine AI/futuristica a destra con glow gold
+- Timeline: aggiungere immagini piccole accanto a ogni milestone
+- Manifesto: migliorare con gradient overlay più drammatico
+- Aggiungere sezione "Tecnologie che usiamo" con loghi/badge (OpenAI, Supabase, React, AWS) — icone stilizzate in griglia
 
-**`src/pages/Contatti.tsx`** (FAQ)
-- "Il marketing è a performance (paghi solo sulle vendite)" → correggere
-- "Il marketing a performance parte entro 2 settimane" → correggere
-- "marketing a performance si applicano a qualsiasi PMI" → correggere
-- "il marketing è a performance — se non vendi, non ci paghi" → correggere
-
-**`src/pages/Servizi.tsx`** (pilastro + tabella + FAQ)
-- Pilastro "Marketing & Vendita a Performance" → rinominare e riscrivere
-- Riga tabella "Marketing: A performance" → correggere
-- FAQ "Come funziona il marketing a performance?" → riscrivere
-- FAQ "Quanto costa iniziare?" → rimuovere "Il marketing è a performance"
-- FAQ "il marketing a performance è per definizione senza rischio" → correggere
-
-**`src/pages/ProgettoDettaglio.tsx`** (progetto Marketing Edile)
-- Descrizione e FAQ del progetto Marketing Edile → rimuovere riferimenti a performance
-
-### Sostituzione contenuti
-
-Dove dice "a performance / paghi solo sulle vendite" → sostituire con modello reale (es. "pacchetti su misura", "canone mensile + gestione campagne", "ROI misurabile", o qualsiasi sia il vero modello di business). Se preferisci posso usare un testo generico tipo "investimento calibrato sui tuoi obiettivi" finché non mi indichi il modello corretto.
-
-Dove le FAQ sono troppo edilizia-centriche → generalizzare con "PMI italiane di qualsiasi settore" senza elenchi specifici di settori.
+### File coinvolti
+- `src/pages/Servizi.tsx`
+- `src/pages/Progetti.tsx`
+- `src/pages/PercheNoi.tsx`
 
