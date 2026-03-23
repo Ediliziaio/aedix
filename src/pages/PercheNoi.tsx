@@ -109,10 +109,10 @@ const PercheNoi = () => (
               <div className="text-center p-8 rounded-lg border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)]">
                 <motion.div
                   className="font-mono text-[48px] font-bold text-primary leading-none mb-3"
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, scale: 0.3 }}
+                  whileInView={{ opacity: 1, scale: [0.3, 1.15, 1] }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.15 * i, duration: 0.5 }}
+                  transition={{ delay: 0.15 * i, duration: 0.6, times: [0, 0.7, 1] }}
                 >
                   {s.value}
                 </motion.div>
