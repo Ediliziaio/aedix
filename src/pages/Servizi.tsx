@@ -94,10 +94,15 @@ const FAQItem = ({ faq, index }: { faq: typeof serviceFaqs[0]; index: number }) 
 
 const Servizi = () => (
   <Layout>
-    {/* Hero with background image */}
+    {/* Hero with parallax background */}
     <section className="relative pt-[140px] pb-20 px-6 lg:px-12 overflow-hidden">
-      <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80')" }} />
-      <div className="absolute inset-0 bg-background/[0.92]" />
+      <ParallaxImage
+        src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80"
+        alt="Technology background"
+        className="absolute inset-0"
+        speed={0.2}
+        overlay={<div className="absolute inset-0 bg-background/[0.92]" />}
+      />
       <div className="relative max-w-[1320px] mx-auto">
         <FadeIn>
           <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">I Nostri Servizi</span>
