@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 import { Cloud, Shield, Brain, Rocket, Target, ScanFace, Briefcase, ArrowRight, Cpu, Zap, BarChart3 } from "lucide-react";
 import Layout from "@/components/Layout";
+import ParallaxImage from "@/components/ParallaxImage";
+import TiltCard from "@/components/TiltCard";
 
 const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) => {
   const ref = useRef(null);
