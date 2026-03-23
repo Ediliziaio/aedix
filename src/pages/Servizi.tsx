@@ -2,6 +2,8 @@ import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Cloud, CheckCircle, ArrowRight, Brain, Rocket, BookOpen, ChevronDown, MessageSquare, Settings, BarChart3, X, Check } from "lucide-react";
+import ParallaxImage from "@/components/ParallaxImage";
+import TiltCard from "@/components/TiltCard";
 import Layout from "@/components/Layout";
 
 const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) => {
