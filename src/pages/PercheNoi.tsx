@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 import { Shield, Users, Target, Heart, Building, Utensils, Wrench, ShoppingBag, ArrowRight, Code, Database, BrainCircuit, Server } from "lucide-react";
 import Layout from "@/components/Layout";
+import ParallaxImage from "@/components/ParallaxImage";
+import TiltCard from "@/components/TiltCard";
 
 const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) => {
   const ref = useRef(null);
@@ -80,19 +82,20 @@ const PercheNoi = () => (
           </FadeIn>
         </div>
         <FadeIn delay={0.2}>
-          <div className="relative">
+          <TiltCard className="rounded-lg" tiltAmount={6}>
             <div className="relative rounded-lg overflow-hidden aspect-[4/3]">
-              <img
+              <motion.img
                 src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80"
                 alt="AI Technology"
                 className="w-full h-full object-cover"
                 loading="lazy"
+                animate={{ scale: [1, 1.03, 1] }}
+                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
               />
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-background/60" />
             </div>
-            {/* Gold glow */}
-            <div className="absolute -inset-4 rounded-2xl opacity-20 blur-2xl" style={{ background: "radial-gradient(circle, hsl(var(--primary)) 0%, transparent 70%)" }} />
-          </div>
+            <div className="absolute -inset-4 rounded-2xl opacity-20 blur-2xl pointer-events-none" style={{ background: "radial-gradient(circle, hsl(var(--primary)) 0%, transparent 70%)" }} />
+          </TiltCard>
         </FadeIn>
       </div>
     </section>
@@ -106,10 +109,10 @@ const PercheNoi = () => (
               <div className="text-center p-8 rounded-lg border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)]">
                 <motion.div
                   className="font-mono text-[48px] font-bold text-primary leading-none mb-3"
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, scale: 0.3 }}
+                  whileInView={{ opacity: 1, scale: [0.3, 1.15, 1] }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.15 * i, duration: 0.5 }}
+                  transition={{ delay: 0.15 * i, duration: 0.6, times: [0, 0.7, 1] }}
                 >
                   {s.value}
                 </motion.div>
@@ -158,18 +161,20 @@ const PercheNoi = () => (
             Quello in cui <span className="italic font-light text-primary">crediamo.</span>
           </h2>
         </FadeIn>
-        <div className="grid md:grid-cols-2 gap-px bg-[rgba(255,255,255,0.04)]">
+        <motion.div className="grid md:grid-cols-2 gap-px bg-[rgba(255,255,255,0.04)]" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={{ visible: { transition: { staggerChildren: 0.12 } } }}>
           {values.map((v, i) => (
-            <FadeIn key={i} delay={0.08 * i}>
-              <div className="group relative bg-background p-14 hover:bg-[rgba(255,255,255,0.02)] transition-all">
-                <div className="absolute top-0 left-0 right-0 h-0.5 bg-primary origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-                <div className="text-primary mb-6">{v.icon}</div>
-                <h3 className="font-display text-[22px] font-semibold mb-4">{v.title}</h3>
-                <p className="text-[15px] leading-[1.8] text-[rgba(255,255,255,0.7)] font-light">{v.desc}</p>
-              </div>
-            </FadeIn>
+            <motion.div key={i} variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } } }}>
+              <TiltCard className="h-full" tiltAmount={5}>
+                <div className="group relative bg-background p-14 hover:bg-[rgba(255,255,255,0.02)] transition-all h-full">
+                  <div className="absolute top-0 left-0 right-0 h-0.5 bg-primary origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+                  <motion.div className="text-primary mb-6" whileHover={{ rotate: 15, scale: 1.2 }} transition={{ type: "spring", stiffness: 300 }}>{v.icon}</motion.div>
+                  <h3 className="font-display text-[22px] font-semibold mb-4">{v.title}</h3>
+                  <p className="text-[15px] leading-[1.8] text-[rgba(255,255,255,0.7)] font-light">{v.desc}</p>
+                </div>
+              </TiltCard>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
 
@@ -245,8 +250,13 @@ const PercheNoi = () => (
 
     {/* Manifesto */}
     <section className="relative py-48 px-6 lg:px-12 overflow-hidden">
-      <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1920&q=80')" }} />
-      <div className="absolute inset-0 bg-gradient-to-b from-background/[0.85] via-background/[0.75] to-background/[0.90]" />
+      <ParallaxImage
+        src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1920&q=80"
+        alt="Office"
+        className="absolute inset-0"
+        speed={0.3}
+        overlay={<div className="absolute inset-0 bg-gradient-to-b from-background/[0.85] via-background/[0.75] to-background/[0.90]" />}
+      />
       <div className="absolute inset-0" style={{ background: "radial-gradient(circle at center, hsl(var(--primary) / 0.08) 0%, transparent 60%)" }} />
       <div className="relative max-w-[900px] mx-auto text-center">
         <FadeIn>

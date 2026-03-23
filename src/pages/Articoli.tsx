@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 import { Clock, ArrowRight } from "lucide-react";
 import Layout from "@/components/Layout";
+import TiltCard from "@/components/TiltCard";
 
 const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) => {
   const ref = useRef(null);
@@ -134,41 +135,45 @@ const Articoli = () => {
           </FadeIn>
 
           {/* Articles Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filtered.map((article, i) => (
-              <FadeIn key={article.slug} delay={0.08 * i}>
-                <Link
-                  to={`/articoli/${article.slug}`}
-                  className="group block h-full rounded-lg border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)] overflow-hidden hover:bg-[rgba(255,255,255,0.06)] transition-all hover:-translate-y-1"
-                >
-                  <div className="aspect-[16/9] overflow-hidden">
-                    <img
-                      src={article.image}
-                      alt={article.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <div className="flex items-center gap-3 mb-4">
-                      <span className="font-mono text-[9px] uppercase tracking-[2px] px-3 py-1 rounded-full border border-primary/30 text-primary">{article.category}</span>
-                      <span className="flex items-center gap-1 text-[12px] text-[rgba(255,255,255,0.45)]">
-                        <Clock size={12} /> {article.readTime}
-                      </span>
+          <motion.div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={{ visible: { transition: { staggerChildren: 0.1 } } }}>
+            {filtered.map((article) => (
+              <motion.div key={article.slug} variants={{ hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } } }}>
+                <TiltCard className="h-full rounded-lg">
+                  <Link
+                    to={`/articoli/${article.slug}`}
+                    className="group block h-full rounded-lg border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)] overflow-hidden hover:bg-[rgba(255,255,255,0.06)] transition-all"
+                  >
+                    <div className="aspect-[16/9] overflow-hidden">
+                      <motion.img
+                        src={article.image}
+                        alt={article.title}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                        whileHover={{ scale: 1.08 }}
+                        transition={{ duration: 0.7 }}
+                      />
                     </div>
-                    <h3 className="font-display text-[18px] font-semibold leading-[1.3] mb-3 group-hover:text-primary transition-colors">{article.title}</h3>
-                    <p className="text-[14px] text-[rgba(255,255,255,0.6)] font-light leading-[1.7] mb-4">{article.excerpt}</p>
-                    <div className="flex items-center justify-between">
-                      <span className="text-[12px] text-[rgba(255,255,255,0.4)]">{article.date}</span>
-                      <span className="inline-flex items-center gap-1 text-primary text-[12px] font-semibold uppercase tracking-[1px] opacity-0 group-hover:opacity-100 transition-opacity">
-                        Leggi <ArrowRight size={14} />
-                      </span>
+                    <div className="p-6">
+                      <div className="flex items-center gap-3 mb-4">
+                        <motion.span className="font-mono text-[9px] uppercase tracking-[2px] px-3 py-1 rounded-full border border-primary/30 text-primary" whileHover={{ scale: 1.05 }}>{article.category}</motion.span>
+                        <span className="flex items-center gap-1 text-[12px] text-[rgba(255,255,255,0.45)]">
+                          <Clock size={12} /> {article.readTime}
+                        </span>
+                      </div>
+                      <h3 className="font-display text-[18px] font-semibold leading-[1.3] mb-3 group-hover:text-primary transition-colors">{article.title}</h3>
+                      <p className="text-[14px] text-[rgba(255,255,255,0.6)] font-light leading-[1.7] mb-4">{article.excerpt}</p>
+                      <div className="flex items-center justify-between">
+                        <span className="text-[12px] text-[rgba(255,255,255,0.4)]">{article.date}</span>
+                        <span className="inline-flex items-center gap-1 text-primary text-[12px] font-semibold uppercase tracking-[1px] opacity-0 group-hover:opacity-100 transition-opacity">
+                          Leggi <ArrowRight size={14} />
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                </Link>
-              </FadeIn>
+                  </Link>
+                </TiltCard>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
     </Layout>
