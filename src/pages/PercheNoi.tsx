@@ -82,19 +82,20 @@ const PercheNoi = () => (
           </FadeIn>
         </div>
         <FadeIn delay={0.2}>
-          <div className="relative">
+          <TiltCard className="rounded-lg" tiltAmount={6}>
             <div className="relative rounded-lg overflow-hidden aspect-[4/3]">
-              <img
+              <motion.img
                 src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80"
                 alt="AI Technology"
                 className="w-full h-full object-cover"
                 loading="lazy"
+                animate={{ scale: [1, 1.03, 1] }}
+                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
               />
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-background/60" />
             </div>
-            {/* Gold glow */}
-            <div className="absolute -inset-4 rounded-2xl opacity-20 blur-2xl" style={{ background: "radial-gradient(circle, hsl(var(--primary)) 0%, transparent 70%)" }} />
-          </div>
+            <div className="absolute -inset-4 rounded-2xl opacity-20 blur-2xl pointer-events-none" style={{ background: "radial-gradient(circle, hsl(var(--primary)) 0%, transparent 70%)" }} />
+          </TiltCard>
         </FadeIn>
       </div>
     </section>
