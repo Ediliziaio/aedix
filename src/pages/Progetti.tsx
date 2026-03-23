@@ -41,10 +41,15 @@ const ecosystemFlow = [
 
 const Progetti = () => (
   <Layout>
-    {/* Hero with bg */}
+    {/* Hero with parallax bg */}
     <section className="relative pt-[140px] pb-20 px-6 lg:px-12 overflow-hidden">
-      <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=80')" }} />
-      <div className="absolute inset-0 bg-background/[0.92]" />
+      <ParallaxImage
+        src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=80"
+        alt="Technology"
+        className="absolute inset-0"
+        speed={0.2}
+        overlay={<div className="absolute inset-0 bg-background/[0.92]" />}
+      />
       <div className="relative max-w-[1320px] mx-auto">
         <FadeIn>
           <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">I Nostri Progetti</span>
