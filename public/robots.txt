@@ -1,0 +1,7 @@
+# robots.txt — aedix.it
+# Allow all crawlers
+
+User-agent: *
+Allow: /
+
+Sitemap: https://aedix.it/sitemap.xml
