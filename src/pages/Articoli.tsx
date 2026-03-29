@@ -19,6 +19,33 @@ const categories = ["Tutti", "AI", "PMI", "Automazione", "Marketing", "Strategia
 
 const articles = [
   {
+    slug: "perche-le-pmi-italiane-hanno-paura-dellai",
+    title: "Perché le PMI Italiane Hanno Paura dell'AI (e Come Superarla)",
+    excerpt: "Il 73% delle PMI italiane sa che dovrebbe usare l'AI. Ma non sa da dove iniziare. Smontiamo i 5 blocchi mentali più comuni con esempi reali dal settore edile.",
+    category: "AI",
+    date: "29 Mar 2026",
+    readTime: "8 min",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    slug: "5-processi-pmi-italiana-automatizzare-oggi",
+    title: "5 Processi che Ogni PMI Italiana Può Automatizzare Oggi con l'AI",
+    excerpt: "14 ore perse ogni settimana in attività ripetitive. 21.000€ all'anno di lavoro a basso valore. Ecco i 5 processi da automatizzare subito — con ROI medio 4.2x.",
+    category: "Automazione",
+    date: "29 Mar 2026",
+    readTime: "7 min",
+    image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    slug: "agenti-ai-per-pmi-cosa-sono-e-come-usarli",
+    title: "Agenti AI per PMI: Cosa Sono e Come Usarli nella Tua Azienda",
+    excerpt: "Non sono chatbot. Gli agenti AI ragionano, prendono decisioni e agiscono. Da 14 ore a 2 minuti per prima risposta. Da 2,5 ore a 8 minuti per preventivo. I numeri reali.",
+    category: "AI",
+    date: "29 Mar 2026",
+    readTime: "9 min",
+    image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=800&q=80",
+  },
+  {
     slug: "ai-pmi-italiane-2025",
     title: "Come l'AI sta trasformando le PMI italiane nel 2025",
     excerpt: "Il 75% delle aziende adotterà l'intelligenza artificiale entro il 2027. Le PMI italiane che si muovono ora avranno un vantaggio competitivo impossibile da colmare.",
