@@ -4,4 +4,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://aedix.it/sitemap.xml
+Sitemap: https://www.aedix.it/sitemap.xml

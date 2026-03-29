@@ -3,7 +3,7 @@
 
   <!-- Homepage -->
   <url>
-    <loc>https://aedix.it/</loc>
+    <loc>https://www.aedix.it/</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -11,35 +11,35 @@
 
   <!-- Pagine principali -->
   <url>
-    <loc>https://aedix.it/servizi</loc>
+    <loc>https://www.aedix.it/servizi</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://aedix.it/perche-noi</loc>
+    <loc>https://www.aedix.it/perche-noi</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://aedix.it/progetti</loc>
+    <loc>https://www.aedix.it/progetti</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://aedix.it/articoli</loc>
+    <loc>https://www.aedix.it/articoli</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://aedix.it/contatti</loc>
+    <loc>https://www.aedix.it/contatti</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -47,14 +47,14 @@
 
   <!-- Pagine legali -->
   <url>
-    <loc>https://aedix.it/privacy</loc>
+    <loc>https://www.aedix.it/privacy</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
-    <loc>https://aedix.it/termini</loc>
+    <loc>https://www.aedix.it/termini</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
