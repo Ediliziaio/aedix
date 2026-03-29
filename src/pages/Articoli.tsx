@@ -21,7 +21,7 @@ const articles = [
   {
     slug: "perche-le-pmi-italiane-hanno-paura-dellai",
     title: "Perché le PMI Italiane Hanno Paura dell'AI (e Come Superarla)",
-    excerpt: "Il 73% delle PMI italiane sa che dovrebbe usare l'AI. Ma non sa da dove iniziare. Smontiamo i 5 blocchi mentali più comuni con esempi reali dal settore edile.",
+    excerpt: "Il 73% delle PMI italiane considera l'AI una priorità. Solo il 18% l'ha adottata. Il gap non è tecnologico — è psicologico. Smontiamo i 5 blocchi mentali più comuni con dati e risposte concrete.",
     category: "AI",
     date: "29 Mar 2026",
     readTime: "8 min",
@@ -30,7 +30,7 @@ const articles = [
   {
     slug: "5-processi-pmi-italiana-automatizzare-oggi",
     title: "5 Processi che Ogni PMI Italiana Può Automatizzare Oggi con l'AI",
-    excerpt: "14 ore perse ogni settimana in attività ripetitive. 21.000€ all'anno di lavoro a basso valore. Ecco i 5 processi da automatizzare subito — con ROI medio 4.2x.",
+    excerpt: "Il 60% delle attività nelle PMI è automatizzabile oggi — non tra 5 anni. Dalla risposta clienti alla fatturazione: ecco i 5 processi da attivare subito, con esempi reali e ROI medio 3.8x.",
     category: "Automazione",
     date: "29 Mar 2026",
     readTime: "7 min",
@@ -39,7 +39,7 @@ const articles = [
   {
     slug: "agenti-ai-per-pmi-cosa-sono-e-come-usarli",
     title: "Agenti AI per PMI: Cosa Sono e Come Usarli nella Tua Azienda",
-    excerpt: "Non sono chatbot. Gli agenti AI ragionano, prendono decisioni e agiscono. Da 14 ore a 2 minuti per prima risposta. Da 2,5 ore a 8 minuti per preventivo. I numeri reali.",
+    excerpt: "Non sono chatbot. Gli agenti AI ragionano, prendono decisioni e agiscono. Consulenza, retail, immobiliare, manifatturiero: i casi reali che dimostrano come funzionano nelle PMI italiane.",
     category: "AI",
     date: "29 Mar 2026",
     readTime: "9 min",
