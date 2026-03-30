@@ -171,3 +171,101 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* ── Aurora Mesh Gradient ─────────────────────────────────── */
+.aurora-mesh {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.aurora-mesh::before,
+.aurora-mesh::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.5;
+}
+
+/* Blob 1 — cyan, top-left */
+.aurora-blob-1 {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.045;
+  background: radial-gradient(circle, #00D4FF 0%, transparent 70%);
+  top: -10%;
+  left: -5%;
+  animation: aurora-1 22s ease-in-out infinite;
+}
+
+/* Blob 2 — gold/primary, top-right */
+.aurora-blob-2 {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  filter: blur(110px);
+  opacity: 0.04;
+  background: radial-gradient(circle, #F6BE09 0%, transparent 70%);
+  top: 5%;
+  right: -5%;
+  animation: aurora-2 28s ease-in-out infinite;
+}
+
+/* Blob 3 — purple, mid-left */
+.aurora-blob-3 {
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  filter: blur(130px);
+  opacity: 0.035;
+  background: radial-gradient(circle, #A855F7 0%, transparent 70%);
+  top: 40%;
+  left: 20%;
+  animation: aurora-3 34s ease-in-out infinite;
+}
+
+/* Blob 4 — green, bottom-right */
+.aurora-blob-4 {
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.03;
+  background: radial-gradient(circle, #10B981 0%, transparent 70%);
+  bottom: 5%;
+  right: 10%;
+  animation: aurora-4 18s ease-in-out infinite;
+}
+
+@keyframes aurora-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(80px, 60px) scale(1.1); }
+  66%       { transform: translate(-40px, 100px) scale(0.95); }
+}
+
+@keyframes aurora-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40%       { transform: translate(-100px, 80px) scale(1.05); }
+  70%       { transform: translate(-60px, -40px) scale(0.9); }
+}
+
+@keyframes aurora-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25%       { transform: translate(60px, -80px) scale(1.08); }
+  60%       { transform: translate(-80px, 60px) scale(0.92); }
+  80%       { transform: translate(40px, 40px) scale(1.04); }
+}
+
+@keyframes aurora-4 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%       { transform: translate(-70px, -90px) scale(1.12); }
+}

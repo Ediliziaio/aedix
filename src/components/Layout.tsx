@@ -23,6 +23,13 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      {/* Aurora mesh gradient — fissa su tutte le pagine */}
+      <div className="aurora-mesh" aria-hidden="true">
+        <div className="aurora-blob-1" />
+        <div className="aurora-blob-2" />
+        <div className="aurora-blob-3" />
+        <div className="aurora-blob-4" />
+      </div>
       <ScrollProgressBar />
       <Navbar />
       <main>{children}</main>
