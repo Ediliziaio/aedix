@@ -241,6 +241,40 @@ const TypingText = ({ text, delay = 0 }: { text: string; delay?: number }) => {
   );
 };
 
+// ─── Rotating Word ──────────────────────────────────────────
+const words = ["clienti", "lead", "preventivi", "appuntamenti", "documenti", "processi"];
+
+const RotatingWord = () => {
+  const [index, setIndex] = useState(0);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const cycle = setInterval(() => {
+      setVisible(false);
+      setTimeout(() => {
+        setIndex((i) => (i + 1) % words.length);
+        setVisible(true);
+      }, 350);
+    }, 2200);
+    return () => clearInterval(cycle);
+  }, []);
+
+  return (
+    <span
+      className="inline-block text-primary italic font-light"
+      style={{
+        transition: "opacity 0.35s ease, transform 0.35s ease",
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(-12px)",
+        minWidth: "320px",
+        display: "inline-block",
+      }}
+    >
+      {words[index]}.
+    </span>
+  );
+};
+
 // ─── Floating Badge (CSS animation) ─────────────────────────
 const FloatingBadge = ({ text, x, y, delay }: { text: string; x: string; y: string; delay: number }) => (
   <div
@@ -510,7 +544,7 @@ const projects = [
   {
     name: "Edilizia.io",
     color: "#A855F7",
-    desc: "Agenti AI verticali per il settore costruzioni. Prima risposta clienti, qualificazione lead, generazione preventivi — automatizzati e disponibili 24 ore su 24.",
+    desc: "Agenti AI as a Service per le PMI italiane. Prima risposta clienti, qualificazione lead, generazione preventivi — automatizzati e disponibili 24 ore su 24.",
     url: "https://edilizia.io",
   },
   {
@@ -649,7 +683,7 @@ const Index = () => {
           <FadeIn>
             <div className="flex items-center gap-4 mb-8">
               <div className="w-10 h-px bg-primary" />
-              <TypingText text="Tecnologia Avanzata per le PMI Italiane" delay={0.5} />
+              <TypingText text="AI operativa per le PMI italiane" delay={0.5} />
             </div>
           </FadeIn>
 
@@ -667,19 +701,19 @@ const Index = () => {
                 className="font-display font-bold leading-[1.04] tracking-[-3px] mb-8 relative"
                 style={{ fontSize: "clamp(44px, 6.5vw, 88px)" }}
               >
-                Costruiamo il Futuro<br />
-                con l'AI <span className="italic font-light text-primary">e le Persone.</span>
+                L'AI che gestisce<br />
+                i tuoi <RotatingWord />
               </h1>
             </div>
           </FadeIn>
 
           <FadeIn delay={0.2}>
             <p className="text-[20px] leading-[1.75] text-[rgba(255,255,255,0.7)] max-w-[600px] font-light mb-10">
-              Aedix è la tech company italiana che sviluppa{" "}
+              Piattaforme SaaS, agenti AI e automazione intelligente per{" "}
               <span className="text-[rgba(255,255,255,0.85)] font-medium">
-                piattaforme SaaS, agenti AI e sistemi di vendita
+                qualsiasi PMI italiana.
               </span>{" "}
-              per le piccole e medie imprese. Un unico ecosistema per tagliare i costi fissi, vendere di più e riprendere il controllo della tua azienda.
+              Taglia i costi fissi, rispondi ai clienti 24/7 e prendi decisioni con dati reali — tutto in un unico ecosistema.
             </p>
           </FadeIn>
 
