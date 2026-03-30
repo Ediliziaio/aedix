@@ -45,7 +45,7 @@ const pillars = [
   {
     icon: <BookOpen size={36} />, title: "Consulenza e Formazione",
     desc: "Vendita, gestione aziendale, recruiting. Metodi testati su imprese reali — non teoria da manuale. Ogni strategia che insegniamo, la usiamo prima su noi stessi.",
-    features: ["Formazione vendita per team tecnici e commerciali", "Consulenza strategica su processi e automazione", "Assessment aziendale con TalentProfile 360°", "Affiancamento operativo sul campo", "Workshop personalizzati per il tuo team"],
+    features: ["Formazione vendita per team tecnici e commerciali", "Consulenza strategica su processi e automazione", "Assessment aziendale e analisi dei processi", "Affiancamento operativo sul campo", "Workshop personalizzati per il tuo team"],
     color: "#F59E0B",
   },
 ];
@@ -54,16 +54,16 @@ const comparison = [
   { feature: "Setup e configurazione", traditional: "Settimane / mesi", aedix: "Giorni", aedixWins: true },
   { feature: "Costo mensile", traditional: "€2.000 – €5.000", aedix: "Da €200/mese", aedixWins: true },
   { feature: "Personalizzazione", traditional: "Generica", aedix: "Verticale per settore", aedixWins: true },
-  { feature: "AI integrata", traditional: "No", aedix: "11 agenti attivi 24/7", aedixWins: true },
+  { feature: "AI integrata", traditional: "No", aedix: "Sì, nativamente integrata", aedixWins: true },
   { feature: "Marketing", traditional: "Canone fisso", aedix: "ROI misurabile", aedixWins: true },
   { feature: "Supporto", traditional: "Ticket standard", aedix: "Partner dedicato", aedixWins: true },
-  { feature: "ROI medio", traditional: "Incerto", aedix: "4.2x in 6 mesi", aedixWins: true },
+  { feature: "ROI medio", traditional: "Incerto", aedix: "Misurabile in tempo reale", aedixWins: true },
 ];
 
 const steps = [
   { icon: <MessageSquare size={28} />, title: "Parla con noi", desc: "Una call gratuita per capire le tue esigenze. Nessun impegno." },
   { icon: <Settings size={28} />, title: "Configurazione", desc: "Setup della piattaforma e onboarding in 3-14 giorni." },
-  { icon: <BarChart3 size={28} />, title: "Risultati", desc: "Monitori i risultati in tempo reale. ROI visibile dal primo mese." },
+  { icon: <BarChart3 size={28} />, title: "Risultati", desc: "Monitori i risultati in tempo reale. Miglioramenti misurabili dall'attivazione." },
 ];
 
 const serviceFaqs = [

@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
-import { Cloud, Shield, Brain, Rocket, Target, ScanFace, Briefcase, ArrowRight, Cpu, Zap, BarChart3 } from "lucide-react";
+import { Cloud, Shield, Brain, Briefcase, ArrowRight, Cpu, Zap, BarChart3 } from "lucide-react";
 import Layout from "@/components/Layout";
 import ParallaxImage from "@/components/ParallaxImage";
 import TiltCard from "@/components/TiltCard";
@@ -18,24 +18,21 @@ const FadeIn = ({ children, delay = 0, className = "" }: { children: React.React
 
 const projects = [
   { name: "Edilizia in Cloud", slug: "edilizia-in-cloud", color: "#00D4FF", icon: <Cloud size={32} />, desc: "Il sistema operativo per le imprese edili. Gestionale, cantieri, documenti, team — tutto in una piattaforma.", tag: "SaaS", image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80" },
-  { name: "Cantiere in Cloud", slug: "cantiere-in-cloud", color: "#FF6B35", icon: <Shield size={32} />, desc: "Sicurezza cantiere e documentazione a norma. Ogni obbligo di legge sotto controllo, in tempo reale.", tag: "Safety", image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=600&q=80" },
-  { name: "Edilizia.io", slug: "edilizia-io", color: "#A855F7", icon: <Brain size={32} />, desc: "Agenti AI as a Service. 11 agenti operativi che lavorano per la tua impresa 24 ore su 24.", tag: "AI", image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=600&q=80" },
-  { name: "Marketing Edile", slug: "marketing-edile", color: "#10B981", icon: <Rocket size={32} />, desc: "Marketing digitale su misura con ROI misurabile. Campagne, funnel e lead generation gestiti dall'AI.", tag: "Marketing", image: "https://images.unsplash.com/photo-1533750349088-cd871a92f312?auto=format&fit=crop&w=600&q=80" },
-  { name: "Vendita Edile", slug: "vendita-edile", color: "#F59E0B", icon: <Target size={32} />, desc: "Il metodo di vendita ibrido per imprese tecniche. Chiudi di più, chiudi meglio, chiudi prima.", tag: "Sales", image: "https://images.unsplash.com/photo-1556745757-8d76bdb6984b?auto=format&fit=crop&w=600&q=80" },
-  { name: "TalentProfile 360°", slug: "talentprofile-360", color: "#EC4899", icon: <ScanFace size={32} />, desc: "242 domande. 15 tratti comportamentali. Assumi la persona giusta al primo colpo.", tag: "HR", image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=600&q=80" },
+  { name: "Edilizia.io", slug: "edilizia-io", color: "#A855F7", icon: <Brain size={32} />, desc: "AI operativa per la tua impresa. Agenti intelligenti che rispondono ai clienti, qualificano lead e gestiscono appuntamenti — 24 ore su 24.", tag: "AI", image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=600&q=80" },
   { name: "Impresa Leggera", slug: "impresa-leggera", color: "#6366F1", icon: <Briefcase size={32} />, desc: "Back-office in outsourcing pay-per-use. Fatturazione, buste paga, adempimenti — senza assumere nessuno.", tag: "Operations", image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=600&q=80" },
+  { name: "TutelAI", slug: "tutelai", color: "#10B981", icon: <Shield size={32} />, desc: "Tutela legale e compliance per le PMI, potenziata dall'AI. Contratti, scadenze normative, GDPR — sotto controllo, in automatico.", tag: "Legal AI", image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=600&q=80" },
 ];
 
 const ecosystemStats = [
-  { value: "7", label: "Piattaforme" },
-  { value: "44", label: "Workflow automatizzati" },
-  { value: "11", label: "Agenti AI attivi" },
+  { value: "4", label: "Piattaforme attive" },
+  { value: "AI", label: "Nativamente integrata" },
   { value: "24/7", label: "Operativi" },
+  { value: "EU", label: "GDPR compliant" },
 ];
 
 const ecosystemFlow = [
   { icon: <Zap size={28} />, title: "Input", desc: "Dati, richieste, processi aziendali" },
-  { icon: <Cpu size={28} />, title: "AI Processing", desc: "11 agenti + 44 workflow automatizzati" },
+  { icon: <Cpu size={28} />, title: "AI Processing", desc: "Agenti AI + automazione intelligente dei processi" },
   { icon: <BarChart3 size={28} />, title: "Output", desc: "Risultati misurabili, decisioni informate" },
 ];
 
@@ -56,7 +53,7 @@ const Progetti = () => (
         </FadeIn>
         <FadeIn delay={0.08}>
           <h1 className="font-display font-bold leading-[1.08] tracking-[-2px] mb-6" style={{ fontSize: "clamp(36px, 5vw, 64px)" }}>
-            Sette piattaforme.<br />
+            Quattro piattaforme.<br />
             Un unico <span className="italic font-light text-primary">ecosistema.</span>
           </h1>
         </FadeIn>

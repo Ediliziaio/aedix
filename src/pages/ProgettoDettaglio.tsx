@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
-import { Cloud, Shield, Brain, Rocket, Target, ScanFace, Briefcase, CheckCircle, ArrowLeft, ArrowRight, ChevronDown } from "lucide-react";
+import { Cloud, Shield, Brain, Briefcase, CheckCircle, ArrowLeft, ArrowRight, ChevronDown } from "lucide-react";
 import Layout from "@/components/Layout";
 
 const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) => {
@@ -31,22 +31,11 @@ const projectData: Record<string, {
       { q: "Funziona offline in cantiere?", a: "L'app mobile ha funzionalità offline con sincronizzazione automatica." },
     ],
   },
-  "cantiere-in-cloud": {
-    name: "Cantiere in Cloud", color: "#FF6B35", icon: <Shield size={48} />,
-    tagline: "Sicurezza cantiere. Sotto controllo.",
-    desc: "Tutti gli adempimenti di sicurezza cantiere gestiti digitalmente. POS, DUVRI, verbali, scadenze, formazione — ogni obbligo di legge monitorato e automatizzato.",
-    features: ["POS e DUVRI digitali", "Scadenzario automatico obblighi formativi", "Verbali di coordinamento digitali", "Registro presenze e accessi cantiere", "Alert automatici su scadenze", "Archivio documentale a norma"],
-    useCases: ["CSP/CSE e coordinatori della sicurezza", "Imprese edili con cantieri attivi", "RSPP e responsabili sicurezza"],
-    stat: "100%", statLabel: "conformità normativa garantita",
-    faqs: [
-      { q: "È conforme alle normative vigenti?", a: "Sì, aggiorniamo costantemente la piattaforma in base alle normative italiane ed europee." },
-      { q: "Posso gestire più cantieri contemporaneamente?", a: "Sì, senza limiti. Dashboard centralizzata con vista su tutti i cantieri." },
-    ],
-  },
+
   "edilizia-io": {
     name: "Edilizia.io", color: "#A855F7", icon: <Brain size={48} />,
-    tagline: "11 agenti AI. Sempre attivi.",
-    desc: "Agenti AI as a Service progettati per il settore edile e le PMI italiane. Rispondono ai clienti, qualificano lead, generano preventivi, gestiscono appuntamenti — 24 ore su 24, 7 giorni su 7.",
+    tagline: "AI operativa. Sempre attiva.",
+    desc: "AI as a Service progettata per le PMI italiane. Agenti intelligenti che rispondono ai clienti, qualificano lead, generano preventivi e gestiscono appuntamenti — 24 ore su 24, 7 giorni su 7.",
     features: ["Risponditore AI conversazionale multicanale", "Qualificazione automatica lead", "Generazione preventivi intelligente", "Booking appuntamenti autonomo", "Follow-up automatizzato pipeline", "Analytics e reportistica in tempo reale"],
     useCases: ["PMI che ricevono richieste via web/social", "Aziende senza reparto commerciale strutturato", "Imprese con picchi stagionali di domanda"],
     stat: "24/7", statLabel: "operativi senza interruzioni",
@@ -55,64 +44,40 @@ const projectData: Record<string, {
       { q: "Posso personalizzare le risposte?", a: "Assolutamente. Ogni agente viene configurato con il tuo tono di voce, i tuoi prodotti e le tue policy." },
     ],
   },
-  "marketing-edile": {
-    name: "Marketing Edile", color: "#10B981", icon: <Rocket size={48} />,
-    tagline: "Marketing digitale con ROI misurabile.",
-    desc: "Strategie di marketing digitale su misura per la tua impresa. Campagne ads, funnel, landing page e lead generation — tutto gestito e ottimizzato dall'AI per massimizzare i tuoi risultati.",
-    features: ["Campagne ads su Google, Meta, LinkedIn", "Landing page e funnel ottimizzati dall'AI", "Tracking completo dal click alla vendita", "Ottimizzazione continua basata su dati reali", "Report trasparenti e condivisi", "Investimento calibrato sui tuoi obiettivi"],
-    useCases: ["PMI che vogliono crescere con il digitale", "Aziende che cercano ROI misurabile sul marketing", "PMI senza reparto marketing interno"],
-    stat: "4.2x", statLabel: "ROI medio in 6 mesi",
-    faqs: [
-      { q: "Come viene gestito il budget ads?", a: "Definiamo insieme il budget ideale per i tuoi obiettivi. Gestiamo le campagne con ottimizzazione continua e report trasparenti." },
-      { q: "Come tracciate i risultati?", a: "CRM integrato con tracking end-to-end: dal click all'annuncio alla conversione finale." },
-    ],
-  },
-  "vendita-edile": {
-    name: "Vendita Edile", color: "#F59E0B", icon: <Target size={48} />,
-    tagline: "Il metodo di vendita per imprese tecniche.",
-    desc: "Un sistema di vendita ibrido (AI + persone) progettato per imprese del settore tecnico. Script, processi, formazione — tutto quello che serve per chiudere di più, meglio, prima.",
-    features: ["Metodo di vendita strutturato e replicabile", "Script e obiezioni testate sul campo", "CRM integrato con AI per follow-up", "Formazione vendita per team tecnici", "Dashboard performance commerciale", "A/B testing su approcci di vendita"],
-    useCases: ["Titolari che vendono ancora 'a sensazione'", "Team commerciali senza metodo strutturato", "Aziende con tasso di chiusura sotto il 20%"],
-    stat: "+35%", statLabel: "aumento tasso di chiusura",
-    faqs: [
-      { q: "Funziona anche per chi non ha un team commerciale?", a: "Sì. Il metodo è pensato anche per titolari che vendono direttamente." },
-      { q: "Quanto dura la formazione?", a: "Il programma base è di 4 settimane con affiancamento operativo." },
-    ],
-  },
-  "talentprofile-360": {
-    name: "TalentProfile 360°", color: "#EC4899", icon: <ScanFace size={48} />,
-    tagline: "Assumi la persona giusta. Al primo colpo.",
-    desc: "Assessment comportamentale avanzato: 242 domande, 15 tratti misurati, profilo completo del candidato. Sai chi stai assumendo prima di firmare il contratto.",
-    features: ["242 domande scientificamente validate", "15 tratti comportamentali misurati", "Report dettagliato con grafici e insight", "Confronto con profilo ideale per il ruolo", "Storico assessment per ogni dipendente", "Integrazione con processi HR"],
-    useCases: ["PMI che assumono e sbagliano (costa €30k per errore)", "Aziende in crescita con recruiting frequente", "HR manager che vogliono dati oggettivi"],
-    stat: "−70%", statLabel: "turnover nei primi 12 mesi",
-    faqs: [
-      { q: "È scientificamente validato?", a: "Sì, basato su modelli psicometrici riconosciuti e validati su campioni italiani." },
-      { q: "Quanto tempo richiede il test?", a: "Circa 25-30 minuti per il candidato. Il report è immediato." },
-    ],
-  },
+
+
+
   "impresa-leggera": {
     name: "Impresa Leggera", color: "#6366F1", icon: <Briefcase size={48} />,
     tagline: "Back-office senza assumere nessuno.",
     desc: "Outsourcing pay-per-use di tutte le attività amministrative: fatturazione, buste paga, adempimenti fiscali, gestione documentale. Paghi solo quello che usi.",
     features: ["Fatturazione elettronica automatizzata", "Elaborazione buste paga", "Adempimenti fiscali e scadenzario", "Gestione documentale digitale", "Consulenza fiscale e tributaria", "Dashboard costi e cash flow"],
     useCases: ["Micro-imprese che non possono permettersi un ufficio admin", "Aziende che vogliono variabilizzare i costi fissi", "Imprenditori che perdono ore in burocrazia"],
-    stat: "−2", statLabel: "dipendenti amministrativi necessari",
+    stat: "Pay-per-use", statLabel: "nessun canone fisso",
     faqs: [
       { q: "Come funziona il pay-per-use?", a: "Paghi solo per i servizi che usi: tot per fattura, tot per busta paga. Nessun canone fisso." },
       { q: "Posso iniziare con un solo servizio?", a: "Certo. Scegli quello che ti serve ora e aggiungi il resto quando vuoi." },
+    ],
+  },
+  "tutelai": {
+    name: "TutelAI", color: "#10B981", icon: <Shield size={48} />,
+    tagline: "Tutela legale e compliance, potenziata dall'AI.",
+    desc: "TutelAI supporta le PMI italiane nella gestione di contratti, adempimenti normativi e compliance. Documenti, scadenze, GDPR — tutto monitorato e gestito con l'intelligenza artificiale.",
+    features: ["Generazione e analisi contratti", "Scadenzario adempimenti normativi", "Compliance GDPR automatizzata", "Alert legali e scadenze fiscali", "Archiviazione documentale sicura", "Consulenza AI su quesiti normativi"],
+    useCases: ["PMI che gestiscono contratti frequenti", "Aziende che vogliono essere GDPR compliant", "Imprenditori che perdono tempo in adempimenti legali"],
+    stat: "GDPR", statLabel: "compliance automatizzata",
+    faqs: [
+      { q: "È adatto anche a non-avvocati?", a: "Assolutamente. TutelAI è progettato per imprenditori e team non legali. Linguaggio semplice, guida passo dopo passo." },
+      { q: "Copre tutti i settori?", a: "Sì, con focus sulle PMI italiane. I contratti e gli adempimenti sono calibrati sulla normativa italiana vigente." },
     ],
   },
 };
 
 const allProjects = [
   { name: "Edilizia in Cloud", slug: "edilizia-in-cloud", color: "#00D4FF", icon: <Cloud size={24} /> },
-  { name: "Cantiere in Cloud", slug: "cantiere-in-cloud", color: "#FF6B35", icon: <Shield size={24} /> },
   { name: "Edilizia.io", slug: "edilizia-io", color: "#A855F7", icon: <Brain size={24} /> },
-  { name: "Marketing Edile", slug: "marketing-edile", color: "#10B981", icon: <Rocket size={24} /> },
-  { name: "Vendita Edile", slug: "vendita-edile", color: "#F59E0B", icon: <Target size={24} /> },
-  { name: "TalentProfile 360°", slug: "talentprofile-360", color: "#EC4899", icon: <ScanFace size={24} /> },
   { name: "Impresa Leggera", slug: "impresa-leggera", color: "#6366F1", icon: <Briefcase size={24} /> },
+  { name: "TutelAI", slug: "tutelai", color: "#10B981", icon: <Shield size={24} /> },
 ];
 
 const FAQItem = ({ faq, index, color }: { faq: { q: string; a: string }; index: number; color: string }) => {

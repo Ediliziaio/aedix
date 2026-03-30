@@ -20,9 +20,9 @@ const milestones = [
   { year: "2016", title: "La nascita", desc: "Fondiamo la prima impresa edile. Scopriamo sulla nostra pelle i problemi delle PMI italiane." },
   { year: "2018", title: "Il primo software", desc: "Costruiamo il primo gestionale interno. Non esiste nulla di adatto al nostro settore." },
   { year: "2020", title: "Edilizia in Cloud", desc: "Lanciamo la prima piattaforma SaaS verticale per l'edilizia. Inizia l'ecosistema." },
-  { year: "2022", title: "L'espansione", desc: "5 piattaforme attive, primi clienti esterni. Il modello funziona e si replica." },
-  { year: "2024", title: "L'era AI", desc: "Integriamo agenti AI operativi nelle nostre piattaforme. 11 agenti attivi 24/7." },
-  { year: "2026", title: "Oggi", desc: "7 piattaforme, 44 workflow automatizzati, un ecosistema completo per le PMI italiane." },
+  { year: "2022", title: "L'espansione", desc: "Primi clienti esterni. Il modello funziona — e inizia a replicarsi." },
+  { year: "2024", title: "L'era AI", desc: "Integriamo agenti AI nelle nostre piattaforme. Automazione intelligente per le PMI italiane." },
+  { year: "2026", title: "Oggi", desc: "4 piattaforme attive, un ecosistema completo per le PMI italiane. E non ci fermiamo qui." },
 ];
 
 const values = [
@@ -33,10 +33,10 @@ const values = [
 ];
 
 const stats = [
-  { value: "7", label: "Piattaforme attive" },
-  { value: "11", label: "Agenti AI operativi" },
-  { value: "44", label: "Workflow automatizzati" },
-  { value: "8+", label: "Anni di esperienza" },
+  { value: "4", label: "Piattaforme attive" },
+  { value: "AI", label: "Nativamente integrata" },
+  { value: "24/7", label: "Operativi" },
+  { value: "EU", label: "GDPR compliant" },
 ];
 
 const sectors = [
