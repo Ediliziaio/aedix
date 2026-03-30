@@ -479,8 +479,8 @@ const services = [
       </svg>
     ),
     title: "Piattaforme SaaS Verticali",
-    text: "Software gestionale, sicurezza, back-office in outsourcing. Ogni piattaforma elimina un costo fisso dalla tua azienda e ti restituisce ore. Non giorni — ore.",
-    bullets: ["Gestionale completo in cloud, sempre aggiornato", "Back-office in outsourcing pay-per-use", "Dashboard con dati in tempo reale"],
+    text: "Usi ancora Excel, email e carta per gestire la tua azienda. Ogni documento sparso è un errore che aspetta di succedere. Ogni ora di burocrazia è un'ora che non fatturi. Le nostre piattaforme fanno sparire il problema.",
+    bullets: ["Da Excel e carta a una dashboard unica — tutto sotto controllo", "Back-office in outsourcing: paghi solo ciò che usi, zero costi fissi", "Dati aggiornati in tempo reale, da qualsiasi dispositivo"],
     link: "/progetti/edilizia-in-cloud",
     linkLabel: "Vedi Edilizia in Cloud",
   },
@@ -495,8 +495,8 @@ const services = [
       </svg>
     ),
     title: "Agenti AI Operativi",
-    text: "Non chatbot decorativi. Agenti che rispondono ai clienti, qualificano lead, compilano preventivi e gestiscono appuntamenti. Lavorano di notte. Non chiedono ferie.",
-    bullets: ["Prima risposta ai clienti in meno di 1 minuto, H24", "Qualificazione lead e booking appuntamenti automatici", "Follow-up intelligente — nessun lead lasciato senza risposta"],
+    text: "Sei in riunione. Il cliente scrive. Non risponde nessuno — e nel tempo che passa, ha già contattato il competitor. I nostri agenti AI rispondono al posto tuo in meno di un minuto, ogni ora del giorno, ogni giorno dell'anno.",
+    bullets: ["Zero lead persi per mancata risposta — mai più", "Preventivi e appuntamenti gestiti in autonomia, senza intervento umano", "Operativi in pochi giorni — nessun tecnico interno necessario"],
     link: "/progetti/edilizia-io",
     linkLabel: "Vedi Edilizia.io",
   },
@@ -510,8 +510,8 @@ const services = [
       </svg>
     ),
     title: "Marketing & Vendita Digitale",
-    text: "Campagne ads, funnel, landing page, lead generation — tutto gestito e ottimizzato dall'AI. Strategie su misura con ROI misurabile e investimento calibrato sui tuoi obiettivi.",
-    bullets: ["Campagne Google, Meta e LinkedIn ottimizzate dall'AI", "Funnel e landing page ad alta conversione", "Tracking end-to-end: dal click alla vendita chiusa"],
+    text: "Hai investito in ads ma non sai cosa funziona. Il sito porta traffico ma non porta clienti. I lead arrivano ma non si chiudono. Costruiamo il sistema di acquisizione che trasforma ogni euro di budget in fatturato misurabile.",
+    bullets: ["Ogni euro tracciato dal click alla firma — zero sprechi", "Funnel e landing page costruiti per convertire, non per essere belli", "L'AI ottimizza le campagne in autonomia, tu guardi i risultati"],
     link: "/servizi",
     linkLabel: "Scopri i Servizi",
   },
@@ -525,8 +525,8 @@ const services = [
       </svg>
     ),
     title: "Consulenza e Formazione",
-    text: "Vendita, gestione aziendale, recruiting. Metodi testati su imprese reali — non teoria da manuale. Ogni strategia che insegniamo, la usiamo prima su noi stessi.",
-    bullets: ["Formazione vendita per team tecnici e commerciali", "Assessment processi aziendali e piano di automazione", "Affiancamento operativo — non solo teoria"],
+    text: "Sai che potresti vendere di più. Sai che perdi opportunità ogni settimana. Ma senza un metodo strutturato stai improvvisando. Ti diamo il sistema che usiamo sulle nostre stesse imprese — collaudato sul campo, non in aula.",
+    bullets: ["Un metodo di vendita replicabile, anche per chi vende 'a sensazione'", "Scopri dove stai perdendo soldi oggi — assessment processi incluso", "Affiancamento operativo: niente slide, solo risultati concreti"],
     link: "/servizi",
     linkLabel: "Vai ai Servizi",
   },
@@ -604,10 +604,10 @@ const competitivePoints = [
 ];
 
 const timeline = [
-  { num: "01", title: "Analisi", text: "Analizziamo la tua impresa: costi, processi, team, vendite. Identifichiamo dove stai perdendo soldi e dove puoi guadagnare di più." },
-  { num: "02", title: "Strategia", text: "Disegniamo il piano d'azione: quali piattaforme attivare, quali agenti AI configurare, quali processi automatizzare per primi." },
-  { num: "03", title: "Attivazione", text: "Configuriamo tutto. Le piattaforme vanno online, gli agenti AI iniziano a lavorare, i flussi di vendita partono. Tu non devi toccare niente." },
-  { num: "04", title: "Risultati", text: "Primi numeri reali: lead generati, appuntamenti fissati, ore risparmiate, costi tagliati. Da qui si scala." },
+  { num: "01", title: "Analisi gratuita", text: "Mappiamo dove stai perdendo soldi oggi — processi manuali, lead non seguiti, costi fissi evitabili, ore bruciate in burocrazia. Nessun impegno." },
+  { num: "02", title: "Piano su misura", text: "Ti diciamo esattamente cosa attivare, in quale ordine, per avere il massimo impatto nel minor tempo. Senza tecnologia inutile." },
+  { num: "03", title: "Attivazione in 3–14 giorni", text: "Configuriamo tutto noi. Parti in pochi giorni. Zero tecnici interni, zero interruzioni alla tua operatività attuale." },
+  { num: "04", title: "Risultati misurabili", text: "Vedi i numeri in tempo reale: lead gestiti, ore risparmiate, processi automatizzati. Ogni euro speso ha una risposta concreta." },
 ];
 
 // ─── FAQ Item Component ──────────────────────────────────────
@@ -782,7 +782,7 @@ const Index = () => {
         <div className="max-w-[1320px] mx-auto">
           <FadeIn>
             <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">
-              Cosa Facciamo
+              Il Problema → La Soluzione
             </span>
           </FadeIn>
           <FadeIn delay={0.08}>
@@ -790,13 +790,13 @@ const Index = () => {
               className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-6"
               style={{ fontSize: "clamp(32px, 4.5vw, 58px)" }}
             >
-              Tutto ciò che serve alla tua PMI<br />
-              per <span className="italic font-light text-primary">dominare</span> i prossimi 10 anni.
+              Ogni giorno perdi tempo, soldi<br />
+              e clienti. <span className="italic font-light text-primary">Abbiamo costruito la risposta.</span>
             </h2>
           </FadeIn>
           <FadeIn delay={0.16}>
             <p className="text-[18px] text-[rgba(255,255,255,0.7)] max-w-[580px] font-light mb-20">
-              Non siamo una software house generica. Non siamo una web agency. Siamo un ecosistema tecnologico costruito per risolvere i problemi reali delle imprese italiane.
+              Quattro problemi cronici di ogni PMI italiana. Quattro soluzioni costruite da zero per risolverli — non adattamenti di strumenti generici che non parlano la tua lingua.
             </p>
           </FadeIn>
 
@@ -860,20 +860,25 @@ const Index = () => {
           </FadeIn>
           <FadeIn delay={0.08}>
             <h2
-              className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-16"
+              className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-4"
               style={{ fontSize: "clamp(32px, 4.5vw, 58px)" }}
             >
-              Quattro piattaforme.<br />
-              <span className="italic font-light text-primary">Un'unica visione.</span>
+              4 principi non negoziabili.<br />
+              <span className="italic font-light text-primary">In ogni piattaforma che costruiamo.</span>
             </h2>
+          </FadeIn>
+          <FadeIn delay={0.12}>
+            <p className="text-[16px] text-[rgba(255,255,255,0.55)] font-light max-w-[520px] mb-16">
+              Non li trovi nel marketing delle big tech perché rispettarli costa. Li trovi qui perché è l'unico modo in cui sappiamo lavorare.
+            </p>
           </FadeIn>
 
           <div className="grid grid-cols-2 lg:grid-cols-4">
             {[
-              { stat: "AI", label: "Al centro di ogni piattaforma — non un add-on, ma il motore" },
-              { stat: "Cloud", label: "Zero installazioni, aggiornamenti automatici, accesso ovunque" },
-              { stat: "PMI", label: "Progettato esclusivamente per le piccole e medie imprese italiane" },
-              { stat: "EU", label: "Conformità nativa a GDPR, EU AI Act e normative italiane" },
+              { stat: "AI", label: "Non un add-on decorativo — il motore che automatizza le parti noiose del tuo lavoro" },
+              { stat: "Cloud", label: "Zero installazioni, zero IT interno — accedi da qualsiasi dispositivo, sempre aggiornato" },
+              { stat: "PMI", label: "Costruito per aziende da 5 a 200 persone — non adattato verso il basso, nato così" },
+              { stat: "EU", label: "GDPR e EU AI Act rispettati by design — zero rischi legali nascosti nel contratto" },
             ].map((s, i) => (
               <FadeIn key={i} delay={0.08 * i}>
                 <div className={`py-8 px-6 ${i > 0 ? "lg:border-l border-[rgba(255,255,255,0.06)]" : ""}`}>
@@ -960,13 +965,13 @@ const Index = () => {
               className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-6"
               style={{ fontSize: "clamp(32px, 4.5vw, 58px)" }}
             >
-              Il tuo business oggi costa troppo<br />
-              e <span className="italic font-light text-primary">produce troppo poco.</span>
+              Riconosci questi problemi?<br />
+              <span className="italic font-light text-primary">Esiste una soluzione concreta.</span>
             </h2>
           </FadeIn>
           <FadeIn delay={0.16}>
             <p className="text-[17px] text-[rgba(255,255,255,0.65)] max-w-[600px] font-light mb-[72px]">
-              Ogni riga qui sotto è un problema reale che le PMI italiane affrontano ogni giorno. A destra, la risposta concreta che costruiamo con le nostre piattaforme.
+              Non è teoria. Sono i problemi che le PMI italiane ci portano ogni settimana. Qui sotto il problema — e la risposta che abbiamo costruito per risolverlo.
             </p>
           </FadeIn>
 
@@ -1037,7 +1042,7 @@ const Index = () => {
                   <strong className="text-white font-semibold">
                     le PMI italiane meritano la stessa tecnologia delle multinazionali
                   </strong>
-                  , ma costruita per il loro mondo — fatto di clienti da seguire, cantieri da gestire, burocrazia da sbrigare e margini da proteggere.
+                  , ma costruita per il loro mondo — fatto di clienti da acquisire, processi da gestire, burocrazia da sbrigare e margini da proteggere.
                 </p>
                 <p>
                   Non abbiamo iniziato da un ufficio. Abbiamo iniziato sul campo — gestendo un'impresa vera, vendendo ai clienti finali, sbattendo la testa su problemi che nessun software generico riusciva a risolvere.
@@ -1254,12 +1259,17 @@ const Index = () => {
           </FadeIn>
           <FadeIn delay={0.08}>
             <h2
-              className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-16"
+              className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-6"
               style={{ fontSize: "clamp(32px, 4.5vw, 58px)" }}
             >
-              Dal primo contatto<br />
-              <span className="italic font-light text-primary">all'attivazione.</span>
+              Dal problema che hai oggi<br />
+              <span className="italic font-light text-primary">ai risultati in 2 settimane.</span>
             </h2>
+          </FadeIn>
+          <FadeIn delay={0.12}>
+            <p className="text-[17px] text-[rgba(255,255,255,0.6)] max-w-[500px] font-light mb-16">
+              Quattro passi. Nessuna burocrazia. Nessun progetto IT infinito.
+            </p>
           </FadeIn>
 
           <div ref={timelineRef} className="grid md:grid-cols-4 gap-8 relative">
@@ -1318,25 +1328,25 @@ const Index = () => {
           <div className="grid md:grid-cols-3 gap-6">
             {[
               {
-                quote: "La burocrazia era il nostro vero problema. Con Edilizia in Cloud abbiamo centralizzato tutto — documenti, cantieri, team — in un'unica piattaforma.",
-                result: "Gestione centralizzata, zero dispersione",
-                sector: "PMI Settore Edile",
-                metric: "1",
-                metricLabel: "piattaforma, tutto integrato",
+                quote: "Perdevo 3 ore al giorno tra email, Excel e telefonate per gestire la mia azienda. Adesso quella roba la fa il software. Quelle 3 ore le uso per vendere.",
+                result: "3 ore al giorno restituite all'imprenditore",
+                sector: "PMI Serramenti",
+                metric: "3h",
+                metricLabel: "al giorno recuperate",
               },
               {
-                quote: "Prima perdevo ore a rispondere alle stesse domande. Con Edilizia.io i clienti ricevono risposta immediata anche fuori orario — e io mi concentro su ciò che conta.",
-                result: "Prima risposta clienti automatizzata",
-                sector: "Impresa Costruzioni",
-                metric: "24/7",
-                metricLabel: "prima risposta clienti",
+                quote: "I lead arrivavano dal sito ma non li seguiva nessuno fuori orario. Con Edilizia.io ogni richiesta ha una risposta entro 60 secondi — anche di domenica alle 23.",
+                result: "Zero lead persi per mancata risposta",
+                sector: "PMI Impiantistica",
+                metric: "60s",
+                metricLabel: "tempo medio di risposta AI",
               },
               {
-                quote: "Non volevamo un gestionale generico che fa tutto male. Volevamo qualcosa costruito per come lavoriamo noi. AEDIX è esattamente questo.",
-                result: "Software verticale, non generico",
-                sector: "PMI Manifatturiero",
-                metric: "AI",
-                metricLabel: "first — non un add-on",
+                quote: "Investivamo in ads senza sapere cosa funzionava davvero. Adesso ogni euro ha un numero attaccato. Sappiamo esattamente quale campagna genera clienti e quale brucia budget.",
+                result: "Budget tracciato dal click alla firma",
+                sector: "PMI Retail",
+                metric: "100%",
+                metricLabel: "tracciabilità investimento",
               },
             ].map((t, i) => (
               <FadeIn key={i} delay={0.1 * i}>
