@@ -479,47 +479,61 @@ const services = [
 ];
 
 const stats = [
-  { value: 7, suffix: "", label: "Piattaforme sviluppate e operative" },
-  { value: 11, suffix: "", label: "Agenti AI attivi 24/7" },
-  { value: 44, suffix: "", label: "Workflow automatizzati" },
-  { value: 8, suffix: "+", label: "Anni nel mercato italiano" },
+  { value: 4, suffix: "", label: "Piattaforme AI-Based sviluppate" },
+  { value: 100, suffix: "%", label: "Cloud-native — zero installazioni" },
+  { value: 100, suffix: "%", label: "Conformi GDPR e EU AI Act" },
+  { value: 24, suffix: "/7", label: "Operatività dei sistemi AI" },
 ];
 
 const comparison = [
-  { today: "Segretaria a tempo pieno", aedix: "Agente AI a €200/mese", impact: "−80%" },
-  { today: "Agenzia marketing a canone", aedix: "Paghi solo sulle vendite chiuse", impact: "−100% rischio" },
-  { today: "Gestionale generico inadatto", aedix: "Piattaforma verticale per il tuo settore", impact: "+3h/giorno" },
-  { today: "Commerciale che non chiude", aedix: "Metodo di vendita testato e replicabile", impact: "+35% chiusure" },
-  { today: "Contabilità e burocrazia interna", aedix: "Outsourcing pay-per-use", impact: "−2 dipendenti" },
+  { today: "Software generico che non si adatta al tuo settore", aedix: "Piattaforma verticale costruita per la tua realtà", impact: "Fit reale" },
+  { today: "Prima risposta ai clienti in ore — o giorni", aedix: "Risposta automatica immediata, 24 ore su 24", impact: "Sempre live" },
+  { today: "Burocrazia e documenti gestiti a mano", aedix: "Processi digitalizzati e automatizzati in cloud", impact: "Zero carta" },
+  { today: "Decisioni basate su intuizione e memoria", aedix: "Dashboard AI con dati aggiornati in tempo reale", impact: "Dati, non sensazioni" },
+  { today: "Compliance AI Act e GDPR fai-da-te", aedix: "TutelAI — conformità guidata, senza rischi legali", impact: "EU compliant" },
 ];
 
 const projectIcons: Record<string, React.ReactNode> = {
   "Edilizia in Cloud": <Cloud size={32} />,
-  "Cantiere in Cloud": <Shield size={32} />,
   "Edilizia.io": <Brain size={32} />,
-  "Marketing Edile": <Rocket size={32} />,
-  "Vendita Edile": <Target size={32} />,
-  "TalentProfile 360°": <ScanFace size={32} />,
   "Impresa Leggera": <Briefcase size={32} />,
+  "TutelAI": <Shield size={32} />,
 };
 
 const projects = [
-  { name: "Edilizia in Cloud", color: "#00D4FF", desc: "Il sistema operativo per le imprese edili. Gestionale, cantieri, documenti, team — tutto in una piattaforma." },
-  { name: "Cantiere in Cloud", color: "#FF6B35", desc: "Sicurezza cantiere e documentazione a norma. Ogni obbligo di legge sotto controllo, in tempo reale." },
-  { name: "Edilizia.io", color: "#A855F7", desc: "Agenti AI as a Service. 11 agenti operativi che lavorano per la tua impresa 24 ore su 24." },
-  { name: "Marketing Edile", color: "#10B981", desc: "Marketing digitale con strategie su misura e ROI misurabile. Campagne, funnel e lead generation ottimizzati dall'AI." },
-  { name: "Vendita Edile", color: "#F59E0B", desc: "Il metodo di vendita ibrido per imprese tecniche. Chiudi di più, chiudi meglio, chiudi prima." },
-  { name: "TalentProfile 360°", color: "#EC4899", desc: "242 domande. 15 tratti comportamentali. Assumi la persona giusta al primo colpo." },
-  { name: "Impresa Leggera", color: "#6366F1", desc: "Back-office in outsourcing pay-per-use. Fatturazione, buste paga, adempimenti — senza assumere nessuno." },
+  {
+    name: "Edilizia in Cloud",
+    color: "#00D4FF",
+    desc: "Il gestionale AI-based per imprese edili, serramentisti e impiantisti. Preventivi, cantieri, documenti, team — tutto connesso in un'unica piattaforma cloud.",
+    url: "https://ediliziaincloud.it",
+  },
+  {
+    name: "Edilizia.io",
+    color: "#A855F7",
+    desc: "Agenti AI verticali per il settore costruzioni. Prima risposta clienti, qualificazione lead, generazione preventivi — automatizzati e disponibili 24 ore su 24.",
+    url: "https://edilizia.io",
+  },
+  {
+    name: "Impresa Leggera",
+    color: "#6366F1",
+    desc: "Back-office in outsourcing pay-per-use. Fatturazione, adempimenti fiscali e gestione amministrativa — senza assumere personale interno dedicato.",
+    url: "#",
+  },
+  {
+    name: "TutelAI",
+    color: "#10B981",
+    desc: "Consulenza e strumenti per la conformità all'EU AI Act e al GDPR. Per le PMI italiane che usano AI e vogliono farlo in modo sicuro e trasparente.",
+    url: "https://tutelai.it",
+  },
 ];
 
 const aiStats = [
   { value: "$15.7T", label: "Impatto economico globale dell'AI entro il 2030", source: "PwC", icon: <DollarSign size={24} /> },
   { value: "40%", label: "Aumento produttività media con AI generativa", source: "McKinsey", icon: <TrendingUp size={24} /> },
   { value: "97M", label: "Nuovi posti di lavoro creati dall'AI entro il 2025", source: "World Economic Forum", icon: <Users size={24} /> },
-  { value: "300%", label: "ROI medio delle aziende che adottano AI", source: "Accenture", icon: <BarChart3 size={24} /> },
+  { value: "300%", label: "ROI medio delle aziende che adottano AI in modo strutturato", source: "Accenture", icon: <BarChart3 size={24} /> },
   { value: "75%", label: "Delle aziende adotterà AI entro il 2027", source: "Gartner", icon: <Building2 size={24} /> },
-  { value: "€3.200", label: "Risparmio medio mensile per PMI con AI", source: "AEDIX internal", icon: <Zap size={24} /> },
+  { value: "14%", label: "Delle PMI italiane usa AI in modo strutturato — la media UE è al 28%", source: "DESI 2025", icon: <Zap size={24} /> },
 ];
 
 const socialVsAi = [
@@ -689,9 +703,9 @@ const Index = () => {
           <FadeIn delay={0.4}>
             <div className="flex flex-wrap gap-16 mt-16">
               {[
-                { val: 7, suf: "", label: "Piattaforme Attive" },
-                { val: 11, suf: "", label: "Agenti AI Operativi" },
-                { val: 8, suf: "+", label: "Anni di R&D" },
+                { val: 4, suf: "", label: "Piattaforme AI-Based" },
+                { val: 100, suf: "%", label: "Cloud-Native" },
+                { val: 24, suf: "/7", label: "Sistemi Operativi" },
               ].map((s, i) => (
                 <div key={i} className="flex flex-col">
                   <span className="font-mono text-[52px] font-bold text-white leading-none">
@@ -749,12 +763,12 @@ const Index = () => {
 
       <SectionDivider />
 
-      {/* ───── I NUMERI ───── */}
+      {/* ───── I PILASTRI ───── */}
       <section className="bg-alt py-40 px-6 lg:px-12">
         <div className="max-w-[1320px] mx-auto">
           <FadeIn>
             <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">
-              I Numeri
+              Il Nostro Approccio
             </span>
           </FadeIn>
           <FadeIn delay={0.08}>
@@ -762,17 +776,22 @@ const Index = () => {
               className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-16"
               style={{ fontSize: "clamp(32px, 4.5vw, 58px)" }}
             >
-              Non promettiamo risultati.<br />
-              <span className="italic font-light text-primary">Li misuriamo.</span>
+              Quattro piattaforme.<br />
+              <span className="italic font-light text-primary">Un'unica visione.</span>
             </h2>
           </FadeIn>
 
           <div className="grid grid-cols-2 lg:grid-cols-4">
-            {stats.map((s, i) => (
+            {[
+              { stat: "AI", label: "Al centro di ogni piattaforma — non un add-on, ma il motore" },
+              { stat: "Cloud", label: "Zero installazioni, aggiornamenti automatici, accesso ovunque" },
+              { stat: "PMI", label: "Progettato esclusivamente per le piccole e medie imprese italiane" },
+              { stat: "EU", label: "Conformità nativa a GDPR, EU AI Act e normative italiane" },
+            ].map((s, i) => (
               <FadeIn key={i} delay={0.08 * i}>
                 <div className={`py-8 px-6 ${i > 0 ? "lg:border-l border-[rgba(255,255,255,0.06)]" : ""}`}>
                   <span className="font-mono text-[56px] font-bold text-primary leading-none block glow-text">
-                    <AnimatedCounter value={s.value} suffix={s.suffix} />
+                    {s.stat}
                   </span>
                   <span className="text-[14px] text-[rgba(255,255,255,0.65)] font-light mt-3 block">
                     {s.label}
@@ -860,7 +879,7 @@ const Index = () => {
           </FadeIn>
           <FadeIn delay={0.16}>
             <p className="text-[17px] text-[rgba(255,255,255,0.65)] max-w-[600px] font-light mb-[72px]">
-              Ogni riga qui sotto è un costo che stai pagando adesso, un problema che puoi eliminare in 30 giorni, e un risultato misurabile. Nessuna promessa generica — solo numeri.
+              Ogni riga qui sotto è un problema reale che le PMI italiane affrontano ogni giorno. A destra, la risposta concreta che costruiamo con le nostre piattaforme.
             </p>
           </FadeIn>
 
@@ -1030,9 +1049,9 @@ const Index = () => {
                   sulle nostre stesse aziende. Se non funziona per noi, non esiste per te.
                 </p>
                 <p>
-                  Oggi Aedix è un ecosistema di brand e piattaforme che coprono l'intera catena del valore di una PMI:{" "}
+                  Oggi AEDIX è un ecosistema di piattaforme AI-based che coprono i nodi critici di una PMI:{" "}
                   <strong className="text-white font-semibold">
-                    dall'acquisizione clienti alla gestione operativa, dalla vendita al back-office, dall'intelligenza artificiale alla formazione del team.
+                    dalla gestione operativa al back-office, dall'acquisizione clienti alla conformità normativa sull'intelligenza artificiale.
                   </strong>
                 </p>
               </div>
@@ -1138,7 +1157,7 @@ const Index = () => {
           </FadeIn>
           <FadeIn delay={0.15}>
             <p className="text-[20px] text-[rgba(255,255,255,0.6)] font-light mt-8 max-w-[600px] mx-auto leading-[1.7]">
-              Non è un sogno. È quello che costruiamo ogni giorno. Piattaforma dopo piattaforma, agente dopo agente, risultato dopo risultato.
+              Non è un sogno. È quello che costruiamo ogni giorno. Piattaforma dopo piattaforma, problema dopo problema risolto.
             </p>
           </FadeIn>
         </div>
@@ -1159,13 +1178,13 @@ const Index = () => {
               className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-6"
               style={{ fontSize: "clamp(32px, 4.5vw, 58px)" }}
             >
-              Sette piattaforme.<br />
+              Quattro piattaforme AI-based.<br />
               Un unico <span className="italic font-light text-primary">ecosistema.</span>
             </h2>
           </FadeIn>
           <FadeIn delay={0.16}>
             <p className="text-[18px] text-[rgba(255,255,255,0.7)] max-w-[580px] font-light mb-16">
-              Ogni brand risolve un problema specifico. Insieme, creano un vantaggio competitivo impossibile da replicare.
+              Ogni piattaforma risolve un problema specifico per le PMI italiane. Insieme, coprono l'intera catena del valore — dall'acquisizione clienti alla conformità normativa.
             </p>
           </FadeIn>
 
@@ -1268,7 +1287,7 @@ const Index = () => {
               {[
                 { icon: <Shield className="text-primary" size={28} />, text: "Ogni tecnologia testata prima sulle nostre aziende" },
                 { icon: <RefreshCw className="text-primary" size={28} />, text: "ROI misurabile: ogni euro investito è tracciato" },
-                { icon: <Target className="text-primary" size={28} />, text: "Verticale sulle PMI italiane dal 2016" },
+                { icon: <Target className="text-primary" size={28} />, text: "Focus esclusivo sulle PMI italiane" },
               ].map((b, i) => (
                 <motion.div
                   key={i}
@@ -1310,25 +1329,25 @@ const Index = () => {
           <div className="grid md:grid-cols-3 gap-6">
             {[
               {
-                quote: "In 3 mesi abbiamo eliminato 2 figure amministrative e dimezzato i tempi di preventivazione.",
-                result: "−€4.800/mese in costi fissi",
-                sector: "Impresa edile — Lombardia",
-                metric: "−60%",
-                metricLabel: "costi operativi",
+                quote: "La burocrazia era il nostro vero problema. Con Edilizia in Cloud abbiamo centralizzato tutto — documenti, cantieri, team — in un'unica piattaforma.",
+                result: "Gestione centralizzata, zero dispersione",
+                sector: "PMI Settore Edile",
+                metric: "1",
+                metricLabel: "piattaforma, tutto integrato",
               },
               {
-                quote: "L'agente AI risponde ai clienti anche alle 23. Il sabato. La domenica. Noi chiudiamo più contratti senza assumere nessuno.",
-                result: "+35% appuntamenti qualificati",
-                sector: "Serramentista — Veneto",
-                metric: "+35%",
-                metricLabel: "lead qualificati",
+                quote: "Prima perdevo ore a rispondere alle stesse domande. Con Edilizia.io i clienti ricevono risposta immediata anche fuori orario — e io mi concentro su ciò che conta.",
+                result: "Prima risposta clienti automatizzata",
+                sector: "Impresa Costruzioni",
+                metric: "24/7",
+                metricLabel: "prima risposta clienti",
               },
               {
-                quote: "Prima spendevamo €3.000/mese in marketing senza sapere cosa funzionava. Ora paghiamo solo sulle vendite chiuse.",
-                result: "ROI 4.2x in 6 mesi",
-                sector: "Impiantista — Emilia-Romagna",
-                metric: "4.2x",
-                metricLabel: "ROI marketing",
+                quote: "Non volevamo un gestionale generico che fa tutto male. Volevamo qualcosa costruito per come lavoriamo noi. AEDIX è esattamente questo.",
+                result: "Software verticale, non generico",
+                sector: "PMI Manifatturiero",
+                metric: "AI",
+                metricLabel: "first — non un add-on",
               },
             ].map((t, i) => (
               <FadeIn key={i} delay={0.1 * i}>
@@ -1422,7 +1441,7 @@ const Index = () => {
             {[
               {
                 q: "Quanto costa implementare l'AI nella mia azienda?",
-                a: "Dipende dalle esigenze, ma il nostro modello è pensato per le PMI: si parte da €200/mese per un agente AI operativo. Nessun costo di setup nascosto, nessun vincolo annuale. Il ROI medio dei nostri clienti è di 4.2x in 6 mesi.",
+                a: "Dipende dalle esigenze, ma il nostro modello è pensato per le PMI: le piattaforme partono da abbonamenti mensili accessibili, senza costi di setup nascosti e senza vincoli annuali. Organizziamo una demo gratuita per valutare insieme la soluzione più adatta alla tua situazione specifica.",
               },
               {
                 q: "Devo avere competenze tecniche per usare le vostre piattaforme?",
