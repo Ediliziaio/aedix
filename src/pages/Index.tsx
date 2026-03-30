@@ -543,10 +543,10 @@ const socialVsAi = [
 ];
 
 const competitivePoints = [
-  { icon: <Clock size={28} />, stat: "24/7", label: "I tuoi agenti AI non dormono mai", bar: 100 },
-  { icon: <BadgeCheck size={28} />, stat: "0", label: "Errori umani — processi automatizzati = zero dimenticanze", bar: 95 },
-  { icon: <Gauge size={28} />, stat: "10x", label: "Velocità — preventivi, risposte, report in secondi", bar: 90 },
-  { icon: <DollarSign size={28} />, stat: "−60%", label: "Costi — meno persone per le stesse attività", bar: 85 },
+  { icon: <Clock size={28} />, stat: "24/7", label: "Operatività continua — i sistemi AI non si fermano mai", bar: 100 },
+  { icon: <BadgeCheck size={28} />, stat: "0", label: "Dimenticanze — i processi automatizzati non saltano mai un passaggio", bar: 95 },
+  { icon: <Gauge size={28} />, stat: "Cloud", label: "Accesso ovunque — da qualsiasi dispositivo, sempre aggiornato", bar: 90 },
+  { icon: <Globe size={28} />, stat: "EU", label: "Conformità nativa a GDPR e EU AI Act — nessun rischio legale", bar: 85 },
 ];
 
 const timeline = [
@@ -888,9 +888,9 @@ const Index = () => {
               <table className="w-full min-w-[640px]">
                 <thead>
                   <tr className="border-b border-[rgba(255,255,255,0.08)]">
-                    <th className="font-mono text-[10px] uppercase tracking-[3px] text-[rgba(255,255,255,0.25)] text-left px-6 py-4 font-normal">Oggi</th>
+                    <th className="font-mono text-[10px] uppercase tracking-[3px] text-[rgba(255,255,255,0.25)] text-left px-6 py-4 font-normal">Problema attuale</th>
                     <th className="font-mono text-[10px] uppercase tracking-[3px] text-[rgba(255,255,255,0.25)] text-left px-6 py-4 font-normal">Con AEDIX</th>
-                    <th className="font-mono text-[10px] uppercase tracking-[3px] text-[rgba(255,255,255,0.25)] text-right px-6 py-4 font-normal">Impatto</th>
+                    <th className="font-mono text-[10px] uppercase tracking-[3px] text-[rgba(255,255,255,0.25)] text-right px-6 py-4 font-normal">Risultato</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -921,94 +921,6 @@ const Index = () => {
         </div>
       </section>
 
-      <SectionDivider />
-
-      {/* ───── AI vs SOCIAL MEDIA ───── */}
-      <section className="relative bg-alt py-40 px-6 lg:px-12 overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80')",
-          }}
-        />
-        <div className="absolute inset-0 bg-background/[0.93]" />
-
-        <div className="relative max-w-[1320px] mx-auto">
-          <FadeIn>
-            <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">
-              La Lezione della Storia
-            </span>
-          </FadeIn>
-          <FadeIn delay={0.08}>
-            <h2
-              className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-6"
-              style={{ fontSize: "clamp(28px, 4vw, 52px)" }}
-            >
-              Chi ha ignorato i social nel 2010<br />
-              ha perso un decennio.<br />
-              <span className="italic font-light text-primary">Chi ignora l'AI oggi perderà tutto.</span>
-            </h2>
-          </FadeIn>
-          <FadeIn delay={0.16}>
-            <p className="text-[17px] text-[rgba(255,255,255,0.65)] max-w-[600px] font-light mb-16">
-              La storia si ripete. Ogni rivoluzione tecnologica divide il mercato in due: chi si adatta e chi scompare. Stai scegliendo da che parte stare.
-            </p>
-          </FadeIn>
-
-          <div className="grid md:grid-cols-2 gap-8 mb-16">
-            <FadeIn delay={0.2}>
-              <div className="rounded-lg border border-[rgba(255,255,255,0.06)] overflow-hidden">
-                <div className="bg-[rgba(255,255,255,0.04)] px-8 py-5 border-b border-[rgba(255,255,255,0.06)]">
-                  <h3 className="font-mono text-[12px] uppercase tracking-[3px] text-[rgba(255,255,255,0.65)]">
-                    🕐 Social Media — 2010
-                  </h3>
-                </div>
-                {socialVsAi.map((row, i) => (
-                  <div key={i} className="px-8 py-6 border-b border-[rgba(255,255,255,0.04)] last:border-0">
-                    <p className="text-[15px] text-[rgba(255,255,255,0.6)] font-light line-through decoration-[rgba(255,100,100,0.4)] mb-2">
-                      {row.social.myth}
-                    </p>
-                    <p className="text-[14px] text-green-impact font-medium">
-                      → {row.social.reality}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.3}>
-              <div className="rounded-lg border border-primary/20 overflow-hidden">
-                <div className="bg-primary/[0.08] px-8 py-5 border-b border-primary/10">
-                  <h3 className="font-mono text-[12px] uppercase tracking-[3px] text-primary">
-                    ⚡ Intelligenza Artificiale — 2025
-                  </h3>
-                </div>
-                {socialVsAi.map((row, i) => (
-                  <div key={i} className="px-8 py-6 border-b border-[rgba(255,255,255,0.04)] last:border-0">
-                    <p className="text-[15px] text-[rgba(255,255,255,0.7)] font-light mb-2">
-                      {row.ai.myth}
-                    </p>
-                    <p className="text-[14px] text-primary font-semibold">
-                      → {row.ai.reality}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </FadeIn>
-          </div>
-
-          <FadeIn delay={0.4}>
-            <div className="text-center">
-              <button
-                onClick={() => scrollTo("cta-finale")}
-                className="shimmer-btn bg-primary text-primary-foreground font-bold text-[13px] uppercase tracking-[2px] px-12 py-[18px] hover:-translate-y-0.5 hover:shadow-[0_16px_48px_rgba(246,190,9,0.25)] transition-all relative overflow-hidden"
-              >
-                Non Restare Indietro →
-              </button>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
 
       <SectionDivider />
 
@@ -1059,11 +971,25 @@ const Index = () => {
 
             <FadeIn delay={0.24}>
               <blockquote
-                className="italic font-light text-[rgba(255,255,255,0.75)] leading-[1.55] border-l-[3px] border-primary pl-8"
+                className="italic font-light text-[rgba(255,255,255,0.75)] leading-[1.55] border-l-[3px] border-primary pl-8 mb-12"
                 style={{ fontSize: "clamp(22px, 2.8vw, 32px)" }}
               >
                 "Costruiamo tecnologia per imprenditori che non hanno tempo di studiare la tecnologia. Funziona, o non esiste."
               </blockquote>
+              <div className="flex flex-col sm:flex-row gap-6 mt-4">
+                {[
+                  { icon: <Shield size={20} />, text: "Ogni piattaforma testata sulle nostre aziende prima" },
+                  { icon: <RefreshCw size={20} />, text: "Cloud-native: sempre aggiornato, zero manutenzione" },
+                  { icon: <Target size={20} />, text: "Focus esclusivo sulle PMI italiane" },
+                ].map((b, i) => (
+                  <div key={i} className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-full border border-primary/20 flex items-center justify-center text-primary shrink-0">
+                      {b.icon}
+                    </div>
+                    <p className="text-[13px] text-[rgba(255,255,255,0.6)] font-light">{b.text}</p>
+                  </div>
+                ))}
+              </div>
             </FadeIn>
           </div>
         </div>
@@ -1188,27 +1114,41 @@ const Index = () => {
             </p>
           </FadeIn>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
             {projects.map((p, i) => (
               <FadeIn key={i} delay={0.08 * i}>
-                <TiltCard
-                  className="group relative p-8 rounded-lg border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)] transition-all hover:shadow-[0_20px_60px_rgba(0,0,0,0.3)]"
-                  style={{ ["--brand-color" as string]: p.color }}
+                <a
+                  href={p.url}
+                  target={p.url !== "#" ? "_blank" : undefined}
+                  rel="noopener noreferrer"
+                  className="block"
                 >
-                  <div
-                    className="absolute top-0 left-0 right-0 h-0.5 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-t-lg"
-                    style={{ background: p.color }}
-                  />
-                  <div className="mb-4 opacity-60 group-hover:opacity-100 transition-opacity" style={{ color: p.color }}>
-                    {projectIcons[p.name]}
-                  </div>
-                  <h3 className="text-[18px] font-semibold mb-3" style={{ color: p.color }}>
-                    {p.name}
-                  </h3>
-                  <p className="text-[13px] text-[rgba(255,255,255,0.65)] font-light leading-[1.7]">
-                    {p.desc}
-                  </p>
-                </TiltCard>
+                  <TiltCard
+                    className="group relative p-9 rounded-xl border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)] transition-all hover:shadow-[0_20px_60px_rgba(0,0,0,0.3)] hover:-translate-y-1 cursor-pointer h-full"
+                    style={{ ["--brand-color" as string]: p.color }}
+                  >
+                    <div
+                      className="absolute top-0 left-0 right-0 h-0.5 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-t-xl"
+                      style={{ background: p.color }}
+                    />
+                    <div className="flex items-start justify-between mb-5">
+                      <div className="opacity-60 group-hover:opacity-100 transition-opacity" style={{ color: p.color }}>
+                        {projectIcons[p.name]}
+                      </div>
+                      {p.url !== "#" && (
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="opacity-0 group-hover:opacity-60 transition-opacity" style={{ color: p.color }}>
+                          <path d="M3 13L13 3M13 3H7M13 3V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      )}
+                    </div>
+                    <h3 className="text-[20px] font-semibold mb-3" style={{ color: p.color }}>
+                      {p.name}
+                    </h3>
+                    <p className="text-[14px] text-[rgba(255,255,255,0.65)] font-light leading-[1.75]">
+                      {p.desc}
+                    </p>
+                  </TiltCard>
+                </a>
               </FadeIn>
             ))}
           </div>
@@ -1230,8 +1170,8 @@ const Index = () => {
               className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-16"
               style={{ fontSize: "clamp(32px, 4.5vw, 58px)" }}
             >
-              Dal primo contatto ai risultati.<br />
-              <span className="italic font-light text-primary">In 4 settimane.</span>
+              Dal primo contatto<br />
+              <span className="italic font-light text-primary">all'attivazione.</span>
             </h2>
           </FadeIn>
 
@@ -1267,44 +1207,6 @@ const Index = () => {
         </div>
       </section>
 
-      <SectionDivider />
-
-      {/* ───── SOCIAL PROOF ───── */}
-      <section className="bg-alt py-40 px-6 lg:px-12">
-        <div className="max-w-[800px] mx-auto text-center">
-          <FadeIn>
-            <h2
-              className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-16"
-              style={{ fontSize: "clamp(32px, 4.5vw, 58px)" }}
-            >
-              Costruito da chi fa impresa.<br />
-              <span className="italic font-light text-primary">Per chi fa impresa.</span>
-            </h2>
-          </FadeIn>
-
-          <FadeIn delay={0.12}>
-            <div className="flex flex-col md:flex-row items-center justify-center gap-12">
-              {[
-                { icon: <Shield className="text-primary" size={28} />, text: "Ogni tecnologia testata prima sulle nostre aziende" },
-                { icon: <RefreshCw className="text-primary" size={28} />, text: "ROI misurabile: ogni euro investito è tracciato" },
-                { icon: <Target className="text-primary" size={28} />, text: "Focus esclusivo sulle PMI italiane" },
-              ].map((b, i) => (
-                <motion.div
-                  key={i}
-                  className="flex flex-col items-center gap-3 max-w-[200px]"
-                  whileHover={{ scale: 1.05, y: -3 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <div className="w-14 h-14 rounded-full border border-primary/20 flex items-center justify-center">
-                    {b.icon}
-                  </div>
-                  <p className="text-[14px] text-[rgba(255,255,255,0.7)] font-light">{b.text}</p>
-                </motion.div>
-              ))}
-            </div>
-          </FadeIn>
-        </div>
-      </section>
 
       <SectionDivider />
 
@@ -1313,7 +1215,7 @@ const Index = () => {
         <div className="max-w-[1320px] mx-auto">
           <FadeIn>
             <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">
-              Risultati Reali
+              Voci dal Campo
             </span>
           </FadeIn>
           <FadeIn delay={0.08}>
@@ -1321,8 +1223,8 @@ const Index = () => {
               className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-16"
               style={{ fontSize: "clamp(32px, 4.5vw, 58px)" }}
             >
-              Non lo diciamo noi.<br />
-              <span className="italic font-light text-primary">Lo dicono i numeri.</span>
+              Come le PMI usano<br />
+              <span className="italic font-light text-primary">le nostre piattaforme.</span>
             </h2>
           </FadeIn>
 
@@ -1357,10 +1259,10 @@ const Index = () => {
                   <p className="text-[15px] text-[rgba(255,255,255,0.75)] font-light leading-[1.8] italic mb-6 flex-1">
                     "{t.quote}"
                   </p>
-                  <div className="border-t border-[rgba(255,255,255,0.06)] pt-5 mt-auto">
-                    <div className="font-mono text-[28px] font-bold text-primary leading-none mb-1">{t.metric}</div>
-                    <div className="text-[12px] text-[rgba(255,255,255,0.55)] font-mono uppercase tracking-[2px] mb-3">{t.metricLabel}</div>
-                    <p className="text-[13px] text-green-impact font-medium mb-1">{t.result}</p>
+                  <div className="border-t border-[rgba(255,255,255,0.06)] pt-5 mt-auto flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
+                      <span className="text-primary text-[11px] font-bold">{t.sector.charAt(0)}</span>
+                    </div>
                     <p className="text-[12px] text-[rgba(255,255,255,0.45)] font-mono">{t.sector}</p>
                   </div>
                 </div>
