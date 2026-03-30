@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
 import aedixLogo from "@/assets/aedix_logo.png";
 import { motion, useInView, useMotionValue, animate, useScroll, useTransform } from "framer-motion";
-import { Shield, RefreshCw, Target, Cloud, Brain, Rocket, ScanFace, Briefcase, TrendingUp, DollarSign, Users, BarChart3, Building2, Zap, Clock, Gauge, BadgeCheck, MessageSquareQuote, ChevronDown, Cpu, Database, Globe, Lock, Sparkles } from "lucide-react";
+import { Shield, RefreshCw, Target, Cloud, Brain, Rocket, ScanFace, Briefcase, TrendingUp, DollarSign, Users, BarChart3, Building2, Zap, Clock, Gauge, BadgeCheck, MessageSquareQuote, ChevronDown, Cpu, Database, Globe, Lock, Sparkles, ArrowRight } from "lucide-react";
 import Layout from "@/components/Layout";
 
 // ─── Scroll Progress Bar ─────────────────────────────────────
@@ -468,6 +468,8 @@ const TiltCard = ({ children, className = "", style = {} }: { children: React.Re
 // ─── Data ────────────────────────────────────────────────────
 const services = [
   {
+    num: "01",
+    color: "#00D4FF",
     icon: (
       <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
         <rect x="2" y="2" width="14" height="14" rx="2" stroke="currentColor" strokeWidth="1.5" />
@@ -478,8 +480,13 @@ const services = [
     ),
     title: "Piattaforme SaaS Verticali",
     text: "Software gestionale, sicurezza, back-office in outsourcing. Ogni piattaforma elimina un costo fisso dalla tua azienda e ti restituisce ore. Non giorni — ore.",
+    bullets: ["Gestionale completo in cloud, sempre aggiornato", "Back-office in outsourcing pay-per-use", "Dashboard con dati in tempo reale"],
+    link: "/progetti/edilizia-in-cloud",
+    linkLabel: "Vedi Edilizia in Cloud",
   },
   {
+    num: "02",
+    color: "#A855F7",
     icon: (
       <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
         <circle cx="18" cy="18" r="15" stroke="currentColor" strokeWidth="1.5" />
@@ -489,8 +496,13 @@ const services = [
     ),
     title: "Agenti AI Operativi",
     text: "Non chatbot decorativi. Agenti che rispondono ai clienti, qualificano lead, compilano preventivi e gestiscono appuntamenti. Lavorano di notte. Non chiedono ferie.",
+    bullets: ["Prima risposta ai clienti in meno di 1 minuto, H24", "Qualificazione lead e booking appuntamenti automatici", "Follow-up intelligente — nessun lead lasciato senza risposta"],
+    link: "/progetti/edilizia-io",
+    linkLabel: "Vedi Edilizia.io",
   },
   {
+    num: "03",
+    color: "#10B981",
     icon: (
       <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
         <polyline points="4,28 12,20 20,24 32,8" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
@@ -499,8 +511,13 @@ const services = [
     ),
     title: "Marketing & Vendita Digitale",
     text: "Campagne ads, funnel, landing page, lead generation — tutto gestito e ottimizzato dall'AI. Strategie su misura con ROI misurabile e investimento calibrato sui tuoi obiettivi.",
+    bullets: ["Campagne Google, Meta e LinkedIn ottimizzate dall'AI", "Funnel e landing page ad alta conversione", "Tracking end-to-end: dal click alla vendita chiusa"],
+    link: "/servizi",
+    linkLabel: "Scopri i Servizi",
   },
   {
+    num: "04",
+    color: "#F59E0B",
     icon: (
       <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
         <path d="M18 4L30 12V24L18 32L6 24V12L18 4Z" stroke="currentColor" strokeWidth="1.5" fill="none" />
@@ -509,6 +526,9 @@ const services = [
     ),
     title: "Consulenza e Formazione",
     text: "Vendita, gestione aziendale, recruiting. Metodi testati su imprese reali — non teoria da manuale. Ogni strategia che insegniamo, la usiamo prima su noi stessi.",
+    bullets: ["Formazione vendita per team tecnici e commerciali", "Assessment processi aziendali e piano di automazione", "Affiancamento operativo — non solo teoria"],
+    link: "/servizi",
+    linkLabel: "Vai ai Servizi",
   },
 ];
 
@@ -780,14 +800,47 @@ const Index = () => {
             </p>
           </FadeIn>
 
-          <div className="grid md:grid-cols-2 gap-px bg-[rgba(255,255,255,0.04)]">
+          <div className="grid md:grid-cols-2 gap-6">
             {services.map((s, i) => (
               <FadeIn key={i} delay={0.08 * i}>
-                <div className="group relative bg-background p-14 hover:bg-[rgba(255,255,255,0.02)] transition-all hover:-translate-y-1">
-                  <div className="absolute top-0 left-0 right-0 h-0.5 bg-primary origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-                  <div className="text-primary mb-6">{s.icon}</div>
-                  <h3 className="font-display text-[22px] font-semibold mb-4">{s.title}</h3>
-                  <p className="text-[15px] leading-[1.8] text-[rgba(255,255,255,0.7)] font-light">{s.text}</p>
+                <div className="group relative rounded-xl border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.02)] p-10 hover:bg-[rgba(255,255,255,0.04)] transition-all duration-500 hover:-translate-y-1 overflow-hidden">
+                  {/* Color accent top border */}
+                  <div
+                    className="absolute top-0 left-0 right-0 h-[2px] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"
+                    style={{ background: s.color }}
+                  />
+                  {/* Large faded number */}
+                  <span
+                    className="absolute top-6 right-8 font-mono text-[72px] font-bold leading-none select-none pointer-events-none transition-opacity duration-500"
+                    style={{ color: s.color, opacity: 0.06 }}
+                  >
+                    {s.num}
+                  </span>
+                  {/* Icon */}
+                  <div className="mb-6 transition-transform duration-300 group-hover:scale-110" style={{ color: s.color }}>{s.icon}</div>
+                  {/* Title */}
+                  <h3 className="font-display text-[22px] font-semibold mb-4 group-hover:text-white transition-colors">{s.title}</h3>
+                  {/* Description */}
+                  <p className="text-[15px] leading-[1.8] text-[rgba(255,255,255,0.65)] font-light mb-6">{s.text}</p>
+                  {/* Bullets — reveal on hover */}
+                  <div className="overflow-hidden transition-all duration-500 max-h-0 group-hover:max-h-40 opacity-0 group-hover:opacity-100">
+                    <ul className="space-y-2 mb-6">
+                      {s.bullets.map((b, bi) => (
+                        <li key={bi} className="flex items-start gap-2 text-[13px] text-[rgba(255,255,255,0.7)] font-light">
+                          <span className="mt-1.5 shrink-0 w-1.5 h-1.5 rounded-full" style={{ background: s.color }} />
+                          {b}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  {/* CTA link */}
+                  <Link
+                    to={s.link}
+                    className="inline-flex items-center gap-2 text-[12px] font-mono uppercase tracking-[2px] transition-all duration-300 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0"
+                    style={{ color: s.color }}
+                  >
+                    {s.linkLabel} <ArrowRight size={14} />
+                  </Link>
                 </div>
               </FadeIn>
             ))}
