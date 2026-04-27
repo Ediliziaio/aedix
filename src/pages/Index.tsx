@@ -668,8 +668,8 @@ const Index = () => {
                 className="font-display font-bold leading-[1.04] tracking-[-3px] mb-8 relative"
                 style={{ fontSize: "clamp(44px, 6.5vw, 88px)" }}
               >
-                Costruiamo il Futuro<br />
-                con l'AI <span className="italic font-light text-primary">e le Persone.</span>
+                AI per le PMI Italiane.<br />
+                <span className="italic font-light text-primary">Costruita con le Persone.</span>
               </h1>
             </div>
           </FadeIn>
@@ -1075,7 +1075,7 @@ const Index = () => {
               <div className="relative rounded-lg overflow-hidden aspect-[4/3]">
                 <img
                   src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80"
-                  alt="AI Technology"
+                  alt="Intelligenza artificiale per PMI italiane — vantaggio competitivo AEDIX"
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />

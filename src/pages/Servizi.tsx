@@ -105,7 +105,7 @@ const Servizi = () => (
     <section className="relative pt-[140px] pb-20 px-6 lg:px-12 overflow-hidden">
       <ParallaxImage
         src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80"
-        alt="Technology background"
+        alt="Servizi AI per PMI italiane — software, agenti, marketing, SEO"
         className="absolute inset-0"
         speed={0.2}
         overlay={<div className="absolute inset-0 bg-background/[0.92]" />}

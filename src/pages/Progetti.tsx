@@ -52,7 +52,7 @@ const Progetti = () => (
     <section className="relative pt-[140px] pb-20 px-6 lg:px-12 overflow-hidden">
       <ParallaxImage
         src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=80"
-        alt="Technology"
+        alt="Ecosistema di 7 piattaforme AEDIX per PMI italiane"
         className="absolute inset-0"
         speed={0.2}
         overlay={<div className="absolute inset-0 bg-background/[0.92]" />}
