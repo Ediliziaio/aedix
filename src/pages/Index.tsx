@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
 import aedixLogo from "@/assets/aedix_logo.png";
+import eicLogo from "@/assets/edilizia-in-cloud-logo.png";
 import { motion, useInView, useMotionValue, animate, useScroll, useTransform } from "framer-motion";
 import { Shield, RefreshCw, Target, Cloud, Brain, Rocket, ScanFace, Briefcase, TrendingUp, DollarSign, Users, BarChart3, Building2, Zap, Clock, Gauge, BadgeCheck, MessageSquareQuote, ChevronDown, Cpu, Database, Globe, Lock, Sparkles, ArrowRight } from "lucide-react";
 import Layout from "@/components/Layout";
@@ -549,7 +550,7 @@ const comparison = [
 ];
 
 const projectIcons: Record<string, React.ReactNode> = {
-  "Edilizia in Cloud": <Cloud size={32} />,
+  "Edilizia in Cloud": <img src={eicLogo} alt="Edilizia in Cloud" className="w-9 h-9 rounded-md" />,
 };
 
 const projects = [
@@ -557,7 +558,7 @@ const projects = [
     name: "Edilizia in Cloud",
     color: "#00D4FF",
     desc: "Il gestionale cloud per imprese edili italiane. Cantieri, documenti, team, fatturazione — tutto connesso in un'unica piattaforma. È il primo prodotto dell'ecosistema AEDIX.",
-    url: "https://ediliziaincloud.it",
+    url: "https://www.ediliziaincloud.com",
   },
 ];
 

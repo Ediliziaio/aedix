@@ -2,12 +2,13 @@ import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 import {
-  Cloud, CheckCircle, ArrowRight, ChevronDown, Users, FileText, Smartphone,
+  CheckCircle, ArrowRight, ChevronDown, Users, FileText, Smartphone,
   BarChart3, Briefcase, Calendar, Sparkles,
 } from "lucide-react";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import TiltCard from "@/components/TiltCard";
+import eicLogo from "@/assets/edilizia-in-cloud-logo.png";
 
 const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) => {
   const ref = useRef(null);
@@ -51,7 +52,7 @@ const faqs = [
   { q: "Funziona offline in cantiere?", a: "L'app mobile ha funzionalità offline complete con sincronizzazione automatica appena il dispositivo torna online. In cantiere il segnale è spesso debole — ne abbiamo tenuto conto fin dal design." },
   { q: "Quanto tempo richiede l'attivazione?", a: "Il setup base richiede 3–5 giorni lavorativi. Per le imprese più strutturate, includiamo onboarding dedicato di 2 settimane con configurazione personalizzata." },
   { q: "È adatto a un'impresa con 8 dipendenti?", a: "Sì, è progettato esattamente per la fascia 5–50 dipendenti. Niente complessità da multinazionale, niente tagli da gestionale gratuito." },
-  { q: "Quanto costa?", a: "Edilizia in Cloud parte da abbonamenti mensili pensati per le PMI italiane, senza costi nascosti né vincoli annuali. Trovi il listino aggiornato e una demo gratuita su ediliziaincloud.it." },
+  { q: "Quanto costa?", a: "Edilizia in Cloud parte da abbonamenti mensili pensati per le PMI italiane, senza costi nascosti né vincoli annuali. Trovi il listino aggiornato e una demo gratuita su ediliziaincloud.com." },
 ];
 
 const FAQItem = ({ faq, index }: { faq: typeof faqs[0]; index: number }) => {
@@ -96,7 +97,7 @@ const EdiliziaInCloud = () => (
         name: "Edilizia in Cloud",
         applicationCategory: "BusinessApplication",
         operatingSystem: "Web, iOS, Android",
-        url: "https://ediliziaincloud.it",
+        url: "https://www.ediliziaincloud.com",
         publisher: { "@type": "Organization", name: "AEDIX", url: "https://www.aedix.it" },
         offers: { "@type": "Offer", priceCurrency: "EUR", availability: "https://schema.org/InStock" },
         description: "Gestionale cloud per imprese edili italiane: cantieri, documenti, team, fatturazione, app mobile.",
@@ -115,9 +116,11 @@ const EdiliziaInCloud = () => (
               <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">Il nostro prodotto</span>
             </FadeIn>
             <FadeIn delay={0.08}>
-              <div className="mb-6 opacity-80" style={{ color: "#00D4FF" }}>
-                <Cloud size={48} />
-              </div>
+              <img
+                src={eicLogo}
+                alt="Edilizia in Cloud — logo"
+                className="h-16 w-16 mb-6 rounded-lg"
+              />
             </FadeIn>
             <FadeIn delay={0.12}>
               <h1 className="font-display font-bold leading-[1.04] tracking-[-2px] mb-6" style={{ fontSize: "clamp(36px, 5.5vw, 72px)" }}>
@@ -133,12 +136,12 @@ const EdiliziaInCloud = () => (
             <FadeIn delay={0.24}>
               <div className="flex flex-wrap gap-4">
                 <a
-                  href="https://ediliziaincloud.it"
+                  href="https://www.ediliziaincloud.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="shimmer-btn inline-flex items-center gap-3 bg-primary text-primary-foreground font-bold text-[13px] uppercase tracking-[2px] px-10 py-[18px] hover:-translate-y-0.5 transition-all relative overflow-hidden"
                 >
-                  Vai a ediliziaincloud.it <ArrowRight size={16} />
+                  Vai a ediliziaincloud.com <ArrowRight size={16} />
                 </a>
                 <Link
                   to="/contatti"
@@ -152,16 +155,25 @@ const EdiliziaInCloud = () => (
 
           <FadeIn delay={0.2}>
             <TiltCard className="rounded-lg" tiltAmount={6}>
-              <div className="relative rounded-lg overflow-hidden aspect-[4/3]">
+              <div
+                className="relative rounded-lg overflow-hidden aspect-[4/3] flex items-center justify-center"
+                style={{
+                  background:
+                    "radial-gradient(ellipse at center, rgba(249,115,22,0.12) 0%, rgba(30,58,95,0.85) 60%, rgba(10,19,34,1) 100%)",
+                }}
+              >
                 <motion.img
-                  src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80"
+                  src={eicLogo}
                   alt="Edilizia in Cloud — gestionale cloud per imprese edili italiane"
-                  className="w-full h-full object-cover"
+                  className="w-[58%] h-auto drop-shadow-[0_20px_60px_rgba(249,115,22,0.25)]"
                   loading="lazy"
-                  animate={{ scale: [1, 1.04, 1] }}
-                  transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                 />
-                <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(0,212,255,0.1) 0%, rgba(0,212,255,0.4) 100%)" }} />
+                <div
+                  className="absolute -inset-4 rounded-2xl opacity-40 blur-3xl pointer-events-none"
+                  style={{ background: "radial-gradient(circle, rgba(249,115,22,0.18) 0%, transparent 70%)" }}
+                />
               </div>
             </TiltCard>
           </FadeIn>
@@ -320,12 +332,12 @@ const EdiliziaInCloud = () => (
           <FadeIn delay={0.12}>
             <div className="flex flex-wrap gap-4 justify-center">
               <a
-                href="https://ediliziaincloud.it"
+                href="https://www.ediliziaincloud.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="shimmer-btn inline-flex items-center gap-3 bg-primary text-primary-foreground font-bold text-[13px] uppercase tracking-[2px] px-12 py-[18px] hover:-translate-y-0.5 transition-all relative overflow-hidden"
               >
-                Visita ediliziaincloud.it <ArrowRight size={16} />
+                Visita ediliziaincloud.com <ArrowRight size={16} />
               </a>
               <Link
                 to="/contatti"

@@ -28,12 +28,12 @@ const Footer = () => (
             </li>
             <li>
               <a
-                href="https://ediliziaincloud.it"
+                href="https://www.ediliziaincloud.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[13px] text-[rgba(255,255,255,0.5)] hover:text-white transition-colors"
               >
-                ediliziaincloud.it ↗
+                ediliziaincloud.com ↗
               </a>
             </li>
             <li>
