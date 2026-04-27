@@ -704,7 +704,7 @@ const Index = () => {
           <FadeIn delay={0.4}>
             <div className="flex flex-wrap gap-16 mt-16">
               {[
-                { val: 3, suf: "h", label: "al giorno per dipendente" },
+                { val: 700, suf: "h", label: "all'anno per dipendente · ~20k€ recuperati" },
                 { val: 100, suf: "%", label: "Made in Italy · GDPR" },
                 { val: 24, suf: "/7", label: "AI sempre operativa" },
               ].map((s, i) => (
