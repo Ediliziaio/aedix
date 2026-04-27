@@ -519,13 +519,6 @@ const services = [
   },
 ];
 
-const stats = [
-  { value: 1, suffix: "", label: "Piattaforma SaaS attiva (Edilizia in Cloud)" },
-  { value: 100, suffix: "%", label: "Cloud-native — zero installazioni" },
-  { value: 100, suffix: "%", label: "Conforme GDPR e EU AI Act" },
-  { value: 24, suffix: "/7", label: "Operatività dei sistemi AI" },
-];
-
 const comparison = [
   { today: "Software generico che non si adatta al tuo settore", aedix: "Edilizia in Cloud — verticale per imprese edili italiane", impact: "Fit reale" },
   { today: "Prima risposta ai clienti in ore — o giorni", aedix: "Risposta automatica immediata, 24 ore su 24", impact: "Sempre live" },
@@ -711,9 +704,9 @@ const Index = () => {
           <FadeIn delay={0.4}>
             <div className="flex flex-wrap gap-16 mt-16">
               {[
-                { val: 1, suf: "", label: "Piattaforma SaaS Attiva" },
-                { val: 100, suf: "%", label: "Cloud-Native" },
-                { val: 24, suf: "/7", label: "Sistemi Operativi" },
+                { val: 3, suf: "h", label: "al giorno per dipendente" },
+                { val: 100, suf: "%", label: "Made in Italy · GDPR" },
+                { val: 24, suf: "/7", label: "AI sempre operativa" },
               ].map((s, i) => (
                 <div key={i} className="flex flex-col">
                   <span className="font-mono text-[52px] font-bold text-white leading-none">
