@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
 import aedixLogo from "@/assets/aedix_logo.png";
 import eicLogo from "@/assets/edilizia-in-cloud-logo.png";
-import { motion, useInView, useMotionValue, animate, useScroll, useTransform } from "framer-motion";
+import { motion, useInView, useMotionValue, animate, useScroll } from "framer-motion";
 import { Shield, RefreshCw, Target, Cloud, Brain, Rocket, ScanFace, Briefcase, TrendingUp, DollarSign, Users, BarChart3, Building2, Zap, Clock, Gauge, BadgeCheck, MessageSquareQuote, ChevronDown, Cpu, Database, Globe, Lock, Sparkles, ArrowRight } from "lucide-react";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
@@ -19,21 +19,6 @@ const ScrollProgressBar = () => {
 };
 
 // ─── Animated Progress Bar ───────────────────────────────────
-const AnimatedBar = ({ value, delay = 0 }: { value: number; delay?: number }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
-  return (
-    <div ref={ref} className="w-full h-2 rounded-full bg-[rgba(255,255,255,0.06)] overflow-hidden">
-      <motion.div
-        className="h-full rounded-full bg-primary"
-        initial={{ width: 0 }}
-        animate={isInView ? { width: `${value}%` } : {}}
-        transition={{ duration: 1.2, delay, ease: [0.16, 1, 0.3, 1] }}
-      />
-    </div>
-  );
-};
-
 // ─── Custom Cursor ───────────────────────────────────────────
 const CustomCursor = () => {
   const outerRef = useRef<HTMLDivElement>(null);
@@ -562,28 +547,6 @@ const projects = [
   },
 ];
 
-const aiStats = [
-  { value: "$15.7T", label: "Impatto economico globale dell'AI entro il 2030", source: "PwC", icon: <DollarSign size={24} /> },
-  { value: "40%", label: "Aumento produttività media con AI generativa", source: "McKinsey", icon: <TrendingUp size={24} /> },
-  { value: "97M", label: "Nuovi posti di lavoro creati dall'AI entro il 2025", source: "World Economic Forum", icon: <Users size={24} /> },
-  { value: "300%", label: "ROI medio delle aziende che adottano AI in modo strutturato", source: "Accenture", icon: <BarChart3 size={24} /> },
-  { value: "75%", label: "Delle aziende adotterà AI entro il 2027", source: "Gartner", icon: <Building2 size={24} /> },
-  { value: "14%", label: "Delle PMI italiane usa AI in modo strutturato — la media UE è al 28%", source: "DESI 2025", icon: <Zap size={24} /> },
-];
-
-const socialVsAi = [
-  { social: { myth: '"Sono una moda"', reality: "Oggi fatturano $200B/anno" }, ai: { myth: '"È troppo complicata"', reality: "Si configura in giorni, non mesi" } },
-  { social: { myth: '"Non servono alla mia azienda"', reality: "Oggi sono il canale di vendita #1" }, ai: { myth: '"Non serve nel mio settore"', reality: "Già usata in ogni tipo di PMI italiana" } },
-  { social: { myth: '"Costa troppo, non ho tempo"', reality: "Chi ha iniziato prima ha vinto" }, ai: { myth: '"Aspetto che maturi"', reality: "Chi aspetta, perde. Per sempre." } },
-];
-
-const competitivePoints = [
-  { icon: <Clock size={28} />, stat: "24/7", label: "Operatività continua — i sistemi AI non si fermano mai", bar: 100 },
-  { icon: <BadgeCheck size={28} />, stat: "0", label: "Dimenticanze — i processi automatizzati non saltano mai un passaggio", bar: 95 },
-  { icon: <Gauge size={28} />, stat: "Cloud", label: "Accesso ovunque — da qualsiasi dispositivo, sempre aggiornato", bar: 90 },
-  { icon: <Globe size={28} />, stat: "EU", label: "Conformità nativa a GDPR e EU AI Act — nessun rischio legale", bar: 85 },
-];
-
 const timeline = [
   { num: "01", title: "Analisi gratuita", text: "Mappiamo dove stai perdendo soldi oggi — processi manuali, lead non seguiti, costi fissi evitabili, ore bruciate in burocrazia. Nessun impegno." },
   { num: "02", title: "Piano su misura", text: "Ti diciamo esattamente cosa attivare, in quale ordine, per avere il massimo impatto nel minor tempo. Senza tecnologia inutile." },
@@ -637,10 +600,6 @@ const Index = () => {
   const scrollTo = useCallback((id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   }, []);
-
-  // Parallax for manifesto
-  const { scrollYProgress: manifestoProgress } = useScroll();
-  const manifestoY = useTransform(manifestoProgress, [0, 1], [0, -100]);
 
   return (
     <>
@@ -845,108 +804,6 @@ const Index = () => {
 
       <SectionDivider />
 
-      {/* ───── I PILASTRI ───── */}
-      <section className="bg-alt py-40 px-6 lg:px-12">
-        <div className="max-w-[1320px] mx-auto">
-          <FadeIn>
-            <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">
-              Il Nostro Approccio
-            </span>
-          </FadeIn>
-          <FadeIn delay={0.08}>
-            <h2
-              className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-4"
-              style={{ fontSize: "clamp(32px, 4.5vw, 58px)" }}
-            >
-              4 principi non negoziabili.<br />
-              <span className="italic font-light text-primary">In ogni piattaforma che costruiamo.</span>
-            </h2>
-          </FadeIn>
-          <FadeIn delay={0.12}>
-            <p className="text-[16px] text-[rgba(255,255,255,0.55)] font-light max-w-[520px] mb-16">
-              Non li trovi nel marketing delle big tech perché rispettarli costa. Li trovi qui perché è l'unico modo in cui sappiamo lavorare.
-            </p>
-          </FadeIn>
-
-          <div className="grid grid-cols-2 lg:grid-cols-4">
-            {[
-              { stat: "AI", label: "Non un add-on decorativo — il motore che automatizza le parti noiose del tuo lavoro" },
-              { stat: "Cloud", label: "Zero installazioni, zero IT interno — accedi da qualsiasi dispositivo, sempre aggiornato" },
-              { stat: "PMI", label: "Costruito per aziende da 5 a 200 persone — non adattato verso il basso, nato così" },
-              { stat: "EU", label: "GDPR e EU AI Act rispettati by design — zero rischi legali nascosti nel contratto" },
-            ].map((s, i) => (
-              <FadeIn key={i} delay={0.08 * i}>
-                <div className={`py-8 px-6 ${i > 0 ? "lg:border-l border-[rgba(255,255,255,0.06)]" : ""}`}>
-                  <span className="font-mono text-[56px] font-bold text-primary leading-none block glow-text">
-                    {s.stat}
-                  </span>
-                  <span className="text-[14px] text-[rgba(255,255,255,0.65)] font-light mt-3 block">
-                    {s.label}
-                  </span>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <SectionDivider />
-
-      {/* ───── LA RIVOLUZIONE AI IN NUMERI ───── */}
-      <section className="relative py-40 px-6 lg:px-12 overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1920&q=80')",
-          }}
-        />
-        <div className="absolute inset-0 bg-background/[0.92]" />
-
-        <div className="relative max-w-[1320px] mx-auto">
-          <FadeIn>
-            <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">
-              La Rivoluzione AI
-            </span>
-          </FadeIn>
-          <FadeIn delay={0.08}>
-            <h2
-              className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-6"
-              style={{ fontSize: "clamp(32px, 4.5vw, 58px)" }}
-            >
-              L'AI non è il futuro.<br />
-              <span className="italic font-light text-primary">È il presente che stai ignorando.</span>
-            </h2>
-          </FadeIn>
-          <FadeIn delay={0.16}>
-            <p className="text-[18px] text-[rgba(255,255,255,0.7)] max-w-[600px] font-light mb-16">
-              Dati reali da fonti globali. Non opinioni — numeri che ogni imprenditore dovrebbe conoscere prima di decidere se "aspettare ancora un po'."
-            </p>
-          </FadeIn>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {aiStats.map((s, i) => (
-              <FadeIn key={i} delay={0.08 * i}>
-                <div className="group relative p-8 rounded-lg border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)] hover:bg-[rgba(255,255,255,0.06)] transition-all hover:-translate-y-1">
-                  <div className="absolute top-0 left-0 right-0 h-0.5 bg-primary origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
-                  <div className="text-primary mb-4 opacity-70">{s.icon}</div>
-                  <div className="font-mono text-[36px] font-bold text-primary leading-none mb-3 glow-text">
-                    {s.value}
-                  </div>
-                  <p className="text-[14px] text-[rgba(255,255,255,0.55)] font-light leading-[1.6] mb-3">
-                    {s.label}
-                  </p>
-                  <span className="font-mono text-[10px] uppercase tracking-[2px] text-[rgba(255,255,255,0.2)]">
-                    Fonte: {s.source}
-                  </span>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <SectionDivider />
-
       {/* ───── PRIMA / DOPO ───── */}
       <section className="py-40 px-6 lg:px-12">
         <div className="max-w-[1320px] mx-auto">
@@ -1083,161 +940,119 @@ const Index = () => {
 
       <SectionDivider />
 
-      {/* ───── VANTAGGIO COMPETITIVO ───── */}
-      <section className="relative py-40 px-6 lg:px-12 overflow-hidden">
-        <div className="max-w-[1320px] mx-auto">
+      {/* ───── EDILIZIA IN CLOUD — SHOWCASE ───── */}
+      <section id="prodotto" className="relative bg-alt py-40 px-6 lg:px-12 overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-30 pointer-events-none"
+          style={{ background: "radial-gradient(ellipse at 70% 50%, rgba(249,115,22,0.12) 0%, transparent 60%)" }}
+        />
+        <div className="relative max-w-[1320px] mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <FadeIn>
-              <div className="relative rounded-lg overflow-hidden aspect-[4/3]">
-                <img
-                  src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80"
-                  alt="Intelligenza artificiale per PMI italiane — vantaggio competitivo AEDIX"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/40 to-transparent" />
-                <div className="absolute inset-0 bg-primary/[0.05]" />
-              </div>
-            </FadeIn>
-
             <div>
               <FadeIn>
-                <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">
-                  Il Vantaggio
-                </span>
+                <div className="flex items-center gap-3 mb-6">
+                  <img src={eicLogo} alt="Edilizia in Cloud" className="h-11 w-11 rounded-lg" />
+                  <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary">Il prodotto AEDIX</span>
+                </div>
               </FadeIn>
               <FadeIn delay={0.08}>
                 <h2
-                  className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-12"
-                  style={{ fontSize: "clamp(28px, 3.5vw, 48px)" }}
+                  className="font-display font-bold leading-[1.06] tracking-[-1.5px] mb-6"
+                  style={{ fontSize: "clamp(32px, 4.5vw, 56px)" }}
                 >
-                  Mentre i tuoi competitor dormono,<br />
-                  <span className="italic font-light text-primary">l'AI lavora per te.</span>
+                  Edilizia in Cloud.<br />
+                  <span className="italic font-light text-primary">Il sistema operativo per imprese edili.</span>
                 </h2>
               </FadeIn>
-
-              <div className="space-y-8">
-                {competitivePoints.map((p, i) => (
-                  <FadeIn key={i} delay={0.12 * i + 0.16}>
-                    <div className="group">
-                      <div className="flex items-center gap-4 mb-3">
-                        <div className="w-12 h-12 rounded-full border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary/10 transition-colors">
-                          {p.icon}
-                        </div>
-                        <div>
-                          <span className="font-mono text-[28px] font-bold text-primary leading-none">{p.stat}</span>
-                          <p className="text-[14px] text-[rgba(255,255,255,0.7)] font-light mt-1">{p.label}</p>
-                        </div>
-                      </div>
-                      <AnimatedBar value={p.bar} delay={0.1 * i + 0.3} />
-                    </div>
-                  </FadeIn>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <SectionDivider />
-
-      {/* ───── MANIFESTO (parallax) ───── */}
-      <section className="relative py-48 px-6 lg:px-12 overflow-hidden bg-alt">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1920&q=80')",
-          }}
-        />
-        <div className="absolute inset-0 bg-background/[0.88]" />
-        <motion.div
-          className="absolute inset-0 flex items-center justify-center pointer-events-none"
-          style={{ y: manifestoY }}
-        >
-          <div className="w-[600px] h-[600px] rounded-full bg-primary/[0.04] blur-[100px]" />
-        </motion.div>
-
-        <div className="relative max-w-[1000px] mx-auto text-center">
-          <FadeIn>
-            <motion.h2
-              className="font-display font-bold leading-[1.06] tracking-[-2px]"
-              style={{ fontSize: "clamp(36px, 5.5vw, 72px)" }}
-            >
-              Le PMI italiane meritano<br />
-              <span className="italic font-light text-primary">tecnologia da Fortune 500.</span>
-            </motion.h2>
-          </FadeIn>
-          <FadeIn delay={0.15}>
-            <p className="text-[20px] text-[rgba(255,255,255,0.6)] font-light mt-8 max-w-[600px] mx-auto leading-[1.7]">
-              Non è un sogno. È quello che costruiamo ogni giorno. Piattaforma dopo piattaforma, problema dopo problema risolto.
-            </p>
-          </FadeIn>
-        </div>
-      </section>
-
-      <SectionDivider />
-
-      {/* ───── I NOSTRI PROGETTI (3D Tilt Cards) ───── */}
-      <section id="progetti" className="bg-alt py-40 px-6 lg:px-12">
-        <div className="max-w-[1320px] mx-auto">
-          <FadeIn>
-            <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">
-              I Nostri Progetti
-            </span>
-          </FadeIn>
-          <FadeIn delay={0.08}>
-            <h2
-              className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-6"
-              style={{ fontSize: "clamp(32px, 4.5vw, 58px)" }}
-            >
-              Edilizia in Cloud.<br />
-              Il primo passo dell'<span className="italic font-light text-primary">ecosistema.</span>
-            </h2>
-          </FadeIn>
-          <FadeIn delay={0.16}>
-            <p className="text-[18px] text-[rgba(255,255,255,0.7)] max-w-[640px] font-light mb-16">
-              AEDIX parte da Edilizia in Cloud — il gestionale verticale per imprese edili italiane. Da qui costruiremo nuovi prodotti AI per le PMI, uno alla volta, solo dopo averli collaudati sul campo.
-            </p>
-          </FadeIn>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
-            {projects.map((p, i) => (
-              <FadeIn key={i} delay={0.08 * i}>
-                <a
-                  href={p.url}
-                  target={p.url !== "#" ? "_blank" : undefined}
-                  rel="noopener noreferrer"
-                  className="block"
-                >
-                  <TiltCard
-                    className="group relative p-9 rounded-xl border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)] transition-all hover:shadow-[0_20px_60px_rgba(0,0,0,0.3)] hover:-translate-y-1 cursor-pointer h-full"
-                    style={{ ["--brand-color" as string]: p.color }}
-                  >
-                    <div
-                      className="absolute top-0 left-0 right-0 h-0.5 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-t-xl"
-                      style={{ background: p.color }}
-                    />
-                    <div className="flex items-start justify-between mb-5">
-                      <div className="opacity-60 group-hover:opacity-100 transition-opacity" style={{ color: p.color }}>
-                        {projectIcons[p.name]}
-                      </div>
-                      {p.url !== "#" && (
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="opacity-0 group-hover:opacity-60 transition-opacity" style={{ color: p.color }}>
-                          <path d="M3 13L13 3M13 3H7M13 3V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      )}
-                    </div>
-                    <h3 className="text-[20px] font-semibold mb-3" style={{ color: p.color }}>
-                      {p.name}
-                    </h3>
-                    <p className="text-[14px] text-[rgba(255,255,255,0.65)] font-light leading-[1.75]">
-                      {p.desc}
-                    </p>
-                  </TiltCard>
-                </a>
+              <FadeIn delay={0.14}>
+                <p className="text-[17px] text-[rgba(255,255,255,0.75)] font-light leading-[1.85] mb-8 max-w-[560px]">
+                  Cantieri, preventivi, fatturazione SDI, documentazione di sicurezza e app mobile in un'unica piattaforma cloud. Operativa in 3-5 giorni, niente vincoli annuali.
+                </p>
               </FadeIn>
-            ))}
+              <FadeIn delay={0.18}>
+                <div className="space-y-3 mb-10">
+                  {[
+                    "Cantieri e margini in tempo reale, anche dall'app in cantiere",
+                    "Preventivi in 8 minuti — non più 90",
+                    "Fatturazione elettronica SDI integrata, scadenzario automatico",
+                    "Migrazione gratuita dai principali gestionali del settore",
+                  ].map((b, i) => (
+                    <div key={i} className="flex items-start gap-3">
+                      <span className="mt-2 shrink-0 w-1.5 h-1.5 rounded-full bg-primary" />
+                      <span className="text-[15px] text-[rgba(255,255,255,0.78)] font-light leading-[1.65]">{b}</span>
+                    </div>
+                  ))}
+                </div>
+              </FadeIn>
+              <FadeIn delay={0.24}>
+                <div className="flex flex-wrap gap-4">
+                  <Link
+                    to="/edilizia-in-cloud"
+                    className="shimmer-btn inline-flex items-center gap-3 bg-primary text-primary-foreground font-bold text-[13px] uppercase tracking-[2px] px-10 py-[18px] hover:-translate-y-0.5 transition-all relative overflow-hidden"
+                  >
+                    Scopri il prodotto <ArrowRight size={16} />
+                  </Link>
+                  <a
+                    href="https://www.ediliziaincloud.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-3 border border-[rgba(255,255,255,0.15)] text-white font-bold text-[13px] uppercase tracking-[2px] px-10 py-[18px] hover:bg-[rgba(255,255,255,0.05)] transition-all"
+                  >
+                    Vai al portale ↗
+                  </a>
+                </div>
+              </FadeIn>
+            </div>
+
+            <FadeIn delay={0.16}>
+              <TiltCard className="rounded-xl" tiltAmount={5}>
+                <div
+                  className="relative rounded-xl overflow-hidden aspect-[4/3] flex items-center justify-center"
+                  style={{
+                    background:
+                      "radial-gradient(ellipse at center, rgba(249,115,22,0.15) 0%, rgba(30,58,95,0.85) 60%, rgba(10,19,34,1) 100%)",
+                  }}
+                >
+                  <motion.img
+                    src={eicLogo}
+                    alt="Edilizia in Cloud — gestionale cloud per imprese edili italiane"
+                    className="w-[55%] h-auto drop-shadow-[0_20px_60px_rgba(249,115,22,0.3)]"
+                    loading="lazy"
+                    animate={{ y: [0, -10, 0] }}
+                    transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+                  />
+                </div>
+              </TiltCard>
+              <FadeIn delay={0.3}>
+                <div className="mt-6 grid grid-cols-3 gap-3 text-center">
+                  {[
+                    { v: "+3h", l: "al giorno per dipendente" },
+                    { v: "−85%", l: "tempo per preventivo" },
+                    { v: "3-5gg", l: "operativo dal go-live" },
+                  ].map((s, i) => (
+                    <div key={i} className="p-4 rounded-lg border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)]">
+                      <div className="font-mono text-[20px] font-bold text-primary leading-none mb-1.5">{s.v}</div>
+                      <div className="text-[10px] text-[rgba(255,255,255,0.55)] font-light uppercase tracking-[1.5px]">{s.l}</div>
+                    </div>
+                  ))}
+                </div>
+              </FadeIn>
+            </FadeIn>
           </div>
+
+          <FadeIn delay={0.32}>
+            <div className="mt-20 pt-10 border-t border-[rgba(255,255,255,0.06)] flex flex-wrap items-center justify-between gap-6">
+              <p className="text-[14px] text-[rgba(255,255,255,0.55)] font-light max-w-[640px]">
+                Edilizia in Cloud è il primo prodotto dell'ecosistema AEDIX. Ne seguiranno altri — uno alla volta, solo dopo averli collaudati sul campo.
+              </p>
+              <Link
+                to="/perche-noi"
+                className="inline-flex items-center gap-2 text-primary font-mono text-[12px] uppercase tracking-[2px] hover:gap-3 transition-all"
+              >
+                La storia AEDIX <ArrowRight size={14} />
+              </Link>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
@@ -1360,53 +1175,6 @@ const Index = () => {
               </FadeIn>
             ))}
           </div>
-        </div>
-      </section>
-
-      <SectionDivider />
-
-      {/* ───── TECH STACK ───── */}
-      <section className="bg-alt py-32 px-6 lg:px-12">
-        <div className="max-w-[1000px] mx-auto text-center">
-          <FadeIn>
-            <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">
-              Il Nostro Stack
-            </span>
-            <h2
-              className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-6"
-              style={{ fontSize: "clamp(28px, 3.5vw, 48px)" }}
-            >
-              Costruito sulle migliori<br />
-              <span className="italic font-light text-primary">tecnologie al mondo.</span>
-            </h2>
-            <p className="text-[16px] text-[rgba(255,255,255,0.65)] font-light mb-16 max-w-[500px] mx-auto">
-              Non reinventiamo la ruota. Integriamo le tecnologie più potenti al mondo per costruire soluzioni su misura.
-            </p>
-          </FadeIn>
-
-          <FadeIn delay={0.12}>
-            <div className="flex flex-wrap items-center justify-center gap-10">
-              {[
-                { name: "OpenAI", icon: <Sparkles size={28} /> },
-                { name: "React", icon: <Globe size={28} /> },
-                { name: "Supabase", icon: <Database size={28} /> },
-                { name: "AWS", icon: <Cloud size={28} /> },
-                { name: "TypeScript", icon: <Cpu size={28} /> },
-                { name: "Stripe", icon: <Lock size={28} /> },
-              ].map((tech, i) => (
-                <motion.div
-                  key={i}
-                  className="flex flex-col items-center gap-2 opacity-50 hover:opacity-100 transition-opacity"
-                  whileHover={{ scale: 1.1, y: -3 }}
-                >
-                  <div className="w-16 h-16 rounded-xl border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.03)] flex items-center justify-center text-[rgba(255,255,255,0.7)]">
-                    {tech.icon}
-                  </div>
-                  <span className="font-mono text-[11px] uppercase tracking-[2px] text-[rgba(255,255,255,0.45)]">{tech.name}</span>
-                </motion.div>
-              ))}
-            </div>
-          </FadeIn>
         </div>
       </section>
 
