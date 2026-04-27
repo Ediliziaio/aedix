@@ -20,6 +20,33 @@ const categories = ["Tutti", "AI", "PMI", "Automazione", "Marketing", "Strategia
 
 const articles = [
   {
+    slug: "gdpr-ai-pmi-italiane-guida-2026",
+    title: "GDPR e AI: la guida pratica per PMI italiane nel 2026",
+    excerpt: "Usi AI nella tua PMI? Devi rispettare GDPR + AI Act insieme. Cosa fare in pratica per essere compliant nel 2026 — checklist, costi, sanzioni reali.",
+    category: "Strategia",
+    date: "6 Mag 2026",
+    readTime: "11 min",
+    image: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    slug: "whatsapp-business-ai-pmi-italiane",
+    title: "WhatsApp Business + AI: la combinazione che converte i clienti italiani",
+    excerpt: "L'88% degli italiani usa WhatsApp ogni giorno. Come integrare AI con WhatsApp Business — setup, costi, automazioni e casi reali italiani.",
+    category: "Marketing",
+    date: "5 Mag 2026",
+    readTime: "10 min",
+    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    slug: "ai-generativa-pmi-italiane-2026",
+    title: "AI generativa per PMI italiane: come usarla davvero nel 2026",
+    excerpt: "ChatGPT, Claude, Gemini cambiano il lavoro nelle PMI. 6 use case concreti — copy, preventivi, codice, analisi, formazione, customer care.",
+    category: "AI",
+    date: "4 Mag 2026",
+    readTime: "11 min",
+    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80",
+  },
+  {
     slug: "come-scegliere-fornitore-ai-pmi-italiana",
     title: "Come scegliere un fornitore AI per la tua PMI: 7 domande chiave",
     excerpt: "Stai valutando un fornitore di AI per la tua PMI italiana? Ecco le 7 domande che ti salvano da contratti pessimi e progetti falliti.",
