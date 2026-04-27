@@ -5,6 +5,7 @@ import { Cloud, CheckCircle, ArrowRight, Brain, Rocket, BookOpen, ChevronDown, M
 import ParallaxImage from "@/components/ParallaxImage";
 import TiltCard from "@/components/TiltCard";
 import Layout from "@/components/Layout";
+import SEO from "@/components/SEO";
 
 const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) => {
   const ref = useRef(null);
@@ -93,12 +94,18 @@ const FAQItem = ({ faq, index }: { faq: typeof serviceFaqs[0]; index: number }) 
 };
 
 const Servizi = () => (
-  <Layout>
+  <>
+    <SEO
+      title="Servizi AI per PMI Italiane — AEDIX"
+      description="Software gestionali, agenti AI operativi, marketing a performance e consulenza. Quattro pilastri per scalare la tua PMI italiana con l'AI."
+      path="/servizi"
+    />
+    <Layout>
     {/* Hero with parallax background */}
     <section className="relative pt-[140px] pb-20 px-6 lg:px-12 overflow-hidden">
       <ParallaxImage
         src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80"
-        alt="Technology background"
+        alt="Servizi AI per PMI italiane — software, agenti, marketing, formazione"
         className="absolute inset-0"
         speed={0.2}
         overlay={<div className="absolute inset-0 bg-background/[0.92]" />}
@@ -251,7 +258,8 @@ const Servizi = () => (
         ))}
       </div>
     </section>
-  </Layout>
+    </Layout>
+  </>
 );
 
 export default Servizi;

@@ -3,6 +3,7 @@ import { useParams, Link, Navigate } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 import { Cloud, Shield, Brain, Briefcase, CheckCircle, ArrowLeft, ArrowRight, ChevronDown } from "lucide-react";
 import Layout from "@/components/Layout";
+import SEO from "@/components/SEO";
 
 const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) => {
   const ref = useRef(null);
@@ -104,7 +105,18 @@ const ProgettoDettaglio = () => {
   const related = allProjects.filter((p) => p.slug !== slug).slice(0, 3);
 
   return (
-    <Layout>
+    <>
+      <SEO
+        title={`${project.name} — AEDIX`}
+        description={project.desc.length > 155 ? `${project.desc.slice(0, 152)}...` : project.desc}
+        path={`/progetti/${slug}`}
+        breadcrumbs={[
+          { name: "Home", url: "/" },
+          { name: "Progetti", url: "/progetti" },
+          { name: project.name, url: `/progetti/${slug}` },
+        ]}
+      />
+      <Layout>
       {/* Hero */}
       <section className="pt-[140px] pb-20 px-6 lg:px-12">
         <div className="max-w-[1320px] mx-auto">
@@ -213,7 +225,8 @@ const ProgettoDettaglio = () => {
           </Link>
         </FadeIn>
       </section>
-    </Layout>
+      </Layout>
+    </>
   );
 };
 

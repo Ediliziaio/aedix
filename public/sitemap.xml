@@ -4,7 +4,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://www.aedix.it/</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -12,50 +12,180 @@
   <!-- Pagine principali -->
   <url>
     <loc>https://www.aedix.it/servizi</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.aedix.it/perche-noi</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.aedix.it/progetti</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.aedix.it/articoli</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.aedix.it/contatti</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Pagine progetto (4 piattaforme) -->
+  <url>
+    <loc>https://www.aedix.it/progetti/edilizia-in-cloud</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.aedix.it/progetti/edilizia-io</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.aedix.it/progetti/impresa-leggera</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.aedix.it/progetti/tutelai</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Articoli blog — Settimana 27 apr 2026 -->
+  <url>
+    <loc>https://www.aedix.it/articoli/come-scegliere-fornitore-ai-pmi-italiana</loc>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.aedix.it/articoli/ai-act-2026-pmi-italiane-cosa-cambia</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.aedix.it/articoli/quanto-costa-ai-pmi-italiana-guida-2026</loc>
+    <lastmod>2026-04-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Articoli blog — Settimana 29 mar 2026 -->
+  <url>
+    <loc>https://www.aedix.it/articoli/perche-le-pmi-italiane-hanno-paura-dellai</loc>
     <lastmod>2026-03-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
+  <url>
+    <loc>https://www.aedix.it/articoli/5-processi-pmi-italiana-automatizzare-oggi</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.aedix.it/articoli/agenti-ai-per-pmi-cosa-sono-e-come-usarli</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Articoli blog — Storici -->
+  <url>
+    <loc>https://www.aedix.it/articoli/ai-pmi-italiane-2025</loc>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://www.aedix.it/articoli/automazione-processi-aziendali</loc>
+    <lastmod>2026-03-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://www.aedix.it/articoli/marketing-performance-edilizia</loc>
+    <lastmod>2026-03-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://www.aedix.it/articoli/agenti-ai-vs-chatbot</loc>
+    <lastmod>2026-02-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://www.aedix.it/articoli/errori-pmi-digitale</loc>
+    <lastmod>2026-02-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://www.aedix.it/articoli/roi-intelligenza-artificiale</loc>
+    <lastmod>2026-02-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://www.aedix.it/articoli/saas-verticale-vs-generico</loc>
+    <lastmod>2026-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://www.aedix.it/articoli/futuro-lavoro-ai-automazione</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
   <!-- Pagine legali -->
   <url>
     <loc>https://www.aedix.it/privacy</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
     <loc>https://www.aedix.it/termini</loc>
-    <lastmod>2026-03-29</lastmod>
+    <lastmod>2026-04-27</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

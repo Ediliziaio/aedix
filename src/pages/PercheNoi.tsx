@@ -5,6 +5,7 @@ import { Shield, Users, Target, Heart, Building, Utensils, Wrench, ShoppingBag, 
 import Layout from "@/components/Layout";
 import ParallaxImage from "@/components/ParallaxImage";
 import TiltCard from "@/components/TiltCard";
+import SEO from "@/components/SEO";
 
 const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) => {
   const ref = useRef(null);
@@ -61,7 +62,13 @@ const technologies = [
 ];
 
 const PercheNoi = () => (
-  <Layout>
+  <>
+    <SEO
+      title="Perché Scegliere AEDIX — Storia e Approccio"
+      description="Da impresa edile a ecosistema AI per PMI italiane. 4 piattaforme attive, AI nativa, GDPR compliant. Scopri il metodo AEDIX."
+      path="/perche-noi"
+    />
+    <Layout>
     {/* Hero — split layout */}
     <section className="pt-[140px] pb-20 px-6 lg:px-12 overflow-hidden">
       <div className="max-w-[1320px] mx-auto grid lg:grid-cols-2 gap-16 items-center">
@@ -86,7 +93,7 @@ const PercheNoi = () => (
             <div className="relative rounded-lg overflow-hidden aspect-[4/3]">
               <motion.img
                 src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80"
-                alt="AI Technology"
+                alt="Ecosistema AEDIX di AI per PMI italiane — software, agenti, automazioni"
                 className="w-full h-full object-cover"
                 loading="lazy"
                 animate={{ scale: [1, 1.03, 1] }}
@@ -252,7 +259,7 @@ const PercheNoi = () => (
     <section className="relative py-48 px-6 lg:px-12 overflow-hidden">
       <ParallaxImage
         src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1920&q=80"
-        alt="Office"
+        alt="Ufficio AEDIX — tech company italiana per PMI"
         className="absolute inset-0"
         speed={0.3}
         overlay={<div className="absolute inset-0 bg-gradient-to-b from-background/[0.85] via-background/[0.75] to-background/[0.90]" />}
@@ -285,7 +292,8 @@ const PercheNoi = () => (
         </FadeIn>
       </div>
     </section>
-  </Layout>
+    </Layout>
+  </>
 );
 
 export default PercheNoi;

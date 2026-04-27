@@ -3,6 +3,7 @@ import { useParams, Link, Navigate } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 import { ArrowLeft, Clock, Calendar, User } from "lucide-react";
 import Layout from "@/components/Layout";
+import SEO from "@/components/SEO";
 
 const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) => {
   const ref = useRef(null);
@@ -17,7 +18,66 @@ const FadeIn = ({ children, delay = 0, className = "" }: { children: React.React
 const articleContent: Record<string, {
   title: string; category: string; date: string; readTime: string; author: string;
   image: string; intro: string; sections: { heading: string; text: string }[]; quote?: string;
+  metaTitle?: string; metaDescription?: string; publishedISO?: string;
 }> = {
+  "quanto-costa-ai-pmi-italiana-guida-2026": {
+    title: "Quanto costa l'AI per una PMI italiana? Guida prezzi 2026",
+    metaTitle: "Quanto Costa l'AI per una PMI Italiana? Guida 2026 | AEDIX",
+    metaDescription: "Da €200 a €5.000/mese: i prezzi reali dell'AI per PMI italiane nel 2026. Cosa include ogni fascia, e quale ROI aspettarsi. Guida completa.",
+    publishedISO: "2026-04-27",
+    category: "Strategia", date: "27 Apr 2026", readTime: "8 min", author: "Florin Andriciuc",
+    image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1600&q=80",
+    intro: "\"Quanto costa l'AI per una PMI italiana?\" è la prima domanda che ci fanno tutti. La risposta varia da €200 a €5.000 al mese — e dipende meno dalla tecnologia e più da cosa vuoi automatizzare. In questa guida ti diamo numeri reali, fascia per fascia, con esempi concreti di imprese italiane che stanno già pagando questi prezzi.",
+    sections: [
+      { heading: "Perché la domanda è mal posta (e come riformularla)", text: "Quando un imprenditore chiede \"quanto costa l'AI?\", in realtà sta chiedendo: \"l'AI mi conviene per il mio caso?\". Il prezzo isolato non significa niente. €500/mese sono tantissimi se l'AI non risolve un problema, e pochi se libera 30 ore di lavoro qualificato. La domanda giusta è: \"qual è il costo dell'inazione?\". Quante ore costa oggi gestire manualmente i lead in entrata, generare i preventivi, inseguire i pagamenti? Quel numero è il vero benchmark." },
+      { heading: "Fascia 1: €200-400/mese — Agenti AI base", text: "Questa fascia copre i casi più comuni: un agente conversazionale che risponde su WhatsApp, email e modulo contatti, qualifica i lead e li passa al commerciale con una scheda completa. Cosa include: configurazione iniziale (di solito una tantum €500-1.500), knowledge base con le FAQ e il listino, integrazione email/WhatsApp Business, dashboard di monitoraggio. Per chi è: imprese da 1-10 dipendenti che vogliono smettere di perdere lead per lentezza di risposta. ROI tipico: 3-5x nei primi 6 mesi." },
+      { heading: "Fascia 2: €400-1.200/mese — AI con preventivazione e CRM", text: "Salendo, gli agenti AI fanno cose concrete: generano preventivi PDF a partire dalla conversazione, sincronizzano dati con il CRM, prenotano appuntamenti sul calendario, inviano follow-up automatici. Cosa include: tutto della fascia 1 + integrazione CRM (HubSpot, Salesforce, Zoho o gestionali italiani), modulo preventivi, automazioni di follow-up, reporting settimanale. Per chi è: PMI da 5-30 dipendenti con processo commerciale strutturato. ROI tipico: 4-7x nei primi 6 mesi." },
+      { heading: "Fascia 3: €1.200-3.000/mese — Piattaforme verticali", text: "Qui entriamo nei gestionali AI verticali: piattaforme che gestiscono cantieri, documentazione, fatturazione, sicurezza — il tutto con AI integrata. Esempi: Edilizia in Cloud per imprese edili, Edilizia.io per ecosistemi di agenti multipli, TutelAI per compliance e contratti. Cosa include: software gestionale completo + AI nativa, app mobile, multi-utente illimitato, supporto dedicato, formazione. Per chi è: imprese da 10-50 dipendenti che vogliono digitalizzare l'intero workflow operativo. ROI tipico: 5-8x nei primi 12 mesi." },
+      { heading: "Fascia 4: €3.000-5.000+/mese — Soluzioni custom", text: "Per realtà più strutturate o processi molto specifici, le soluzioni custom partono da €3.000/mese. Si tratta di agenti AI sviluppati su misura, integrazioni con sistemi proprietari, automazioni cross-piattaforma. Esempio: un'impresa edile con 30 dipendenti che integra la piattaforma di cantiere con il proprio software contabile preesistente, con un agente AI che monitora i SAL e segnala anomalie automaticamente. Per chi è: PMI strutturate, gruppi industriali, holding. Lead time implementazione: 2-4 mesi." },
+      { heading: "Costi nascosti che nessuno ti racconta", text: "Tre voci che non vedi nelle slide commerciali. Setup iniziale: variabile da €500 a €5.000+, una tantum. Spesso negoziabile. Formazione del team: 2-8 ore di onboarding incluso, ma se il team è grande potresti voler aggiungere sessioni dedicate (€200-400/h). Consumo API: alcuni vendor fatturano i token LLM consumati a parte. Su volumi alti può aggiungere €100-500/mese. La regola: chiedi sempre il TCO (Total Cost of Ownership) a 12 mesi, non il prezzo lista." },
+      { heading: "Come capire qual è la fascia giusta per te", text: "Tre domande pratiche. 1) Quante ore a settimana il tuo team spende su attività ripetitive? Se sono <10, parti dalla fascia 1. Se sono 10-30, fascia 2. Se sono 30+, fascia 3. 2) Hai un gestionale che vuoi mantenere? Se sì, fascia 2. Se vuoi sostituirlo, fascia 3. 3) Hai processi specifici del tuo settore? Se sì, valuta una piattaforma verticale (fascia 3). La fascia giusta è quella che ti restituisce il tempo investito in 6 mesi." },
+    ],
+    quote: "Il costo dell'AI non si misura in euro al mese. Si misura in ore liberate, lead non persi e preventivi che oggi non riesci a chiudere.",
+  },
+  "ai-act-2026-pmi-italiane-cosa-cambia": {
+    title: "AI Act 2026: cosa cambia per le PMI italiane (e come prepararsi)",
+    metaTitle: "AI Act 2026 per PMI Italiane: Cosa Cambia | AEDIX",
+    metaDescription: "L'AI Act è in vigore. Cosa devono fare le PMI italiane per adeguarsi senza spendere migliaia di euro in consulenza. Guida pratica 2026.",
+    publishedISO: "2026-04-28",
+    category: "Strategia", date: "28 Apr 2026", readTime: "9 min", author: "Florin Andriciuc",
+    image: "https://images.unsplash.com/photo-1589994965851-a8f479c573a9?auto=format&fit=crop&w=1600&q=80",
+    intro: "L'AI Act europeo è in vigore. Per molti imprenditori italiani la prima reazione è stata: \"un'altra normativa, un'altra burocrazia\". La realtà è meno drammatica. Per la maggior parte delle PMI italiane, l'AI Act richiede pochi adempimenti pratici — ma chi non li fa rischia sanzioni fino al 7% del fatturato globale. Ecco cosa devi sapere e come metterti in regola senza spendere migliaia di euro in consulenza.",
+    sections: [
+      { heading: "Cos'è l'AI Act e perché riguarda anche te", text: "L'AI Act (Regolamento UE 2024/1689) è la prima legge al mondo che disciplina l'uso dell'intelligenza artificiale in modo organico. Si applica a chiunque sviluppi, distribuisca o usi sistemi AI nell'Unione Europea — incluse le PMI italiane che usano agenti AI per la gestione clienti, software gestionali con funzioni AI, o servizi di marketing automation basati su AI. Anche se compri \"solo\" un agente AI da un fornitore italiano, sei tu il \"deployer\" del sistema, e hai obblighi precisi. Non scappa nessuno." },
+      { heading: "Le 4 categorie di rischio (e dove ricade la tua AI)", text: "L'AI Act classifica i sistemi in 4 livelli. Rischio inaccettabile: vietati (es. social scoring stile Cina). Rischio alto: sistemi che impattano sicurezza, lavoro, accesso a servizi essenziali — richiedono valutazione di conformità formale. Rischio limitato: chatbot, deepfake — obbligo di trasparenza (\"stai parlando con un'AI\"). Rischio minimo: la maggior parte delle applicazioni business — nessun obbligo specifico. Per fortuna, il 95% dei sistemi AI usati dalle PMI italiane (agenti di prima risposta, preventivatori, AI per documentazione) ricade nelle categorie 3 e 4." },
+      { heading: "Cosa devi fare se usi un agente AI nei rapporti con i clienti", text: "Se hai un chatbot o un agente AI che parla con i tuoi clienti, ricadi nel \"rischio limitato\" e devi: 1) informare l'utente che sta interagendo con un'AI (banner, messaggio iniziale, o nota a piè pagina del chat), 2) tenere un registro interno dei sistemi AI in uso (basta un foglio Excel con: nome del sistema, fornitore, finalità, data attivazione), 3) verificare che il fornitore abbia fatto la valutazione di conformità (chiedi la dichiarazione UE — i fornitori seri ce l'hanno già pronta). Tempo richiesto: 2-4 ore di lavoro, una volta." },
+      { heading: "Cosa devi fare se usi AI per HR (selezione personale)", text: "Attenzione: i sistemi AI per la selezione del personale (screening CV automatico, punteggi candidati, analisi comportamentali) ricadono nel \"rischio alto\" — anche se vengono usati da una PMI con 5 dipendenti. Gli obblighi sono significativi: documentazione tecnica, sistema di gestione del rischio, trasparenza verso i candidati, supervisione umana sulle decisioni. Verifica con il fornitore che abbia completato la valutazione di conformità — tu poi devi tenere il fascicolo e nominare un responsabile interno per il monitoraggio." },
+      { heading: "Sanzioni: chi rischia (e quanto)", text: "Le sanzioni sono salate ma graduate. Pratiche vietate: fino a €35M o 7% del fatturato globale annuo. Violazioni obblighi rischio alto: fino a €15M o 3%. Mancanza di trasparenza (rischio limitato): fino a €7,5M o 1,5%. Per una PMI italiana media (fatturato 1-5M), parliamo realisticamente di sanzioni da €15.000 a €75.000 — che possono essere mortali. Le sanzioni si applicano dopo verifica e contraddittorio, e nella pratica le autorità daranno tempo per adeguarsi alle PMI in buona fede. Il rischio reale non è la prima sanzione, ma le ricadute reputazionali e contrattuali (i clienti grossi cominciano a chiedere prove di conformità AI Act ai fornitori)." },
+      { heading: "La checklist pratica per la tua PMI", text: "Sei step concreti da fare in 1-2 giornate di lavoro. 1) Inventario: lista di tutti i sistemi AI in uso (incluse le funzioni AI dei tuoi gestionali). 2) Classificazione: per ognuno, identifica la categoria di rischio. 3) Documentazione: chiedi ai fornitori la dichiarazione di conformità UE. 4) Trasparenza: aggiorna privacy policy e flussi conversazionali per dichiarare l'uso di AI. 5) Responsabile interno: designa una persona (può essere il titolare in PMI piccole) che monitora i sistemi e tiene il registro. 6) Revisione annuale: aggiorna il registro ogni 12 mesi. Costo totale realistico: €0-2.000 (se ti aiuti con un consulente)." },
+      { heading: "Cosa NON fare: errori comuni delle PMI", text: "Tre errori che vediamo ricorrere. Errore 1: ignorare l'AI Act sperando che \"tanto la mia AI è piccola\". L'AI Act non guarda la dimensione, guarda la finalità. Errore 2: spendere €5-10K in consulenza specializzata per una PMI di rischio minimo. Per la maggior parte dei casi, basta un paio di pomeriggi di lavoro interno + le dichiarazioni dei fornitori. Errore 3: scegliere fornitori che non hanno la conformità AI Act pronta. Verificalo prima di firmare il contratto — se il fornitore ti dice \"ci stiamo lavorando\", scegli un altro." },
+    ],
+    quote: "L'AI Act non è un freno all'innovazione. È il bollino di qualità che separa i fornitori seri da quelli improvvisati — e la prima cosa che chiederanno i tuoi clienti grossi.",
+  },
+  "come-scegliere-fornitore-ai-pmi-italiana": {
+    title: "Come scegliere un fornitore AI per la tua PMI: 7 domande chiave",
+    metaTitle: "Come Scegliere un Fornitore AI per PMI: 7 Domande | AEDIX",
+    metaDescription: "Stai valutando un fornitore di AI per la tua PMI italiana? Ecco le 7 domande che ti salvano da contratti pessimi e progetti falliti.",
+    publishedISO: "2026-04-29",
+    category: "Strategia", date: "29 Apr 2026", readTime: "8 min", author: "Florin Andriciuc",
+    image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1600&q=80",
+    intro: "Scegliere il fornitore AI sbagliato è il modo più veloce per buttare €10.000-50.000 in 6 mesi. Negli ultimi 18 mesi abbiamo visto decine di PMI italiane firmare contratti AI \"sulla carta\" perfetti, e poi ritrovarsi con sistemi che non funzionano, vendor irraggiungibili, o costi triplicati. Ecco le 7 domande che separano i fornitori AI seri dagli imbonitori.",
+    sections: [
+      { heading: "Domanda 1: \"In quante PMI italiane è già attivo questo sistema?\"", text: "I numeri non mentono. Un fornitore con 200 PMI italiane attive ha già visto e risolto i problemi che troverai tu. Un fornitore con \"i primi pilot\" ti renderà la cavia. Chiedi: numero di clienti italiani attivi nel tuo settore, anzianità media del rapporto, lista referenze contattabili. Se rifiutano di darti referenze concrete (\"per privacy\"), è una bandiera rossa. La privacy non vieta di darti il numero clienti aggregato e 2-3 referenze che hanno acconsentito. Pretendi numeri reali, non case study marketing." },
+      { heading: "Domanda 2: \"Cosa succede ai miei dati quando interrompo il contratto?\"", text: "Lock-in dei dati = dipendenza tossica. Se quando interrompi il contratto i tuoi clienti, le tue conversazioni e il tuo storico restano nei sistemi del fornitore (o peggio: te li danno in formato proprietario inutilizzabile), sei in trappola. Pretendi: export completo in formato standard (CSV, JSON), tempi massimi di consegna (es. 30 giorni), garanzia di cancellazione definitiva entro 90 giorni dall'interruzione. Mettilo nero su bianco nel contratto, non fidarti dei \"tranquilli, ci pensiamo noi\"." },
+      { heading: "Domanda 3: \"Quanto costa davvero a 24 mesi?\"", text: "Il prezzo del primo anno è marketing. Il prezzo del secondo anno è la verità. Molti fornitori AI fanno discount aggressivi sul primo anno, poi ricaricano del 30-50% al rinnovo. Chiedi sempre il TCO (Total Cost of Ownership) a 24 mesi, includendo: canone mensile primo anno, canone mensile dal secondo anno, setup una tantum, costo per utente aggiuntivo, costo per integrazione aggiuntiva, eventuale consumo a token. Confronta i preventivi su questa base, non sul prezzo civetta." },
+      { heading: "Domanda 4: \"Avete la conformità AI Act?\"", text: "Dal 2026 non è più un'opzione. Un fornitore AI serio per il mercato europeo deve aver completato la valutazione di conformità AI Act per i propri sistemi. Pretendi la dichiarazione UE in PDF, con data e firma. Se ti dicono \"ci stiamo lavorando\", vuol dire 2 cose: 1) il loro prodotto non è pronto, 2) sei tu a portarti a casa il rischio sanzionatorio. Vai oltre. Vedi anche il nostro articolo su AI Act per le PMI italiane." },
+      { heading: "Domanda 5: \"Chi sviluppa il modello AI sotto al cofano?\"", text: "Tre opzioni, tre rischi diversi. Modello proprietario del fornitore: massimo controllo ma alto rischio se l'azienda chiude. Modello commerciale (OpenAI, Anthropic, Google): performance massima ma il fornitore può cambiare provider improvvisamente impattandoti. Modello open source self-hosted: privacy massima ma performance generalmente inferiori e costi infrastrutturali. Non esiste l'opzione perfetta — ma il fornitore deve dichiarartelo trasparentemente. Se ti dice \"abbiamo la nostra AI\" senza specificare cosa c'è sotto, sta nascondendo qualcosa." },
+      { heading: "Domanda 6: \"Quanto è italiano davvero?\"", text: "L'AI generica capisce l'italiano, ma non capisce il contesto italiano. La differenza la fanno: terminologia di settore (un \"DDT\" non è uguale a un \"shipping note\"), abitudini commerciali (in Italia si fa il preventivo prima della firma, non l'ordine d'acquisto), normative locali (fatturazione elettronica SDI, codici ATECO, gestione dei subappalti). Un fornitore AI \"localizzato\" su 10 mercati ti darà un servizio mediocre in tutti. Preferisci fornitori con focus sul mercato italiano o EU, soprattutto per processi regolati come edilizia, sicurezza, fiscalità." },
+      { heading: "Domanda 7: \"Quanto durerà l'implementazione, e cosa succede se non funziona?\"", text: "Una promessa di \"tutto pronto in 7 giorni\" è quasi sempre menzogna. Tempi realistici: agente AI base 2-4 settimane, gestionale completo 6-12 settimane, integrazione custom 2-4 mesi. Pretendi un piano di onboarding scritto con milestone settimanali, e una clausola contrattuale: se entro 90 giorni il sistema non raggiunge KPI concordati (es. tempo medio di risposta < X minuti, % preventivi automatizzati > Y%), hai diritto al rimborso del setup e alla disdetta gratuita. I fornitori seri accettano. I fornitori improvvisati no." },
+      { heading: "Bonus: la regola del 10x", text: "Una scorciatoia mentale che ci ha salvato decine di volte. Prima di firmare un contratto AI, chiediti: \"se questo sistema costasse 10x quello che mi stanno chiedendo, lo comprerei comunque?\". Se la risposta è no, il valore percepito è troppo basso — probabilmente stai comprando per FOMO o per pressione commerciale, non perché ti serve davvero. Se la risposta è sì, vuol dire che il problema è grande abbastanza da meritare la soluzione. Solo allora vai avanti — e a quel punto il prezzo \"vero\" è quasi un dettaglio." },
+    ],
+    quote: "Un fornitore AI sbagliato non ti costa solo i soldi del contratto. Ti costa 6 mesi di tempo, la fiducia del team e l'opportunità di adottare l'AI con il vendor giusto.",
+  },
   "perche-le-pmi-italiane-hanno-paura-dellai": {
     title: "Perché le PMI Italiane Hanno Paura dell'AI (e Come Superarla)",
     category: "AI", date: "29 Mar 2026", readTime: "12 min", author: "Florin Andriciuc",
@@ -191,8 +251,47 @@ const ArticoloDettaglio = () => {
 
   if (!article) return <Navigate to="/articoli" replace />;
 
+  const seoTitle = article.metaTitle ?? `${article.title} | AEDIX`;
+  const seoDescription =
+    article.metaDescription ??
+    (article.intro.length > 155 ? `${article.intro.slice(0, 152)}...` : article.intro);
+
   return (
-    <Layout>
+    <>
+      <SEO
+        title={seoTitle}
+        description={seoDescription}
+        path={`/articoli/${slug}`}
+        type="article"
+        image={article.image}
+        category={article.category}
+        author={article.author}
+        publishedTime={article.publishedISO}
+        breadcrumbs={[
+          { name: "Home", url: "/" },
+          { name: "Blog", url: "/articoli" },
+          { name: article.title, url: `/articoli/${slug}` },
+        ]}
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          headline: article.title,
+          description: seoDescription,
+          image: article.image,
+          datePublished: article.publishedISO ?? article.date,
+          author: { "@type": "Person", name: article.author },
+          publisher: {
+            "@type": "Organization",
+            name: "AEDIX",
+            url: "https://www.aedix.it",
+            logo: { "@type": "ImageObject", url: "https://www.aedix.it/favicon.ico" },
+          },
+          mainEntityOfPage: { "@type": "WebPage", "@id": `https://www.aedix.it/articoli/${slug}` },
+          inLanguage: "it-IT",
+          articleSection: article.category,
+        }}
+      />
+      <Layout>
       {/* Hero */}
       <section className="pt-[140px] pb-12 px-6 lg:px-12">
         <div className="max-w-[800px] mx-auto">
@@ -299,7 +398,8 @@ const ArticoloDettaglio = () => {
           </FadeIn>
         </div>
       </section>
-    </Layout>
+      </Layout>
+    </>
   );
 };
 

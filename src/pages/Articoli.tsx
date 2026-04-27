@@ -4,6 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { Clock, ArrowRight } from "lucide-react";
 import Layout from "@/components/Layout";
 import TiltCard from "@/components/TiltCard";
+import SEO from "@/components/SEO";
 
 const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) => {
   const ref = useRef(null);
@@ -18,6 +19,33 @@ const FadeIn = ({ children, delay = 0, className = "" }: { children: React.React
 const categories = ["Tutti", "AI", "PMI", "Automazione", "Marketing", "Strategia"];
 
 const articles = [
+  {
+    slug: "come-scegliere-fornitore-ai-pmi-italiana",
+    title: "Come scegliere un fornitore AI per la tua PMI: 7 domande chiave",
+    excerpt: "Stai valutando un fornitore di AI per la tua PMI italiana? Ecco le 7 domande che ti salvano da contratti pessimi e progetti falliti.",
+    category: "Strategia",
+    date: "29 Apr 2026",
+    readTime: "8 min",
+    image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    slug: "ai-act-2026-pmi-italiane-cosa-cambia",
+    title: "AI Act 2026: cosa cambia per le PMI italiane (e come prepararsi)",
+    excerpt: "L'AI Act è in vigore. Cosa devono fare le PMI italiane per adeguarsi senza spendere migliaia di euro in consulenza. Guida pratica.",
+    category: "Strategia",
+    date: "28 Apr 2026",
+    readTime: "9 min",
+    image: "https://images.unsplash.com/photo-1589994965851-a8f479c573a9?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    slug: "quanto-costa-ai-pmi-italiana-guida-2026",
+    title: "Quanto costa l'AI per una PMI italiana? Guida prezzi 2026",
+    excerpt: "Da €200 a €5.000 al mese: i prezzi reali dell'AI per le PMI italiane nel 2026. Cosa include ogni fascia, e quale ROI aspettarsi.",
+    category: "Strategia",
+    date: "27 Apr 2026",
+    readTime: "8 min",
+    image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80",
+  },
   {
     slug: "perche-le-pmi-italiane-hanno-paura-dellai",
     title: "Perché le PMI Italiane Hanno Paura dell'AI (e Come Superarla)",
@@ -124,7 +152,21 @@ const Articoli = () => {
   const filtered = activeCategory === "Tutti" ? articles : articles.filter((a) => a.category === activeCategory);
 
   return (
-    <Layout>
+    <>
+      <SEO
+        title="Blog AEDIX — Insight su AI e PMI Italiane"
+        description="Guide pratiche, dati reali e strategie su AI, automazione e crescita per PMI italiane. Aggiornato settimanalmente."
+        path="/articoli"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Blog",
+          name: "Blog AEDIX",
+          url: "https://www.aedix.it/articoli",
+          inLanguage: "it-IT",
+          publisher: { "@type": "Organization", name: "AEDIX", url: "https://www.aedix.it" },
+        }}
+      />
+      <Layout>
       <section className="pt-[140px] pb-20 px-6 lg:px-12 min-h-screen">
         <div className="max-w-[1320px] mx-auto">
           <FadeIn>
@@ -203,7 +245,8 @@ const Articoli = () => {
           </motion.div>
         </div>
       </section>
-    </Layout>
+      </Layout>
+    </>
   );
 };
 
