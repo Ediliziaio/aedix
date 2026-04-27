@@ -16,18 +16,31 @@ const Footer = () => (
         </div>
 
         <div>
-          <h4 className="font-mono text-[11px] uppercase tracking-[3px] text-primary mb-6">Piattaforme</h4>
+          <h4 className="font-mono text-[11px] uppercase tracking-[3px] text-primary mb-6">Prodotto</h4>
           <ul className="space-y-3">
-            {["Edilizia in Cloud", "Cantiere in Cloud", "Edilizia.io", "Marketing Edile", "Vendita Edile", "TalentProfile 360°", "Impresa Leggera"].map((name) => (
-              <li key={name}>
-                <Link
-                  to={`/progetti/${name.toLowerCase().replace(/\s+/g, "-").replace(/[°]/g, "")}`}
-                  className="text-[13px] text-[rgba(255,255,255,0.5)] hover:text-white transition-colors"
-                >
-                  {name}
-                </Link>
-              </li>
-            ))}
+            <li>
+              <Link
+                to="/edilizia-in-cloud"
+                className="text-[13px] text-[rgba(255,255,255,0.5)] hover:text-white transition-colors"
+              >
+                Edilizia in Cloud
+              </Link>
+            </li>
+            <li>
+              <a
+                href="https://ediliziaincloud.it"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[13px] text-[rgba(255,255,255,0.5)] hover:text-white transition-colors"
+              >
+                ediliziaincloud.it ↗
+              </a>
+            </li>
+            <li>
+              <span className="text-[13px] text-[rgba(255,255,255,0.3)] italic">
+                Altri prodotti — in arrivo
+              </span>
+            </li>
           </ul>
         </div>
 
@@ -37,7 +50,7 @@ const Footer = () => (
             {[
               { label: "Perché Noi?", to: "/perche-noi" },
               { label: "Servizi", to: "/servizi" },
-              { label: "Progetti", to: "/progetti" },
+              { label: "Edilizia in Cloud", to: "/edilizia-in-cloud" },
               { label: "Articoli", to: "/articoli" },
               { label: "Contatti", to: "/contatti" },
               { label: "Privacy", to: "/privacy" },

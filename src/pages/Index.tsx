@@ -479,10 +479,10 @@ const services = [
         <rect x="20" y="20" width="14" height="14" rx="6" stroke="currentColor" strokeWidth="1.5" />
       </svg>
     ),
-    title: "Piattaforme SaaS Verticali",
-    text: "Usi ancora Excel, email e carta per gestire la tua azienda. Ogni documento sparso è un errore che aspetta di succedere. Ogni ora di burocrazia è un'ora che non fatturi. Le nostre piattaforme fanno sparire il problema.",
-    bullets: ["Da Excel e carta a una dashboard unica — tutto sotto controllo", "Back-office in outsourcing: paghi solo ciò che usi, zero costi fissi", "Dati aggiornati in tempo reale, da qualsiasi dispositivo"],
-    link: "/progetti/edilizia-in-cloud",
+    title: "Piattaforma SaaS Verticale",
+    text: "Usi ancora Excel, email e carta per gestire la tua azienda. Ogni documento sparso è un errore che aspetta di succedere. Ogni ora di burocrazia è un'ora che non fatturi. Edilizia in Cloud fa sparire il problema.",
+    bullets: ["Da Excel e carta a una dashboard unica — tutto sotto controllo", "Cantieri, documenti, team e fatturazione in un'unica piattaforma cloud", "Dati aggiornati in tempo reale, anche dall'app mobile in cantiere"],
+    link: "/edilizia-in-cloud",
     linkLabel: "Vedi Edilizia in Cloud",
   },
   {
@@ -496,10 +496,10 @@ const services = [
       </svg>
     ),
     title: "Agenti AI Operativi",
-    text: "Sei in riunione. Il cliente scrive. Non risponde nessuno — e nel tempo che passa, ha già contattato il competitor. I nostri agenti AI rispondono al posto tuo in meno di un minuto, ogni ora del giorno, ogni giorno dell'anno.",
+    text: "Sei in riunione. Il cliente scrive. Non risponde nessuno — e nel tempo che passa, ha già contattato il competitor. Progettiamo agenti AI custom che rispondono al posto tuo in meno di un minuto, ogni ora del giorno, ogni giorno dell'anno.",
     bullets: ["Zero lead persi per mancata risposta — mai più", "Preventivi e appuntamenti gestiti in autonomia, senza intervento umano", "Operativi in pochi giorni — nessun tecnico interno necessario"],
-    link: "/progetti/edilizia-io",
-    linkLabel: "Vedi Edilizia.io",
+    link: "/contatti",
+    linkLabel: "Parla con noi",
   },
   {
     num: "03",
@@ -534,51 +534,30 @@ const services = [
 ];
 
 const stats = [
-  { value: 4, suffix: "", label: "Piattaforme AI-Based sviluppate" },
+  { value: 1, suffix: "", label: "Piattaforma SaaS attiva (Edilizia in Cloud)" },
   { value: 100, suffix: "%", label: "Cloud-native — zero installazioni" },
-  { value: 100, suffix: "%", label: "Conformi GDPR e EU AI Act" },
+  { value: 100, suffix: "%", label: "Conforme GDPR e EU AI Act" },
   { value: 24, suffix: "/7", label: "Operatività dei sistemi AI" },
 ];
 
 const comparison = [
-  { today: "Software generico che non si adatta al tuo settore", aedix: "Piattaforma verticale costruita per la tua realtà", impact: "Fit reale" },
+  { today: "Software generico che non si adatta al tuo settore", aedix: "Edilizia in Cloud — verticale per imprese edili italiane", impact: "Fit reale" },
   { today: "Prima risposta ai clienti in ore — o giorni", aedix: "Risposta automatica immediata, 24 ore su 24", impact: "Sempre live" },
   { today: "Burocrazia e documenti gestiti a mano", aedix: "Processi digitalizzati e automatizzati in cloud", impact: "Zero carta" },
   { today: "Decisioni basate su intuizione e memoria", aedix: "Dashboard AI con dati aggiornati in tempo reale", impact: "Dati, non sensazioni" },
-  { today: "Compliance AI Act e GDPR fai-da-te", aedix: "TutelAI — conformità guidata, senza rischi legali", impact: "EU compliant" },
+  { today: "Compliance AI Act e GDPR fai-da-te", aedix: "Implementazioni AI già conformi by design", impact: "EU compliant" },
 ];
 
 const projectIcons: Record<string, React.ReactNode> = {
   "Edilizia in Cloud": <Cloud size={32} />,
-  "Edilizia.io": <Brain size={32} />,
-  "Impresa Leggera": <Briefcase size={32} />,
-  "TutelAI": <Shield size={32} />,
 };
 
 const projects = [
   {
     name: "Edilizia in Cloud",
     color: "#00D4FF",
-    desc: "Il gestionale AI-based per imprese edili, serramentisti e impiantisti. Preventivi, cantieri, documenti, team — tutto connesso in un'unica piattaforma cloud.",
+    desc: "Il gestionale cloud per imprese edili italiane. Cantieri, documenti, team, fatturazione — tutto connesso in un'unica piattaforma. È il primo prodotto dell'ecosistema AEDIX.",
     url: "https://ediliziaincloud.it",
-  },
-  {
-    name: "Edilizia.io",
-    color: "#A855F7",
-    desc: "Agenti AI as a Service per le PMI italiane. Prima risposta clienti, qualificazione lead, generazione preventivi — automatizzati e disponibili 24 ore su 24.",
-    url: "https://edilizia.io",
-  },
-  {
-    name: "Impresa Leggera",
-    color: "#6366F1",
-    desc: "Back-office in outsourcing pay-per-use. Fatturazione, adempimenti fiscali e gestione amministrativa — senza assumere personale interno dedicato.",
-    url: "#",
-  },
-  {
-    name: "TutelAI",
-    color: "#10B981",
-    desc: "Consulenza e strumenti per la conformità all'EU AI Act e al GDPR. Per le PMI italiane che usano AI e vogliono farlo in modo sicuro e trasparente.",
-    url: "https://tutelai.it",
   },
 ];
 
@@ -772,7 +751,7 @@ const Index = () => {
           <FadeIn delay={0.4}>
             <div className="flex flex-wrap gap-16 mt-16">
               {[
-                { val: 4, suf: "", label: "Piattaforme AI-Based" },
+                { val: 1, suf: "", label: "Piattaforma SaaS Attiva" },
                 { val: 100, suf: "%", label: "Cloud-Native" },
                 { val: 24, suf: "/7", label: "Sistemi Operativi" },
               ].map((s, i) => (
@@ -1063,15 +1042,14 @@ const Index = () => {
                   Non abbiamo iniziato da un ufficio. Abbiamo iniziato sul campo — gestendo un'impresa vera, vendendo ai clienti finali, sbattendo la testa su problemi che nessun software generico riusciva a risolvere.
                 </p>
                 <p>
-                  Ogni piattaforma che sviluppiamo viene{" "}
+                  Ogni soluzione che sviluppiamo viene{" "}
                   <strong className="text-white font-semibold">prima testata internamente</strong>{" "}
                   sulle nostre stesse aziende. Se non funziona per noi, non esiste per te.
                 </p>
                 <p>
-                  Oggi AEDIX è un ecosistema di piattaforme AI-based che coprono i nodi critici di una PMI:{" "}
-                  <strong className="text-white font-semibold">
-                    dalla gestione operativa al back-office, dall'acquisizione clienti alla conformità normativa sull'intelligenza artificiale.
-                  </strong>
+                  Oggi AEDIX è una tech company italiana che parte da{" "}
+                  <strong className="text-white font-semibold">Edilizia in Cloud</strong>{" "}
+                  per costruire un ecosistema di soluzioni AI per le PMI italiane. Un prodotto alla volta, solo dopo averlo collaudato sul campo.
                 </p>
               </div>
             </FadeIn>
@@ -1211,13 +1189,13 @@ const Index = () => {
               className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-6"
               style={{ fontSize: "clamp(32px, 4.5vw, 58px)" }}
             >
-              Quattro piattaforme AI-based.<br />
-              Un unico <span className="italic font-light text-primary">ecosistema.</span>
+              Edilizia in Cloud.<br />
+              Il primo passo dell'<span className="italic font-light text-primary">ecosistema.</span>
             </h2>
           </FadeIn>
           <FadeIn delay={0.16}>
-            <p className="text-[18px] text-[rgba(255,255,255,0.7)] max-w-[580px] font-light mb-16">
-              Ogni piattaforma risolve un problema specifico per le PMI italiane. Insieme, coprono l'intera catena del valore — dall'acquisizione clienti alla conformità normativa.
+            <p className="text-[18px] text-[rgba(255,255,255,0.7)] max-w-[640px] font-light mb-16">
+              AEDIX parte da Edilizia in Cloud — il gestionale verticale per imprese edili italiane. Da qui costruiremo nuovi prodotti AI per le PMI, uno alla volta, solo dopo averli collaudati sul campo.
             </p>
           </FadeIn>
 
@@ -1336,7 +1314,7 @@ const Index = () => {
               style={{ fontSize: "clamp(32px, 4.5vw, 58px)" }}
             >
               Come le PMI usano<br />
-              <span className="italic font-light text-primary">le nostre piattaforme.</span>
+              <span className="italic font-light text-primary">le nostre soluzioni.</span>
             </h2>
           </FadeIn>
 
@@ -1350,7 +1328,7 @@ const Index = () => {
                 metricLabel: "al giorno recuperate",
               },
               {
-                quote: "I lead arrivavano dal sito ma non li seguiva nessuno fuori orario. Con Edilizia.io ogni richiesta ha una risposta entro 60 secondi — anche di domenica alle 23.",
+                quote: "I lead arrivavano dal sito ma non li seguiva nessuno fuori orario. Con l'agente AI di prima risposta che ci hanno costruito, ogni richiesta riceve una risposta entro 60 secondi — anche di domenica alle 23.",
                 result: "Zero lead persi per mancata risposta",
                 sector: "PMI Impiantistica",
                 metric: "60s",
@@ -1526,8 +1504,8 @@ const Index = () => {
               <Link to="/contatti" className="shimmer-btn bg-primary text-primary-foreground font-bold text-[13px] uppercase tracking-[2px] px-12 py-[18px] hover:-translate-y-0.5 hover:shadow-[0_16px_48px_rgba(246,190,9,0.25)] transition-all relative overflow-hidden inline-block">
                 Parla Con Noi →
               </Link>
-              <Link to="/progetti" className="border border-[rgba(255,255,255,0.15)] text-white font-bold text-[13px] uppercase tracking-[2px] px-12 py-[18px] hover:border-primary hover:text-primary transition-all inline-block">
-                Scopri Le Piattaforme
+              <Link to="/edilizia-in-cloud" className="border border-[rgba(255,255,255,0.15)] text-white font-bold text-[13px] uppercase tracking-[2px] px-12 py-[18px] hover:border-primary hover:text-primary transition-all inline-block">
+                Scopri Edilizia in Cloud
               </Link>
             </div>
           </FadeIn>

@@ -25,10 +25,10 @@
   </url>
 
   <url>
-    <loc>https://www.aedix.it/progetti</loc>
+    <loc>https://www.aedix.it/edilizia-in-cloud</loc>
     <lastmod>2026-05-06</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
 
   <url>
@@ -40,35 +40,6 @@
 
   <url>
     <loc>https://www.aedix.it/contatti</loc>
-    <lastmod>2026-05-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Pagine progetto (4 piattaforme) -->
-  <url>
-    <loc>https://www.aedix.it/progetti/edilizia-in-cloud</loc>
-    <lastmod>2026-05-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://www.aedix.it/progetti/edilizia-io</loc>
-    <lastmod>2026-05-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://www.aedix.it/progetti/impresa-leggera</loc>
-    <lastmod>2026-05-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
-    <loc>https://www.aedix.it/progetti/tutelai</loc>
     <lastmod>2026-05-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

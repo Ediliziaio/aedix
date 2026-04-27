@@ -6,7 +6,7 @@ import aedixLogo from "@/assets/aedix_logo.png";
 
 const navLinks = [
   { label: "Cosa Facciamo", to: "/servizi" },
-  { label: "Progetti", to: "/progetti" },
+  { label: "Edilizia in Cloud", to: "/edilizia-in-cloud" },
   { label: "Perché Noi?", to: "/perche-noi" },
   { label: "Articoli", to: "/articoli" },
 ];

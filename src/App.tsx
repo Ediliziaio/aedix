@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
@@ -10,8 +10,7 @@ import Index from "./pages/Index.tsx";
 const Contatti = lazy(() => import("./pages/Contatti.tsx"));
 const PercheNoi = lazy(() => import("./pages/PercheNoi.tsx"));
 const Servizi = lazy(() => import("./pages/Servizi.tsx"));
-const Progetti = lazy(() => import("./pages/Progetti.tsx"));
-const ProgettoDettaglio = lazy(() => import("./pages/ProgettoDettaglio.tsx"));
+const EdiliziaInCloud = lazy(() => import("./pages/EdiliziaInCloud.tsx"));
 const Articoli = lazy(() => import("./pages/Articoli.tsx"));
 const ArticoloDettaglio = lazy(() => import("./pages/ArticoloDettaglio.tsx"));
 const Privacy = lazy(() => import("./pages/Privacy.tsx"));
@@ -39,8 +38,9 @@ const App = () => (
               <Route path="/contatti" element={<Contatti />} />
               <Route path="/perche-noi" element={<PercheNoi />} />
               <Route path="/servizi" element={<Servizi />} />
-              <Route path="/progetti" element={<Progetti />} />
-              <Route path="/progetti/:slug" element={<ProgettoDettaglio />} />
+              <Route path="/edilizia-in-cloud" element={<EdiliziaInCloud />} />
+              <Route path="/progetti" element={<Navigate to="/edilizia-in-cloud" replace />} />
+              <Route path="/progetti/:slug" element={<Navigate to="/edilizia-in-cloud" replace />} />
               <Route path="/articoli" element={<Articoli />} />
               <Route path="/articoli/:slug" element={<ArticoloDettaglio />} />
               <Route path="/privacy" element={<Privacy />} />
