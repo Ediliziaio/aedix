@@ -4,6 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { Clock, ArrowRight } from "lucide-react";
 import Layout from "@/components/Layout";
 import TiltCard from "@/components/TiltCard";
+import SEO from "@/components/SEO";
 
 const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) => {
   const ref = useRef(null);
@@ -18,6 +19,60 @@ const FadeIn = ({ children, delay = 0, className = "" }: { children: React.React
 const categories = ["Tutti", "AI", "PMI", "Automazione", "Marketing", "Strategia"];
 
 const articles = [
+  {
+    slug: "come-scegliere-fornitore-ai-pmi-italiana",
+    title: "Come scegliere un fornitore AI per la tua PMI: 7 domande chiave",
+    excerpt: "Stai valutando un fornitore di AI per la tua PMI italiana? Ecco le 7 domande che ti salvano da contratti pessimi e progetti falliti.",
+    category: "Strategia",
+    date: "29 Apr 2026",
+    readTime: "8 min",
+    image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    slug: "ai-act-2026-pmi-italiane-cosa-cambia",
+    title: "AI Act 2026: cosa cambia per le PMI italiane (e come prepararsi)",
+    excerpt: "L'AI Act è in vigore. Cosa devono fare le PMI italiane per adeguarsi senza spendere migliaia di euro in consulenza. Guida pratica.",
+    category: "Strategia",
+    date: "28 Apr 2026",
+    readTime: "9 min",
+    image: "https://images.unsplash.com/photo-1589994965851-a8f479c573a9?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    slug: "quanto-costa-ai-pmi-italiana-guida-2026",
+    title: "Quanto costa l'AI per una PMI italiana? Guida prezzi 2026",
+    excerpt: "Da €200 a €5.000 al mese: i prezzi reali dell'AI per le PMI italiane nel 2026. Cosa include ogni fascia, e quale ROI aspettarsi.",
+    category: "Strategia",
+    date: "27 Apr 2026",
+    readTime: "8 min",
+    image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    slug: "agenti-ai-per-pmi-cosa-sono-e-come-usarli",
+    title: "Agenti AI per PMI: cosa sono e come usarli nella tua azienda",
+    excerpt: "Lavorano 24/7, rispondono ai clienti, generano preventivi. Cosa sono davvero gli agenti AI per PMI e come le imprese italiane li stanno usando.",
+    category: "AI",
+    date: "31 Mar 2026",
+    readTime: "9 min",
+    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    slug: "5-processi-pmi-italiana-automatizzare-oggi",
+    title: "5 processi che ogni PMI italiana può automatizzare oggi con l'AI",
+    excerpt: "Risposta clienti, preventivi, documentazione, fatturazione, report. Cinque processi concreti — con numeri reali — che puoi automatizzare da subito.",
+    category: "Automazione",
+    date: "30 Mar 2026",
+    readTime: "8 min",
+    image: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    slug: "perche-le-pmi-italiane-hanno-paura-dellai",
+    title: "Perché le PMI italiane hanno paura dell'AI (e come superarla)",
+    excerpt: "Il 73% delle PMI italiane sa che dovrebbe usare l'AI. Ma non sa da dove iniziare. Ecco i 5 blocchi mentali più comuni — e come superarli.",
+    category: "AI",
+    date: "29 Mar 2026",
+    readTime: "8 min",
+    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80",
+  },
   {
     slug: "ai-pmi-italiane-2025",
     title: "Come l'AI sta trasformando le PMI italiane nel 2025",
@@ -97,7 +152,21 @@ const Articoli = () => {
   const filtered = activeCategory === "Tutti" ? articles : articles.filter((a) => a.category === activeCategory);
 
   return (
-    <Layout>
+    <>
+      <SEO
+        title="Blog AEDIX — Insight su AI e PMI Italiane"
+        description="Guide pratiche, dati reali e strategie su AI, automazione e crescita per PMI italiane. Aggiornato settimanalmente."
+        path="/articoli"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Blog",
+          name: "Blog AEDIX",
+          url: "https://www.aedix.it/articoli",
+          inLanguage: "it-IT",
+          publisher: { "@type": "Organization", name: "AEDIX", url: "https://www.aedix.it" },
+        }}
+      />
+      <Layout>
       <section className="pt-[140px] pb-20 px-6 lg:px-12 min-h-screen">
         <div className="max-w-[1320px] mx-auto">
           <FadeIn>
@@ -176,7 +245,8 @@ const Articoli = () => {
           </motion.div>
         </div>
       </section>
-    </Layout>
+      </Layout>
+    </>
   );
 };
 
