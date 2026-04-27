@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Linkedin, Instagram, Mail, MapPin, FileText, Hash } from "lucide-react";
+import { Linkedin, Instagram, Mail, MapPin, FileText, Hash, Phone } from "lucide-react";
 import aedixLogo from "@/assets/aedix_logo.png";
 
 const Footer = () => (
@@ -73,7 +73,11 @@ const Footer = () => (
           <ul className="space-y-3">
             <li className="flex items-start gap-2 text-[13px] text-[rgba(255,255,255,0.5)]">
               <Mail size={14} className="text-primary/60 mt-0.5 shrink-0" />
-              <a href="mailto:info@aedix.io" className="hover:text-white transition-colors">info@aedix.io</a>
+              <a href="mailto:info@aedix.it" className="hover:text-white transition-colors">info@aedix.it</a>
+            </li>
+            <li className="flex items-start gap-2 text-[13px] text-[rgba(255,255,255,0.5)]">
+              <Phone size={14} className="text-primary/60 mt-0.5 shrink-0" />
+              <a href="tel:+393483467567" className="hover:text-white transition-colors">+39 348 346 7567</a>
             </li>
             <li className="flex items-start gap-2 text-[13px] text-[rgba(255,255,255,0.5)]">
               <FileText size={14} className="text-primary/60 mt-0.5 shrink-0" />

@@ -157,16 +157,20 @@ const Contatti = () => {
                   <h3 className="font-display text-[20px] font-semibold mb-6">Informazioni</h3>
                   <div className="space-y-5">
                     {[
-                      { icon: <Mail size={18} />, label: "Email", value: "info@aedix.io" },
-                      { icon: <Phone size={18} />, label: "Telefono", value: "+39 XXX XXX XXXX" },
-                      { icon: <MapPin size={18} />, label: "Sede", value: "Italia" },
+                      { icon: <Mail size={18} />, label: "Email", value: "info@aedix.it", href: "mailto:info@aedix.it" },
+                      { icon: <Phone size={18} />, label: "Telefono", value: "+39 348 346 7567", href: "tel:+393483467567" },
+                      { icon: <MapPin size={18} />, label: "Sede legale", value: "Via Aurelio Saffi 29, 20123 Milano" },
                       { icon: <Building2 size={18} />, label: "Azienda", value: "Domus Group S.r.l." },
                     ].map((item, i) => (
                       <div key={i} className="flex items-start gap-4">
                         <div className="w-10 h-10 rounded-full border border-primary/20 flex items-center justify-center text-primary shrink-0">{item.icon}</div>
                         <div>
                           <span className="font-mono text-[10px] uppercase tracking-[2px] text-[rgba(255,255,255,0.45)] block mb-1">{item.label}</span>
-                          <span className="text-[15px] text-[rgba(255,255,255,0.8)]">{item.value}</span>
+                          {item.href ? (
+                            <a href={item.href} className="text-[15px] text-[rgba(255,255,255,0.8)] hover:text-primary transition-colors">{item.value}</a>
+                          ) : (
+                            <span className="text-[15px] text-[rgba(255,255,255,0.8)]">{item.value}</span>
+                          )}
                         </div>
                       </div>
                     ))}

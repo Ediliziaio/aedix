@@ -16,12 +16,12 @@ const Privacy = () => (
 
         <div className="prose-custom space-y-8">
           {[
-            { title: "1. Titolare del trattamento", text: "Il titolare del trattamento dei dati personali è Domus Group S.r.l. (\"AEDIX\"), con sede legale in Via Aurelio Saffi 29, 20123 Milano · P.IVA 13132010961. Per qualsiasi richiesta relativa al trattamento dei dati personali è possibile contattare info@aedix.io o la PEC domusgroupsrl@legalmail.it." },
+            { title: "1. Titolare del trattamento", text: "Il titolare del trattamento dei dati personali è Domus Group S.r.l. (\"AEDIX\"), con sede legale in Via Aurelio Saffi 29, 20123 Milano · P.IVA 13132010961. Per qualsiasi richiesta relativa al trattamento dei dati personali è possibile contattare info@aedix.it o la PEC domusgroupsrl@legalmail.it." },
             { title: "2. Dati raccolti", text: "Raccogliamo i dati personali che l'utente fornisce volontariamente attraverso i moduli di contatto presenti sul sito (nome, email, telefono, settore, messaggio). Raccogliamo inoltre dati di navigazione anonimi tramite cookie tecnici e analitici." },
             { title: "3. Finalità del trattamento", text: "I dati personali sono trattati per: rispondere alle richieste di contatto, fornire informazioni sui nostri servizi, migliorare l'esperienza di navigazione, adempiere agli obblighi di legge." },
             { title: "4. Base giuridica", text: "Il trattamento dei dati si basa sul consenso dell'interessato (art. 6, par. 1, lett. a del GDPR) e sull'esecuzione di misure precontrattuali (art. 6, par. 1, lett. b del GDPR)." },
             { title: "5. Conservazione dei dati", text: "I dati personali saranno conservati per il tempo strettamente necessario alle finalità per le quali sono stati raccolti e comunque non oltre 24 mesi dall'ultimo contatto." },
-            { title: "6. Diritti dell'interessato", text: "L'interessato ha diritto di accedere ai propri dati, rettificarli, cancellarli, limitarne il trattamento, opporsi al trattamento e richiederne la portabilità. Per esercitare questi diritti, contattare info@aedix.io." },
+            { title: "6. Diritti dell'interessato", text: "L'interessato ha diritto di accedere ai propri dati, rettificarli, cancellarli, limitarne il trattamento, opporsi al trattamento e richiederne la portabilità. Per esercitare questi diritti, contattare info@aedix.it." },
             { title: "7. Aggiornamenti", text: "La presente privacy policy può essere aggiornata periodicamente. L'ultima modifica risale a marzo 2026." },
           ].map((s, i) => (
             <div key={i}>
