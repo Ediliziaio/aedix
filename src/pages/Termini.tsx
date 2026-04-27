@@ -16,7 +16,7 @@ const Termini = () => (
 
         <div className="space-y-8">
           {[
-            { title: "1. Premesse", text: "Il presente sito web è di proprietà di Domus Group S.r.l. (\"AEDIX\"). L'accesso e l'utilizzo del sito sono regolati dai presenti termini e condizioni. Utilizzando il sito, l'utente accetta integralmente i presenti termini." },
+            { title: "1. Premesse", text: "Il presente sito web (aedix.it) è di proprietà di Domus Group S.r.l. (\"AEDIX\"), con sede legale in Via Aurelio Saffi 29, 20123 Milano · P.IVA 13132010961 · Capitale Sociale € 20.000,00 i.v. · PEC domusgroupsrl@legalmail.it · Codice SDI USAL8PV. L'accesso e l'utilizzo del sito sono regolati dai presenti termini e condizioni. Utilizzando il sito, l'utente accetta integralmente i presenti termini." },
             { title: "2. Servizi", text: "AEDIX offre piattaforme SaaS, servizi di intelligenza artificiale, marketing a performance e consulenza aziendale per PMI. Le caratteristiche specifiche di ogni servizio sono descritte nelle rispettive pagine del sito e nei contratti individuali." },
             { title: "3. Proprietà intellettuale", text: "Tutti i contenuti presenti sul sito (testi, immagini, loghi, software, design) sono protetti da diritto d'autore e sono di proprietà esclusiva di Domus Group S.r.l. o dei rispettivi titolari. È vietata qualsiasi riproduzione non autorizzata." },
             { title: "4. Limitazione di responsabilità", text: "AEDIX si impegna a mantenere il sito aggiornato e funzionante, ma non garantisce l'assenza di errori o interruzioni. AEDIX non è responsabile per danni diretti o indiretti derivanti dall'uso del sito." },

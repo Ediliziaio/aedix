@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Linkedin, Instagram, Mail, MapPin } from "lucide-react";
+import { Linkedin, Instagram, Mail, MapPin, FileText, Hash } from "lucide-react";
 import aedixLogo from "@/assets/aedix_logo.png";
 
 const Footer = () => (
@@ -71,13 +71,17 @@ const Footer = () => (
         <div>
           <h4 className="font-mono text-[11px] uppercase tracking-[3px] text-primary mb-6">Contatti</h4>
           <ul className="space-y-3">
-            <li className="flex items-center gap-2 text-[13px] text-[rgba(255,255,255,0.5)]">
-              <Mail size={14} className="text-primary/60" />
-              info@aedix.io
+            <li className="flex items-start gap-2 text-[13px] text-[rgba(255,255,255,0.5)]">
+              <Mail size={14} className="text-primary/60 mt-0.5 shrink-0" />
+              <a href="mailto:info@aedix.io" className="hover:text-white transition-colors">info@aedix.io</a>
             </li>
-            <li className="flex items-center gap-2 text-[13px] text-[rgba(255,255,255,0.5)]">
-              <MapPin size={14} className="text-primary/60" />
-              Italia
+            <li className="flex items-start gap-2 text-[13px] text-[rgba(255,255,255,0.5)]">
+              <FileText size={14} className="text-primary/60 mt-0.5 shrink-0" />
+              <a href="mailto:domusgroupsrl@legalmail.it" className="hover:text-white transition-colors break-all">domusgroupsrl@legalmail.it</a>
+            </li>
+            <li className="flex items-start gap-2 text-[13px] text-[rgba(255,255,255,0.5)]">
+              <MapPin size={14} className="text-primary/60 mt-0.5 shrink-0" />
+              <span>Via Aurelio Saffi 29<br />20123 Milano · Italia</span>
             </li>
           </ul>
           <div className="flex gap-3 mt-6">
@@ -97,7 +101,41 @@ const Footer = () => (
         </div>
       </div>
 
-      <div className="border-t border-[rgba(255,255,255,0.04)] pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      {/* Dati societari */}
+      <div className="border-t border-[rgba(255,255,255,0.04)] pt-8 pb-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 text-[12px] text-[rgba(255,255,255,0.4)] font-light">
+          <div className="flex items-start gap-2">
+            <Hash size={12} className="text-primary/40 mt-0.5 shrink-0" />
+            <div>
+              <span className="block font-mono text-[10px] uppercase tracking-[2px] text-[rgba(255,255,255,0.3)] mb-1">P.IVA</span>
+              13132010961
+            </div>
+          </div>
+          <div className="flex items-start gap-2">
+            <Hash size={12} className="text-primary/40 mt-0.5 shrink-0" />
+            <div>
+              <span className="block font-mono text-[10px] uppercase tracking-[2px] text-[rgba(255,255,255,0.3)] mb-1">Capitale Sociale</span>
+              € 20.000,00 i.v.
+            </div>
+          </div>
+          <div className="flex items-start gap-2">
+            <Hash size={12} className="text-primary/40 mt-0.5 shrink-0" />
+            <div>
+              <span className="block font-mono text-[10px] uppercase tracking-[2px] text-[rgba(255,255,255,0.3)] mb-1">Codice SDI</span>
+              USAL8PV
+            </div>
+          </div>
+          <div className="flex items-start gap-2">
+            <Hash size={12} className="text-primary/40 mt-0.5 shrink-0" />
+            <div>
+              <span className="block font-mono text-[10px] uppercase tracking-[2px] text-[rgba(255,255,255,0.3)] mb-1">Ragione Sociale</span>
+              Domus Group S.r.l.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="border-t border-[rgba(255,255,255,0.04)] pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
         <span className="text-[12px] text-[rgba(255,255,255,0.2)] tracking-[1px]">
           © 2026 AEDIX — Domus Group S.r.l. — Tutti i diritti riservati
         </span>

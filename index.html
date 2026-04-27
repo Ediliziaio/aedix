@@ -45,6 +45,7 @@
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "AEDIX",
+      "legalName": "Domus Group S.r.l.",
       "url": "https://www.aedix.it",
       "logo": "https://www.aedix.it/favicon.ico",
       "description": "Soluzioni AI su misura per PMI italiane: software gestionali, agenti AI e automazioni per il settore edile e costruzioni.",
@@ -53,16 +54,33 @@
         "name": "Florin Andriciuc"
       },
       "foundingDate": "2024",
+      "vatID": "IT13132010961",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Via Aurelio Saffi 29",
+        "postalCode": "20123",
+        "addressLocality": "Milano",
+        "addressCountry": "IT"
+      },
       "areaServed": {
         "@type": "Country",
         "name": "IT"
       },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "contactType": "customer support",
-        "url": "https://www.aedix.it/contatti",
-        "availableLanguage": "Italian"
-      },
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "contactType": "customer support",
+          "email": "info@aedix.io",
+          "url": "https://www.aedix.it/contatti",
+          "availableLanguage": "Italian"
+        },
+        {
+          "@type": "ContactPoint",
+          "contactType": "legal",
+          "email": "domusgroupsrl@legalmail.it",
+          "availableLanguage": "Italian"
+        }
+      ],
       "sameAs": [
         "https://www.linkedin.com/company/aedix"
       ]

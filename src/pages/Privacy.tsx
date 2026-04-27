@@ -16,7 +16,7 @@ const Privacy = () => (
 
         <div className="prose-custom space-y-8">
           {[
-            { title: "1. Titolare del trattamento", text: "Il titolare del trattamento dei dati personali è Domus Group S.r.l. (\"AEDIX\"), con sede in Italia. Per qualsiasi richiesta relativa al trattamento dei dati personali, è possibile contattarci all'indirizzo info@aedix.io." },
+            { title: "1. Titolare del trattamento", text: "Il titolare del trattamento dei dati personali è Domus Group S.r.l. (\"AEDIX\"), con sede legale in Via Aurelio Saffi 29, 20123 Milano · P.IVA 13132010961. Per qualsiasi richiesta relativa al trattamento dei dati personali è possibile contattare info@aedix.io o la PEC domusgroupsrl@legalmail.it." },
             { title: "2. Dati raccolti", text: "Raccogliamo i dati personali che l'utente fornisce volontariamente attraverso i moduli di contatto presenti sul sito (nome, email, telefono, settore, messaggio). Raccogliamo inoltre dati di navigazione anonimi tramite cookie tecnici e analitici." },
             { title: "3. Finalità del trattamento", text: "I dati personali sono trattati per: rispondere alle richieste di contatto, fornire informazioni sui nostri servizi, migliorare l'esperienza di navigazione, adempiere agli obblighi di legge." },
             { title: "4. Base giuridica", text: "Il trattamento dei dati si basa sul consenso dell'interessato (art. 6, par. 1, lett. a del GDPR) e sull'esecuzione di misure precontrattuali (art. 6, par. 1, lett. b del GDPR)." },
