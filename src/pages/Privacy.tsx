@@ -1,7 +1,14 @@
 import Layout from "@/components/Layout";
+import SEO from "@/components/SEO";
 
 const Privacy = () => (
-  <Layout>
+  <>
+    <SEO
+      title="Privacy Policy — AEDIX"
+      description="Informativa privacy di AEDIX (aedix.it). Come trattiamo i dati personali in conformità al GDPR e ai diritti dell'interessato."
+      path="/privacy"
+    />
+    <Layout>
     <section className="pt-[140px] pb-20 px-6 lg:px-12 min-h-screen">
       <div className="max-w-[800px] mx-auto">
         <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">Legale</span>
@@ -25,7 +32,8 @@ const Privacy = () => (
         </div>
       </div>
     </section>
-  </Layout>
+    </Layout>
+  </>
 );
 
 export default Privacy;

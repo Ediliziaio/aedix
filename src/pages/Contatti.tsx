@@ -3,6 +3,7 @@ import { motion, useInView } from "framer-motion";
 import { Mail, MapPin, Phone, Send, Building2, Clock, MessageCircle, ChevronDown } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import Layout from "@/components/Layout";
+import SEO from "@/components/SEO";
 
 const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) => {
   const ref = useRef(null);
@@ -63,7 +64,13 @@ const Contatti = () => {
   };
 
   return (
-    <Layout>
+    <>
+      <SEO
+        title="Contatti AEDIX — Parla con Florin Andriciuc"
+        description="Prenota una call gratuita con Florin Andriciuc, founder AEDIX. Capiamo insieme come l'AI può aiutare la tua PMI italiana. Nessun impegno."
+        path="/contatti"
+      />
+      <Layout>
       {/* Social Proof Banner */}
       <section className="pt-[140px] pb-4 px-6 lg:px-12">
         <div className="max-w-[1320px] mx-auto">
@@ -191,7 +198,8 @@ const Contatti = () => {
           ))}
         </div>
       </section>
-    </Layout>
+      </Layout>
+    </>
   );
 };
 

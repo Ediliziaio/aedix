@@ -4,6 +4,7 @@ import aedixLogo from "@/assets/aedix_logo.png";
 import { motion, useInView, useMotionValue, animate, useScroll, useTransform } from "framer-motion";
 import { Shield, RefreshCw, Target, Cloud, Brain, Rocket, ScanFace, Briefcase, TrendingUp, DollarSign, Users, BarChart3, Building2, Zap, Clock, Gauge, BadgeCheck, MessageSquareQuote, ChevronDown, Cpu, Database, Globe, Lock, Sparkles } from "lucide-react";
 import Layout from "@/components/Layout";
+import SEO from "@/components/SEO";
 
 // ─── Scroll Progress Bar ─────────────────────────────────────
 const ScrollProgressBar = () => {
@@ -594,10 +595,24 @@ const Index = () => {
   const manifestoY = useTransform(manifestoProgress, [0, 1], [0, -100]);
 
   return (
-    <Layout>
-      <div className="custom-cursor-page">
-      <CustomCursor />
-      <ParticleField />
+    <>
+      <SEO
+        title="AI per PMI Italiane — AEDIX | Soluzioni Pratiche"
+        description="AEDIX sviluppa soluzioni AI su misura per PMI italiane. Software, agenti AI e automazioni per edilizia e costruzioni. Risultati misurabili."
+        path="/"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "AEDIX",
+          url: "https://www.aedix.it",
+          inLanguage: "it-IT",
+          publisher: { "@type": "Organization", name: "AEDIX", url: "https://www.aedix.it" },
+        }}
+      />
+      <Layout>
+        <div className="custom-cursor-page">
+        <CustomCursor />
+        <ParticleField />
 
 
       {/* ───── HERO with Video Background ───── */}
@@ -1501,8 +1516,9 @@ const Index = () => {
         </div>
       </section>
 
-      </div>
-    </Layout>
+        </div>
+      </Layout>
+    </>
   );
 };
 

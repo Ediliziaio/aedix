@@ -5,6 +5,7 @@ import { Cloud, Shield, Brain, Rocket, Target, ScanFace, Briefcase, ArrowRight, 
 import Layout from "@/components/Layout";
 import ParallaxImage from "@/components/ParallaxImage";
 import TiltCard from "@/components/TiltCard";
+import SEO from "@/components/SEO";
 
 const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) => {
   const ref = useRef(null);
@@ -40,7 +41,13 @@ const ecosystemFlow = [
 ];
 
 const Progetti = () => (
-  <Layout>
+  <>
+    <SEO
+      title="Progetti AEDIX — 7 Piattaforme per PMI Italiane"
+      description="Le 7 piattaforme dell'ecosistema AEDIX: Edilizia in Cloud, Cantiere, Edilizia.io, Marketing Edile, TalentProfile 360°. Software AI per PMI italiane."
+      path="/progetti"
+    />
+    <Layout>
     {/* Hero with parallax bg */}
     <section className="relative pt-[140px] pb-20 px-6 lg:px-12 overflow-hidden">
       <ParallaxImage
@@ -169,7 +176,8 @@ const Progetti = () => (
         </FadeIn>
       </div>
     </section>
-  </Layout>
+    </Layout>
+  </>
 );
 
 export default Progetti;

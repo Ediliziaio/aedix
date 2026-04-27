@@ -5,6 +5,7 @@ import { Shield, Users, Target, Heart, Building, Utensils, Wrench, ShoppingBag, 
 import Layout from "@/components/Layout";
 import ParallaxImage from "@/components/ParallaxImage";
 import TiltCard from "@/components/TiltCard";
+import SEO from "@/components/SEO";
 
 const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) => {
   const ref = useRef(null);
@@ -61,7 +62,13 @@ const technologies = [
 ];
 
 const PercheNoi = () => (
-  <Layout>
+  <>
+    <SEO
+      title="Perché Scegliere AEDIX — Storia e Approccio"
+      description="Da impresa edile a ecosistema AI per PMI italiane. 7 piattaforme, 11 agenti AI, 19.000 imprese nel network. Scopri il metodo AEDIX."
+      path="/perche-noi"
+    />
+    <Layout>
     {/* Hero — split layout */}
     <section className="pt-[140px] pb-20 px-6 lg:px-12 overflow-hidden">
       <div className="max-w-[1320px] mx-auto grid lg:grid-cols-2 gap-16 items-center">
@@ -285,7 +292,8 @@ const PercheNoi = () => (
         </FadeIn>
       </div>
     </section>
-  </Layout>
+    </Layout>
+  </>
 );
 
 export default PercheNoi;

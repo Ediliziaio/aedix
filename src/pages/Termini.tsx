@@ -1,7 +1,14 @@
 import Layout from "@/components/Layout";
+import SEO from "@/components/SEO";
 
 const Termini = () => (
-  <Layout>
+  <>
+    <SEO
+      title="Termini di Servizio — AEDIX"
+      description="Termini e condizioni di utilizzo del sito aedix.it e dei servizi AEDIX (Domus Group S.r.l.). Versione vigente."
+      path="/termini"
+    />
+    <Layout>
     <section className="pt-[140px] pb-20 px-6 lg:px-12 min-h-screen">
       <div className="max-w-[800px] mx-auto">
         <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">Legale</span>
@@ -24,7 +31,8 @@ const Termini = () => (
         </div>
       </div>
     </section>
-  </Layout>
+    </Layout>
+  </>
 );
 
 export default Termini;
