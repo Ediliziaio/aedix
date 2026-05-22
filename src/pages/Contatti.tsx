@@ -41,6 +41,20 @@ const FAQItem = ({ faq, index }: { faq: typeof faqs[0]; index: number }) => {
 };
 
 const Contatti = () => {
+  // FAQ schema for Google rich snippets
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map(faq => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.a,
+      },
+    })),
+  };
+
   const { toast } = useToast();
   const [form, setForm] = useState({ nome: "", email: "", telefono: "", settore: "", messaggio: "" });
   const [sending, setSending] = useState(false);
@@ -69,6 +83,7 @@ const Contatti = () => {
         title="Contatti AEDIX — Parla con il Team"
         description="Compila il form e ti ricontattiamo entro 24 ore. Capiamo insieme come l'AI può aiutare la tua PMI italiana. Nessun impegno, nessun costo."
         path="/contatti"
+        jsonLd={faqSchema}
       />
       <Layout>
       {/* Social Proof Banner */}

@@ -4,7 +4,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://www.aedix.it/</loc>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -12,35 +12,35 @@
   <!-- Pagine principali -->
   <url>
     <loc>https://www.aedix.it/servizi</loc>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.aedix.it/perche-noi</loc>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.aedix.it/edilizia-in-cloud</loc>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://www.aedix.it/articoli</loc>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-05-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://www.aedix.it/contatti</loc>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -48,7 +48,7 @@
   <!-- Articoli blog — Settimana 4 mag 2026 -->
   <url>
     <loc>https://www.aedix.it/articoli/gdpr-ai-pmi-italiane-guida-2026</loc>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -84,7 +84,7 @@
 
   <url>
     <loc>https://www.aedix.it/articoli/quanto-costa-ai-pmi-italiana-guida-2026</loc>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-05-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -171,14 +171,14 @@
   <!-- Pagine legali -->
   <url>
     <loc>https://www.aedix.it/privacy</loc>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-05-22</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
     <loc>https://www.aedix.it/termini</loc>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-05-22</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

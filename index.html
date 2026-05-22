@@ -38,6 +38,26 @@
     <meta name="twitter:image" content="https://www.aedix.it/og-image.png" />
 
     <!-- ═══════════════════════════════════════════
+         JSON-LD — PERSON (Founder)
+    ═══════════════════════════════════════════ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Florin Andriciuc",
+      "url": "https://www.aedix.it",
+      "jobTitle": "Founder & CEO",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "AEDIX"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/company/aedix"
+      ]
+    }
+    </script>
+
+    <!-- ═══════════════════════════════════════════
          JSON-LD — ORGANIZATION
     ═══════════════════════════════════════════ -->
     <script type="application/ld+json">
@@ -86,6 +106,27 @@
       "sameAs": [
         "https://www.linkedin.com/company/aedix"
       ]
+    }
+    </script>
+
+    <!-- ═══════════════════════════════════════════
+         JSON-LD — WEBSITE + SEARCH ACTION
+    ═══════════════════════════════════════════ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "url": "https://www.aedix.it",
+      "name": "AEDIX",
+      "description": "AI per PMI Italiane — Soluzioni AI su misura per PMI italiane",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://www.aedix.it/articoli?search={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
     }
     </script>
 

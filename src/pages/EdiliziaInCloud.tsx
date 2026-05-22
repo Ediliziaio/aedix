@@ -115,24 +115,42 @@ const FAQItem = ({ faq, index }: { faq: typeof faqs[0]; index: number }) => {
   );
 };
 
-const EdiliziaInCloud = () => (
+const EdiliziaInCloud = () => {
+  // FAQ schema for Google rich snippets
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map(faq => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.a,
+      },
+    })),
+  };
+
+  // SoftwareApplication schema
+  const softwareSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "Edilizia in Cloud",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web, iOS, Android",
+    url: PORTAL_URL,
+    publisher: { "@type": "Organization", name: "AEDIX", url: "https://www.aedix.it" },
+    offers: { "@type": "Offer", priceCurrency: "EUR", availability: "https://schema.org/InStock", url: PORTAL_URL },
+    description: "Gestionale cloud per imprese edili italiane: cantieri, preventivi, fatturazione SDI, documenti, team, app mobile.",
+    aggregateRating: { "@type": "AggregateRating", ratingValue: "4.8", reviewCount: "120" },
+  };
+
+  return (
   <>
     <SEO
       title="Edilizia in Cloud — Gestionale per Imprese Edili Italiane"
       description="Edilizia in Cloud: il gestionale cloud verticale per imprese edili italiane. Cantieri, preventivi, fatturazione SDI, app mobile. Demo gratuita."
       path="/edilizia-in-cloud"
-      jsonLd={{
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        name: "Edilizia in Cloud",
-        applicationCategory: "BusinessApplication",
-        operatingSystem: "Web, iOS, Android",
-        url: PORTAL_URL,
-        publisher: { "@type": "Organization", name: "AEDIX", url: "https://www.aedix.it" },
-        offers: { "@type": "Offer", priceCurrency: "EUR", availability: "https://schema.org/InStock", url: PORTAL_URL },
-        description: "Gestionale cloud per imprese edili italiane: cantieri, preventivi, fatturazione SDI, documenti, team, app mobile.",
-        aggregateRating: { "@type": "AggregateRating", ratingValue: "4.8", reviewCount: "120" },
-      }}
+      jsonLd={[softwareSchema, faqSchema]}
       breadcrumbs={[
         { name: "Home", url: "/" },
         { name: "Edilizia in Cloud", url: "/edilizia-in-cloud" },

@@ -1,7 +1,111 @@
-# robots.txt — aedix.it
-# Allow all crawlers
+# robots.txt — aedix.it — SEO & AI Crawler Optimization
+# Last updated: 2026-05-22
+
+# ═══════════════════════════════════════════
+# AI & LLM CRAWLERS (Explicit Allow)
+# ═══════════════════════════════════════════
+
+# OpenAI — GPT models, GPT-4, GPT-4V
+User-agent: GPTBot
+Allow: /
+
+# Anthropic — Claude models
+User-agent: ClaudeBot
+Crawl-delay: 1
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# Common Crawl — Internet Archive & Research
+User-agent: CCBot
+Allow: /
+
+# Anthropic web crawling
+User-agent: anthropic-ai
+Allow: /
+
+# Various LLM research crawlers
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: OmniboxBot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+# ═══════════════════════════════════════════
+# SEARCH ENGINE CRAWLERS
+# ═══════════════════════════════════════════
+
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+
+# ═══════════════════════════════════════════
+# SEO & MONITORING CRAWLERS
+# ═══════════════════════════════════════════
+
+User-agent: AhrefsBot
+Allow: /
+Crawl-delay: 1
+
+User-agent: SemrushBot
+Allow: /
+
+User-agent: MJ12bot
+Allow: /
+
+User-agent: DotBot
+Allow: /
+
+User-agent: SEMrushBot-BA
+Allow: /
+
+# ═══════════════════════════════════════════
+# DEFAULT POLICY (All Others)
+# ═══════════════════════════════════════════
 
 User-agent: *
 Allow: /
+Crawl-delay: 2
+
+# ═══════════════════════════════════════════
+# DISALLOW PATTERNS
+# ═══════════════════════════════════════════
+
+# No admin, private, or sensitive paths
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /*?*sort=
+Disallow: /*?*filter=
+
+# ═══════════════════════════════════════════
+# SITEMAPS
+# ═══════════════════════════════════════════
 
 Sitemap: https://www.aedix.it/sitemap.xml
+Sitemap: https://www.aedix.it/sitemap-articles.xml
+
+# ═══════════════════════════════════════════
+# CRAWL BUDGET OPTIMIZATION
+# ═══════════════════════════════════════════
+
+# Request-rate for intensive crawlers
+User-agent: Googlebot
+Request-rate: 30/1s
+
+User-agent: Bingbot
+Request-rate: 10/1s

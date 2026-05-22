@@ -1,0 +1,95 @@
+# AEDIX — AI Content Discovery & Metadata
+# llms.txt standard: https://llmstxt.org
+# Last updated: 2026-05-22
+
+## Organization
+- **Name**: AEDIX
+- **Legal Name**: Domus Group S.r.l.
+- **P.IVA**: IT13132010961
+- **HQ**: Via Aurelio Saffi 29, 20123 Milano, Italia
+- **Website**: https://www.aedix.it
+- **Contact**: info@aedix.it | +39 348 346 7567
+- **Founded**: 2024
+- **Founder**: Florin Andriciuc
+
+## Description
+AEDIX develops AI solutions customized for Italian SMEs. We specialize in:
+- **SaaS platforms** for vertical sectors (construction, retail, hospitality)
+- **AI agents** for business automation, customer service, content generation
+- **Performance marketing** with measurable ROI
+- **Custom software development** and system integration
+
+## Core Products
+1. **Edilizia in Cloud** — Cloud construction management platform
+   - URL: https://www.ediliziaincloud.com
+   - Features: Job costing, quotations, electronic invoicing (SDI), mobile app, team management
+   - Target: Construction companies 5–50 employees
+   - Status: Active & Production
+
+2. **Marketing Services** — Performance marketing for SMEs
+   - Google Ads, LinkedIn, B2B lead generation
+   - Consultation & strategy
+
+## Main Pages
+- **Homepage**: https://www.aedix.it/ — Vision & products overview
+- **Why AEDIX**: https://www.aedix.it/perche-noi — Competitive advantages
+- **Services**: https://www.aedix.it/servizi — Full service offering
+- **Edilizia in Cloud**: https://www.aedix.it/edilizia-in-cloud — Product page with demo link
+- **Blog/Articles**: https://www.aedix.it/articoli — 17 in-depth articles on AI, SMEs, automation
+- **Contact**: https://www.aedix.it/contatti — Contact form & business info
+- **Privacy**: https://www.aedix.it/privacy — GDPR-compliant privacy policy
+- **Terms**: https://www.aedix.it/termini — Service terms & conditions
+
+## Key Topics Covered
+- **AI for Italian SMEs** (artificial intelligence adoption, ROI, use cases)
+- **Construction Industry Digitalization** (edilizia, automazione, gestionali)
+- **Business Automation** (agenti AI, processi aziendali, chatbot, RPA)
+- **Performance Marketing** (digital marketing, lead generation, conversion)
+- **Data Protection** (GDPR compliance, Italian regulations, AI Act)
+- **Software & SaaS** (cloud platforms, vertical SaaS, customization)
+
+## Featured Articles (17 total)
+1. **AI per PMI italiane 2025** — Market overview & adoption trends
+2. **Automazione processi aziendali** — Business process automation with AI
+3. **Marketing performance edilizia** — ROI-driven marketing for construction
+4. **Agenti AI vs Chatbot** — Differences & use cases
+5. **Errori PMI digitale** — Common digital transformation mistakes
+6. **ROI intelligenza artificiale** — Measuring AI investment returns
+7. **SaaS verticale vs generico** — Vertical vs horizontal SaaS comparison
+8. **Futuro lavoro AI automazione** — Future of work with AI
+9. **GDPR AI PMI italiane guida 2026** — GDPR compliance for AI use
+10. **WhatsApp Business AI PMI italiane** — WhatsApp automation for SMEs
+11. **AI generativa PMI italiane 2026** — Generative AI applications
+12. **Come scegliere fornitore AI PMI italiana** — Vendor selection guide
+13. **AI Act 2026 PMI italiane cosa cambia** — EU AI Act compliance
+14. **Quanto costa AI PMI italiana guida 2026** — AI cost analysis
+15. **Perché le PMI italiane hanno paura dell'AI** — Adoption barriers
+16. **5 processi PMI italiana automatizzare oggi** — Quick automation wins
+17. **Agenti AI per PMI cosa sono e come usarli** — AI agents 101
+
+## Contact & Support
+- **Email**: info@aedix.it
+- **Phone**: +39 348 346 7567
+- **PEC** (Legal): domusgroupsrl@legalmail.it
+- **Response time**: Within 24 hours
+
+## Legal & Compliance
+- **GDPR Compliant**: Yes (EU data protection regulations)
+- **Data Center**: European servers
+- **Privacy Policy**: https://www.aedix.it/privacy
+- **Terms of Service**: https://www.aedix.it/termini
+- **AI Transparency**: We disclose AI use; no unauthorized data training
+
+## Social & Professional
+- **LinkedIn**: https://www.linkedin.com/company/aedix
+- **GitHub**: https://github.com/Ediliziaio
+- **Email**: info@aedix.it
+
+## For AI Crawlers & Agents
+This llms.txt file is designed for AI language models (Claude, GPT, etc.) to efficiently discover and understand AEDIX's content, products, and services without requiring full website parsing. All key information is structured and plain-text for optimal LLM processing.
+
+For detailed product documentation, visit https://www.ediliziaincloud.com
+
+---
+**Last Updated**: 2026-05-22
+**Format**: llms.txt v1.0 (llmstxt.org)
