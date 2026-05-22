@@ -565,6 +565,7 @@ const EdiliziaInCloud = () => {
       </section>
     </Layout>
   </>
-);
+  );
+};
 
 export default EdiliziaInCloud;
