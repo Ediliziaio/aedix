@@ -72,7 +72,7 @@ const Navbar = () => {
 
         <Link
           to="/contatti"
-          className="hidden md:block bg-primary text-primary-foreground font-bold text-[12px] uppercase tracking-[2px] px-6 py-2.5 hover:bg-white transition-colors"
+          className="hidden md:block bg-primary text-primary-foreground font-bold text-[12px] uppercase tracking-[2px] px-7 py-2.5 rounded-lg glow-btn hover:bg-primary/90 transition-all"
         >
           Contattaci
         </Link>
@@ -100,7 +100,7 @@ const Navbar = () => {
           ))}
           <Link
             to="/contatti"
-            className="bg-primary text-primary-foreground font-bold text-[12px] uppercase tracking-[2px] px-6 py-2.5 mt-2 text-center"
+            className="bg-primary text-primary-foreground font-bold text-[12px] uppercase tracking-[2px] px-6 py-3 mt-2 text-center rounded-lg"
           >
             Contattaci
           </Link>
