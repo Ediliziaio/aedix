@@ -5,9 +5,10 @@ import { Menu, X, ChevronRight } from "lucide-react";
 import aedixLogo from "@/assets/aedix_logo.png";
 
 const navLinks = [
-  { label: "Cosa Facciamo", to: "/servizi" },
+  { label: "Sistemi", to: "/servizi" },
   { label: "Edilizia in Cloud", to: "/edilizia-in-cloud" },
-  { label: "Perché Noi?", to: "/perche-noi" },
+  { label: "Metodo", to: "/metodo" },
+  { label: "Sicurezza", to: "/sicurezza" },
   { label: "Articoli", to: "/articoli" },
 ];
 
@@ -74,7 +75,7 @@ const Navbar = () => {
           to="/contatti"
           className="hidden md:block bg-primary text-primary-foreground font-bold text-[12px] uppercase tracking-[2px] px-7 py-2.5 rounded-lg glow-btn hover:bg-primary/90 transition-all"
         >
-          Contattaci
+          Prenota una demo
         </Link>
 
         <button className="md:hidden text-white" onClick={() => setMobileOpen(!mobileOpen)}>
@@ -108,7 +109,7 @@ const Navbar = () => {
             to="/contatti"
             className="bg-primary text-primary-foreground font-bold text-[13px] uppercase tracking-[2px] px-6 py-4 mt-6 text-center rounded-lg glow-btn"
           >
-            Contattaci
+            Prenota una demo
           </Link>
         </motion.div>
       )}

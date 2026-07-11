@@ -1,4 +1,21 @@
+import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
+
+// Rimuove i meta tag statici di index.html (senza data-rh) una sola volta:
+// servono ai crawler senza JS, ma duplicherebbero i tag gestiti da Helmet
+// (canonical doppio = segnale ambiguo per Google).
+let staticTagsCleaned = false;
+const cleanStaticTags = () => {
+  if (staticTagsCleaned) return;
+  staticTagsCleaned = true;
+  const selectors = [
+    'link[rel="canonical"]:not([data-rh])',
+    'meta[name="description"]:not([data-rh])',
+    'meta[property^="og:"]:not([data-rh])',
+    'meta[name^="twitter:"]:not([data-rh])',
+  ];
+  document.head.querySelectorAll(selectors.join(", ")).forEach((el) => el.remove());
+};
 
 const SITE_URL = "https://www.aedix.it";
 const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`;
@@ -32,6 +49,10 @@ const SEO = ({
   jsonLd,
   noIndex = false,
 }: SEOProps) => {
+  useEffect(() => {
+    cleanStaticTags();
+  }, []);
+
   const url = `${SITE_URL}${path}`;
   const ogImage = image.startsWith("http") ? image : `${SITE_URL}${image}`;
 
@@ -54,7 +75,10 @@ const SEO = ({
   ];
 
   return (
-    <Helmet>
+    // defer={false}: applica i tag in modo sincrono al commit React.
+    // Il default (rAF) non scatta mai nei tab nascosti/headless — i crawler
+    // che renderizzano JS non vedrebbero canonical, meta né JSON-LD.
+    <Helmet defer={false}>
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta name="robots" content={noIndex ? "noindex, nofollow" : "index, follow"} />

@@ -43,6 +43,8 @@ AEDIX develops AI solutions for Italian companies — from SMEs to medium and la
 - **Why AEDIX**: https://www.aedix.it/perche-noi — Competitive advantages
 - **Services**: https://www.aedix.it/servizi — Full service offering
 - **Edilizia in Cloud**: https://www.aedix.it/edilizia-in-cloud — Product page with demo link
+- **Method**: https://www.aedix.it/metodo — 4-phase delivery process: assessment with baseline, design, activation in 2-4 weeks, monthly ROI measurement
+- **Security & Compliance**: https://www.aedix.it/sicurezza — Data handling (EU infrastructure, no training on client data), human oversight, GDPR & AI Act documentation
 - **Blog/Articles**: https://www.aedix.it/articoli — 20 in-depth articles on AI, enterprises, SMEs, automation, compliance
 - **Contact**: https://www.aedix.it/contatti — Contact form & business info
 - **Privacy**: https://www.aedix.it/privacy — GDPR-compliant privacy policy

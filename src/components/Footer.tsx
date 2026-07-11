@@ -48,9 +48,11 @@ const Footer = () => (
           <h4 className="font-mono text-[11px] uppercase tracking-[3px] text-primary mb-6">Azienda</h4>
           <ul className="space-y-3">
             {[
-              { label: "Perché Noi?", to: "/perche-noi" },
-              { label: "Servizi", to: "/servizi" },
+              { label: "Sistemi", to: "/servizi" },
               { label: "Edilizia in Cloud", to: "/edilizia-in-cloud" },
+              { label: "Il Metodo", to: "/metodo" },
+              { label: "Sicurezza & Conformità", to: "/sicurezza" },
+              { label: "Perché Noi?", to: "/perche-noi" },
               { label: "Articoli", to: "/articoli" },
               { label: "Contatti", to: "/contatti" },
               { label: "Privacy", to: "/privacy" },

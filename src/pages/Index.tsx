@@ -11,163 +11,6 @@ import {
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 
-// ─── Custom Cursor (desktop only) ───────────────────────────
-const CustomCursor = () => {
-  const outerRef = useRef<HTMLDivElement>(null);
-  const innerRef = useRef<HTMLDivElement>(null);
-  const [isHovering, setIsHovering] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-  const mouse = useRef({ x: 0, y: 0 });
-  const pos = useRef({ x: 0, y: 0 });
-
-  useEffect(() => {
-    if (window.matchMedia("(hover: none)").matches) return;
-    setIsVisible(true);
-
-    const onMove = (e: MouseEvent) => {
-      mouse.current = { x: e.clientX, y: e.clientY };
-    };
-    const onOver = (e: MouseEvent) => {
-      const t = e.target as HTMLElement;
-      if (t.closest("button, a, [role='button'], input, textarea, select")) setIsHovering(true);
-    };
-    const onOut = () => setIsHovering(false);
-
-    window.addEventListener("mousemove", onMove);
-    window.addEventListener("mouseover", onOver);
-    window.addEventListener("mouseout", onOut);
-
-    let raf: number;
-    const lerp = () => {
-      pos.current.x += (mouse.current.x - pos.current.x) * 0.15;
-      pos.current.y += (mouse.current.y - pos.current.y) * 0.15;
-      if (outerRef.current) {
-        outerRef.current.style.transform = `translate(${pos.current.x - 20}px, ${pos.current.y - 20}px)`;
-      }
-      if (innerRef.current) {
-        innerRef.current.style.transform = `translate(${mouse.current.x - 4}px, ${mouse.current.y - 4}px)`;
-      }
-      raf = requestAnimationFrame(lerp);
-    };
-    raf = requestAnimationFrame(lerp);
-
-    return () => {
-      window.removeEventListener("mousemove", onMove);
-      window.removeEventListener("mouseover", onOver);
-      window.removeEventListener("mouseout", onOut);
-      cancelAnimationFrame(raf);
-    };
-  }, []);
-
-  if (!isVisible) return null;
-
-  return (
-    <>
-      <div
-        ref={outerRef}
-        className="fixed top-0 left-0 pointer-events-none z-[10000] transition-[width,height,opacity] duration-200"
-        style={{
-          width: isHovering ? 56 : 40,
-          height: isHovering ? 56 : 40,
-          marginLeft: isHovering ? -8 : 0,
-          marginTop: isHovering ? -8 : 0,
-          border: `1.5px solid rgba(246,190,9,${isHovering ? 0.8 : 0.4})`,
-          borderRadius: "50%",
-          mixBlendMode: "difference",
-        }}
-      />
-      <div
-        ref={innerRef}
-        className="fixed top-0 left-0 pointer-events-none z-[10000]"
-        style={{
-          width: 8,
-          height: 8,
-          background: "hsl(var(--gold))",
-          borderRadius: "50%",
-          opacity: isHovering ? 0 : 1,
-          transition: "opacity 0.2s",
-        }}
-      />
-    </>
-  );
-};
-
-// ─── Typing Effect ──────────────────────────────────────────
-const TypingText = ({ text, delay = 0 }: { text: string; delay?: number }) => {
-  const [displayed, setDisplayed] = useState("");
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-
-  useEffect(() => {
-    if (!isInView) return;
-    let i = 0;
-    const timeout = setTimeout(() => {
-      const interval = setInterval(() => {
-        setDisplayed(text.slice(0, i + 1));
-        i++;
-        if (i >= text.length) clearInterval(interval);
-      }, 35);
-      return () => clearInterval(interval);
-    }, delay * 1000);
-    return () => clearTimeout(timeout);
-  }, [isInView, text, delay]);
-
-  return (
-    <span ref={ref} className="font-mono text-[12px] uppercase tracking-[6px] text-primary">
-      {displayed}
-      <span className="animate-pulse">|</span>
-    </span>
-  );
-};
-
-// ─── Rotating Word ──────────────────────────────────────────
-const words = ["clienti", "lead", "preventivi", "appuntamenti", "documenti", "processi"];
-
-const RotatingWord = () => {
-  const [index, setIndex] = useState(0);
-  const [visible, setVisible] = useState(true);
-
-  useEffect(() => {
-    const cycle = setInterval(() => {
-      setVisible(false);
-      setTimeout(() => {
-        setIndex((i) => (i + 1) % words.length);
-        setVisible(true);
-      }, 350);
-    }, 2200);
-    return () => clearInterval(cycle);
-  }, []);
-
-  return (
-    <span
-      className="inline-block text-primary italic font-light"
-      style={{
-        transition: "opacity 0.35s ease, transform 0.35s ease",
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(-12px)",
-        minWidth: "280px",
-        display: "inline-block",
-      }}
-    >
-      {words[index]}.
-    </span>
-  );
-};
-
-// ─── Floating Badge ─────────────────────────────────────────
-const FloatingBadge = ({ text, x, y, delay }: { text: string; x: string; y: string; delay: number }) => (
-  <div
-    className="absolute hidden lg:block font-mono text-[10px] uppercase tracking-[3px] text-primary/40 border border-primary/10 rounded-full px-4 py-1.5 backdrop-blur-sm bg-background/30"
-    style={{
-      left: x,
-      top: y,
-      animation: `float ${4 + delay}s ease-in-out ${delay}s infinite`,
-    }}
-  >
-    {text}
-  </div>
-);
-
 // ─── Animated Counter ───────────────────────────────────────
 const AnimatedCounter = ({ value, suffix = "", duration = 2 }: { value: number; suffix?: string; duration?: number }) => {
   const ref = useRef<HTMLSpanElement>(null);
@@ -427,42 +270,24 @@ const Index = () => {
     <>
       <SEO
         title="Sistemi AI ibridi per le aziende — AEDIX"
-        description="AEDIX è il punto di riferimento per lo sviluppo di sistemi AI ibridi per le aziende italiane: software verticale + agenti AI + supervisione umana. Affidabili, conformi AI Act e GDPR, con risultati misurabili."
+        description="AEDIX è il punto di riferimento per i sistemi AI ibridi: software verticale, agenti AI e supervisione umana per le aziende italiane. Conformi e misurabili."
         path="/"
         jsonLd={[
+          // WebSite e Organization sono già nel <head> statico di index.html —
+          // qui solo gli schema specifici della pagina, per evitare duplicati.
           {
             "@context": "https://schema.org",
-            "@type": "WebSite",
-            name: "AEDIX",
-            url: "https://www.aedix.it",
-            inLanguage: "it-IT",
-            publisher: { "@type": "Organization", name: "AEDIX", url: "https://www.aedix.it" },
-          },
-          {
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            name: "AEDIX",
-            url: "https://www.aedix.it",
-            slogan: "Il punto di riferimento per lo sviluppo di sistemi AI ibridi per le aziende",
-            description:
-              "Tech company italiana specializzata nella progettazione di sistemi AI ibridi per le aziende: software verticale, agenti AI operativi e supervisione umana in un'unica architettura affidabile e conforme.",
-            legalName: "Domus Group S.r.l.",
-            email: "info@aedix.it",
-            telephone: "+39 348 346 7567",
-            address: {
-              "@type": "PostalAddress",
-              streetAddress: "Via Aurelio Saffi 29",
-              postalCode: "20123",
-              addressLocality: "Milano",
-              addressCountry: "IT",
-            },
+            "@type": "FAQPage",
+            mainEntity: faqs.map((f) => ({
+              "@type": "Question",
+              name: f.q,
+              acceptedAnswer: { "@type": "Answer", text: f.a },
+            })),
           },
         ]}
       />
       <Layout>
-        <div className="custom-cursor-page">
-          <CustomCursor />
-
+        <div>
           {/* ════════════════════════════════════════════════════
                HERO — Premium gradient mesh + dot grid
              ════════════════════════════════════════════════════ */}
@@ -487,17 +312,13 @@ const Index = () => {
               transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
             />
 
-            {/* Floating tech badges */}
-            <FloatingBadge text="SaaS" x="75%" y="25%" delay={0} />
-            <FloatingBadge text="AI" x="82%" y="45%" delay={1.2} />
-            <FloatingBadge text="Automation" x="70%" y="60%" delay={0.6} />
-            <FloatingBadge text="Cloud" x="85%" y="70%" delay={1.8} />
-
             <div className="relative max-w-[1320px] mx-auto w-full">
               <FadeIn>
                 <div className="flex items-center gap-4 mb-8">
                   <div className="w-10 h-px bg-primary" />
-                  <TypingText text="Sistemi AI ibridi per le aziende" delay={0.5} />
+                  <span className="font-mono text-[12px] uppercase tracking-[6px] text-primary">
+                    Sistemi AI ibridi per le aziende
+                  </span>
                 </div>
               </FadeIn>
 
@@ -506,49 +327,49 @@ const Index = () => {
                   className="font-display font-bold leading-[1.04] tracking-[-3px] mb-8"
                   style={{ fontSize: "clamp(40px, 6vw, 84px)" }}
                 >
-                  L'AI che gestisce<br />
-                  i tuoi <RotatingWord />
+                  L'AI esegue.<br />
+                  <span className="italic font-light text-primary">Le persone garantiscono.</span>
                 </h1>
               </FadeIn>
 
               <FadeIn delay={0.2}>
-                <p className="text-[19px] leading-[1.75] text-[rgba(255,255,255,0.7)] max-w-[600px] font-light mb-10">
-                  Uniamo <span className="text-white font-medium">software verticale, agenti AI e supervisione umana</span>{" "}
-                  in un'unica architettura. Non un chatbot, non un gestionale in più:{" "}
-                  il sistema con cui la tua azienda mette l'AI a lavorare davvero — affidabile, conforme, misurabile.
+                <p className="text-[19px] leading-[1.75] text-[rgba(255,255,255,0.7)] max-w-[620px] font-light mb-10">
+                  Progettiamo sistemi AI ibridi per PMI e imprese italiane:{" "}
+                  <span className="text-white font-medium">software verticale sul vostro settore, agenti AI che eseguono i processi, supervisione umana su ogni risultato</span>.
+                  Operativi in settimane. Conformi by design.
                 </p>
               </FadeIn>
 
               <FadeIn delay={0.3}>
                 <div className="flex flex-wrap gap-4">
-                  <button
-                    onClick={() => scrollTo("cosa-facciamo")}
-                    className="shimmer-btn glow-btn bg-primary text-primary-foreground font-bold text-[13px] uppercase tracking-[2px] px-10 py-[18px] rounded-lg relative overflow-hidden"
+                  <Link
+                    to="/contatti"
+                    className="shimmer-btn glow-btn bg-primary text-primary-foreground font-bold text-[13px] uppercase tracking-[2px] px-10 py-[18px] rounded-lg relative overflow-hidden inline-block"
                   >
-                    Scopri L'Ecosistema →
-                  </button>
+                    Prenota una demo →
+                  </Link>
                   <button
-                    onClick={() => scrollTo("cta-finale")}
+                    onClick={() => scrollTo("sistema-ibrido")}
                     className="border border-[rgba(255,255,255,0.15)] text-white font-bold text-[13px] uppercase tracking-[2px] px-10 py-[18px] rounded-lg hover:border-primary/50 hover:text-primary transition-all duration-300"
                   >
-                    Prenota Una Demo
+                    Come funziona
                   </button>
                 </div>
               </FadeIn>
 
-              {/* Hero stats — metric cards */}
+              {/* Hero stats — verifiable facts only */}
               <FadeIn delay={0.4}>
                 <div className="flex flex-wrap gap-8 lg:gap-12 mt-16 pt-16 border-t border-[rgba(255,255,255,0.06)]">
                   {[
-                    { val: 700, suf: "h", label: "risparmiate all'anno" },
-                    { val: 100, suf: "%", label: "Made in Italy · GDPR" },
-                    { val: 24, suf: "/7", label: "AI sempre operativa" },
+                    { val: 19, suf: "k+", label: "imprese edili nel database proprietario" },
+                    { val: 100, suf: "%", label: "azioni critiche approvate da persone" },
+                    { val: 24, suf: "/7", label: "agenti AI operativi" },
                   ].map((s, i) => (
                     <div key={i} className="flex flex-col">
                       <span className="font-mono text-[48px] font-bold text-white leading-none tracking-tight">
                         <AnimatedCounter value={s.val} suffix={s.suf} />
                       </span>
-                      <span className="font-mono text-[11px] uppercase tracking-[2px] text-[rgba(255,255,255,0.45)] mt-2">
+                      <span className="font-mono text-[11px] uppercase tracking-[2px] text-[rgba(255,255,255,0.45)] mt-2 max-w-[240px]">
                         {s.label}
                       </span>
                     </div>
@@ -556,14 +377,14 @@ const Index = () => {
                 </div>
               </FadeIn>
 
-              {/* Trust strip */}
+              {/* Trust strip — practices, not badges */}
               <FadeIn delay={0.5}>
                 <div className="mt-12 flex flex-wrap items-center gap-6">
                   {[
-                    { icon: <BadgeCheck size={16} />, text: "GDPR & AI Act compliant" },
-                    { icon: <Globe size={16} />, text: "100% italiano" },
-                    { icon: <Zap size={16} />, text: "Operativo in 3–14 giorni" },
-                    { icon: <Cpu size={16} />, text: "Testato sulle nostre aziende" },
+                    { icon: <BadgeCheck size={16} />, text: "GDPR & AI Act by design" },
+                    { icon: <Globe size={16} />, text: "Dati su infrastruttura EU" },
+                    { icon: <Zap size={16} />, text: "Attivazione in 3–14 giorni" },
+                    { icon: <Cpu size={16} />, text: "Testato sulle nostre aziende prima" },
                   ].map((badge, i) => (
                     <div key={i} className="flex items-center gap-2 text-[12px] text-[rgba(255,255,255,0.4)] font-light">
                       <span className="text-primary/60">{badge.icon}</span>
@@ -598,7 +419,7 @@ const Index = () => {
               </FadeIn>
               <FadeIn delay={0.16}>
                 <p className="text-[17px] text-[rgba(255,255,255,0.65)] max-w-[640px] font-light mb-16 lg:mb-20">
-                  Un chatbot allucina e non conosce i tuoi dati. Un gestionale è affidabile ma cieco. Un sistema AI ibrido unisce tre strati che si controllano a vicenda — per avere l'intelligenza dell'AI con l'affidabilità del software e il giudizio delle persone.
+                  La maggior parte dei progetti AI in azienda muore in demo: potenza senza controllo, o controllo senza intelligenza. Un chatbot allucina e non conosce i tuoi dati. Un gestionale è affidabile ma cieco. Un sistema AI ibrido unisce tre strati che si controllano a vicenda — l'intelligenza dell'AI, l'affidabilità del software, il giudizio delle persone.
                 </p>
               </FadeIn>
 
@@ -731,7 +552,7 @@ const Index = () => {
             <div className="max-w-[1320px] mx-auto">
               <FadeIn>
                 <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">
-                  Il Problema → La Soluzione
+                  I Componenti
                 </span>
               </FadeIn>
               <FadeIn delay={0.08}>
@@ -739,13 +560,13 @@ const Index = () => {
                   className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-6"
                   style={{ fontSize: "clamp(32px, 4.5vw, 58px)" }}
                 >
-                  Ogni giorno perdi tempo, soldi<br />
-                  e clienti. <span className="italic font-light text-primary">Abbiamo costruito la risposta.</span>
+                  Quattro componenti.<br />
+                  <span className="italic font-light text-primary">Un sistema.</span>
                 </h2>
               </FadeIn>
               <FadeIn delay={0.16}>
                 <p className="text-[17px] text-[rgba(255,255,255,0.65)] max-w-[620px] font-light mb-16 lg:mb-20">
-                  Quattro problemi cronici di ogni azienda italiana. Quattro componenti che compongono il tuo sistema AI ibrido — non adattamenti di strumenti generici, ma pezzi che lavorano insieme.
+                  Ogni componente risolve un problema cronico delle aziende italiane. Insieme, compongono il tuo sistema AI ibrido — non strumenti generici adattati, ma pezzi progettati per lavorare insieme.
                 </p>
               </FadeIn>
 
@@ -881,8 +702,8 @@ const Index = () => {
                   className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-16"
                   style={{ fontSize: "clamp(32px, 4.5vw, 58px)" }}
                 >
-                  Non parliamo di innovazione.<br />
-                  <span className="italic font-light text-primary">La costruiamo.</span>
+                  Costruito gestendo imprese vere.<br />
+                  <span className="italic font-light text-primary">Non in un laboratorio.</span>
                 </h2>
               </FadeIn>
 
@@ -892,7 +713,7 @@ const Index = () => {
                     <p>
                       Aedix nasce da un principio semplice:{" "}
                       <strong className="text-white font-semibold">
-                        le PMI italiane meritano la stessa tecnologia delle multinazionali
+                        le imprese italiane meritano la stessa tecnologia delle multinazionali
                       </strong>
                       , ma costruita per il loro mondo — fatto di clienti da acquisire, processi da gestire, burocrazia da sbrigare e margini da proteggere.
                     </p>
@@ -925,7 +746,7 @@ const Index = () => {
                     {[
                       { icon: <Shield size={20} />, text: "Testata sulle nostre aziende prima" },
                       { icon: <RefreshCw size={20} />, text: "Cloud-native, zero manutenzione" },
-                      { icon: <Target size={20} />, text: "Focus esclusivo PMI italiane" },
+                      { icon: <Target size={20} />, text: "Focus esclusivo: imprese italiane" },
                     ].map((b, i) => (
                       <div key={i} className="p-4 rounded-lg border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.02)]">
                         <div className="w-10 h-10 rounded-full border border-primary/20 flex items-center justify-center text-primary mb-3">
@@ -1081,9 +902,17 @@ const Index = () => {
                 </h2>
               </FadeIn>
               <FadeIn delay={0.12}>
-                <p className="text-[17px] text-[rgba(255,255,255,0.6)] max-w-[500px] font-light mb-16">
+                <p className="text-[17px] text-[rgba(255,255,255,0.6)] max-w-[500px] font-light mb-6">
                   Quattro passi. Nessuna burocrazia. Nessun progetto IT infinito.
                 </p>
+              </FadeIn>
+              <FadeIn delay={0.14}>
+                <Link
+                  to="/metodo"
+                  className="inline-flex items-center gap-2 text-primary font-mono text-[12px] uppercase tracking-[2px] hover:gap-3 transition-all mb-16"
+                >
+                  Il metodo completo <ArrowRight size={14} />
+                </Link>
               </FadeIn>
 
               <div ref={timelineRef} className="grid sm:grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 relative">
@@ -1128,7 +957,7 @@ const Index = () => {
             <div className="max-w-[1320px] mx-auto">
               <FadeIn>
                 <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">
-                  Voci dal Campo
+                  Risultati
                 </span>
               </FadeIn>
               <FadeIn delay={0.08}>
@@ -1136,8 +965,8 @@ const Index = () => {
                   className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-16"
                   style={{ fontSize: "clamp(32px, 4.5vw, 58px)" }}
                 >
-                  Come le PMI usano<br />
-                  <span className="italic font-light text-primary">le nostre soluzioni.</span>
+                  Misurati sui sistemi<br />
+                  <span className="italic font-light text-primary">in produzione.</span>
                 </h2>
               </FadeIn>
 
@@ -1181,6 +1010,46 @@ const Index = () => {
           <SectionDivider />
 
           {/* ════════════════════════════════════════════════════
+               SICUREZZA — Trust teaser
+             ════════════════════════════════════════════════════ */}
+          <section className="py-20 sm:py-28 px-6 lg:px-12">
+            <div className="max-w-[1320px] mx-auto">
+              <div className="rounded-xl glass-card p-8 lg:p-12">
+                <div className="grid lg:grid-cols-[1fr_auto] gap-8 items-center">
+                  <div>
+                    <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-5">
+                      Sicurezza & Conformità
+                    </span>
+                    <h2 className="font-display font-bold leading-[1.1] tracking-[-1px] mb-5" style={{ fontSize: "clamp(24px, 3vw, 38px)" }}>
+                      Le domande che farebbe il vostro legale. Con le risposte.
+                    </h2>
+                    <div className="flex flex-wrap gap-x-8 gap-y-3">
+                      {[
+                        "Nessun training su dati dei clienti",
+                        "Infrastruttura EU, cifratura at-rest e in-transit",
+                        "Supervisione umana su ogni azione critica",
+                        "Documentazione GDPR e AI Act prima della firma",
+                      ].map((p, i) => (
+                        <span key={i} className="flex items-center gap-2 text-[14px] text-[rgba(255,255,255,0.65)] font-light">
+                          <Check size={14} className="text-emerald-400" /> {p}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <Link
+                    to="/sicurezza"
+                    className="inline-flex items-center gap-2 border border-[rgba(255,255,255,0.15)] text-white font-bold text-[12px] uppercase tracking-[2px] px-8 py-4 rounded-lg hover:border-primary/50 hover:text-primary transition-all whitespace-nowrap"
+                  >
+                    Sicurezza e dati <ArrowRight size={14} />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <SectionDivider />
+
+          {/* ════════════════════════════════════════════════════
                FAQ
              ════════════════════════════════════════════════════ */}
           <section className="py-20 sm:py-28 lg:py-40 px-6 lg:px-12">
@@ -1195,8 +1064,8 @@ const Index = () => {
                   className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-16 text-center"
                   style={{ fontSize: "clamp(32px, 4.5vw, 58px)" }}
                 >
-                  Hai domande.<br />
-                  <span className="italic font-light text-primary">Noi abbiamo risposte.</span>
+                  Le domande che ci fanno<br />
+                  <span className="italic font-light text-primary">prima di iniziare.</span>
                 </h2>
               </FadeIn>
 
@@ -1239,13 +1108,13 @@ const Index = () => {
                   className="font-display font-bold leading-[1.06] tracking-[-2px] mb-8"
                   style={{ fontSize: "clamp(34px, 5vw, 68px)" }}
                 >
-                  La tua azienda tra 12 mesi<br />
-                  sarà <span className="italic font-light text-primary">irriconoscibile.</span>
+                  Parliamo del vostro processo.<br />
+                  <span className="italic font-light text-primary">Non del nostro prodotto.</span>
                 </h2>
               </FadeIn>
               <FadeIn delay={0.1}>
-                <p className="text-[18px] text-[rgba(255,255,255,0.65)] max-w-[520px] mx-auto font-light leading-[1.7] mb-12">
-                  Meno costi fissi. Più vendite. Più controllo. Più libertà. Non è una promessa — è un sistema che funziona già per chi lo usa.
+                <p className="text-[18px] text-[rgba(255,255,255,0.65)] max-w-[560px] mx-auto font-light leading-[1.7] mb-12">
+                  45 minuti sul vostro caso specifico: dove l'AI genera valore in azienda, con quali numeri e in quanto tempo. Se non ha senso per voi, ve lo diciamo.
                 </p>
               </FadeIn>
               <FadeIn delay={0.2}>
@@ -1254,7 +1123,7 @@ const Index = () => {
                     to="/contatti"
                     className="shimmer-btn glow-btn bg-primary text-primary-foreground font-bold text-[13px] uppercase tracking-[2px] px-12 py-[18px] rounded-lg relative overflow-hidden inline-block"
                   >
-                    Parla Con Noi →
+                    Prenota una demo →
                   </Link>
                   <Link
                     to="/edilizia-in-cloud"
