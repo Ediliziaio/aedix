@@ -52,7 +52,7 @@ const Footer = () => (
               { label: "Edilizia in Cloud", to: "/edilizia-in-cloud" },
               { label: "Il Metodo", to: "/metodo" },
               { label: "Sicurezza & Conformità", to: "/sicurezza" },
-              { label: "Perché Noi?", to: "/perche-noi" },
+              { label: "Chi Siamo", to: "/perche-noi" },
               { label: "Articoli", to: "/articoli" },
               { label: "Contatti", to: "/contatti" },
               { label: "Privacy", to: "/privacy" },

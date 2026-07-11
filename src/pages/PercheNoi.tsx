@@ -34,10 +34,10 @@ const values = [
 ];
 
 const stats = [
+  { value: "2016", label: "Anno della prima impresa fondata" },
+  { value: "19k+", label: "Imprese edili nel database proprietario" },
   { value: "4", label: "Piattaforme attive" },
-  { value: "AI", label: "Nativamente integrata" },
-  { value: "24/7", label: "Operativi" },
-  { value: "EU", label: "GDPR compliant" },
+  { value: "EU", label: "Infrastruttura dati europea" },
 ];
 
 const sectors = [
@@ -47,11 +47,10 @@ const sectors = [
   { icon: <Utensils size={24} />, name: "Ristorazione" },
 ];
 
-const team = [
-  { name: "Founder & CEO", role: "Strategia, Visione, Business Development", initials: "FD" },
-  { name: "CTO", role: "Architettura, AI, Sviluppo piattaforme", initials: "CT" },
-  { name: "Head of Marketing", role: "Performance marketing, Growth, Vendite", initials: "HM" },
-  { name: "Head of Operations", role: "Processi, Automazione, Customer Success", initials: "HO" },
+const teamAreas = [
+  { area: "Prodotto & AI", desc: "Architettura delle piattaforme, agenti AI, integrazione con i sistemi aziendali." },
+  { area: "Operations & Customer Success", desc: "Onboarding, formazione, supporto continuo alle imprese clienti." },
+  { area: "Marketing & Vendite", desc: "Performance marketing, crescita e sviluppo commerciale." },
 ];
 
 const technologies = [
@@ -64,9 +63,35 @@ const technologies = [
 const PercheNoi = () => (
   <>
     <SEO
-      title="Perché AEDIX — Il riferimento per i sistemi AI ibridi"
-      description="Da impresa reale a punto di riferimento per lo sviluppo di sistemi AI ibridi per le aziende. Testato sul campo, AI nativa, conforme AI Act e GDPR. Scopri il metodo AEDIX."
+      title="Chi Siamo — AEDIX | Da Impresa Edile a Tech Company"
+      description="AEDIX nasce nel 2016 da un'impresa edile reale. Oggi progetta sistemi AI ibridi per le aziende italiane: storia, valori e persone dietro la tecnologia."
       path="/perche-noi"
+      breadcrumbs={[
+        { name: "Home", url: "/" },
+        { name: "Chi Siamo", url: "/perche-noi" },
+      ]}
+      jsonLd={[
+        {
+          "@context": "https://schema.org",
+          "@type": "AboutPage",
+          name: "Chi Siamo — AEDIX",
+          url: "https://www.aedix.it/perche-noi",
+          inLanguage: "it-IT",
+          description:
+            "La storia di AEDIX: fondata da imprenditori del settore edile, oggi progetta sistemi AI ibridi per le aziende italiane. Ogni piattaforma viene testata internamente prima di arrivare ai clienti.",
+          mainEntity: { "@type": "Organization", name: "AEDIX", url: "https://www.aedix.it" },
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: "Florin Andriciuc",
+          jobTitle: "Founder & CEO",
+          worksFor: { "@type": "Organization", name: "AEDIX", url: "https://www.aedix.it" },
+          url: "https://www.aedix.it/perche-noi",
+          knowsAbout: ["Intelligenza artificiale per aziende", "Sistemi AI ibridi", "Digitalizzazione settore edile", "SaaS verticale"],
+          sameAs: ["https://www.linkedin.com/company/aedix"],
+        },
+      ]}
     />
     <Layout>
     {/* Hero — split layout */}
@@ -74,7 +99,7 @@ const PercheNoi = () => (
       <div className="max-w-[1320px] mx-auto grid lg:grid-cols-2 gap-16 items-center">
         <div>
           <FadeIn>
-            <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">Perché Noi?</span>
+            <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">Chi Siamo</span>
           </FadeIn>
           <FadeIn delay={0.08}>
             <h1 className="font-display font-bold leading-[1.08] tracking-[-2px] mb-6" style={{ fontSize: "clamp(36px, 5vw, 64px)" }}>
@@ -239,15 +264,37 @@ const PercheNoi = () => (
             Le persone dietro la <span className="italic font-light text-primary">tecnologia.</span>
           </h2>
         </FadeIn>
-        <div className="grid md:grid-cols-4 gap-6">
-          {team.map((t, i) => (
-            <FadeIn key={i} delay={0.1 * i}>
-              <div className="group text-center p-8 rounded-lg border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)] hover:bg-[rgba(255,255,255,0.06)] transition-all hover:-translate-y-1">
-                <div className="w-20 h-20 rounded-full border-2 border-primary/30 flex items-center justify-center mx-auto mb-5 bg-primary/[0.08]">
-                  <span className="font-mono text-[20px] font-bold text-primary">{t.initials}</span>
-                </div>
-                <h3 className="font-display text-[18px] font-semibold mb-2">{t.name}</h3>
-                <p className="text-[13px] text-[rgba(255,255,255,0.6)] font-light">{t.role}</p>
+
+        {/* Founder spotlight */}
+        <FadeIn delay={0.1}>
+          <div className="rounded-xl glass-card p-8 lg:p-12 mb-8">
+            <div className="grid lg:grid-cols-[auto_1fr] gap-8 items-start">
+              <div className="w-24 h-24 rounded-full border-2 border-primary/30 flex items-center justify-center bg-primary/[0.08] shrink-0">
+                <span className="font-mono text-[26px] font-bold text-primary">FA</span>
+              </div>
+              <div>
+                <h3 className="font-display text-[24px] font-bold mb-1">Florin Andriciuc</h3>
+                <p className="font-mono text-[11px] uppercase tracking-[2px] text-primary mb-5">Founder & CEO</p>
+                <p className="text-[16px] text-[rgba(255,255,255,0.7)] font-light leading-[1.85] max-w-[720px]">
+                  Imprenditore edile prima che fondatore tech. Nel 2016 fonda la sua prima impresa nel settore
+                  costruzioni e si scontra con un problema che nessun software risolveva: gestire un'azienda edile
+                  italiana con strumenti pensati per tutt'altro. Nel 2020 quel problema diventa Edilizia in Cloud,
+                  e nel 2024 AEDIX — la tech company che progetta sistemi AI ibridi per le aziende italiane.
+                  Il principio non è mai cambiato: ogni soluzione viene usata prima sulle nostre imprese,
+                  poi proposta ai clienti.
+                </p>
+              </div>
+            </div>
+          </div>
+        </FadeIn>
+
+        {/* Team areas */}
+        <div className="grid md:grid-cols-3 gap-5">
+          {teamAreas.map((t, i) => (
+            <FadeIn key={i} delay={0.08 * i}>
+              <div className="p-7 rounded-lg border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)] h-full">
+                <h3 className="font-display text-[17px] font-semibold mb-3">{t.area}</h3>
+                <p className="text-[14px] text-[rgba(255,255,255,0.6)] font-light leading-[1.7]">{t.desc}</p>
               </div>
             </FadeIn>
           ))}
@@ -280,14 +327,18 @@ const PercheNoi = () => (
       <div className="max-w-[800px] mx-auto text-center">
         <FadeIn>
           <h2 className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-6" style={{ fontSize: "clamp(28px, 4vw, 48px)" }}>
-            Pronto a scoprire come possiamo <span className="italic font-light text-primary">aiutarti?</span>
+            Vuoi capire se un sistema ibrido<br />
+            <span className="italic font-light text-primary">ha senso per la tua azienda?</span>
           </h2>
-          <p className="text-[17px] text-[rgba(255,255,255,0.65)] font-light mb-10">Nessun impegno. Parliamo del tuo caso specifico.</p>
+          <p className="text-[17px] text-[rgba(255,255,255,0.65)] font-light mb-10">
+            45 minuti sul tuo caso specifico. Oppure parti dal <Link to="/metodo" className="text-primary hover:underline">metodo</Link> o
+            dalla pagina <Link to="/sicurezza" className="text-primary hover:underline">sicurezza e conformità</Link>.
+          </p>
           <Link
             to="/contatti"
             className="shimmer-btn inline-flex items-center gap-3 bg-primary text-primary-foreground font-bold text-[13px] uppercase tracking-[2px] px-12 py-[18px] hover:-translate-y-0.5 hover:shadow-[0_16px_48px_rgba(246,190,9,0.25)] transition-all relative overflow-hidden"
           >
-            Contattaci <ArrowRight size={16} />
+            Prenota una demo <ArrowRight size={16} />
           </Link>
         </FadeIn>
       </div>

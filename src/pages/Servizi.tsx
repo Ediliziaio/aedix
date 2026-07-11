@@ -29,25 +29,25 @@ const pillars = [
     icon: <Cloud size={36} />, title: "Piattaforme SaaS Verticali",
     desc: "Software gestionale, sicurezza, back-office — tutto costruito specificamente per il tuo settore. Non adattamenti di tool generici, ma piattaforme native che parlano la tua lingua.",
     features: ["Gestionale cantieri e documenti in tempo reale", "Sicurezza e adempimenti normativi automatizzati", "Back-office in outsourcing: fatturazione, buste paga, adempimenti", "Dashboard personalizzate per ogni ruolo aziendale", "Integrazione con i tuoi strumenti esistenti"],
-    color: "#00D4FF",
+    color: "#00D4FF", link: "/edilizia-in-cloud", linkLabel: "Vedi Edilizia in Cloud",
   },
   {
     icon: <Brain size={36} />, title: "Agenti AI Operativi",
     desc: "Non chatbot decorativi. Agenti che rispondono ai clienti, qualificano lead, compilano preventivi, gestiscono appuntamenti. Lavorano 24/7. Non chiedono ferie.",
     features: ["Risponditore automatico con AI conversazionale", "Qualificazione lead e booking appuntamenti", "Generazione preventivi e documenti automatizzata", "Follow-up intelligente su pipeline di vendita", "Report e analytics in tempo reale"],
-    color: "#A855F7",
+    color: "#A855F7", link: "/metodo", linkLabel: "Come li attiviamo",
   },
   {
     icon: <Rocket size={36} />, title: "Marketing & Vendita Digitale",
     desc: "Strategie di marketing digitale su misura con ROI misurabile. Campagne ads, funnel, landing page e lead generation — tutto gestito e ottimizzato dall'AI per massimizzare i tuoi risultati.",
     features: ["Campagne ads gestite e ottimizzate dall'AI", "Landing page e funnel di conversione personalizzati", "Metodo di vendita ibrido: AI + persone", "Tracking completo: dal click alla vendita chiusa", "Investimento calibrato sui tuoi obiettivi"],
-    color: "#10B981",
+    color: "#10B981", link: "/contatti", linkLabel: "Parla con noi",
   },
   {
     icon: <BookOpen size={36} />, title: "Consulenza e Formazione",
     desc: "Vendita, gestione aziendale, recruiting. Metodi testati su imprese reali — non teoria da manuale. Ogni strategia che insegniamo, la usiamo prima su noi stessi.",
     features: ["Formazione vendita per team tecnici e commerciali", "Consulenza strategica su processi e automazione", "Assessment aziendale e analisi dei processi", "Affiancamento operativo sul campo", "Workshop personalizzati per il tuo team"],
-    color: "#F59E0B",
+    color: "#F59E0B", link: "/metodo", linkLabel: "Vedi il metodo",
   },
 ];
 
@@ -68,7 +68,15 @@ const steps = [
 ];
 
 const serviceFaqs = [
-  { q: "Posso usare solo una piattaforma?", a: "Assolutamente sì. Ogni piattaforma funziona in autonomia. Puoi iniziare con una e aggiungerne altre quando vuoi." },
+  {
+    q: "Cos'è un sistema AI ibrido?",
+    a: "Un sistema AI ibrido è un'architettura che unisce tre strati: un software verticale che governa dati e processi del settore (la fonte di verità), agenti AI operativi che eseguono i processi — risposte ai clienti, preventivi, documenti — sui dati reali, e la supervisione umana che approva le azioni critiche. I tre strati si controllano a vicenda: è così che si ottiene l'intelligenza dell'AI con l'affidabilità del software e il giudizio delle persone.",
+  },
+  {
+    q: "Qual è la differenza tra un sistema AI ibrido e un chatbot?",
+    a: "Un chatbot risponde a domande, spesso inventando quando non sa. Un sistema AI ibrido esegue processi completi sui dati aziendali reali — qualifica lead, genera preventivi, gestisce appuntamenti e documenti — con punti di approvazione umana sulle azioni critiche e piena tracciabilità. Il chatbot è un componente; il sistema è l'architettura che lo rende affidabile.",
+  },
+  { q: "Posso usare solo una piattaforma?", a: "Sì. Ogni componente funziona in autonomia: puoi partire dal software verticale, da un agente AI o dal marketing, e aggiungere gli altri quando il primo è a regime. È il principio del metodo AEDIX: un processo alla volta, ognuno misurato." },
   { q: "Serve personale tecnico interno?", a: "No. Le nostre piattaforme sono progettate per imprenditori e team non tecnici. Forniamo formazione e supporto dedicato." },
   { q: "Come funziona il marketing digitale?", a: "Creiamo e gestiamo le campagne con pacchetti su misura per i tuoi obiettivi. Ogni euro investito è tracciato con ROI misurabile e report trasparenti." },
   { q: "Gli agenti AI sostituiscono i dipendenti?", a: "No. Gli agenti AI automatizzano le attività ripetitive, liberando i tuoi dipendenti per attività a più alto valore." },
@@ -96,9 +104,34 @@ const FAQItem = ({ faq, index }: { faq: typeof serviceFaqs[0]; index: number }) 
 const Servizi = () => (
   <>
     <SEO
-      title="Servizi — I quattro componenti di un sistema AI ibrido | AEDIX"
-      description="Software verticale, agenti AI operativi, marketing a performance e consulenza: i quattro componenti che compongono un sistema AI ibrido per la tua azienda. Affidabile, conforme, misurabile."
+      title="Sistemi AI Ibridi per Aziende: i 4 Componenti | AEDIX"
+      description="Software verticale, agenti AI operativi, marketing a performance e consulenza: i 4 componenti di un sistema AI ibrido. Operativo in giorni, da €200/mese."
       path="/servizi"
+      breadcrumbs={[
+        { name: "Home", url: "/" },
+        { name: "Sistemi", url: "/servizi" },
+      ]}
+      jsonLd={[
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          name: "Sistemi AI ibridi per aziende — i 4 componenti",
+          url: "https://www.aedix.it/servizi",
+          inLanguage: "it-IT",
+          description:
+            "I quattro componenti di un sistema AI ibrido AEDIX: piattaforme SaaS verticali, agenti AI operativi, marketing a performance e consulenza. Architettura a tre strati con supervisione umana.",
+          publisher: { "@type": "Organization", name: "AEDIX", url: "https://www.aedix.it" },
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: serviceFaqs.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
+        },
+      ]}
     />
     <Layout>
     {/* Hero with parallax background */}
@@ -203,8 +236,8 @@ const Servizi = () => (
                 <motion.div className="mb-6 opacity-80" style={{ color: p.color }} whileHover={{ rotate: 12, scale: 1.15 }} transition={{ type: "spring", stiffness: 300 }}>{p.icon}</motion.div>
                 <h2 className="font-display font-bold text-[32px] leading-[1.15] tracking-[-1px] mb-6">{p.title}</h2>
                 <p className="text-[17px] text-[rgba(255,255,255,0.7)] font-light leading-[1.8] mb-8">{p.desc}</p>
-                <Link to="/contatti" className="inline-flex items-center gap-2 text-primary font-semibold text-[14px] uppercase tracking-[1.5px] hover:gap-4 transition-all">
-                  Scopri di più <ArrowRight size={16} />
+                <Link to={p.link} className="inline-flex items-center gap-2 text-primary font-semibold text-[14px] uppercase tracking-[1.5px] hover:gap-4 transition-all">
+                  {p.linkLabel} <ArrowRight size={16} />
                 </Link>
               </div>
             </FadeIn>
@@ -289,9 +322,15 @@ const Servizi = () => (
               <p className="text-[17px] text-[rgba(255,255,255,0.7)] font-light leading-[1.8] mb-6">
                 Il problema dell'AI in azienda non è la potenza — è il controllo. Chi risponde se sbaglia? Dove finiscono i dati? È conforme? Il modello ibrido nasce per rispondere a queste domande <strong className="text-white font-medium">prima</strong> che diventino un rischio.
               </p>
-              <p className="text-[15px] text-[rgba(255,255,255,0.55)] font-light leading-[1.8]">
+              <p className="text-[15px] text-[rgba(255,255,255,0.55)] font-light leading-[1.8] mb-8">
                 Ogni sistema che progettiamo tiene traccia di cosa fa l'AI, lascia l'ultima parola alle persone e resta dentro i confini normativi europei — by design, non come aggiunta successiva.
               </p>
+              <Link
+                to="/sicurezza"
+                className="inline-flex items-center gap-2 text-primary font-mono text-[12px] uppercase tracking-[2px] hover:gap-3 transition-all"
+              >
+                Sicurezza e conformità in dettaglio <ArrowRight size={14} />
+              </Link>
             </div>
           </FadeIn>
           <FadeIn delay={0.15}>
@@ -320,7 +359,7 @@ const Servizi = () => (
         <FadeIn>
           <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6 text-center">Come Iniziare</span>
           <h2 className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-16 text-center" style={{ fontSize: "clamp(28px, 3.5vw, 48px)" }}>
-            Tre passi verso il <span className="italic font-light text-primary">futuro.</span>
+            Tre passi per <span className="italic font-light text-primary">iniziare.</span>
           </h2>
         </FadeIn>
         <div className="relative grid md:grid-cols-3 gap-8">
