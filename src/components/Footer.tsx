@@ -11,7 +11,7 @@ const Footer = () => (
             <img src={aedixLogo} alt="AEDIX" className="h-10 mb-4" />
           </Link>
           <p className="text-[14px] text-[rgba(255,255,255,0.5)] font-light leading-[1.7]">
-            La tech company italiana che costruisce il futuro delle PMI con AI, SaaS e sistemi di vendita.
+            Il punto di riferimento italiano per lo sviluppo di sistemi AI ibridi per le aziende: software verticale, agenti AI e persone in un'unica architettura.
           </p>
         </div>
 

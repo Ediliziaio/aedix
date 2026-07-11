@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Cloud, CheckCircle, ArrowRight, Brain, Rocket, BookOpen, ChevronDown, MessageSquare, Settings, BarChart3, X, Check } from "lucide-react";
+import { Cloud, CheckCircle, ArrowRight, Brain, Rocket, BookOpen, ChevronDown, MessageSquare, Settings, BarChart3, X, Check, Layers, Bot, UserCheck, ShieldCheck, ScrollText, Lock, ArrowDown } from "lucide-react";
 import ParallaxImage from "@/components/ParallaxImage";
 import TiltCard from "@/components/TiltCard";
 import Layout from "@/components/Layout";
@@ -96,13 +96,13 @@ const FAQItem = ({ faq, index }: { faq: typeof serviceFaqs[0]; index: number }) 
 const Servizi = () => (
   <>
     <SEO
-      title="Servizi AI per PMI Italiane — AEDIX"
-      description="Software gestionali, agenti AI operativi, marketing a performance e consulenza. Quattro pilastri per scalare la tua PMI italiana con l'AI."
+      title="Servizi — I quattro componenti di un sistema AI ibrido | AEDIX"
+      description="Software verticale, agenti AI operativi, marketing a performance e consulenza: i quattro componenti che compongono un sistema AI ibrido per la tua azienda. Affidabile, conforme, misurabile."
       path="/servizi"
     />
     <Layout>
     {/* Hero with parallax background */}
-    <section className="relative pt-[140px] pb-20 px-6 lg:px-12 overflow-hidden">
+    <section className="relative pt-[112px] sm:pt-[140px] pb-20 px-6 lg:px-12 overflow-hidden">
       <ParallaxImage
         src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80"
         alt="Servizi AI per PMI italiane — software, agenti, marketing, formazione"
@@ -112,25 +112,90 @@ const Servizi = () => (
       />
       <div className="relative max-w-[1320px] mx-auto">
         <FadeIn>
-          <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">I Nostri Servizi</span>
+          <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">I Componenti del Sistema</span>
         </FadeIn>
         <FadeIn delay={0.08}>
           <h1 className="font-display font-bold leading-[1.08] tracking-[-2px] mb-6" style={{ fontSize: "clamp(36px, 5vw, 64px)" }}>
-            Quattro pilastri.<br />
-            Un unico <span className="italic font-light text-primary">ecosistema.</span>
+            Quattro componenti.<br />
+            Un unico <span className="italic font-light text-primary">sistema AI ibrido.</span>
           </h1>
         </FadeIn>
         <FadeIn delay={0.16}>
-          <p className="text-[18px] text-[rgba(255,255,255,0.7)] max-w-[600px] font-light">
-            Non siamo una software house generica. Siamo un ecosistema tecnologico costruito per risolvere i problemi reali delle PMI italiane.
+          <p className="text-[18px] text-[rgba(255,255,255,0.7)] max-w-[620px] font-light">
+            Non siamo una software house generica. Progettiamo sistemi AI ibridi per le aziende italiane: software verticale, agenti AI e persone che lavorano insieme. Puoi partire da un componente o costruire l'intero sistema.
           </p>
         </FadeIn>
       </div>
     </section>
 
+    {/* Architettura — 3-layer diagram */}
+    <section className="py-20 sm:py-28 px-6 lg:px-12">
+      <div className="max-w-[1100px] mx-auto">
+        <FadeIn>
+          <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6 text-center">L'Architettura</span>
+          <h2 className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-6 text-center" style={{ fontSize: "clamp(28px, 3.5vw, 48px)" }}>
+            Come si compone un <span className="italic font-light text-primary">sistema AI ibrido.</span>
+          </h2>
+          <p className="text-[16px] text-[rgba(255,255,255,0.6)] font-light max-w-[600px] mx-auto text-center mb-16">
+            Tre strati che lavorano insieme. I dati salgono dal software agli agenti; le persone supervisionano l'intero flusso e mantengono il controllo.
+          </p>
+        </FadeIn>
+
+        <div className="relative grid lg:grid-cols-[1fr_auto] gap-6 lg:gap-8 items-stretch">
+          {/* Stack of 3 layers */}
+          <div className="flex flex-col gap-4">
+            {[
+              { color: "#00D4FF", icon: <Layers size={26} />, tag: "Strato 1 · La base", title: "Software verticale", text: "Gestionale, dati e processi del tuo settore. La fonte di verità, sempre aggiornata." },
+              { color: "#A855F7", icon: <Bot size={26} />, tag: "Strato 2 · L'intelligenza", title: "Agenti AI operativi", text: "Rispondono, qualificano, generano preventivi e documenti — sui tuoi dati reali, 24/7." },
+              { color: "#10B981", icon: <BarChart3 size={26} />, tag: "Output", title: "Risultati misurabili", text: "Lead gestiti, ore risparmiate, margini sotto controllo. Ogni euro con un numero attaccato." },
+            ].map((layer, i, arr) => (
+              <FadeIn key={i} delay={0.12 * i}>
+                <div className="relative">
+                  <div className="group relative rounded-xl border border-[rgba(255,255,255,0.07)] bg-[rgba(255,255,255,0.03)] p-6 lg:p-7 flex items-start gap-5 hover:border-[rgba(255,255,255,0.14)] transition-colors">
+                    <div
+                      className="shrink-0 w-12 h-12 rounded-lg flex items-center justify-center"
+                      style={{ background: `${layer.color}1a`, color: layer.color, border: `1px solid ${layer.color}33` }}
+                    >
+                      {layer.icon}
+                    </div>
+                    <div>
+                      <span className="font-mono text-[10px] uppercase tracking-[2px] block mb-1.5" style={{ color: layer.color }}>{layer.tag}</span>
+                      <h3 className="font-display text-[19px] font-semibold mb-1.5">{layer.title}</h3>
+                      <p className="text-[14px] text-[rgba(255,255,255,0.6)] font-light leading-[1.6]">{layer.text}</p>
+                    </div>
+                  </div>
+                  {i < arr.length - 1 && (
+                    <div className="flex justify-center py-1.5">
+                      <ArrowDown size={18} className="text-primary/40" />
+                    </div>
+                  )}
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+
+          {/* Human supervision — spans the full height */}
+          <FadeIn delay={0.3}>
+            <div className="relative h-full rounded-xl border border-primary/25 bg-primary/[0.05] p-6 lg:p-7 flex lg:flex-col items-center lg:items-start gap-4 lg:w-[260px]">
+              <div className="shrink-0 w-12 h-12 rounded-lg bg-primary/15 border border-primary/30 flex items-center justify-center text-primary">
+                <UserCheck size={26} />
+              </div>
+              <div>
+                <span className="font-mono text-[10px] uppercase tracking-[2px] text-primary block mb-1.5">Strato 3 · Il controllo</span>
+                <h3 className="font-display text-[19px] font-semibold mb-1.5">Supervisione umana</h3>
+                <p className="text-[14px] text-[rgba(255,255,255,0.65)] font-light leading-[1.6]">
+                  Le persone approvano, correggono e decidono nei casi critici. Responsabilità e conformità restano sempre in mano tua — su ogni strato.
+                </p>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </div>
+    </section>
+
     {/* Pillars */}
     {pillars.map((p, i) => (
-      <section key={i} className={`py-32 px-6 lg:px-12 ${i % 2 === 0 ? "bg-alt" : ""}`}>
+      <section key={i} className={`py-20 sm:py-28 px-6 lg:px-12 ${i % 2 === 0 ? "bg-alt" : ""}`}>
         <div className="max-w-[1320px] mx-auto">
           <div className={`grid lg:grid-cols-2 gap-16 items-start ${i % 2 !== 0 ? "lg:grid-flow-dense" : ""}`}>
             <FadeIn className={i % 2 !== 0 ? "lg:col-start-2" : ""}>
@@ -168,7 +233,7 @@ const Servizi = () => (
     ))}
 
     {/* Comparison Table */}
-    <section className="py-32 px-6 lg:px-12 bg-alt">
+    <section className="py-20 sm:py-28 px-6 lg:px-12 bg-alt">
       <div className="max-w-[900px] mx-auto">
         <FadeIn>
           <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6 text-center">Il Confronto</span>
@@ -211,8 +276,46 @@ const Servizi = () => (
       </div>
     </section>
 
+    {/* Governance & AI Act */}
+    <section className="py-20 sm:py-28 px-6 lg:px-12">
+      <div className="max-w-[1320px] mx-auto">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <FadeIn>
+            <div>
+              <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">Governance &amp; Conformità</span>
+              <h2 className="font-display font-bold leading-[1.1] tracking-[-1.5px] mb-6" style={{ fontSize: "clamp(28px, 3.5vw, 48px)" }}>
+                AI che puoi mettere in <span className="italic font-light text-primary">produzione.</span>
+              </h2>
+              <p className="text-[17px] text-[rgba(255,255,255,0.7)] font-light leading-[1.8] mb-6">
+                Il problema dell'AI in azienda non è la potenza — è il controllo. Chi risponde se sbaglia? Dove finiscono i dati? È conforme? Il modello ibrido nasce per rispondere a queste domande <strong className="text-white font-medium">prima</strong> che diventino un rischio.
+              </p>
+              <p className="text-[15px] text-[rgba(255,255,255,0.55)] font-light leading-[1.8]">
+                Ogni sistema che progettiamo tiene traccia di cosa fa l'AI, lascia l'ultima parola alle persone e resta dentro i confini normativi europei — by design, non come aggiunta successiva.
+              </p>
+            </div>
+          </FadeIn>
+          <FadeIn delay={0.15}>
+            <div className="grid sm:grid-cols-2 gap-4">
+              {[
+                { icon: <ShieldCheck size={24} />, title: "AI Act ready", desc: "Classificazione del rischio, trasparenza e supervisione umana secondo il Regolamento UE 2024/1689." },
+                { icon: <Lock size={24} />, title: "GDPR by design", desc: "Server europei. I tuoi dati restano tuoi e non addestrano modelli pubblici di terzi." },
+                { icon: <ScrollText size={24} />, title: "Tracciabilità", desc: "Ogni azione dell'agente AI è registrata e verificabile. Niente scatole nere." },
+                { icon: <UserCheck size={24} />, title: "Human-in-the-loop", desc: "Sui processi critici l'AI propone, la persona approva. Il controllo resta tuo." },
+              ].map((item, i) => (
+                <div key={i} className="rounded-xl border border-[rgba(255,255,255,0.07)] bg-[rgba(255,255,255,0.03)] p-6 hover:border-primary/20 transition-colors">
+                  <div className="w-11 h-11 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary mb-4">{item.icon}</div>
+                  <h3 className="font-display text-[16px] font-semibold mb-2">{item.title}</h3>
+                  <p className="text-[13px] text-[rgba(255,255,255,0.6)] font-light leading-[1.65]">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </FadeIn>
+        </div>
+      </div>
+    </section>
+
     {/* Come iniziare */}
-    <section className="py-32 px-6 lg:px-12">
+    <section className="py-20 sm:py-28 px-6 lg:px-12 bg-alt">
       <div className="max-w-[1320px] mx-auto">
         <FadeIn>
           <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6 text-center">Come Iniziare</span>
@@ -245,7 +348,7 @@ const Servizi = () => (
     </section>
 
     {/* FAQ */}
-    <section className="py-32 px-6 lg:px-12 bg-alt">
+    <section className="py-20 sm:py-28 px-6 lg:px-12">
       <div className="max-w-[800px] mx-auto">
         <FadeIn>
           <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6 text-center">FAQ</span>

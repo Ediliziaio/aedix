@@ -148,7 +148,7 @@ const EdiliziaInCloud = () => {
   <>
     <SEO
       title="Edilizia in Cloud — Gestionale per Imprese Edili Italiane"
-      description="Edilizia in Cloud: il gestionale cloud verticale per imprese edili italiane. Cantieri, preventivi, fatturazione SDI, app mobile. Demo gratuita."
+      description="Edilizia in Cloud: il gestionale cloud verticale per imprese edili italiane e primo sistema AI ibrido di AEDIX. Cantieri, preventivi, fatturazione SDI, app mobile. Demo gratuita."
       path="/edilizia-in-cloud"
       jsonLd={[softwareSchema, faqSchema]}
       breadcrumbs={[
@@ -158,7 +158,7 @@ const EdiliziaInCloud = () => {
     />
     <Layout>
       {/* ───── HERO ───── */}
-      <section className="pt-[140px] pb-20 px-6 lg:px-12 overflow-hidden">
+      <section className="pt-[112px] sm:pt-[140px] pb-20 px-6 lg:px-12 overflow-hidden">
         <div className="max-w-[1320px] mx-auto grid lg:grid-cols-2 gap-16 items-center">
           <div>
             <FadeIn>
@@ -262,7 +262,7 @@ const EdiliziaInCloud = () => {
       </section>
 
       {/* ───── SOLUTION + INLINE CTA ───── */}
-      <section className="py-32 px-6 lg:px-12 bg-alt">
+      <section className="py-20 sm:py-28 px-6 lg:px-12 bg-alt">
         <div className="max-w-[1100px] mx-auto text-center">
           <FadeIn>
             <Zap size={32} className="mx-auto text-primary mb-6 opacity-80" />
@@ -513,7 +513,7 @@ const EdiliziaInCloud = () => {
       </section>
 
       {/* ───── FINAL CTA ───── */}
-      <section className="py-32 px-6 lg:px-12 relative overflow-hidden">
+      <section className="py-20 sm:py-28 px-6 lg:px-12 relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-30 pointer-events-none"
           style={{ background: "radial-gradient(ellipse at center, rgba(249,115,22,0.18) 0%, transparent 70%)" }}

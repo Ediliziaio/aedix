@@ -64,13 +64,13 @@ const technologies = [
 const PercheNoi = () => (
   <>
     <SEO
-      title="Perché Scegliere AEDIX — Storia e Approccio"
-      description="Da impresa edile a ecosistema AI per PMI italiane. 4 piattaforme attive, AI nativa, GDPR compliant. Scopri il metodo AEDIX."
+      title="Perché AEDIX — Il riferimento per i sistemi AI ibridi"
+      description="Da impresa reale a punto di riferimento per lo sviluppo di sistemi AI ibridi per le aziende. Testato sul campo, AI nativa, conforme AI Act e GDPR. Scopri il metodo AEDIX."
       path="/perche-noi"
     />
     <Layout>
     {/* Hero — split layout */}
-    <section className="pt-[140px] pb-20 px-6 lg:px-12 overflow-hidden">
+    <section className="pt-[112px] sm:pt-[140px] pb-20 px-6 lg:px-12 overflow-hidden">
       <div className="max-w-[1320px] mx-auto grid lg:grid-cols-2 gap-16 items-center">
         <div>
           <FadeIn>
@@ -84,7 +84,7 @@ const PercheNoi = () => (
           </FadeIn>
           <FadeIn delay={0.16}>
             <p className="text-[18px] text-[rgba(255,255,255,0.7)] max-w-[600px] font-light mb-8">
-              Abbiamo costruito, gestito e fatto crescere imprese reali. Ogni piattaforma che sviluppiamo nasce da un problema che abbiamo vissuto in prima persona — e risolto.
+              Abbiamo costruito, gestito e fatto crescere imprese reali. Per questo i nostri sistemi AI ibridi — software, agenti AI e persone insieme — nascono da problemi che abbiamo vissuto in prima persona e risolto. Testati su di noi prima che su di te.
             </p>
           </FadeIn>
         </div>
@@ -160,7 +160,7 @@ const PercheNoi = () => (
     </section>
 
     {/* Valori */}
-    <section className="py-32 px-6 lg:px-12">
+    <section className="py-20 sm:py-28 px-6 lg:px-12">
       <div className="max-w-[1320px] mx-auto">
         <FadeIn>
           <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">I Nostri Valori</span>
@@ -231,7 +231,7 @@ const PercheNoi = () => (
     </section>
 
     {/* Team */}
-    <section className="py-32 px-6 lg:px-12 bg-alt">
+    <section className="py-20 sm:py-28 px-6 lg:px-12 bg-alt">
       <div className="max-w-[1320px] mx-auto">
         <FadeIn>
           <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">Il Team</span>
@@ -256,7 +256,7 @@ const PercheNoi = () => (
     </section>
 
     {/* Manifesto */}
-    <section className="relative py-48 px-6 lg:px-12 overflow-hidden">
+    <section className="relative py-28 sm:py-40 lg:py-48 px-6 lg:px-12 overflow-hidden">
       <ParallaxImage
         src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1920&q=80"
         alt="Ufficio AEDIX — tech company italiana per PMI"
@@ -276,7 +276,7 @@ const PercheNoi = () => (
     </section>
 
     {/* CTA */}
-    <section className="py-32 px-6 lg:px-12">
+    <section className="py-20 sm:py-28 px-6 lg:px-12">
       <div className="max-w-[800px] mx-auto text-center">
         <FadeIn>
           <h2 className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-6" style={{ fontSize: "clamp(28px, 4vw, 48px)" }}>

@@ -16,9 +16,36 @@ const FadeIn = ({ children, delay = 0, className = "" }: { children: React.React
   );
 };
 
-const categories = ["Tutti", "AI", "PMI", "Automazione", "Marketing", "Strategia"];
+const categories = ["Tutti", "Enterprise", "AI", "PMI", "Automazione", "Marketing", "Strategia"];
 
 const articles = [
+  {
+    slug: "ai-grandi-aziende-italia-2026",
+    title: "AI per grandi aziende in Italia: governance, ROI e scalabilità nel 2026",
+    excerpt: "Il mercato AI italiano ha superato 1,2 miliardi, ma solo 1 progetto enterprise su 3 supera il pilota. La differenza tra chi scala e chi no non è la tecnologia: è la governance.",
+    category: "Enterprise",
+    date: "8 Lug 2026",
+    readTime: "12 min",
+    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    slug: "enterprise-ai-build-vs-buy-2026",
+    title: "Enterprise AI: build vs buy, come scelgono medie e grandi imprese nel 2026",
+    excerpt: "Sviluppare l'AI in casa o comprarla? È una decisione da centinaia di migliaia di euro. La matrice decisionale in 5 variabili, i costi reali su 3 anni e come evitare il lock-in.",
+    category: "Enterprise",
+    date: "5 Lug 2026",
+    readTime: "11 min",
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    slug: "ai-act-grandi-imprese-governance-2026",
+    title: "AI Act per grandi imprese: come strutturare la governance della compliance",
+    excerpt: "Per una grande impresa l'AI Act non è una checklist: è un sistema di governance da mantenere. Mappatura, risk management, ruoli, shadow AI e integrazione con il GDPR.",
+    category: "Enterprise",
+    date: "2 Lug 2026",
+    readTime: "12 min",
+    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80",
+  },
   {
     slug: "gdpr-ai-pmi-italiane-guida-2026",
     title: "GDPR e AI: la guida pratica per PMI italiane nel 2026",
@@ -181,8 +208,8 @@ const Articoli = () => {
   return (
     <>
       <SEO
-        title="Blog AEDIX — Insight su AI e PMI Italiane"
-        description="Guide pratiche, dati reali e strategie su AI, automazione e crescita per PMI italiane. Aggiornato settimanalmente."
+        title="Blog AEDIX — Sistemi AI ibridi, governance e crescita"
+        description="Guide pratiche, dati reali e strategie su sistemi AI ibridi, agenti AI, governance e AI Act per le aziende italiane. Aggiornato settimanalmente."
         path="/articoli"
         jsonLd={{
           "@context": "https://schema.org",
@@ -194,7 +221,7 @@ const Articoli = () => {
         }}
       />
       <Layout>
-      <section className="pt-[140px] pb-20 px-6 lg:px-12 min-h-screen">
+      <section className="pt-[112px] sm:pt-[140px] pb-20 px-6 lg:px-12 min-h-screen">
         <div className="max-w-[1320px] mx-auto">
           <FadeIn>
             <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">Blog & Risorse</span>
@@ -206,8 +233,8 @@ const Articoli = () => {
             </h1>
           </FadeIn>
           <FadeIn delay={0.16}>
-            <p className="text-[18px] text-[rgba(255,255,255,0.7)] max-w-[580px] font-light mb-12">
-              Guide pratiche, dati reali e strategie concrete su AI, automazione e crescita per PMI italiane.
+            <p className="text-[18px] text-[rgba(255,255,255,0.7)] max-w-[600px] font-light mb-12">
+              Guide pratiche, dati reali e strategie concrete su sistemi AI ibridi, agenti AI, governance e AI Act — per le aziende italiane che vogliono mettere l'AI in produzione, non in slide.
             </p>
           </FadeIn>
 

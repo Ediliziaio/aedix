@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronRight } from "lucide-react";
 import aedixLogo from "@/assets/aedix_logo.png";
 
 const navLinks = [
@@ -86,21 +86,27 @@ const Navbar = () => {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="md:hidden px-6 pb-6 flex flex-col gap-4"
-          style={{ background: "rgba(10,19,34,0.95)" }}
+          className="md:hidden px-6 pt-2 pb-10 flex flex-col border-t border-[rgba(255,255,255,0.06)] min-h-[calc(100dvh-70px)]"
+          style={{ background: "rgba(10,19,34,0.99)", backdropFilter: "blur(24px)" }}
         >
-          {navLinks.map((s) => (
-            <Link
-              key={s.to}
-              to={s.to}
-              className="font-mono text-[13px] uppercase tracking-[1.5px] text-[rgba(255,255,255,0.7)] hover:text-white text-left"
-            >
-              {s.label}
-            </Link>
-          ))}
+          {navLinks.map((s) => {
+            const active = location.pathname === s.to;
+            return (
+              <Link
+                key={s.to}
+                to={s.to}
+                className={`flex items-center justify-between py-4 border-b border-[rgba(255,255,255,0.06)] font-mono text-[14px] uppercase tracking-[1.5px] transition-colors ${
+                  active ? "text-primary" : "text-[rgba(255,255,255,0.85)] hover:text-white"
+                }`}
+              >
+                {s.label}
+                <ChevronRight size={16} className={active ? "text-primary" : "text-[rgba(255,255,255,0.3)]"} />
+              </Link>
+            );
+          })}
           <Link
             to="/contatti"
-            className="bg-primary text-primary-foreground font-bold text-[12px] uppercase tracking-[2px] px-6 py-3 mt-2 text-center rounded-lg"
+            className="bg-primary text-primary-foreground font-bold text-[13px] uppercase tracking-[2px] px-6 py-4 mt-6 text-center rounded-lg glow-btn"
           >
             Contattaci
           </Link>

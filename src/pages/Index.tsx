@@ -6,6 +6,7 @@ import { motion, useInView, useMotionValue, animate } from "framer-motion";
 import {
   Shield, RefreshCw, Target, MessageSquareQuote, ChevronDown,
   ArrowRight, Check, X as XIcon, Zap, BadgeCheck, Cpu, Globe,
+  Layers, Bot, UserCheck,
 } from "lucide-react";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
@@ -425,17 +426,38 @@ const Index = () => {
   return (
     <>
       <SEO
-        title="AI per PMI Italiane — AEDIX | Soluzioni Pratiche"
-        description="AEDIX sviluppa soluzioni AI su misura per PMI italiane. Software, agenti AI e automazioni. Risultati misurabili."
+        title="Sistemi AI ibridi per le aziende — AEDIX"
+        description="AEDIX è il punto di riferimento per lo sviluppo di sistemi AI ibridi per le aziende italiane: software verticale + agenti AI + supervisione umana. Affidabili, conformi AI Act e GDPR, con risultati misurabili."
         path="/"
-        jsonLd={{
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          name: "AEDIX",
-          url: "https://www.aedix.it",
-          inLanguage: "it-IT",
-          publisher: { "@type": "Organization", name: "AEDIX", url: "https://www.aedix.it" },
-        }}
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "AEDIX",
+            url: "https://www.aedix.it",
+            inLanguage: "it-IT",
+            publisher: { "@type": "Organization", name: "AEDIX", url: "https://www.aedix.it" },
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "AEDIX",
+            url: "https://www.aedix.it",
+            slogan: "Il punto di riferimento per lo sviluppo di sistemi AI ibridi per le aziende",
+            description:
+              "Tech company italiana specializzata nella progettazione di sistemi AI ibridi per le aziende: software verticale, agenti AI operativi e supervisione umana in un'unica architettura affidabile e conforme.",
+            legalName: "Domus Group S.r.l.",
+            email: "info@aedix.it",
+            telephone: "+39 348 346 7567",
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "Via Aurelio Saffi 29",
+              postalCode: "20123",
+              addressLocality: "Milano",
+              addressCountry: "IT",
+            },
+          },
+        ]}
       />
       <Layout>
         <div className="custom-cursor-page">
@@ -444,7 +466,7 @@ const Index = () => {
           {/* ════════════════════════════════════════════════════
                HERO — Premium gradient mesh + dot grid
              ════════════════════════════════════════════════════ */}
-          <section className="relative min-h-screen flex flex-col justify-center pt-[140px] pb-24 px-6 lg:px-12 overflow-hidden">
+          <section className="relative min-h-screen flex flex-col justify-center pt-[112px] sm:pt-[140px] pb-24 px-6 lg:px-12 overflow-hidden">
             {/* Layered background: gradient mesh + dot grid */}
             <div className="absolute inset-0">
               <div
@@ -475,7 +497,7 @@ const Index = () => {
               <FadeIn>
                 <div className="flex items-center gap-4 mb-8">
                   <div className="w-10 h-px bg-primary" />
-                  <TypingText text="AI operativa per le PMI italiane" delay={0.5} />
+                  <TypingText text="Sistemi AI ibridi per le aziende" delay={0.5} />
                 </div>
               </FadeIn>
 
@@ -490,10 +512,10 @@ const Index = () => {
               </FadeIn>
 
               <FadeIn delay={0.2}>
-                <p className="text-[19px] leading-[1.75] text-[rgba(255,255,255,0.7)] max-w-[580px] font-light mb-10">
-                  Piattaforme SaaS, agenti AI e automazione intelligente per{" "}
-                  <span className="text-white font-medium">qualsiasi PMI italiana.</span>{" "}
-                  Taglia i costi fissi, rispondi ai clienti 24/7 e prendi decisioni con dati reali.
+                <p className="text-[19px] leading-[1.75] text-[rgba(255,255,255,0.7)] max-w-[600px] font-light mb-10">
+                  Uniamo <span className="text-white font-medium">software verticale, agenti AI e supervisione umana</span>{" "}
+                  in un'unica architettura. Non un chatbot, non un gestionale in più:{" "}
+                  il sistema con cui la tua azienda mette l'AI a lavorare davvero — affidabile, conforme, misurabile.
                 </p>
               </FadeIn>
 
@@ -556,9 +578,156 @@ const Index = () => {
           <SectionDivider />
 
           {/* ════════════════════════════════════════════════════
+               SISTEMA AI IBRIDO — Category definition
+             ════════════════════════════════════════════════════ */}
+          <section id="sistema-ibrido" className="py-20 sm:py-28 lg:py-40 px-6 lg:px-12">
+            <div className="max-w-[1320px] mx-auto">
+              <FadeIn>
+                <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">
+                  Cos'è un sistema AI ibrido
+                </span>
+              </FadeIn>
+              <FadeIn delay={0.08}>
+                <h2
+                  className="font-display font-bold leading-[1.08] tracking-[-1.5px] mb-6"
+                  style={{ fontSize: "clamp(32px, 4.5vw, 58px)" }}
+                >
+                  L'AI da sola non basta.<br />
+                  <span className="italic font-light text-primary">Serve un sistema.</span>
+                </h2>
+              </FadeIn>
+              <FadeIn delay={0.16}>
+                <p className="text-[17px] text-[rgba(255,255,255,0.65)] max-w-[640px] font-light mb-16 lg:mb-20">
+                  Un chatbot allucina e non conosce i tuoi dati. Un gestionale è affidabile ma cieco. Un sistema AI ibrido unisce tre strati che si controllano a vicenda — per avere l'intelligenza dell'AI con l'affidabilità del software e il giudizio delle persone.
+                </p>
+              </FadeIn>
+
+              {/* Three layers */}
+              <div className="grid md:grid-cols-3 gap-5 lg:gap-6 mb-16">
+                {[
+                  {
+                    color: "#00D4FF",
+                    icon: <Layers size={30} />,
+                    tag: "Strato 1 · La base",
+                    title: "Software verticale",
+                    text: "Il gestionale che governa dati, documenti e processi del tuo settore. La fonte di verità: strutturata, sempre aggiornata, sotto controllo.",
+                  },
+                  {
+                    color: "#A855F7",
+                    icon: <Bot size={30} />,
+                    tag: "Strato 2 · L'intelligenza",
+                    title: "Agenti AI operativi",
+                    text: "Rispondono ai clienti, qualificano lead, generano preventivi e documenti. Lavorano 24/7 sui tuoi dati reali — non su risposte inventate.",
+                  },
+                  {
+                    color: "#10B981",
+                    icon: <UserCheck size={30} />,
+                    tag: "Strato 3 · Il controllo",
+                    title: "Supervisione umana",
+                    text: "Le persone restano al comando: approvano, correggono, decidono nei casi critici. Responsabilità e conformità sempre in mano tua.",
+                  },
+                ].map((layer, i) => (
+                  <FadeIn key={i} delay={0.1 * i}>
+                    <div className="group relative rounded-xl glass-card p-8 lg:p-9 h-full flex flex-col hover:-translate-y-1">
+                      <div
+                        className="absolute top-0 left-0 right-0 h-[2px] rounded-t-xl origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"
+                        style={{ background: layer.color }}
+                      />
+                      <div className="mb-5 transition-transform duration-300 group-hover:scale-110" style={{ color: layer.color }}>
+                        {layer.icon}
+                      </div>
+                      <span className="font-mono text-[10px] uppercase tracking-[2px] mb-3" style={{ color: layer.color }}>
+                        {layer.tag}
+                      </span>
+                      <h3 className="font-display text-[21px] lg:text-[23px] font-semibold mb-3">{layer.title}</h3>
+                      <p className="text-[15px] leading-[1.8] text-[rgba(255,255,255,0.62)] font-light">{layer.text}</p>
+                    </div>
+                  </FadeIn>
+                ))}
+              </div>
+
+              {/* Why hybrid — 3-way comparison */}
+              <FadeIn delay={0.2}>
+                <div className="rounded-xl glass-card p-8 lg:p-10">
+                  <div className="grid sm:grid-cols-3 gap-6 lg:gap-8">
+                    {[
+                      { label: "AI pura", sub: "ChatGPT & simili", verdict: "Potente ma inaffidabile", points: ["Allucina e inventa", "Non conosce i tuoi dati", "Nessun controllo né conformità"], bad: true },
+                      { label: "Software puro", sub: "Gestionali tradizionali", verdict: "Affidabile ma cieco", points: ["Rigido, non capisce il contesto", "Non decide né automatizza", "Non impara dai tuoi dati"], bad: true },
+                      { label: "Sistema ibrido", sub: "Il metodo AEDIX", verdict: "Intelligente e affidabile", points: ["Risposte fondate sui tuoi dati", "Automazione con controllo umano", "Conforme AI Act e GDPR by design"], bad: false },
+                    ].map((col, i) => (
+                      <div
+                        key={i}
+                        className={`flex flex-col ${col.bad ? "" : "rounded-lg border border-primary/25 bg-primary/[0.04] p-6 -m-1 sm:-my-2"}`}
+                      >
+                        <span className={`font-display text-[18px] font-semibold ${col.bad ? "text-[rgba(255,255,255,0.85)]" : "text-primary"}`}>
+                          {col.label}
+                        </span>
+                        <span className="font-mono text-[10px] uppercase tracking-[2px] text-[rgba(255,255,255,0.4)] mt-1 mb-4">
+                          {col.sub}
+                        </span>
+                        <span className={`text-[13px] font-medium mb-5 ${col.bad ? "text-[rgba(255,255,255,0.55)]" : "text-green-impact"}`}>
+                          {col.verdict}
+                        </span>
+                        <ul className="space-y-2.5">
+                          {col.points.map((p, pi) => (
+                            <li key={pi} className="flex items-start gap-2.5 text-[13px] font-light leading-[1.55] text-[rgba(255,255,255,0.6)]">
+                              {col.bad ? (
+                                <span className="mt-0.5 w-4 h-4 rounded-full bg-red-500/10 border border-red-500/20 flex items-center justify-center shrink-0">
+                                  <XIcon size={9} className="text-red-400" />
+                                </span>
+                              ) : (
+                                <span className="mt-0.5 w-4 h-4 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0">
+                                  <Check size={9} className="text-emerald-400" />
+                                </span>
+                              )}
+                              {p}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </FadeIn>
+
+              {/* In azione — concrete end-to-end scenario */}
+              <FadeIn delay={0.24}>
+                <div className="mt-16 lg:mt-20 pt-12 border-t border-[rgba(255,255,255,0.06)]">
+                  <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-10">
+                    <span className="font-mono text-[11px] uppercase tracking-[4px] text-primary">In azione</span>
+                    <span className="text-[15px] text-[rgba(255,255,255,0.55)] font-light">
+                      Domenica, ore 23:14. Un cliente scrive dal sito. Ecco cosa succede.
+                    </span>
+                  </div>
+                  <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
+                    {[
+                      { color: "#00D4FF", step: "01", layer: "Software", text: "Il gestionale riconosce il cliente, recupera storico, listino e disponibilità reali. Nessun dato inventato." },
+                      { color: "#A855F7", step: "02", layer: "Agente AI", text: "Risponde in 40 secondi, qualifica la richiesta e prepara una bozza di preventivo sui dati veri." },
+                      { color: "#10B981", step: "03", layer: "Persona", text: "Lunedì mattina il titolare trova tutto pronto: controlla, ritocca il prezzo, approva con un clic." },
+                      { color: "#F6BE09", step: "04", layer: "Risultato", text: "Preventivo inviato entro le 9. Zero lead persi nel weekend, zero notti in bianco a rispondere." },
+                    ].map((s, i) => (
+                      <div key={i} className="relative rounded-xl glass-card p-6 lg:p-7 h-full flex flex-col">
+                        <div className="flex items-center gap-3 mb-4">
+                          <span className="font-mono text-[13px] font-bold" style={{ color: s.color }}>{s.step}</span>
+                          <span className="font-mono text-[10px] uppercase tracking-[2px] px-2.5 py-1 rounded-full" style={{ color: s.color, background: `${s.color}14`, border: `1px solid ${s.color}2e` }}>
+                            {s.layer}
+                          </span>
+                        </div>
+                        <p className="text-[14px] text-[rgba(255,255,255,0.68)] font-light leading-[1.7]">{s.text}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </FadeIn>
+            </div>
+          </section>
+
+          <SectionDivider />
+
+          {/* ════════════════════════════════════════════════════
                COSA FACCIAMO — Cards with always-visible content
              ════════════════════════════════════════════════════ */}
-          <section id="cosa-facciamo" className="py-32 lg:py-40 px-6 lg:px-12">
+          <section id="cosa-facciamo" className="py-20 sm:py-28 lg:py-40 px-6 lg:px-12">
             <div className="max-w-[1320px] mx-auto">
               <FadeIn>
                 <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">
@@ -575,8 +744,8 @@ const Index = () => {
                 </h2>
               </FadeIn>
               <FadeIn delay={0.16}>
-                <p className="text-[17px] text-[rgba(255,255,255,0.65)] max-w-[580px] font-light mb-16 lg:mb-20">
-                  Quattro problemi cronici di ogni PMI italiana. Quattro soluzioni costruite da zero per risolverli — non adattamenti di strumenti generici.
+                <p className="text-[17px] text-[rgba(255,255,255,0.65)] max-w-[620px] font-light mb-16 lg:mb-20">
+                  Quattro problemi cronici di ogni azienda italiana. Quattro componenti che compongono il tuo sistema AI ibrido — non adattamenti di strumenti generici, ma pezzi che lavorano insieme.
                 </p>
               </FadeIn>
 
@@ -637,7 +806,7 @@ const Index = () => {
           {/* ════════════════════════════════════════════════════
                PRIMA / DOPO — Responsive cards (not table)
              ════════════════════════════════════════════════════ */}
-          <section className="py-32 lg:py-40 px-6 lg:px-12">
+          <section className="py-20 sm:py-28 lg:py-40 px-6 lg:px-12">
             <div className="max-w-[1320px] mx-auto">
               <FadeIn>
                 <span className="font-mono text-[11px] uppercase tracking-[5px] text-gold-light block mb-6">
@@ -700,7 +869,7 @@ const Index = () => {
           {/* ════════════════════════════════════════════════════
                PERCHÉ NOI
              ════════════════════════════════════════════════════ */}
-          <section id="perche-noi" className="py-32 lg:py-40 px-6 lg:px-12">
+          <section id="perche-noi" className="py-20 sm:py-28 lg:py-40 px-6 lg:px-12">
             <div className="max-w-[1320px] mx-auto">
               <FadeIn>
                 <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">
@@ -776,7 +945,7 @@ const Index = () => {
           {/* ════════════════════════════════════════════════════
                EDILIZIA IN CLOUD — Showcase
              ════════════════════════════════════════════════════ */}
-          <section id="prodotto" className="relative bg-alt py-32 lg:py-40 px-6 lg:px-12 overflow-hidden">
+          <section id="prodotto" className="relative bg-alt py-20 sm:py-28 lg:py-40 px-6 lg:px-12 overflow-hidden">
             <div
               className="absolute inset-0 opacity-30 pointer-events-none"
               style={{ background: "radial-gradient(ellipse at 70% 50%, rgba(249,115,22,0.12) 0%, transparent 60%)" }}
@@ -895,7 +1064,7 @@ const Index = () => {
           {/* ════════════════════════════════════════════════════
                COME LAVORIAMO — Timeline
              ════════════════════════════════════════════════════ */}
-          <section className="py-32 lg:py-40 px-6 lg:px-12">
+          <section className="py-20 sm:py-28 lg:py-40 px-6 lg:px-12">
             <div className="max-w-[1320px] mx-auto">
               <FadeIn>
                 <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">
@@ -955,7 +1124,7 @@ const Index = () => {
           {/* ════════════════════════════════════════════════════
                TESTIMONIALS — Featured metrics
              ════════════════════════════════════════════════════ */}
-          <section className="py-32 lg:py-40 px-6 lg:px-12">
+          <section className="py-20 sm:py-28 lg:py-40 px-6 lg:px-12">
             <div className="max-w-[1320px] mx-auto">
               <FadeIn>
                 <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">
@@ -1014,7 +1183,7 @@ const Index = () => {
           {/* ════════════════════════════════════════════════════
                FAQ
              ════════════════════════════════════════════════════ */}
-          <section className="py-32 lg:py-40 px-6 lg:px-12">
+          <section className="py-20 sm:py-28 lg:py-40 px-6 lg:px-12">
             <div className="max-w-[800px] mx-auto">
               <FadeIn>
                 <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6 text-center">
@@ -1046,7 +1215,7 @@ const Index = () => {
           {/* ════════════════════════════════════════════════════
                CTA FINALE — No external dependencies
              ════════════════════════════════════════════════════ */}
-          <section id="cta-finale" className="relative py-32 lg:py-40 px-6 lg:px-12 text-center overflow-hidden">
+          <section id="cta-finale" className="relative py-20 sm:py-28 lg:py-40 px-6 lg:px-12 text-center overflow-hidden">
             {/* Multi-layer gradient background */}
             <div className="absolute inset-0">
               <div

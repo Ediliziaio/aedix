@@ -1,41 +1,93 @@
 # robots.txt — aedix.it — SEO & AI Crawler Optimization
-# Last updated: 2026-05-22
+# Last updated: 2026-07-10
 
 # ═══════════════════════════════════════════
 # AI & LLM CRAWLERS (Explicit Allow)
 # ═══════════════════════════════════════════
 
-# OpenAI — GPT models, GPT-4, GPT-4V
+# OpenAI — GPT models (training)
 User-agent: GPTBot
 Allow: /
 
-# Anthropic — Claude models
+# OpenAI — search index for ChatGPT
+User-agent: OAI-SearchBot
+Allow: /
+
+# OpenAI — ChatGPT live browsing (user prompts)
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic — Claude models (training)
 User-agent: ClaudeBot
+Allow: /
 Crawl-delay: 1
 
-# Perplexity AI
-User-agent: PerplexityBot
+# Anthropic — Claude live browsing
+User-agent: Claude-User
 Allow: /
 
-# Common Crawl — Internet Archive & Research
-User-agent: CCBot
-Allow: /
-
-# Anthropic web crawling
+# Anthropic web crawling (legacy)
 User-agent: anthropic-ai
 Allow: /
 
-# Various LLM research crawlers
 User-agent: Claude-Web
 Allow: /
 
+# Perplexity AI — index + live answers
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Google — Gemini / AI Overviews (AI training & grounding)
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+# Microsoft Copilot / Bing AI
+User-agent: Bingbot
+Allow: /
+
+# Meta AI (Llama)
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+# Amazon (Alexa / Nova)
+User-agent: Amazonbot
+Allow: /
+
+# Cohere
+User-agent: cohere-ai
+Allow: /
+
+# Common Crawl — dataset used by most LLMs
+User-agent: CCBot
+Allow: /
+
+# Apple Intelligence
 User-agent: Applebot
 Allow: /
 
+User-agent: Applebot-Extended
+Allow: /
+
+# Other AI answer engines
 User-agent: OmniboxBot
 Allow: /
 
 User-agent: YouBot
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+User-agent: MistralAI-User
 Allow: /
 
 # ═══════════════════════════════════════════

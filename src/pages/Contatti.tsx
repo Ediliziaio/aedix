@@ -80,14 +80,14 @@ const Contatti = () => {
   return (
     <>
       <SEO
-        title="Contatti AEDIX — Parla con il Team"
-        description="Compila il form e ti ricontattiamo entro 24 ore. Capiamo insieme come l'AI può aiutare la tua PMI italiana. Nessun impegno, nessun costo."
+        title="Contatti AEDIX — Progetta il tuo sistema AI ibrido"
+        description="Compila il form e ti ricontattiamo entro 24 ore. Capiamo insieme quale sistema AI ibrido serve alla tua azienda. Nessun impegno, nessun costo."
         path="/contatti"
         jsonLd={faqSchema}
       />
       <Layout>
       {/* Social Proof Banner */}
-      <section className="pt-[140px] pb-4 px-6 lg:px-12">
+      <section className="pt-[112px] sm:pt-[140px] pb-4 px-6 lg:px-12">
         <div className="max-w-[1320px] mx-auto">
           <FadeIn>
             <div className="flex flex-wrap gap-6 mb-10">
@@ -119,7 +119,7 @@ const Contatti = () => {
           </FadeIn>
           <FadeIn delay={0.16}>
             <p className="text-[18px] text-[rgba(255,255,255,0.7)] max-w-[560px] font-light mb-20">
-              Compila il form e ti ricontatteremo entro 24 ore. Nessun impegno, nessun costo — solo una conversazione per capire come possiamo aiutarti.
+              Compila il form e ti ricontatteremo entro 24 ore. Nessun impegno, nessun costo — solo una conversazione per capire quale sistema AI ibrido può fare la differenza nella tua azienda.
             </p>
           </FadeIn>
 
@@ -204,7 +204,7 @@ const Contatti = () => {
       </section>
 
       {/* FAQ */}
-      <section className="py-32 px-6 lg:px-12 bg-alt">
+      <section className="py-20 sm:py-28 px-6 lg:px-12 bg-alt">
         <div className="max-w-[800px] mx-auto">
           <FadeIn>
             <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6 text-center">Domande Frequenti</span>
