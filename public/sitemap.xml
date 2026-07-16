@@ -4,7 +4,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://www.aedix.it/</loc>
-    <lastmod>2026-07-10</lastmod>
+    <lastmod>2026-07-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -47,7 +47,7 @@
 
   <url>
     <loc>https://www.aedix.it/articoli</loc>
-    <lastmod>2026-07-11</lastmod>
+    <lastmod>2026-07-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

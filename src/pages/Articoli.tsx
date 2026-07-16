@@ -20,6 +20,33 @@ const categories = ["Tutti", "Enterprise", "AI", "PMI", "Automazione", "Marketin
 
 const articles = [
   {
+    slug: "sistema-ai-ibrido-cose-e-come-funziona",
+    title: "Sistema AI ibrido: cos'è, come funziona e perché le aziende lo scelgono nel 2026",
+    excerpt: "Il 95% dei pilot di AI generativa non produce impatto sul conto economico. La soluzione non è un modello più grande: è un'architettura migliore. Definizione, tre strati, costi e ROI dei sistemi AI ibridi.",
+    category: "AI",
+    date: "16 Lug 2026",
+    readTime: "13 min",
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    slug: "human-in-the-loop-guida-aziende",
+    title: "Human-in-the-loop: cosa significa e perché l'AI in azienda ha bisogno di supervisione umana",
+    excerpt: "L'AI esegue, le persone garantiscono. Cosa significa human-in-the-loop in pratica: i tre pattern operativi, l'obbligo dell'articolo 14 dell'AI Act, e come progettare il controllo senza rallentare i processi.",
+    category: "Strategia",
+    date: "15 Lug 2026",
+    readTime: "12 min",
+    image: "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    slug: "rag-retrieval-augmented-generation-spiegato",
+    title: "RAG (Retrieval-Augmented Generation): cos'è e perché elimina le invenzioni dell'AI in azienda",
+    excerpt: "La tecnica che fa rispondere l'AI 'con il libro aperto' sui dati aziendali reali: come funziona il RAG passo per passo, quando sceglierlo rispetto al fine-tuning e che ruolo ha in un sistema AI ibrido.",
+    category: "AI",
+    date: "14 Lug 2026",
+    readTime: "12 min",
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80",
+  },
+  {
     slug: "ai-grandi-aziende-italia-2026",
     title: "AI per grandi aziende in Italia: governance, ROI e scalabilità nel 2026",
     excerpt: "Il mercato AI italiano ha superato 1,2 miliardi, ma solo 1 progetto enterprise su 3 supera il pilota. La differenza tra chi scala e chi no non è la tecnologia: è la governance.",

@@ -2,6 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <!-- ═══════════════════════════════════════════
+       Pillar Sistemi AI Ibridi — categoria proprietaria (Lug 2026)
+  ═══════════════════════════════════════════ -->
+  <url>
+    <loc>https://www.aedix.it/articoli/sistema-ai-ibrido-cose-e-come-funziona</loc>
+    <lastmod>2026-07-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.aedix.it/articoli/human-in-the-loop-guida-aziende</loc>
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.aedix.it/articoli/rag-retrieval-augmented-generation-spiegato</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- ═══════════════════════════════════════════
        Articoli Enterprise — Grandi e Medie Aziende (Lug 2026)
   ═══════════════════════════════════════════ -->
   <url>
