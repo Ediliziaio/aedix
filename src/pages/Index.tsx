@@ -1,8 +1,8 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
 import aedixLogo from "@/assets/aedix_logo.png";
 import eicLogo from "@/assets/edilizia-in-cloud-logo.png";
-import { motion, useInView, useMotionValue, animate } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import {
   Shield, RefreshCw, Target, MessageSquareQuote, ChevronDown,
   ArrowRight, Check, X as XIcon, Zap, BadgeCheck, Cpu, Globe,
@@ -10,25 +10,6 @@ import {
 } from "lucide-react";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
-
-// ─── Animated Counter ───────────────────────────────────────
-const AnimatedCounter = ({ value, suffix = "", duration = 2 }: { value: number; suffix?: string; duration?: number }) => {
-  const ref = useRef<HTMLSpanElement>(null);
-  const motionVal = useMotionValue(0);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  useEffect(() => {
-    if (isInView) {
-      animate(motionVal, value, { duration, ease: [0.16, 1, 0.3, 1] });
-      const unsub = motionVal.on("change", (v) => {
-        if (ref.current) ref.current.textContent = Math.round(v) + suffix;
-      });
-      return unsub;
-    }
-  }, [isInView, value, suffix, duration, motionVal]);
-
-  return <span ref={ref}>0{suffix}</span>;
-};
 
 // ─── FadeIn ─────────────────────────────────────────────────
 const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) => {
@@ -357,23 +338,35 @@ const Index = () => {
                 </div>
               </FadeIn>
 
-              {/* Hero stats — verifiable facts only */}
+              {/* Hero proof — il sistema al lavoro (pattern Decagon: mostra, non dichiarare) */}
               <FadeIn delay={0.4}>
-                <div className="flex flex-wrap gap-8 lg:gap-12 mt-16 pt-16 border-t border-[rgba(255,255,255,0.06)]">
-                  {[
-                    { val: 700, suf: "h", label: "risparmiate all'anno per azienda" },
-                    { val: 100, suf: "%", label: "azioni critiche approvate da persone" },
-                    { val: 24, suf: "/7", label: "agenti AI operativi" },
-                  ].map((s, i) => (
-                    <div key={i} className="flex flex-col">
-                      <span className="font-mono text-[48px] font-bold text-white leading-none tracking-tight">
-                        <AnimatedCounter value={s.val} suffix={s.suf} />
-                      </span>
-                      <span className="font-mono text-[11px] uppercase tracking-[2px] text-[rgba(255,255,255,0.45)] mt-2 max-w-[240px]">
-                        {s.label}
-                      </span>
-                    </div>
-                  ))}
+                <div className="mt-16 pt-12 border-t border-[rgba(255,255,255,0.06)]">
+                  <span className="font-mono text-[10px] uppercase tracking-[3px] text-[rgba(255,255,255,0.35)] block mb-6">
+                    Un weekend qualsiasi, dentro un sistema AEDIX
+                  </span>
+                  <div className="grid sm:grid-cols-3 gap-4 max-w-[980px]">
+                    {[
+                      { layer: "Agente AI", color: "#A855F7", time: "DOM · 23:14", text: "Richiesta dal sito. L'agente risponde in 40 secondi, qualifica il cliente e propone un sopralluogo." },
+                      { layer: "Software", color: "#00D4FF", time: "DOM · 23:15", text: "Bozza di preventivo generata sui prezzi reali di listino. 8 minuti di lavoro, non 90." },
+                      { layer: "Persona", color: "#10B981", time: "LUN · 08:30", text: "Il titolare rivede la bozza, ritocca il margine e approva. Preventivo inviato entro le 9:00." },
+                    ].map((s, i) => (
+                      <div
+                        key={i}
+                        className="rounded-xl border border-[rgba(255,255,255,0.07)] bg-[rgba(255,255,255,0.025)] p-5 flex flex-col gap-3"
+                      >
+                        <div className="flex items-center justify-between">
+                          <span
+                            className="font-mono text-[10px] uppercase tracking-[2px] px-2.5 py-1 rounded-full"
+                            style={{ color: s.color, background: `${s.color}14`, border: `1px solid ${s.color}2e` }}
+                          >
+                            {s.layer}
+                          </span>
+                          <span className="font-mono text-[10px] tracking-[1px] text-[rgba(255,255,255,0.35)]">{s.time}</span>
+                        </div>
+                        <p className="text-[13px] text-[rgba(255,255,255,0.65)] font-light leading-[1.65]">{s.text}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </FadeIn>
 
@@ -511,35 +504,6 @@ const Index = () => {
                 </div>
               </FadeIn>
 
-              {/* In azione — concrete end-to-end scenario */}
-              <FadeIn delay={0.24}>
-                <div className="mt-16 lg:mt-20 pt-12 border-t border-[rgba(255,255,255,0.06)]">
-                  <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-10">
-                    <span className="font-mono text-[11px] uppercase tracking-[4px] text-primary">In azione</span>
-                    <span className="text-[15px] text-[rgba(255,255,255,0.55)] font-light">
-                      Domenica, ore 23:14. Un cliente scrive dal sito. Ecco cosa succede.
-                    </span>
-                  </div>
-                  <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
-                    {[
-                      { color: "#00D4FF", step: "01", layer: "Software", text: "Il gestionale riconosce il cliente, recupera storico, listino e disponibilità reali. Nessun dato inventato." },
-                      { color: "#A855F7", step: "02", layer: "Agente AI", text: "Risponde in 40 secondi, qualifica la richiesta e prepara una bozza di preventivo sui dati veri." },
-                      { color: "#10B981", step: "03", layer: "Persona", text: "Lunedì mattina il titolare trova tutto pronto: controlla, ritocca il prezzo, approva con un clic." },
-                      { color: "#F6BE09", step: "04", layer: "Risultato", text: "Preventivo inviato entro le 9. Zero lead persi nel weekend, zero notti in bianco a rispondere." },
-                    ].map((s, i) => (
-                      <div key={i} className="relative rounded-xl glass-card p-6 lg:p-7 h-full flex flex-col">
-                        <div className="flex items-center gap-3 mb-4">
-                          <span className="font-mono text-[13px] font-bold" style={{ color: s.color }}>{s.step}</span>
-                          <span className="font-mono text-[10px] uppercase tracking-[2px] px-2.5 py-1 rounded-full" style={{ color: s.color, background: `${s.color}14`, border: `1px solid ${s.color}2e` }}>
-                            {s.layer}
-                          </span>
-                        </div>
-                        <p className="text-[14px] text-[rgba(255,255,255,0.68)] font-light leading-[1.7]">{s.text}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </FadeIn>
             </div>
           </section>
 
