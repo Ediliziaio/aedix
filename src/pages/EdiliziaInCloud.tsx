@@ -10,6 +10,7 @@ import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import TiltCard from "@/components/TiltCard";
 import eicLogo from "@/assets/edilizia-in-cloud-logo.png";
+import eicLogoFull from "@/assets/edilizia-in-cloud-logo-full.webp";
 
 const PORTAL_URL = "https://www.ediliziaincloud.com";
 const DEMO_URL = "https://www.ediliziaincloud.com/demo";
@@ -138,6 +139,7 @@ const EdiliziaInCloud = () => {
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web, iOS, Android",
     url: PORTAL_URL,
+    sameAs: [PORTAL_URL, "https://www.aedix.it/edilizia-in-cloud"],
     publisher: { "@type": "Organization", name: "AEDIX", url: "https://www.aedix.it" },
     offers: { "@type": "Offer", priceCurrency: "EUR", availability: "https://schema.org/InStock", url: PORTAL_URL },
     description: "Gestionale cloud per imprese edili italiane: cantieri, preventivi, fatturazione SDI, documenti, team, app mobile.",
@@ -162,8 +164,16 @@ const EdiliziaInCloud = () => {
         <div className="max-w-[1320px] mx-auto grid lg:grid-cols-2 gap-16 items-center">
           <div>
             <FadeIn>
-              <div className="flex items-center gap-3 mb-6">
-                <img src={eicLogo} alt="Edilizia in Cloud" className="h-10 w-10 rounded-lg" />
+              <div className="flex flex-wrap items-center gap-4 mb-7">
+                <a
+                  href={PORTAL_URL}
+                  target="_blank"
+                  rel="noopener"
+                  title="Edilizia in Cloud — gestionale edilizia cloud"
+                  className="inline-flex items-center bg-white rounded-xl px-5 py-3 shadow-[0_8px_32px_rgba(0,0,0,0.35)] hover:shadow-[0_12px_40px_rgba(249,115,22,0.25)] hover:-translate-y-0.5 transition-all"
+                >
+                  <img src={eicLogoFull} alt="EdiliziaInCloud — logo ufficiale" className="h-9 w-auto" />
+                </a>
                 <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary">Gestionale per imprese edili</span>
               </div>
             </FadeIn>
@@ -204,31 +214,44 @@ const EdiliziaInCloud = () => {
                 <span className="flex items-center gap-1.5"><Check size={14} className="text-primary" /> Nessun vincolo annuale</span>
                 <span className="flex items-center gap-1.5"><Check size={14} className="text-primary" /> Server europei GDPR</span>
               </div>
+              <a
+                href={PORTAL_URL}
+                target="_blank"
+                rel="noopener"
+                title="EdiliziaInCloud — gestionale edilizia cloud per imprese edili"
+                className="inline-flex items-center gap-2 mt-5 font-mono text-[13px] text-primary hover:text-white transition-colors tracking-[0.5px]"
+              >
+                www.ediliziaincloud.com <ArrowRight size={14} />
+              </a>
             </FadeIn>
           </div>
 
           <FadeIn delay={0.18}>
             <TiltCard className="rounded-lg" tiltAmount={6}>
-              <div
-                className="relative rounded-lg overflow-hidden aspect-[4/3] flex items-center justify-center"
-                style={{
-                  background:
-                    "radial-gradient(ellipse at center, rgba(249,115,22,0.14) 0%, rgba(30,58,95,0.85) 60%, rgba(10,19,34,1) 100%)",
-                }}
-              >
-                <motion.img
-                  src={eicLogo}
-                  alt="Edilizia in Cloud — gestionale cloud per imprese edili italiane"
-                  className="w-[58%] h-auto drop-shadow-[0_20px_60px_rgba(249,115,22,0.25)]"
-                  loading="lazy"
-                  animate={{ y: [0, -8, 0] }}
-                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                />
+              <a href={PORTAL_URL} target="_blank" rel="noopener" title="Vai a ediliziaincloud.com — gestionale edilizia cloud" className="block">
                 <div
-                  className="absolute -inset-4 rounded-2xl opacity-40 blur-3xl pointer-events-none"
-                  style={{ background: "radial-gradient(circle, rgba(249,115,22,0.18) 0%, transparent 70%)" }}
-                />
-              </div>
+                  className="relative rounded-xl overflow-hidden aspect-[4/3] flex flex-col items-center justify-center gap-6 px-10"
+                  style={{
+                    background: "linear-gradient(150deg, #ffffff 0%, #f4f6f9 55%, #e9edf3 100%)",
+                  }}
+                >
+                  <motion.img
+                    src={eicLogoFull}
+                    alt="EdiliziaInCloud — gestionale cloud per imprese edili italiane"
+                    className="w-[82%] max-w-[460px] h-auto"
+                    loading="lazy"
+                    animate={{ y: [0, -6, 0] }}
+                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                  />
+                  <span className="font-mono text-[11px] uppercase tracking-[3px] text-[#1e3a5f]/60">
+                    www.ediliziaincloud.com ↗
+                  </span>
+                  <div
+                    className="absolute -inset-4 rounded-2xl opacity-30 blur-3xl pointer-events-none"
+                    style={{ background: "radial-gradient(circle, rgba(249,115,22,0.25) 0%, transparent 70%)" }}
+                  />
+                </div>
+              </a>
             </TiltCard>
           </FadeIn>
         </div>

@@ -2,6 +2,7 @@ import { useState, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
 import aedixLogo from "@/assets/aedix_logo.png";
 import eicLogo from "@/assets/edilizia-in-cloud-logo.png";
+import eicLogoFull from "@/assets/edilizia-in-cloud-logo-full.webp";
 import { motion, useInView } from "framer-motion";
 import {
   Shield, RefreshCw, Target, MessageSquareQuote, ChevronDown,
@@ -795,21 +796,30 @@ const Index = () => {
 
                 <FadeIn delay={0.16}>
                   <TiltCard className="rounded-xl">
-                    <div
-                      className="relative rounded-xl overflow-hidden aspect-[4/3] flex items-center justify-center"
-                      style={{
-                        background: "radial-gradient(ellipse at center, rgba(249,115,22,0.15) 0%, rgba(30,58,95,0.85) 60%, rgba(10,19,34,1) 100%)",
-                      }}
+                    <a
+                      href="https://www.ediliziaincloud.com"
+                      target="_blank"
+                      rel="noopener"
+                      title="EdiliziaInCloud — gestionale edilizia cloud"
+                      className="block"
                     >
-                      <motion.img
-                        src={eicLogo}
-                        alt="Edilizia in Cloud — gestionale cloud per imprese edili italiane"
-                        className="w-[55%] h-auto drop-shadow-[0_20px_60px_rgba(249,115,22,0.3)]"
-                        loading="lazy"
-                        animate={{ y: [0, -10, 0] }}
-                        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-                      />
-                    </div>
+                      <div
+                        className="relative rounded-xl overflow-hidden aspect-[4/3] flex flex-col items-center justify-center gap-5 px-10"
+                        style={{ background: "linear-gradient(150deg, #ffffff 0%, #f4f6f9 55%, #e9edf3 100%)" }}
+                      >
+                        <motion.img
+                          src={eicLogoFull}
+                          alt="EdiliziaInCloud — gestionale cloud per imprese edili italiane"
+                          className="w-[80%] max-w-[440px] h-auto"
+                          loading="lazy"
+                          animate={{ y: [0, -8, 0] }}
+                          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+                        />
+                        <span className="font-mono text-[11px] uppercase tracking-[3px] text-[#1e3a5f]/60">
+                          www.ediliziaincloud.com ↗
+                        </span>
+                      </div>
+                    </a>
                   </TiltCard>
                   <FadeIn delay={0.3}>
                     <div className="mt-6 grid grid-cols-3 gap-3 text-center">
