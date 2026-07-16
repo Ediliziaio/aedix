@@ -35,7 +35,7 @@ const values = [
 
 const stats = [
   { value: "2016", label: "Anno della prima impresa fondata" },
-  { value: "19k+", label: "Imprese edili nel database proprietario" },
+  { value: "24/7", label: "Agenti AI operativi" },
   { value: "4", label: "Piattaforme attive" },
   { value: "EU", label: "Infrastruttura dati europea" },
 ];

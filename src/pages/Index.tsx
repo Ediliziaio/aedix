@@ -361,7 +361,7 @@ const Index = () => {
               <FadeIn delay={0.4}>
                 <div className="flex flex-wrap gap-8 lg:gap-12 mt-16 pt-16 border-t border-[rgba(255,255,255,0.06)]">
                   {[
-                    { val: 19, suf: "k+", label: "imprese edili nel database proprietario" },
+                    { val: 700, suf: "h", label: "risparmiate all'anno per azienda" },
                     { val: 100, suf: "%", label: "azioni critiche approvate da persone" },
                     { val: 24, suf: "/7", label: "agenti AI operativi" },
                   ].map((s, i) => (
