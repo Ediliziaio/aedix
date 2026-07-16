@@ -5,6 +5,24 @@ import { ArrowLeft, Clock, Calendar, User } from "lucide-react";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 
+// Spezza i blocchi di testo lunghi in paragrafi leggibili (~2-4 frasi ciascuno).
+// Le frasi vengono accumulate finché il paragrafo non supera ~380 caratteri:
+// il guard di lunghezza evita spezzature strane su abbreviazioni (es. "art. 14").
+const toParagraphs = (text: string): string[] => {
+  const sentences = text.match(/[^.!?]+[.!?]+["»']?(\s+|$)/g) ?? [text];
+  const paras: string[] = [];
+  let cur = "";
+  for (const s of sentences) {
+    cur += s;
+    if (cur.length > 380) {
+      paras.push(cur.trim());
+      cur = "";
+    }
+  }
+  if (cur.trim()) paras.push(cur.trim());
+  return paras;
+};
+
 const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
@@ -606,7 +624,11 @@ const ArticoloDettaglio = () => {
 
           {/* Intro */}
           <FadeIn>
-            <p className="text-[19px] text-[rgba(255,255,255,0.85)] font-light leading-[1.9] mb-12">{article.intro}</p>
+            <div className="space-y-7 mb-14">
+              {toParagraphs(article.intro).map((p, pi) => (
+                <p key={pi} className="text-[19px] text-[rgba(255,255,255,0.85)] font-light leading-[2]">{p}</p>
+              ))}
+            </div>
           </FadeIn>
 
           {/* Indice */}
@@ -633,9 +655,13 @@ const ArticoloDettaglio = () => {
           {/* Sections */}
           {article.sections.map((s, i) => (
             <FadeIn key={i} delay={0.08 * i}>
-              <div id={`sezione-${i}`} className="mb-14 scroll-mt-24">
-                <h2 className="font-display text-[24px] font-bold tracking-[-0.5px] mb-5">{s.heading}</h2>
-                <p className="text-[17px] text-[rgba(255,255,255,0.75)] font-light leading-[1.9]">{s.text}</p>
+              <div id={`sezione-${i}`} className="mb-16 lg:mb-20 scroll-mt-24">
+                <h2 className="font-display text-[24px] font-bold tracking-[-0.5px] mb-7">{s.heading}</h2>
+                <div className="space-y-6">
+                  {toParagraphs(s.text).map((p, pi) => (
+                    <p key={pi} className="text-[16.5px] text-[rgba(255,255,255,0.72)] font-light leading-[2.05]">{p}</p>
+                  ))}
+                </div>
               </div>
             </FadeIn>
           ))}
@@ -649,7 +675,7 @@ const ArticoloDettaglio = () => {
                   {article.faqs.map((f, i) => (
                     <div key={i} className="p-6 rounded-xl border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.03)]">
                       <h3 className="font-display text-[17px] font-semibold mb-3 text-white">{f.q}</h3>
-                      <p className="text-[15px] text-[rgba(255,255,255,0.7)] font-light leading-[1.8]">{f.a}</p>
+                      <p className="text-[15px] text-[rgba(255,255,255,0.7)] font-light leading-[1.95]">{f.a}</p>
                     </div>
                   ))}
                 </div>

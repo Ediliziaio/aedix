@@ -310,8 +310,8 @@ const Articoli = () => {
                           <Clock size={12} /> {article.readTime}
                         </span>
                       </div>
-                      <h3 className="font-display text-[18px] font-semibold leading-[1.3] mb-3 group-hover:text-primary transition-colors">{article.title}</h3>
-                      <p className="text-[14px] text-[rgba(255,255,255,0.6)] font-light leading-[1.7] mb-4">{article.excerpt}</p>
+                      <h3 className="font-display text-[18px] font-semibold leading-[1.4] mb-4 group-hover:text-primary transition-colors">{article.title}</h3>
+                      <p className="text-[14px] text-[rgba(255,255,255,0.6)] font-light leading-[1.85] mb-5">{article.excerpt}</p>
                       <div className="flex items-center justify-between">
                         <span className="text-[12px] text-[rgba(255,255,255,0.4)]">{article.date}</span>
                         <span className="inline-flex items-center gap-1 text-primary text-[12px] font-semibold uppercase tracking-[1px] opacity-0 group-hover:opacity-100 transition-opacity">
