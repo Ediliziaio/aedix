@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 import { Mail, MapPin, Phone, Send, Building2, Clock, MessageCircle, ChevronDown } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
@@ -56,6 +57,7 @@ const Contatti = () => {
   };
 
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [form, setForm] = useState({ nome: "", email: "", telefono: "", settore: "", messaggio: "" });
   const [sending, setSending] = useState(false);
 
@@ -72,9 +74,9 @@ const Contatti = () => {
     setSending(true);
     setTimeout(() => {
       setSending(false);
-      toast({ title: "Messaggio inviato!", description: "Ti ricontatteremo entro 24 ore." });
       setForm({ nome: "", email: "", telefono: "", settore: "", messaggio: "" });
-    }, 1500);
+      navigate("/grazie");
+    }, 1200);
   };
 
   return (

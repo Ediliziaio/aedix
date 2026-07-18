@@ -15,6 +15,7 @@ const Articoli = lazy(() => import("./pages/Articoli.tsx"));
 const ArticoloDettaglio = lazy(() => import("./pages/ArticoloDettaglio.tsx"));
 const Metodo = lazy(() => import("./pages/Metodo.tsx"));
 const Sicurezza = lazy(() => import("./pages/Sicurezza.tsx"));
+const Grazie = lazy(() => import("./pages/Grazie.tsx"));
 const Privacy = lazy(() => import("./pages/Privacy.tsx"));
 const Termini = lazy(() => import("./pages/Termini.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
@@ -47,6 +48,7 @@ const App = () => (
               <Route path="/sicurezza" element={<Sicurezza />} />
               <Route path="/articoli" element={<Articoli />} />
               <Route path="/articoli/:slug" element={<ArticoloDettaglio />} />
+              <Route path="/grazie" element={<Grazie />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/termini" element={<Termini />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
