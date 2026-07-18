@@ -37,23 +37,22 @@ const Navbar = () => {
         backdropFilter: "blur(24px)",
       }}
     >
-      <div className="max-w-[1320px] mx-auto flex items-center justify-between px-6 lg:px-12 py-[18px]">
-        <Link to="/">
-          <motion.img
+      <div className="max-w-[1320px] mx-auto flex items-center justify-between gap-4 px-5 sm:px-6 lg:px-8 xl:px-12 py-[14px] sm:py-[18px]">
+        <Link to="/" className="shrink-0">
+          <img
             src={aedixLogo}
             alt="AEDIX"
-            className="h-12"
-            animate={{ height: scrolled ? 36 : 48 }}
-            transition={{ duration: 0.3 }}
+            className={`w-auto transition-all duration-300 ${scrolled ? "h-9" : "h-10 sm:h-12"}`}
           />
         </Link>
 
-        <div className="hidden md:flex items-center gap-10">
+        {/* Nav desktop — solo da lg: sotto i 1024px i 5 link + CTA non ci stanno */}
+        <div className="hidden lg:flex items-center gap-5 xl:gap-9 min-w-0">
           {navLinks.map((l) => (
             <Link
               key={l.to}
               to={l.to}
-              className={`font-mono text-[13px] uppercase tracking-[1.5px] transition-colors relative ${
+              className={`font-mono text-[12px] xl:text-[13px] uppercase tracking-[1px] xl:tracking-[1.5px] whitespace-nowrap transition-colors relative ${
                 location.pathname === l.to
                   ? "text-primary"
                   : "text-[rgba(255,255,255,0.7)] hover:text-white"
@@ -73,12 +72,16 @@ const Navbar = () => {
 
         <Link
           to="/contatti"
-          className="hidden md:block bg-primary text-primary-foreground font-bold text-[12px] uppercase tracking-[2px] px-7 py-2.5 rounded-lg glow-btn hover:bg-primary/90 transition-all"
+          className="hidden lg:block shrink-0 whitespace-nowrap bg-primary text-primary-foreground font-bold text-[11px] xl:text-[12px] uppercase tracking-[1.5px] xl:tracking-[2px] px-5 xl:px-7 py-2.5 rounded-lg glow-btn hover:bg-primary/90 transition-all"
         >
           Prenota una demo
         </Link>
 
-        <button className="md:hidden text-white" onClick={() => setMobileOpen(!mobileOpen)}>
+        <button
+          className="lg:hidden text-white p-2 -mr-2"
+          aria-label={mobileOpen ? "Chiudi menu" : "Apri menu"}
+          onClick={() => setMobileOpen(!mobileOpen)}
+        >
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
@@ -87,7 +90,7 @@ const Navbar = () => {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="md:hidden px-6 pt-2 pb-10 flex flex-col border-t border-[rgba(255,255,255,0.06)] min-h-[calc(100dvh-70px)]"
+          className="lg:hidden px-6 pt-2 pb-10 flex flex-col border-t border-[rgba(255,255,255,0.06)] min-h-[calc(100dvh-70px)]"
           style={{ background: "rgba(10,19,34,0.99)", backdropFilter: "blur(24px)" }}
         >
           {navLinks.map((s) => {
