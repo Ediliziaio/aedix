@@ -1,6 +1,6 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect, useRef } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
@@ -22,6 +22,37 @@ const NotFound = lazy(() => import("./pages/NotFound.tsx"));
 
 const queryClient = new QueryClient();
 
+// ─── Meta Pixel — eventi SPA ─────────────────────────────────
+// Il base code in index.html spara il primo PageView; qui gestiamo le
+// navigazioni client-side (che non ricaricano la pagina) e gli eventi
+// per route: Lead su /grazie, ViewContent sulla pagina prodotto.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const fbq = (...args: unknown[]) => (window as any).fbq?.(...args);
+
+const MetaPixelTracker = () => {
+  const { pathname } = useLocation();
+  const firstRender = useRef(true);
+
+  useEffect(() => {
+    // Il PageView iniziale è già tracciato dal base code in index.html
+    if (firstRender.current) {
+      firstRender.current = false;
+    } else {
+      fbq("track", "PageView");
+    }
+
+    if (pathname === "/grazie") {
+      fbq("track", "Lead", { content_name: "Richiesta contatto AEDIX" });
+    } else if (pathname === "/edilizia-in-cloud") {
+      fbq("track", "ViewContent", { content_name: "Edilizia in Cloud", content_category: "Prodotto" });
+    } else if (pathname === "/contatti") {
+      fbq("track", "Contact", { content_name: "Pagina contatti AEDIX" });
+    }
+  }, [pathname]);
+
+  return null;
+};
+
 const RouteFallback = () => (
   <div className="min-h-screen flex items-center justify-center bg-background">
     <div className="w-10 h-10 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
@@ -35,6 +66,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <MetaPixelTracker />
           <Suspense fallback={<RouteFallback />}>
             <Routes>
               <Route path="/" element={<Index />} />
