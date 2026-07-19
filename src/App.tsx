@@ -38,11 +38,12 @@ const MetaPixelTracker = () => {
   const firstRender = useRef(true);
 
   useEffect(() => {
-    // Il PageView iniziale è già tracciato dal base code in index.html
+    // PageView e Pv_aedix iniziali sono già tracciati dal base code in index.html
     if (firstRender.current) {
       firstRender.current = false;
     } else {
       fbq("track", "PageView", { site: PIXEL_SITE });
+      fbq("trackCustom", "Pv_aedix", { site: PIXEL_SITE });
     }
 
     if (pathname === "/grazie") {
