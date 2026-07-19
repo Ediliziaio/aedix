@@ -29,6 +29,10 @@ const queryClient = new QueryClient();
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const fbq = (...args: unknown[]) => (window as any).fbq?.(...args);
 
+// Il pixel è condiviso tra tutti i siti del gruppo: ogni evento dichiara
+// esplicitamente la provenienza, così in Events Manager si filtra per sito.
+const PIXEL_SITE = "aedix.it";
+
 const MetaPixelTracker = () => {
   const { pathname } = useLocation();
   const firstRender = useRef(true);
@@ -38,15 +42,15 @@ const MetaPixelTracker = () => {
     if (firstRender.current) {
       firstRender.current = false;
     } else {
-      fbq("track", "PageView");
+      fbq("track", "PageView", { site: PIXEL_SITE });
     }
 
     if (pathname === "/grazie") {
-      fbq("track", "Lead", { content_name: "Richiesta contatto AEDIX" });
+      fbq("track", "Lead", { site: PIXEL_SITE, content_name: "Richiesta contatto AEDIX" });
     } else if (pathname === "/edilizia-in-cloud") {
-      fbq("track", "ViewContent", { content_name: "Edilizia in Cloud", content_category: "Prodotto" });
+      fbq("track", "ViewContent", { site: PIXEL_SITE, content_name: "Edilizia in Cloud", content_category: "Prodotto" });
     } else if (pathname === "/contatti") {
-      fbq("track", "Contact", { content_name: "Pagina contatti AEDIX" });
+      fbq("track", "Contact", { site: PIXEL_SITE, content_name: "Pagina contatti AEDIX" });
     }
   }, [pathname]);
 
