@@ -143,7 +143,16 @@ const Footer = () => (
 
       <div className="border-t border-[rgba(255,255,255,0.04)] pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
         <span className="text-[12px] text-[rgba(255,255,255,0.2)] tracking-[1px]">
-          © 2026 AEDIX — Domus Group S.r.l. — Tutti i diritti riservati
+          © 2026 AEDIX — Domus Group S.r.l. — Tutti i diritti riservati · Fondata da{" "}
+          {/* Anchor branded costante verso l'entità fondatore: consolida la persona
+              come entità unica del gruppo agli occhi di Google e degli LLM. */}
+          <a
+            href="https://www.florinandriciuc.com/chi-sono"
+            rel="author"
+            className="text-[rgba(255,255,255,0.4)] hover:text-white transition-colors"
+          >
+            Florin Andriciuc
+          </a>
         </span>
         <div className="flex gap-6">
           <Link to="/privacy" className="text-[11px] text-[rgba(255,255,255,0.15)] font-mono hover:text-[rgba(255,255,255,0.4)] transition-colors">Privacy</Link>
