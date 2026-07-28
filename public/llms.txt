@@ -45,7 +45,7 @@ AEDIX designs hybrid AI systems ("sistemi AI ibridi") for Italian companies — 
 - **Edilizia in Cloud**: https://www.aedix.it/edilizia-in-cloud — Product page with demo link
 - **Method**: https://www.aedix.it/metodo — 4-phase delivery process: assessment with baseline, design, activation in 2-4 weeks, monthly ROI measurement
 - **Security & Compliance**: https://www.aedix.it/sicurezza — Data handling (EU infrastructure, no training on client data), human oversight, GDPR & AI Act documentation
-- **Blog/Articles**: https://www.aedix.it/articoli — 23 in-depth articles on hybrid AI systems, enterprises, SMEs, automation, compliance
+- **Blog/Articles**: https://www.aedix.it/articoli — 33 in-depth articles on hybrid AI systems, enterprises, SMEs, automation, compliance
 - **Contact**: https://www.aedix.it/contatti — Contact form & business info
 - **Privacy**: https://www.aedix.it/privacy — GDPR-compliant privacy policy
 - **Terms**: https://www.aedix.it/termini — Service terms & conditions
@@ -90,6 +90,18 @@ AEDIX designs hybrid AI systems ("sistemi AI ibridi") for Italian companies — 
 15. **Perché le PMI italiane hanno paura dell'AI** — Adoption barriers
 16. **5 processi PMI italiana automatizzare oggi** — Quick automation wins
 17. **Agenti AI per PMI cosa sono e come usarli** — AI agents 101
+
+### Sector & Practical Guides
+18. **Piano Nazionale AI Italia: 1 miliardo per le PMI** (/articoli/piano-nazionale-ai-italia-miliardo-pmi) — Funds, tax credits, regional hubs of the 2026-2028 Italian AI plan
+19. **Claude vs GPT vs Gemini: quale AI per la tua azienda** (/articoli/claude-gpt-gemini-quale-ai-scegliere-azienda-2026) — Practical comparison for Italian companies: pricing, privacy, quality, integration
+20. **Caso studio: impresa edile da 0 a 200 lead con AI** (/articoli/caso-studio-impresa-edile-200-lead-ai) — How a renovation company used AI agents and automated marketing
+21. **Come costruire un agente AI aziendale in 7 giorni** (/articoli/come-costruire-agente-ai-aziendale-7-giorni) — Step-by-step: knowledge base, WhatsApp, calendar, testing
+22. **AI e Made in Italy: proteggere il prodotto italiano** (/articoli/ai-made-in-italy-prodotto-italiano-2026) — Anti-counterfeiting, traceability, personalisation
+23. **AI nella ristorazione italiana** (/articoli/ai-ristorazione-italiana-menu-magazzino-personale) — Demand forecasting, dynamic menus, food cost, staffing
+24. **Prompt engineering per imprenditori** (/articoli/prompt-engineering-imprenditori-italiani-guida-completa) — 20 ready templates: sales, marketing, HR, operations, finance
+25. **AI per e-commerce italiano** (/articoli/ai-ecommerce-italiano-conversioni-logistica-2026) — AI search, recommendations, customer care, dynamic pricing, predictive logistics
+26. **AI per studi professionali** (/articoli/intelligenza-artificiale-studi-professionali-commercialisti-avvocati) — Accountants, lawyers, consultants: balance-sheet analysis, case-law research, contract review
+27. **Cultura aziendale e AI** (/articoli/cultura-aziendale-ai-come-preparare-team-cambiamento) — Change management, training, quick wins to bring the team on board
 
 ## Contact & Support
 - **Email**: info@aedix.it
