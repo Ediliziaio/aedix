@@ -14,6 +14,7 @@ const EdiliziaInCloud = lazy(() => import("./pages/EdiliziaInCloud.tsx"));
 const Articoli = lazy(() => import("./pages/Articoli.tsx"));
 const ArticoloDettaglio = lazy(() => import("./pages/ArticoloDettaglio.tsx"));
 const Metodo = lazy(() => import("./pages/Metodo.tsx"));
+const SviluppoSoftwareAI = lazy(() => import("./pages/SviluppoSoftwareAI.tsx"));
 const Sicurezza = lazy(() => import("./pages/Sicurezza.tsx"));
 const Grazie = lazy(() => import("./pages/Grazie.tsx"));
 const Privacy = lazy(() => import("./pages/Privacy.tsx"));
@@ -82,6 +83,7 @@ const App = () => (
               <Route path="/progetti" element={<Navigate to="/edilizia-in-cloud" replace />} />
               <Route path="/progetti/:slug" element={<Navigate to="/edilizia-in-cloud" replace />} />
               <Route path="/metodo" element={<Metodo />} />
+              <Route path="/sviluppo-software-ai" element={<SviluppoSoftwareAI />} />
               <Route path="/sicurezza" element={<Sicurezza />} />
               <Route path="/articoli" element={<Articoli />} />
               <Route path="/articoli/:slug" element={<ArticoloDettaglio />} />

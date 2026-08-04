@@ -17,6 +17,7 @@ import EdiliziaInCloud from "./pages/EdiliziaInCloud.tsx";
 import Articoli from "./pages/Articoli.tsx";
 import ArticoloDettaglio from "./pages/ArticoloDettaglio.tsx";
 import Metodo from "./pages/Metodo.tsx";
+import SviluppoSoftwareAI from "./pages/SviluppoSoftwareAI.tsx";
 import Sicurezza from "./pages/Sicurezza.tsx";
 import Privacy from "./pages/Privacy.tsx";
 import Termini from "./pages/Termini.tsx";
@@ -40,6 +41,7 @@ export function render(url: string): { appHtml: string; helmet: HelmetServerStat
               <Route path="/progetti" element={<Navigate to="/edilizia-in-cloud" replace />} />
               <Route path="/progetti/:slug" element={<Navigate to="/edilizia-in-cloud" replace />} />
               <Route path="/metodo" element={<Metodo />} />
+              <Route path="/sviluppo-software-ai" element={<SviluppoSoftwareAI />} />
               <Route path="/sicurezza" element={<Sicurezza />} />
               <Route path="/articoli" element={<Articoli />} />
               <Route path="/articoli/:slug" element={<ArticoloDettaglio />} />

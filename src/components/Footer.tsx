@@ -49,6 +49,7 @@ const Footer = () => (
           <ul className="space-y-3">
             {[
               { label: "Sistemi", to: "/servizi" },
+              { label: "Sviluppo Software AI", to: "/sviluppo-software-ai" },
               { label: "Edilizia in Cloud", to: "/edilizia-in-cloud" },
               { label: "Il Metodo", to: "/metodo" },
               { label: "Sicurezza & Conformità", to: "/sicurezza" },
