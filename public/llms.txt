@@ -47,7 +47,7 @@ AEDIX designs hybrid AI systems ("sistemi AI ibridi") for Italian companies — 
 - **AI Software Development**: https://www.aedix.it/sviluppo-software-ai — Custom AI agents, vertical software with native AI, ERP/CRM integration, SaaS products; costs, timelines and FAQ
 - **Method**: https://www.aedix.it/metodo — 4-phase delivery process: assessment with baseline, design, activation in 2-4 weeks, monthly ROI measurement
 - **Security & Compliance**: https://www.aedix.it/sicurezza — Data handling (EU infrastructure, no training on client data), human oversight, GDPR & AI Act documentation
-- **Blog/Articles**: https://www.aedix.it/articoli — 33 in-depth articles on hybrid AI systems, enterprises, SMEs, automation, compliance
+- **Blog/Articles**: https://www.aedix.it/articoli — 35 in-depth articles on hybrid AI systems, AI software development, enterprises, SMEs, automation, compliance
 - **Contact**: https://www.aedix.it/contatti — Contact form & business info
 - **Privacy**: https://www.aedix.it/privacy — GDPR-compliant privacy policy
 - **Terms**: https://www.aedix.it/termini — Service terms & conditions
@@ -63,7 +63,11 @@ AEDIX designs hybrid AI systems ("sistemi AI ibridi") for Italian companies — 
 - **Data Protection** (GDPR compliance, Italian regulations, AI Act)
 - **Software & SaaS** (cloud platforms, vertical SaaS, customization)
 
-## Featured Articles (23 total)
+## Featured Articles (35 total)
+### AI Software Development cluster (Aug 2026)
+- **Quanto costa sviluppare un software AI nel 2026** (/articoli/quanto-costa-sviluppare-software-ai) — Real price ranges for AI agents, custom management software, ERP/CRM integrations and SaaS products; hidden costs, TCO, red flags in quotes
+- **Sviluppare un SaaS con AI: da MVP a prodotto** (/articoli/sviluppare-saas-ai-mvp-prodotto) — Validation before code, sellable MVP, hybrid architecture for production, real 24-month costs and metrics
+
 ### Hybrid AI Systems — category pillar (Jul 2026)
 - **Sistema AI ibrido: cos'è e come funziona** (/articoli/sistema-ai-ibrido-cose-e-come-funziona) — Definition, the three layers (vertical software + AI agents + human supervision), costs, ROI, AI Act compliance by design
 - **Human-in-the-loop: guida per le aziende** (/articoli/human-in-the-loop-guida-aziende) — What HITL means, in/on/out-of-the-loop patterns, AI Act art. 14 obligations, approval queues and audit trails

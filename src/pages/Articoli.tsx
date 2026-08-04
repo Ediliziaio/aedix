@@ -20,6 +20,24 @@ const categories = ["Tutti", "Enterprise", "AI", "PMI", "Automazione", "Marketin
 
 const articles = [
   {
+    slug: "quanto-costa-sviluppare-software-ai",
+    title: "Quanto costa sviluppare un software AI nel 2026: prezzi reali per aziende italiane",
+    excerpt: "Da 5.000 euro per un agente AI a oltre 200.000 per un SaaS completo: le fasce di costo reali del mercato italiano, le voci che i preventivi nascondono e i 4 segnali d'allarme per riconoscere un'offerta gonfiata.",
+    category: "Strategia",
+    date: "4 Ago 2026",
+    readTime: "12 min",
+    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    slug: "sviluppare-saas-ai-mvp-prodotto",
+    title: "Sviluppare un SaaS con AI: da MVP a prodotto che scala, la guida completa",
+    excerpt: "Validare prima di costruire, un MVP minimo ma vendibile, l'architettura ibrida che regge la produzione e i costi veri a 24 mesi. La guida di chi i SaaS li sviluppa e li gestisce ogni giorno.",
+    category: "AI",
+    date: "3 Ago 2026",
+    readTime: "12 min",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+  },
+  {
     slug: "sistema-ai-ibrido-cose-e-come-funziona",
     title: "Sistema AI ibrido: cos'è, come funziona e perché le aziende lo scelgono nel 2026",
     excerpt: "Il 95% dei pilot di AI generativa non produce impatto sul conto economico. La soluzione non è un modello più grande: è un'architettura migliore. Definizione, tre strati, costi e ROI dei sistemi AI ibridi.",
