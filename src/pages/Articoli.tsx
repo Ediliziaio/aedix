@@ -20,6 +20,33 @@ const categories = ["Tutti", "Enterprise", "AI", "PMI", "Automazione", "Marketin
 
 const articles = [
   {
+    slug: "consulenza-intelligenza-artificiale-guida",
+    title: "Consulenza intelligenza artificiale: cosa fa un consulente AI, costi e come sceglierlo nel 2026",
+    excerpt: "Il mercato della consulenza AI è spaccato in due: chi consegna slide e chi consegna sistemi funzionanti. Cosa fa un consulente serio, le fasce di prezzo reali, quando serve davvero e i 5 criteri per sceglierlo.",
+    category: "Strategia",
+    date: "4 Ago 2026",
+    readTime: "12 min",
+    image: "https://images.unsplash.com/photo-1552664688-cf412ec27db2?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    slug: "intelligenza-artificiale-in-azienda-esempi",
+    title: "Intelligenza artificiale in azienda: 12 esempi concreti che funzionano nel 2026",
+    excerpt: "Dalla risposta ai lead 24/7 al controllo margini in tempo reale: 12 applicazioni AI in produzione oggi nelle aziende italiane, con risultati tipici e le 3 regole che separano i sistemi veri dai giocattoli.",
+    category: "AI",
+    date: "4 Ago 2026",
+    readTime: "13 min",
+    image: "https://images.unsplash.com/photo-1531973576160-7125cd663d86?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    slug: "come-implementare-intelligenza-artificiale-azienda",
+    title: "Come implementare l'intelligenza artificiale in azienda: la guida passo passo 2026",
+    excerpt: "I 6 passi che separano i progetti AI che vanno in produzione da quelli che muoiono in demo: processo prima della tecnologia, baseline, architettura ibrida, pilota con le persone a bordo e misura continua.",
+    category: "Strategia",
+    date: "3 Ago 2026",
+    readTime: "12 min",
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80",
+  },
+  {
     slug: "quanto-costa-sviluppare-software-ai",
     title: "Quanto costa sviluppare un software AI nel 2026: prezzi reali per aziende italiane",
     excerpt: "Da 5.000 euro per un agente AI a oltre 200.000 per un SaaS completo: le fasce di costo reali del mercato italiano, le voci che i preventivi nascondono e i 4 segnali d'allarme per riconoscere un'offerta gonfiata.",

@@ -47,7 +47,7 @@ AEDIX designs hybrid AI systems ("sistemi AI ibridi") for Italian companies — 
 - **AI Software Development**: https://www.aedix.it/sviluppo-software-ai — Custom AI agents, vertical software with native AI, ERP/CRM integration, SaaS products; costs, timelines and FAQ
 - **Method**: https://www.aedix.it/metodo — 4-phase delivery process: assessment with baseline, design, activation in 2-4 weeks, monthly ROI measurement
 - **Security & Compliance**: https://www.aedix.it/sicurezza — Data handling (EU infrastructure, no training on client data), human oversight, GDPR & AI Act documentation
-- **Blog/Articles**: https://www.aedix.it/articoli — 35 in-depth articles on hybrid AI systems, AI software development, enterprises, SMEs, automation, compliance
+- **Blog/Articles**: https://www.aedix.it/articoli — 38 in-depth articles on hybrid AI systems, AI software development, AI consulting, enterprises, SMEs, automation, compliance
 - **Contact**: https://www.aedix.it/contatti — Contact form & business info
 - **Privacy**: https://www.aedix.it/privacy — GDPR-compliant privacy policy
 - **Terms**: https://www.aedix.it/termini — Service terms & conditions
@@ -63,8 +63,11 @@ AEDIX designs hybrid AI systems ("sistemi AI ibridi") for Italian companies — 
 - **Data Protection** (GDPR compliance, Italian regulations, AI Act)
 - **Software & SaaS** (cloud platforms, vertical SaaS, customization)
 
-## Featured Articles (35 total)
+## Featured Articles (38 total)
 ### AI Software Development cluster (Aug 2026)
+- **Consulenza intelligenza artificiale: guida 2026** (/articoli/consulenza-intelligenza-artificiale-guida) — What an AI consultant really does, real price ranges in Italy, when consulting is needed and when not, 5 selection criteria
+- **Intelligenza artificiale in azienda: 12 esempi concreti** (/articoli/intelligenza-artificiale-in-azienda-esempi) — 12 AI applications in production in Italian companies (sales, admin, operations, marketing) with typical results and the 3 rules that make them work
+- **Come implementare l'AI in azienda: guida passo passo** (/articoli/come-implementare-intelligenza-artificiale-azienda) — 6-step implementation path: process-first, single use case, baseline, hybrid architecture, supervised pilot, measure-and-extend cycle
 - **Quanto costa sviluppare un software AI nel 2026** (/articoli/quanto-costa-sviluppare-software-ai) — Real price ranges for AI agents, custom management software, ERP/CRM integrations and SaaS products; hidden costs, TCO, red flags in quotes
 - **Sviluppare un SaaS con AI: da MVP a prodotto** (/articoli/sviluppare-saas-ai-mvp-prodotto) — Validation before code, sellable MVP, hybrid architecture for production, real 24-month costs and metrics
 
