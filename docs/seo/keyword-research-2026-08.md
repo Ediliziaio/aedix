@@ -85,16 +85,21 @@ Chi cerca oggi "AI Act cosa cambia" trova soprattutto articoli scritti *prima*
 del rinvio, quindi imprecisi. È una finestra di freschezza che si chiude in
 poche settimane.
 
-### 2.3 I riferimenti della skill SEO sono disallineati — **priorità media**
+### 2.3 I riferimenti della skill SEO erano disallineati — **risolto**
 
-`references/keyword-map.md` e `competitor-analysis.md` descrivono ancora:
+`SKILL.md`, `article-protocol.md` e `competitor-analysis.md` contenevano ancora
+il pillar *"AI per PMI italiane"* (superato dal riposizionamento) e istruivano
+ad usare come prova di credibilità un dato sul numero di imprese in database.
 
-- pillar *"AI per PMI italiane"* come priorità assoluta → **superato** dal riposizionamento;
-- il claim *"database 19.000 imprese edili"* come leva di credibilità → **rimosso
-  deliberatamente dal sito** nel commit `06e638c`.
+**Quel dato è un claim vietato.** È stato rimosso dal sito su decisione del
+founder (commit `06e638c`) e non va usato in nessuna forma: non in articoli,
+non nei meta tag, non come dato citabile per gli LLM. La skill è stata corretta
+in tutti i punti in cui lo istruiva, ed è stata aggiunta una sezione esplicita
+di claim vietati per evitare che rientri da sessioni future.
 
-Chi userà la skill in futuro produrrà contenuti sul posizionamento vecchio.
-Vanno riallineati, o continueranno a generare lavoro da buttare.
+**Regola generale che ne discende:** nessun numero sul brand senza fonte esterna
+verificabile o misurazione reale dei clienti. Un dato che non regge una verifica
+costa più credibilità di quanta ne porti.
 
 ---
 
@@ -209,10 +214,12 @@ evidenza di mercato o di SERP.
 Il sito ha già le fondamenta giuste: prerendering statico, JSON-LD per articolo,
 `llms.txt` aggiornato. Per essere citato serve ciò che manca ancora:
 
-- **dati proprietari citabili** — un LLM cita numeri che trova solo da te.
-  Dopo la rimozione del claim "19.000 imprese", AEDIX non ha più una statistica
-  propria. Serve sostituirla con qualcosa di vero e misurato (es. risultati
-  aggregati e verificabili dei clienti Edilizia in Cloud);
+- **dati proprietari citabili** — un LLM cita volentieri numeri che trova solo da
+  te. AEDIX oggi non ha una statistica propria, e va costruita nel modo giusto:
+  una misurazione reale e difendibile sui clienti (es. ore risparmiate o tempi di
+  risposta aggregati su Edilizia in Cloud, rilevati e documentati). Il vincolo non
+  è negoziabile: **il numero deve essere vero e verificabile**, altrimenti diventa
+  un rischio reputazionale invece che una leva — vedi §2.3;
 - **definizioni nette** della categoria "sistema AI ibrido" — già presenti
   nell'articolo pillar, da ripetere in modo coerente su tutte le pagine;
 - **risposte esaustive a domande singole** — il formato FAQ già usato negli
