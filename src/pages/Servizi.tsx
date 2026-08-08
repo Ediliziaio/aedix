@@ -104,7 +104,7 @@ const FAQItem = ({ faq, index }: { faq: typeof serviceFaqs[0]; index: number }) 
 const Servizi = () => (
   <>
     <SEO
-      title="Sistemi AI Ibridi per Aziende: i 4 Componenti | AEDIX"
+      title="I 4 Componenti di un Sistema AI Ibrido — AEDIX"
       description="Software verticale, agenti AI operativi, marketing a performance e consulenza: i 4 componenti di un sistema AI ibrido. Operativo in giorni, da €200/mese."
       path="/servizi"
       breadcrumbs={[

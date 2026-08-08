@@ -251,8 +251,8 @@ const Index = () => {
   return (
     <>
       <SEO
-        title="Sviluppo Software AI per Aziende — AEDIX | Sistemi Ibridi"
-        description="AEDIX, azienda italiana di sviluppo software AI: sistemi ibridi con software verticale, agenti AI e supervisione umana. Conformi AI Act e misurabili."
+        title="Sistemi AI Ibridi per Aziende — AEDIX"
+        description="Il 95% dei pilot AI non arriva in produzione. AEDIX costruisce sistemi ibridi: software verticale, agenti AI e supervisione umana. Conformi AI Act, misurabili."
         path="/"
         jsonLd={[
           // WebSite e Organization sono già nel <head> statico di index.html —

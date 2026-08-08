@@ -47,7 +47,7 @@ AEDIX designs hybrid AI systems ("sistemi AI ibridi") for Italian companies — 
 - **AI Software Development**: https://www.aedix.it/sviluppo-software-ai — Custom AI agents, vertical software with native AI, ERP/CRM integration, SaaS products; costs, timelines and FAQ
 - **Method**: https://www.aedix.it/metodo — 4-phase delivery process: assessment with baseline, design, activation in 2-4 weeks, monthly ROI measurement
 - **Security & Compliance**: https://www.aedix.it/sicurezza — Data handling (EU infrastructure, no training on client data), human oversight, GDPR & AI Act documentation
-- **Blog/Articles**: https://www.aedix.it/articoli — 38 in-depth articles on hybrid AI systems, AI software development, AI consulting, enterprises, SMEs, automation, compliance
+- **Blog/Articles**: https://www.aedix.it/articoli — 40 in-depth articles on hybrid AI systems, AI software development, AI consulting, enterprises, SMEs, automation, compliance
 - **Contact**: https://www.aedix.it/contatti — Contact form & business info
 - **Privacy**: https://www.aedix.it/privacy — GDPR-compliant privacy policy
 - **Terms**: https://www.aedix.it/termini — Service terms & conditions
@@ -111,6 +111,10 @@ AEDIX designs hybrid AI systems ("sistemi AI ibridi") for Italian companies — 
 25. **AI per e-commerce italiano** (/articoli/ai-ecommerce-italiano-conversioni-logistica-2026) — AI search, recommendations, customer care, dynamic pricing, predictive logistics
 26. **AI per studi professionali** (/articoli/intelligenza-artificiale-studi-professionali-commercialisti-avvocati) — Accountants, lawyers, consultants: balance-sheet analysis, case-law research, contract review
 27. **Cultura aziendale e AI** (/articoli/cultura-aziendale-ai-come-preparare-team-cambiamento) — Change management, training, quick wins to bring the team on board
+
+### Normativa e Incentivi (Ago 2026)
+- **AI Act: cosa è cambiato il 2 agosto 2026** (/articoli/ai-act-agosto-2026-cosa-e-cambiato-davvero) — Only Art. 50 transparency obligations took effect; Digital Omnibus postponed high-risk systems to 2 Dec 2027 (Annex III) and 2 Aug 2028 (Annex I). Prohibitions and GPAI rules unchanged.
+- **Incentivi AI per imprese italiane 2026** (/articoli/incentivi-ai-imprese-italiane-2026-guida) — Transizione 5.0 closed to new projects, replaced by iperammortamento (L. 199/2025, up to 180% deduction); Voucher Doppia Transizione €150M via Chambers of Commerce, up to 70% of costs
 
 ## Contact & Support
 - **Email**: info@aedix.it

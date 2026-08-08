@@ -20,6 +20,24 @@ const categories = ["Tutti", "Enterprise", "AI", "PMI", "Automazione", "Marketin
 
 const articles = [
   {
+    slug: "ai-act-agosto-2026-cosa-e-cambiato-davvero",
+    title: "AI Act: cosa è cambiato davvero il 2 agosto 2026 (e cosa è stato rinviato)",
+    excerpt: "Il Digital Omnibus ha riscritto il calendario poche settimane prima della scadenza. Cosa è scattato davvero, cosa slitta al 2027 e al 2028, e perché leggere 'rinviato' come 'non devo fare niente' è un errore costoso.",
+    category: "Strategia",
+    date: "8 Ago 2026",
+    readTime: "11 min",
+    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    slug: "incentivi-ai-imprese-italiane-2026-guida",
+    title: "Incentivi AI per le imprese italiane nel 2026: iperammortamento, voucher e cosa è cambiato",
+    excerpt: "Transizione 5.0 chiusa ai nuovi progetti, iperammortamento al suo posto, Voucher Doppia Transizione da 150 milioni con scadenze decise dalle singole Camere. Quale spesa AI è davvero agevolabile.",
+    category: "PMI",
+    date: "8 Ago 2026",
+    readTime: "12 min",
+    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80",
+  },
+  {
     slug: "consulenza-intelligenza-artificiale-guida",
     title: "Consulenza intelligenza artificiale: cosa fa un consulente AI, costi e come sceglierlo nel 2026",
     excerpt: "Il mercato della consulenza AI è spaccato in due: chi consegna slide e chi consegna sistemi funzionanti. Cosa fa un consulente serio, le fasce di prezzo reali, quando serve davvero e i 5 criteri per sceglierlo.",

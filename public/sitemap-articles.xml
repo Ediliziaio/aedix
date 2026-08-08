@@ -2,6 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <!-- ═══════════════════════════════════════════
+       Articoli blog — Agosto 2026
+  ═══════════════════════════════════════════ -->
+  <url>
+    <loc>https://www.aedix.it/articoli/ai-act-agosto-2026-cosa-e-cambiato-davvero</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.aedix.it/articoli/incentivi-ai-imprese-italiane-2026-guida</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- ═══════════════════════════════════════════
        Cluster Sviluppo Software AI (Ago 2026)
   ═══════════════════════════════════════════ -->
   <url>
