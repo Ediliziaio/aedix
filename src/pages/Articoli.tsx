@@ -418,6 +418,32 @@ const Articoli = () => {
             </p>
           </FadeIn>
 
+          {/* Guide fondamentali — pillar in evidenza */}
+          <FadeIn delay={0.18}>
+            <div className="mb-14 p-7 lg:p-8 rounded-xl border border-primary/20 bg-primary/[0.04]">
+              <p className="font-mono text-[11px] uppercase tracking-[4px] text-primary mb-5">Guide fondamentali</p>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-3">
+                {[
+                  { to: "/articoli/sistema-ai-ibrido-cose-e-come-funziona", label: "Cos'è un sistema AI ibrido" },
+                  { to: "/articoli/come-implementare-intelligenza-artificiale-azienda", label: "Come implementare l'AI in azienda" },
+                  { to: "/articoli/quanto-costa-sviluppare-software-ai", label: "Quanto costa sviluppare un software AI" },
+                  { to: "/articoli/intelligenza-artificiale-in-azienda-esempi", label: "12 esempi di AI in azienda" },
+                  { to: "/articoli/consulenza-intelligenza-artificiale-guida", label: "Consulenza AI: la guida" },
+                  { to: "/articoli/human-in-the-loop-guida-aziende", label: "Human-in-the-loop spiegato" },
+                ].map((g) => (
+                  <Link
+                    key={g.to}
+                    to={g.to}
+                    className="group inline-flex items-center gap-2 text-[14px] text-[rgba(255,255,255,0.75)] hover:text-primary transition-colors py-1"
+                  >
+                    <span className="w-1 h-1 rounded-full bg-primary shrink-0" />
+                    <span className="group-hover:translate-x-0.5 transition-transform">{g.label}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </FadeIn>
+
           {/* Filters */}
           <FadeIn delay={0.2}>
             <div className="flex flex-wrap gap-3 mb-16">
