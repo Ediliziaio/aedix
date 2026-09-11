@@ -3,6 +3,7 @@ import { motion, useInView } from "framer-motion";
 import { Mail, MapPin, Phone, Send, Building2, Clock, MessageCircle, ChevronDown } from "lucide-react";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
+import { EicLeadForm } from "@/components/EicLeadForm";
 
 const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) => {
   const ref = useRef(null);
@@ -103,14 +104,8 @@ const Contatti = () => {
           <div className="grid lg:grid-cols-5 gap-16">
             <FadeIn delay={0.2} className="lg:col-span-3">
               <div className="rounded-xl overflow-hidden border border-[rgba(255,255,255,0.08)] bg-white">
-                <iframe
-                  src="https://app.ediliziaincloud.com/f?slug=aedix&company_id=00000000-0000-0000-0000-000000000001"
-                  width="100%"
-                  height={640}
-                  style={{ border: 0, maxWidth: 640, margin: "0 auto", display: "block" }}
-                  loading="lazy"
-                  title="Richiedi informazioni"
-                />
+                {/* Porta al CRM la campagna di provenienza (UTM, gclid, fbclid). */}
+                <EicLeadForm slug="aedix" />
               </div>
             </FadeIn>
 
