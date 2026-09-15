@@ -41,28 +41,69 @@ export function EicLeadForm({
     setSrc(urlFormConCampagna(`${ORIGINE}/f?slug=${encodeURIComponent(slug)}&company_id=${encodeURIComponent(companyId)}`));
   }, [slug, companyId]);
 
+  const [caricato, setCaricato] = useState(false);
+
   useEffect(() => {
     const onMessage = (e: MessageEvent) => {
       if (e.origin !== ORIGINE || e.source !== ref.current?.contentWindow) return;
       const d = e.data as { type?: string; height?: number } | null;
       if (d?.type !== "eic-lead-form-height" || typeof d.height !== "number") return;
-      setAltezza(Math.max(360, Math.min(2600, Math.ceil(d.height) + 16)));
+      // Solo crescita, mai sotto l'altezza iniziale: il form a volte riporta
+      // un'altezza parziale durante il primo render (taglierebbe la card).
+      // Il tetto basso evita che un'altezza riportata male (la pagina centra
+      // il contenuto e include lo slack del viewport nello scrollHeight)
+      // produca un enorme vuoto bianco sopra/sotto la card.
+      setAltezza((prev) => Math.max(prev, Math.min(1200, Math.ceil(d.height) + 16)));
     };
     window.addEventListener("message", onMessage);
     return () => window.removeEventListener("message", onMessage);
   }, []);
 
-  const base: CSSProperties = { width: "100%", maxWidth: 640, margin: "0 auto", display: "block", border: 0 };
-  if (!src) return <div className={className} style={{ ...base, minHeight: height, ...style }} aria-hidden="true" />;
+  // Sfondo bianco e arrotondamento vivono sull'iframe, non su un wrapper:
+  // prima del caricamento la pagina resta sul fondo scuro del sito (nessun
+  // "muro bianco" vuoto durante SSG/idratazione o su connessioni lente).
+  const base: CSSProperties = { width: "100%", maxWidth: 640, margin: "0 auto", display: "block", border: 0, borderRadius: 12 };
+  if (!src)
+    return (
+      <div
+        className={className}
+        style={{ ...base, minHeight: height, background: "rgba(255,255,255,0.04)", ...style }}
+        aria-hidden="true"
+      />
+    );
   return (
-    <iframe
-      ref={ref}
-      src={src}
-      title={title}
-      loading={eager ? "eager" : "lazy"}
-      referrerPolicy="strict-origin-when-cross-origin"
-      className={className}
-      style={{ ...base, height: altezza, ...style }}
-    />
+    <div style={{ position: "relative" }}>
+      {!caricato && (
+        <div
+          aria-hidden="true"
+          style={{
+            ...base,
+            position: "absolute",
+            inset: 0,
+            background: "rgba(255,255,255,0.04)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "rgba(255,255,255,0.45)",
+            fontSize: 13,
+            fontFamily: "'JetBrains Mono', monospace",
+            letterSpacing: 2,
+            textTransform: "uppercase",
+          }}
+        >
+          Caricamento modulo…
+        </div>
+      )}
+      <iframe
+        ref={ref}
+        src={src}
+        title={title}
+        loading={eager ? "eager" : "lazy"}
+        referrerPolicy="strict-origin-when-cross-origin"
+        onLoad={() => setCaricato(true)}
+        className={className}
+        style={{ ...base, height: altezza, background: caricato ? "#ffffff" : "transparent", ...style }}
+      />
+    </div>
   );
 }

@@ -103,10 +103,10 @@ const Contatti = () => {
 
           <div className="grid lg:grid-cols-5 gap-16">
             <FadeIn delay={0.2} className="lg:col-span-3">
-              <div className="rounded-xl overflow-hidden border border-[rgba(255,255,255,0.08)] bg-white">
-                {/* Porta al CRM la campagna di provenienza (UTM, gclid, fbclid). */}
-                <EicLeadForm slug="aedix" />
-              </div>
+              {/* Porta al CRM la campagna di provenienza (UTM, gclid, fbclid).
+                  Niente wrapper bianco: sfondo e arrotondamento sono sull'iframe,
+                  così durante il caricamento non appare un blocco bianco vuoto. */}
+              <EicLeadForm slug="aedix" eager />
             </FadeIn>
 
             <FadeIn delay={0.3} className="lg:col-span-2">
