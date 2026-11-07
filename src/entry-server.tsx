@@ -12,6 +12,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index.tsx";
 import Contatti from "./pages/Contatti.tsx";
 import PercheNoi from "./pages/PercheNoi.tsx";
+import ValutazioneProcessoAI from "./pages/ValutazioneProcessoAI.tsx";
 import Servizi from "./pages/Servizi.tsx";
 import EdiliziaInCloud from "./pages/EdiliziaInCloud.tsx";
 import Articoli from "./pages/Articoli.tsx";
@@ -37,6 +38,7 @@ export function render(url: string): { appHtml: string; helmet: HelmetServerStat
               <Route path="/contatti" element={<Contatti />} />
               <Route path="/perche-noi" element={<PercheNoi />} />
               <Route path="/servizi" element={<Servizi />} />
+              <Route path="/strumenti/valutazione-processo-ai" element={<ValutazioneProcessoAI />} />
               <Route path="/edilizia-in-cloud" element={<EdiliziaInCloud />} />
               <Route path="/progetti" element={<Navigate to="/edilizia-in-cloud" replace />} />
               <Route path="/progetti/:slug" element={<Navigate to="/edilizia-in-cloud" replace />} />

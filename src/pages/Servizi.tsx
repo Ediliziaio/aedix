@@ -353,6 +353,15 @@ const Servizi = () => (
       </div>
     </section>
 
+    <section className="py-16 px-6 lg:px-12 bg-alt">
+      <div className="max-w-[900px] mx-auto rounded-xl border border-primary/30 p-8 sm:p-12">
+        <p className="text-primary text-sm uppercase tracking-widest mb-4">Strumento gratuito</p>
+        <h2 className="font-display text-3xl font-bold mb-4">Misura un processo prima di automatizzarlo</h2>
+        <p className="text-muted-foreground mb-6">Confronta tempi attuali, controllo umano e costi aggiuntivi. Compila la simulazione e scarica la tua scheda, senza registrazione.</p>
+        <Link to="/strumenti/valutazione-processo-ai" className="inline-flex items-center gap-2 text-primary underline font-semibold">Apri la scheda di valutazione <ArrowRight size={18} /></Link>
+      </div>
+    </section>
+
     {/* Come iniziare */}
     <section className="py-20 sm:py-28 px-6 lg:px-12 bg-alt">
       <div className="max-w-[1320px] mx-auto">

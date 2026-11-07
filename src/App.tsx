@@ -9,6 +9,7 @@ import Index from "./pages/Index.tsx";
 
 const Contatti = lazy(() => import("./pages/Contatti.tsx"));
 const PercheNoi = lazy(() => import("./pages/PercheNoi.tsx"));
+const ValutazioneProcessoAI = lazy(() => import("./pages/ValutazioneProcessoAI.tsx"));
 const Servizi = lazy(() => import("./pages/Servizi.tsx"));
 const EdiliziaInCloud = lazy(() => import("./pages/EdiliziaInCloud.tsx"));
 const Articoli = lazy(() => import("./pages/Articoli.tsx"));
@@ -79,6 +80,7 @@ const App = () => (
               <Route path="/contatti" element={<Contatti />} />
               <Route path="/perche-noi" element={<PercheNoi />} />
               <Route path="/servizi" element={<Servizi />} />
+              <Route path="/strumenti/valutazione-processo-ai" element={<ValutazioneProcessoAI />} />
               <Route path="/edilizia-in-cloud" element={<EdiliziaInCloud />} />
               <Route path="/progetti" element={<Navigate to="/edilizia-in-cloud" replace />} />
               <Route path="/progetti/:slug" element={<Navigate to="/edilizia-in-cloud" replace />} />
