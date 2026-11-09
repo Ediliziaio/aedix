@@ -236,14 +236,14 @@ const articles = [
     image: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&w=800&q=80",
   },
   {
-    slug: "whatsapp-business-ai-pmi-italiane",
-    title: "WhatsApp Business + AI: la combinazione che converte i clienti italiani",
-    excerpt: "L'88% degli italiani usa WhatsApp ogni giorno. Come integrare AI con WhatsApp Business — setup, costi, automazioni e casi reali italiani.",
-    category: "Marketing",
-    date: "5 Mag 2026",
-    readTime: "10 min",
-    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=800&q=80",
-  },
+  "slug": "whatsapp-business-ai-pmi-italiane",
+  "title": "WhatsApp Business e AI per PMI: progettare risposte affidabili",
+  "excerpt": "WhatsApp Business e AI per PMI: prepara fonti affidabili, passaggi all’operatore e prove misurabili. Una guida per valutare servizio e fornitori.",
+  "category": "Marketing",
+  "date": "5 Mag 2026",
+  "readTime": "12 min",
+  "image": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=800&q=80"
+},
   {
     slug: "ai-generativa-pmi-italiane-2026",
     title: "AI generativa per PMI italiane: come usarla davvero nel 2026",
@@ -424,6 +424,7 @@ const Articoli = () => {
               <p className="font-mono text-[11px] uppercase tracking-[4px] text-primary mb-5">Guide fondamentali</p>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-3">
                 {[
+                  { to: "/articoli/whatsapp-business-ai-pmi-italiane", label: "WhatsApp AI: fonti, prove e passaggio umano" },
                   { to: "/articoli/sistema-ai-ibrido-cose-e-come-funziona", label: "Cos'è un sistema AI ibrido" },
                   { to: "/articoli/come-implementare-intelligenza-artificiale-azienda", label: "Come implementare l'AI in azienda" },
                   { to: "/articoli/quanto-costa-sviluppare-software-ai", label: "Quanto costa sviluppare un software AI" },

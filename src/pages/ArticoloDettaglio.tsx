@@ -5,23 +5,7 @@ import { ArrowLeft, Clock, Calendar, User } from "lucide-react";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 
-// Spezza i blocchi di testo lunghi in paragrafi leggibili (~2-4 frasi ciascuno).
-// Le frasi vengono accumulate finché il paragrafo non supera ~380 caratteri:
-// il guard di lunghezza evita spezzature strane su abbreviazioni (es. "art. 14").
-const toParagraphs = (text: string): string[] => {
-  const sentences = text.match(/[^.!?]+[.!?]+["»']?(\s+|$)/g) ?? [text];
-  const paras: string[] = [];
-  let cur = "";
-  for (const s of sentences) {
-    cur += s;
-    if (cur.length > 380) {
-      paras.push(cur.trim());
-      cur = "";
-    }
-  }
-  if (cur.trim()) paras.push(cur.trim());
-  return paras;
-};
+import { splitEditorialParagraphs as toParagraphs, renderEditorialInline } from "@/lib/editorialText";
 
 const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) => {
   const ref = useRef(null);
@@ -346,29 +330,76 @@ const articleContent: Record<string, {
     quote: "L'AI generativa non è il futuro del lavoro nelle PMI italiane. È il presente. La domanda non è se adottarla, ma quanto velocemente — perché chi la adotta bene ora costruisce un vantaggio che tra 12 mesi sarà difficile colmare.",
   },
   "whatsapp-business-ai-pmi-italiane": {
-    title: "WhatsApp Business + AI: la combinazione che converte i clienti italiani",
-    metaTitle: "WhatsApp + AI per PMI Italiane: Guida 2026 | AEDIX",
-    metaDescription: "L'88% degli italiani usa WhatsApp ogni giorno. Come integrare AI con WhatsApp Business per PMI: setup, costi, automazioni, casi reali italiani.",
-    publishedISO: "2026-05-05",
-    category: "Marketing", date: "5 Mag 2026", readTime: "10 min", author: "Florin Andriciuc",
-    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=1600&q=80",
-    intro: "L'88% degli italiani usa WhatsApp ogni giorno (We Are Social, 2026). Il 62% lo usa per comunicare con aziende almeno una volta a settimana. Eppure, secondo Meta Business Italia, solo il 19% delle PMI italiane ha attivato WhatsApp Business in modo strutturato — e meno del 5% lo integra con sistemi AI. Questo divario è una delle più grandi opportunità di marketing degli ultimi 5 anni. Mentre i competitor inseguono Instagram e Google Ads con costi sempre più alti, i clienti italiani stanno aspettando di essere raggiunti dove già sono: su WhatsApp. Questo articolo spiega come fare bene l'integrazione AI + WhatsApp Business — con i passi tecnici, i costi reali e i risultati misurati nelle PMI italiane.",
-    sections: [
-      { heading: "Perché WhatsApp è il canale che converte di più in Italia", text: "I numeri sono inequivocabili. Open rate medio di un messaggio WhatsApp aziendale: 98%. Open rate medio di una email aziendale: 21%. Tempo medio di lettura di un messaggio WhatsApp: meno di 3 minuti dall'invio. Tempo medio di lettura di una email: 6,4 ore. Tasso di risposta medio su WhatsApp Business: 35%. Tasso di risposta medio sulle email: 8%. Questi non sono numeri marginali — sono ordini di grandezza di differenza. La ragione culturale è specificamente italiana. Per i nostri clienti, WhatsApp non è un canale formale come l'email: è la conversazione quotidiana, immediata, personale. Un messaggio WhatsApp da un'azienda è percepito come una conversazione vera, non come una comunicazione promozionale. Questo crea una soglia di apertura e fiducia che gli altri canali fanno fatica a raggiungere. Aggiungiamo l'integrazione AI: la possibilità di rispondere immediatamente a centinaia di clienti contemporaneamente, in modo personalizzato, 24 ore su 24, su uno strumento dove i clienti già passano la giornata. Questa è la combinazione che sta cambiando il marketing delle PMI italiane nel 2026 — e che sta passando in gran parte sotto i radar." },
-      { heading: "WhatsApp Business: cosa è e cosa NON è", text: "Prima di parlare di AI, è importante chiarire cos'è WhatsApp Business e quali sono i suoi limiti. WhatsApp Business è un servizio gratuito per le piccole imprese, separato dall'app personale, che permette di gestire le comunicazioni con i clienti con strumenti dedicati: profilo aziendale, messaggi automatici, etichette per organizzare le chat, statistiche base. Funziona bene per realtà fino a 50-100 clienti attivi. Per volumi più alti — o per integrazione AI — serve invece WhatsApp Business API, un servizio professionale a pagamento che permette di gestire migliaia di conversazioni simultanee, integrare con sistemi esterni, automatizzare workflow complessi. La differenza è cruciale. WhatsApp Business app: funziona da un singolo telefono, limitato in volume, gratis. WhatsApp Business API: funziona da server, gestisce volumi illimitati, integra con qualsiasi sistema, ha costi a consumo. La maggior parte delle PMI italiane confonde i due — e questo limita le possibilità reali. Per integrare AI seriamente serve l'API, fornita tramite Business Solution Provider (Meta non vende API direttamente alle aziende). I costi medi sono €40-80 al mese di canone fisso, più €0,005-0,03 per conversazione (varia per tipologia). Per volumi medi PMI, il costo totale è €60-150 al mese — molto meno di una campagna Meta Ads di una settimana." },
-      { heading: "Come funziona l'integrazione WhatsApp + AI", text: "L'integrazione tra WhatsApp Business API e un agente AI segue un'architettura precisa. Quando un cliente scrive un messaggio sul WhatsApp aziendale, il messaggio arriva via webhook al sistema AI. L'AI elabora il messaggio: capisce l'intento, controlla il contesto della conversazione precedente, accede al database aziendale (CRM, listino, calendario, FAQ) per ottenere le informazioni necessarie. L'AI formula la risposta — testuale, con immagini, con bottoni interattivi, con la possibilità di trasferire la conversazione a un operatore umano. La risposta viene inviata al cliente sempre via API. Tutto questo avviene in 2-5 secondi. Il cliente vede solo: ha scritto un messaggio, ha ricevuto una risposta in tempo reale. Non sa (o non gli importa) se ha parlato con un umano o un AI — quello che gli importa è ricevere una risposta utile, immediatamente. La struttura tecnica può sembrare complessa ma in realtà oggi è plug-and-play. Esistono piattaforme che gestiscono tutto: il setup richiede 2-4 giornate di lavoro. Tempo dal contratto alla messa in produzione: 2-3 settimane. Knowledge richiesta dall'azienda: zero — basta documentare i propri processi e dare l'accesso ai sistemi giusti." },
-      { heading: "I 5 use case che stanno trasformando le PMI italiane", text: "Analizzando le implementazioni reali di WhatsApp + AI nelle PMI italiane nell'ultimo anno, emergono 5 use case ricorrenti che producono risultati misurabili. Use case 1 — Risposta automatica alle richieste informative: il cliente chiede prezzi, disponibilità, orari, indirizzo. L'AI risponde in tempo reale con le informazioni accurate, indipendentemente dall'orario. Use case 2 — Booking automatico di appuntamenti: il cliente scrive \"vorrei prenotare\". L'AI propone gli orari disponibili (sincronizzati con il calendario aziendale), conferma la prenotazione, invia il promemoria. Use case 3 — Qualificazione lead per il commerciale: il cliente scrive con interesse generico. L'AI conduce una conversazione strutturata per raccogliere le informazioni chiave, qualifica il lead secondo i criteri aziendali, lo passa al commerciale solo se è realmente di interesse. Use case 4 — Notifiche di stato: ordini, spedizioni, pagamenti, scadenze. L'AI invia notifiche personalizzate ai clienti nei momenti giusti, riducendo le chiamate in entrata. Use case 5 — Recupero clienti dormienti: l'AI identifica i clienti che non comprano da X mesi e invia messaggi personalizzati di re-engagement. Tasso di riattivazione tipico: 12-18%. Combinati, questi 5 use case riducono mediamente del 60-70% il carico di lavoro del customer care e aumentano del 25-40% il tasso di conversione." },
-      { heading: "I numeri reali di una PMI italiana che ha implementato WhatsApp + AI", text: "I dati astratti sono utili, ma quelli concreti sono definitivi. Ecco i numeri reali misurati su una PMI italiana di settore retail (vendita al dettaglio specializzata) con 12 dipendenti che ha implementato WhatsApp Business API + AI nell'ultimo anno. Volume conversazioni gestite mensilmente: passate da 400 (gestione manuale) a 2.800 (gestione AI). Tempo medio di prima risposta: passato da 4 ore (in orario lavorativo) a 8 secondi (24/7). Tasso di conversione lead-cliente: passato dal 14% al 31%. Costo per lead acquisito: ridotto del 67%. Tempo dedicato dal team al customer care: passato da 18 ore a settimana a 5 ore — e quelle 5 ore vengono spese sui casi davvero complessi. Customer satisfaction (NPS): salito da 42 a 71. Aumento del fatturato annuo: +€340.000 (+22%) — non per nuovi prodotti o nuovo budget marketing, ma per la conversione dei lead già esistenti. Costi totali del sistema (canone API + agente AI + setup ammortizzato): €1.840 al mese. Payback dell'investimento iniziale: 28 giorni. Questi non sono numeri eccezionali — sono numeri medi. Le aziende che lo fanno bene li raggiungono in 2-3 mesi. Quelle che lo fanno male non li raggiungono mai." },
-      { heading: "Errori da evitare e checklist di setup corretto", text: "L'implementazione di WhatsApp + AI sembra semplice ma ha trappole specifiche che vediamo ricorrere. Errore 1: usare la app WhatsApp Business invece dell'API. Funziona per i primi 50 clienti ma non scala, non integra, non automatizza. Inizia subito con l'API se vuoi crescere. Errore 2: knowledge base superficiale. L'AI è brava quanto le informazioni che ha. Se la knowledge base è incompleta, le risposte saranno generiche e i clienti perderanno fiducia. Investi 8-15 ore nella costruzione iniziale — vale mesi di ottimizzazione successiva. Errore 3: nessuna fallback umana. Anche il miglior agente AI non gestisce tutto. Configurare sempre la possibilità di trasferire la conversazione a un operatore umano per i casi complessi. Errore 4: non rispettare le policy Meta. WhatsApp Business API ha regole stringenti: niente spam, niente messaggi promozionali non richiesti, finestre di tempo per la conversazione (24h). Violarle significa perdere l'account. La checklist del setup corretto: 1) Scegli un Business Solution Provider serio (Twilio, MessageBird, 360dialog sono i più affidabili). 2) Configura il numero verificato con badge verde (richiede 1-2 settimane di approvazione Meta). 3) Costruisci la knowledge base completa. 4) Definisci i workflow di base (5-7 scenari principali). 5) Configura la fallback umana. 6) Testa internamente per 1-2 settimane. 7) Lancia gradualmente, monitora ogni conversazione nelle prime 4 settimane. 8) Itera continuamente." },
-    ],
-    faqs: [
-      { q: "Come si collega l'intelligenza artificiale a WhatsApp Business?", a: "Attraverso le API di WhatsApp Business (non l'app gratuita): un agente AI si aggancia al numero aziendale, legge i messaggi in arrivo, risponde attingendo ai dati aziendali (listini, disponibilità, FAQ) e passa la conversazione a una persona quando serve. Il setup passa da un provider ufficiale delle API; su piattaforme esistenti si attiva in 1-3 settimane." },
-      { q: "Quanto costa un agente AI su WhatsApp per una PMI?", a: "Tre voci: l'accesso alle API WhatsApp Business (costi per conversazione definiti da Meta, tipicamente pochi centesimi), la piattaforma con l'agente AI (nella fascia 200-600 euro al mese per una PMI) e il setup iniziale. Per volumi tipici di una piccola impresa il totale resta sotto i 500-700 euro mensili — da confrontare con il valore dei lead che oggi si perdono fuori orario." },
-      { q: "Perché WhatsApp converte così bene per le aziende italiane?", a: "Perché è il canale dove gli italiani già vivono: l'88% lo usa quotidianamente, i messaggi hanno tassi di apertura sopra il 90% (contro il 20-30% delle email) e la conversazione è immediata e informale. Per una PMI significa incontrare il cliente nel suo ambiente naturale — e con un agente AI, farlo anche alle 22 di sera, quando molti clienti scrivono davvero." },
-      { q: "L'agente AI su WhatsApp deve dichiarare di essere un'AI?", a: "Sì: l'AI Act richiede trasparenza per i sistemi conversazionali — l'utente deve sapere che sta interagendo con un'intelligenza artificiale. Basta un messaggio chiaro a inizio conversazione ('Sono l'assistente digitale di...') e la possibilità di chiedere una persona. Ben comunicata, la trasparenza non riduce le conversioni: i clienti apprezzano la risposta immediata e sanno che una persona resta raggiungibile." },
-    ],
-    quote: "WhatsApp Business + AI è una delle più grandi opportunità di marketing per le PMI italiane nel 2026. La finestra è aperta — ma chiunque inizia oggi avrà 18 mesi di vantaggio su chi inizia tra un anno.",
-  },
+  "title": "WhatsApp Business e AI per PMI: progettare risposte affidabili",
+  "metaTitle": "WhatsApp Business AI: guida per PMI | AEDIX",
+  "metaDescription": "WhatsApp Business e AI per PMI: prepara fonti affidabili, passaggi all’operatore e prove misurabili. Una guida per valutare servizio e fornitori.",
+  "publishedISO": "2026-05-05",
+  "category": "Marketing",
+  "date": "5 Mag 2026",
+  "readTime": "12 min",
+  "author": "Florin Andriciuc",
+  "image": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=1600&q=80",
+  "intro": "Un assistente AI su WhatsApp Business è utile quando rende più ordinato un processo di risposta, senza creare promesse che l'azienda non sa mantenere. Può aiutare a classificare una richiesta, cercare informazioni approvate e preparare una bozza per un operatore. Non sostituisce però un listino aggiornato, una disponibilità verificata o una persona incaricata di gestire le eccezioni. Il progetto comincia dal servizio che vuoi offrire, non dal numero di messaggi che un sistema riesce a inviare.\n\nPer una PMI italiana, il caso più utile può essere limitato: raccogliere le informazioni necessarie a un sopralluogo, indirizzare una domanda al reparto corretto o rendere recuperabili istruzioni già approvate. Questa guida propone un percorso per valutare l'uso dell'AI nelle conversazioni aziendali, con esempi illustrativi e controlli osservabili. Non attribuisce al canale percentuali garantite di conversione, risparmi universali o risultati commerciali ottenuti da clienti non documentati.",
+  "sections": [
+    {
+      "heading": "Definire il servizio prima di automatizzare le risposte",
+      "text": "Scegli una sola categoria di richieste da cui iniziare. Potrebbero essere domande sul funzionamento di un servizio, richieste di appuntamento o aggiornamenti su una pratica. Raccogli alcuni esempi rappresentativi e descrivi che cosa costituisca una buona risposta. Se l'operatore oggi deve consultare una persona per confermare un prezzo o una data, quel passaggio non deve scomparire soltanto perché viene introdotto un modello linguistico.\n\nDistingui tre attività: capire la domanda, preparare una risposta e compiere un'azione nei sistemi aziendali. Possono richiedere controlli differenti. Identificare che una persona chiede un preventivo non equivale ad avere i dati per elaborarlo; proporre un appuntamento non equivale a confermarlo. Scrivere queste differenze aiuta a progettare una conversazione che rimanga chiara anche quando la richiesta è incompleta o il sistema non trova un'informazione affidabile.\n\nDefinisci anche ciò che rimane fuori dal servizio iniziale. Un assistente che raccoglie una richiesta commerciale non deve diventare implicitamente un consulente tecnico o un soggetto autorizzato a modificare un ordine. Indica quali domande debbano passare a una persona e quali informazioni possano essere utilizzate. Il risultato è una descrizione breve del servizio, condivisa con chi risponderà alle conversazioni e con chi mantiene i contenuti aziendali."
+    },
+    {
+      "heading": "Scegliere il collegamento al canale con riferimenti ufficiali",
+      "text": "Prima di confrontare fornitori, identifica il prodotto WhatsApp utilizzato, l'account coinvolto e le integrazioni previste. Le funzioni disponibili e le condizioni applicabili devono essere verificate nella documentazione corrente del servizio. Per un'integrazione con i sistemi aziendali, chiedi al fornitore di indicare i riferimenti della [documentazione ufficiale WhatsApp per sviluppatori](https://developers.facebook.com/docs/whatsapp/), evitando spiegazioni basate soltanto su una dimostrazione commerciale o su un'estensione di provenienza poco chiara.\n\nLa [WhatsApp Business Messaging Policy](https://business.whatsapp.com/policy) disciplina anche contatti e automazione: richiede un'esperienza riconoscibile e, nei casi previsti per le risposte automatizzate, un percorso chiaro verso un operatore. Le condizioni vanno controllate prima dell'avvio e quando cambiano finalità o modalità d'uso. Non trattare il possesso di un numero di telefono come una giustificazione sufficiente per qualsiasi messaggio successivo e non confondere risposta a una richiesta e comunicazione promozionale.\n\nChiedi come venga mantenuta la continuità operativa. Devono essere chiari proprietario dell'account, referente tecnico, contatti di assistenza e procedura per modificare la configurazione. Verifica che l'azienda possa recuperare informazioni e istruzioni necessarie senza dipendere dalla memoria di un singolo consulente. Una buona integrazione non si valuta soltanto dal primo messaggio riuscito, ma dalla possibilità di gestire in modo ordinato aggiornamenti, problemi e cambi di referente."
+    },
+    {
+      "heading": "Preparare informazioni approvate e aggiornabili",
+      "text": "L'assistente deve sapere quali fonti utilizzare per ogni categoria di domanda. Prepara un archivio ridotto e verificato: descrizioni dei servizi, modalità di contatto, condizioni effettivamente applicabili e istruzioni approvate. Per ciascuna informazione indica chi la mantiene e quando debba essere riesaminata. Un testo corretto ma superato può produrre una risposta inappropriata quanto un testo inventato dal modello durante la conversazione.\n\nDistingui informazioni pubbliche e informazioni che richiedono una verifica del caso. Gli orari del servizio possono essere gestiti come un riferimento comune; lo stato di una richiesta individuale dipende invece dai dati pertinenti e dalle autorizzazioni necessarie. Non inserire automaticamente tutto l'archivio aziendale in un unico contesto. La ricerca deve essere coerente con la domanda e con ciò che il sistema è autorizzato a consultare e a comunicare.\n\nMantieni riconoscibile l'origine delle risposte preparate. L'operatore dovrebbe poter vedere quale documento o dato abbia sostenuto la bozza e quale informazione manchi. Se la fonte non è disponibile, il flusso deve prevedere un passaggio esplicito alla verifica, senza completare il messaggio con dettagli plausibili ma non confermati. Per approfondire questo metodo puoi leggere la guida ai [sistemi AI ibridi](/articoli/sistema-ai-ibrido-cose-e-come-funziona), collegando sempre la soluzione al processo effettivo dell'impresa."
+    },
+    {
+      "heading": "Chiedere soltanto le informazioni necessarie",
+      "text": "Progetta una conversazione che raccolga pochi dati pertinenti al passaggio successivo. Una richiesta di sopralluogo può richiedere descrizione dell'esigenza, zona e recapito per il seguito; non deve trasformarsi automaticamente in un modulo che domanda ogni informazione disponibile. Scrivi perché ciascun campo sia necessario e chi lo utilizzi. Se non sai spiegare l'utilità di un dato, rivaluta se debba essere raccolto in quella fase.\n\nEvita che il sistema ripeta domande a cui la persona ha già risposto. Un riepilogo leggibile può aiutare l'operatore a distinguere informazioni raccolte, elementi da confermare e dati mancanti. Se un messaggio contiene più richieste, mantienile riconoscibili anziché ridurle a un'unica etichetta. La qualità della raccolta si misura anche dalla facilità con cui una persona dell'azienda riesce a riprendere la conversazione senza far ricominciare tutto da capo.\n\nPer dati personali, accessi e conservazione delle conversazioni, fai definire le scelte applicabili ai soggetti competenti e rendile coerenti con il servizio offerto. Un fornitore che dichiara genericamente conformità non sostituisce questa valutazione. Questa guida descrive l'organizzazione del processo e non certifica una configurazione. Mantieni chiari dati trattati, destinatari, finalità e modalità di gestione prima di estendere l'accesso a nuovi archivi o di automatizzare nuove azioni."
+    },
+    {
+      "heading": "Rendere semplice il passaggio a una persona",
+      "text": "L'utente deve poter capire come ottenere un intervento umano. Non basta scrivere che un operatore è disponibile se poi la conversazione continua a proporre risposte automatiche. Definisci quali segnali attivino il passaggio e dove arrivi la richiesta. Possono essere un'esplicita domanda della persona, un'informazione non trovata, un reclamo o un caso che richiede una decisione. Ogni segnale deve avere un seguito comprensibile nel lavoro dell'azienda.\n\nConcorda chi riceve la conversazione e con quali informazioni. Un passaggio utile comprende il riepilogo della richiesta, le fonti eventualmente consultate e ciò che resta da verificare. Evita che l'operatore debba leggere molti messaggi senza sapere perché sia stato coinvolto. Se non è disponibile una risposta immediata, il messaggio deve descrivere il seguito effettivamente previsto dall'organizzazione, senza inventare un tempo di richiamo o un appuntamento non confermato.\n\nPrevedi anche il ritorno alla gestione ordinaria. Una conversazione affidata a una persona non dovrebbe ricevere contemporaneamente messaggi automatici contraddittori. Il sistema deve rendere riconoscibile chi sta gestendo il caso e quando un'automazione possa riprendere. Le modalità dipendono dalla soluzione utilizzata, ma il criterio rimane semplice: la persona che scrive non deve trovarsi a discutere con due percorsi che ignorano reciprocamente le risposte già date."
+    },
+    {
+      "heading": "Preparare esempi e prove prima dell'avvio",
+      "text": "Costruisci una raccolta di conversazioni di prova senza utilizzare dati personali non necessari. Includi richieste complete, messaggi molto brevi, errori di battitura e domande fuori dal servizio. Prepara anche casi in cui l'informazione corretta sia assente o in cui due documenti sembrino contraddirsi. Il sistema deve rendere visibile il limite, invece di scegliere silenziosamente una risposta soltanto perché appare linguisticamente convincente.\n\nPer ogni prova, descrivi il comportamento atteso. Può essere una domanda di chiarimento, una bozza basata su una fonte o un passaggio all'operatore. Non valutare soltanto se il messaggio suoni naturale: controlla se riporti informazioni confermate e se lasci alla persona un passo successivo comprensibile. Una risposta cortese ma riferita al servizio sbagliato non è un esito positivo, anche se il modello non ha prodotto errori grammaticali.\n\nRipeti le prove quando cambiano fonti, istruzioni o integrazioni. Conserva un piccolo insieme di casi rappresentativi per confrontare le versioni del servizio. Non occorre accumulare centinaia di esempi irrilevanti: serve poter riconoscere se una modifica migliori un caso e ne peggiori un altro. Un aggiornamento del sistema deve rimanere collegato a ciò che è cambiato, così l'operatore sa quali comportamenti osservare durante l'uso iniziale della nuova versione."
+    },
+    {
+      "heading": "Misurare utilità e qualità, non soltanto il volume",
+      "text": "Prima della prova, registra come viene gestita oggi la categoria di richieste scelta. Puoi osservare quante conversazioni richiedano un chiarimento, quante arrivino al reparto sbagliato e quanto lavoro serva per preparare una risposta verificata. Mantieni distinti tempo di prima risposta e tempo di soluzione. Un messaggio immediato che non risolve nulla può migliorare il primo indicatore senza cambiare l'esperienza concreta della persona che ha contattato l'azienda.\n\nDurante la sperimentazione, controlla un campione di risposte. Cerca informazioni non sostenute dalle fonti, richieste ripetute inutilmente, passaggi umani mancanti e promesse non autorizzate. Annota l'azione correttiva e verifica se il problema si ripresenta. Il campione deve includere anche conversazioni apparentemente concluse bene, perché una risposta sbagliata può non generare un reclamo esplicito e rimanere invisibile se misuri soltanto gli errori segnalati.\n\nNon attribuire automaticamente al sistema ogni richiesta commerciale ricevuta. Se vuoi valutare un effetto sulle vendite, definisci prima come collegare conversazione, seguito dell'operatore e risultato. Mantieni riconoscibili i limiti del confronto, soprattutto quando cambiano campagne, stagionalità o modalità di contatto. Un progetto può essere utile anche senza aumentare il volume dei messaggi, se rende più affidabili le informazioni e riduce il lavoro necessario a gestire le stesse richieste."
+    },
+    {
+      "heading": "Esempio illustrativo: raccogliere una richiesta di sopralluogo",
+      "text": "Immagina una PMI che riceva messaggi per interventi diversi e debba indirizzarli al referente corretto. Il servizio iniziale raccoglie il tipo di esigenza e la zona, riepiloga ciò che è stato scritto e segnala all'operatore eventuali informazioni mancanti. L'esempio descrive un possibile processo, non un'implementazione reale né un risultato commerciale misurato. Il sistema non formula una diagnosi tecnica e non conferma disponibilità che non abbia verificato.\n\nLa persona invia una descrizione incompleta e una fotografia. Il flusso chiede un chiarimento pertinente, senza trasformare l'immagine in una valutazione del lavoro necessario. Quando la richiesta richiede una decisione, prepara il passaggio al referente con il riepilogo e il punto da confermare. Se l'operatore propone un appuntamento, la conferma deve seguire il processo effettivamente adottato dall'azienda, invece di essere generata come una frase di cortesia.\n\nAl termine della prova, l'impresa verifica se le richieste siano più facili da prendere in carico e se siano diminuite le domande ripetute senza utilità. Se emergono errori, corregge istruzioni e fonti prima di aggiungere altre categorie di conversazione. Questo percorso è più valutabile di un assistente presentato fin dall'inizio come capace di rispondere a qualsiasi domanda. Il servizio cresce per responsabilità definite e risultati osservabili, non per una promessa generale di autonomia."
+    },
+    {
+      "heading": "Confrontare i fornitori e preparare una scelta reversibile",
+      "text": "Chiedi una dimostrazione con gli esempi della tua azienda e con informazioni non disponibili, non soltanto con domande preparate dal fornitore. Fai mostrare il passaggio all'operatore, la modifica di una fonte e il comportamento in caso di errore dell'integrazione. La qualità della dimostrazione dipende dalla possibilità di capire il percorso, non dal numero di funzioni elencate. Un limite spiegato chiaramente è più utile di una risposta spettacolare non verificabile.\n\nConfronta configurazione iniziale, gestione ricorrente, assistenza e responsabilità dell'azienda. Chiedi quali costi dipendano dall'uso e come possano cambiare se vengono aggiunte nuove funzioni. Non usare tariffe generiche trovate in un articolo come preventivo del progetto. Per organizzare le domande puoi leggere [come scegliere un fornitore AI per una PMI](/articoli/come-scegliere-fornitore-ai-pmi-italiana), mantenendo separati requisiti del servizio e condizioni economiche offerte.\n\nVerifica infine come interrompere la prova e recuperare le informazioni necessarie. Devono essere chiari gestione degli accessi, restituzione dei dati pertinenti e continuità del contatto con i clienti. Una sperimentazione ben progettata permette anche di decidere di non estendere il sistema, conservando ciò che si è imparato sul processo. Se vuoi valutare un primo caso d'uso con AEDIX, prepara alcuni esempi di richieste e un problema misurabile: sono una base più utile di una richiesta generica di automatizzare WhatsApp.\n\nInserisci nella prova anche una conversazione interrotta e ripresa dopo un cambiamento di referente. Verifica che il nuovo operatore possa capire che cosa sia già stato comunicato e quali elementi rimangano da confermare. Il sistema non dovrebbe presentare come nuova una richiesta già presa in carico o inviare lo stesso seguito più volte perché un passaggio è stato ripetuto. Chiedi come vengono riconosciuti questi casi e come si corregge un'associazione sbagliata. Sono controlli organizzativi importanti quando il canale viene usato da più persone: una risposta coerente dipende dalla continuità della gestione, oltre che dalla qualità del singolo testo generato dal modello."
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Un assistente AI può confermare automaticamente prezzi e appuntamenti?",
+      "a": "Soltanto un processo progettato con dati, autorizzazioni e controlli appropriati può compiere azioni definite. La capacità di scrivere una risposta non dimostra che un prezzo o una disponibilità siano stati verificati. Per la prova iniziale mantieni esplicita la distinzione fra raccolta della richiesta, preparazione della risposta e conferma da parte del referente incaricato."
+    },
+    {
+      "q": "Come evito che il sistema inventi informazioni?",
+      "a": "Definisci le fonti utilizzabili e prepara un comportamento per i casi in cui il dato manchi o sia ambiguo. Controlla risposte e riferimenti durante le prove, includendo domande fuori dal servizio. Nessun testo di presentazione può sostituire questi controlli o garantire che un sistema non produca mai errori."
+    },
+    {
+      "q": "È sufficiente misurare il tempo della prima risposta?",
+      "a": "No. Distingui prima risposta, correttezza, passaggio all'operatore e soluzione della richiesta. Un messaggio immediato può non essere utile se contiene informazioni sbagliate o lascia la persona senza un seguito. Il confronto deve osservare il lavoro necessario a gestire la conversazione, non soltanto la velocità con cui viene inviato un testo."
+    }
+  ],
+  "modifiedISO": "2026-11-09",
+  "cta": {
+    "to": "/contatti",
+    "title": "Valuta un primo caso d’uso",
+    "text": "Prepara alcuni esempi di richieste e il problema che vuoi misurare. Possiamo confrontarli con il processo attuale.",
+    "label": "Parla con AEDIX"
+  }
+},
   "gdpr-ai-pmi-italiane-guida-2026": {
     title: "GDPR e AI: la guida pratica per PMI italiane nel 2026",
     metaTitle: "GDPR e AI per PMI Italiane: Guida Compliance 2026 | AEDIX",
@@ -1133,6 +1164,7 @@ const ArticoloDettaglio = () => {
                 <User size={18} className="text-primary" />
               </div>
               <span className="text-[14px] text-[rgba(255,255,255,0.7)]">{article.author}</span>
+              {article.modifiedISO && article.modifiedISO !== article.publishedISO && <time dateTime={article.modifiedISO} className="text-xs text-white/60">Revisione {new Date(article.modifiedISO).toLocaleDateString("it-IT", { day: "numeric", month: "long", year: "numeric", timeZone: "Europe/Rome" })}</time>}
             </div>
           </FadeIn>
         </div>
@@ -1151,18 +1183,19 @@ const ArticoloDettaglio = () => {
       <section className="pb-32 px-6 lg:px-12">
         <div className="max-w-[720px] mx-auto">
 
+          <div data-editorial-body>
           {/* Intro */}
           <FadeIn>
             <div className="space-y-7 mb-14">
               {toParagraphs(article.intro).map((p, pi) => (
-                <p key={pi} className="text-[19px] text-[rgba(255,255,255,0.85)] font-light leading-[2]">{p}</p>
+                <p key={pi} className="text-[19px] text-[rgba(255,255,255,0.85)] font-light leading-[2]">{renderEditorialInline(p)}</p>
               ))}
             </div>
           </FadeIn>
 
           {/* Indice */}
           <FadeIn delay={0.1}>
-            <div className="mb-14 p-7 rounded-xl border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.03)]">
+            <nav aria-label="Indice dell’articolo" className="mb-14 p-7 rounded-xl border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.03)]">
               <p className="font-mono text-[11px] uppercase tracking-[4px] text-primary mb-5">Indice</p>
               <ol className="space-y-3">
                 {article.sections.map((s, i) => (
@@ -1178,7 +1211,7 @@ const ArticoloDettaglio = () => {
                   </li>
                 ))}
               </ol>
-            </div>
+            </nav>
           </FadeIn>
 
           {/* Sections */}
@@ -1188,12 +1221,14 @@ const ArticoloDettaglio = () => {
                 <h2 className="font-display text-[24px] font-bold tracking-[-0.5px] mb-7">{s.heading}</h2>
                 <div className="space-y-6">
                   {toParagraphs(s.text).map((p, pi) => (
-                    <p key={pi} className="text-[16.5px] text-[rgba(255,255,255,0.72)] font-light leading-[2.05]">{p}</p>
+                    <p key={pi} className="text-[16.5px] text-[rgba(255,255,255,0.72)] font-light leading-[2.05]">{renderEditorialInline(p)}</p>
                   ))}
                 </div>
               </div>
             </FadeIn>
           ))}
+
+          </div>
 
           {/* FAQ — Domande frequenti (AEO / AI Overviews) */}
           {article.faqs?.length ? (
@@ -1204,7 +1239,7 @@ const ArticoloDettaglio = () => {
                   {article.faqs.map((f, i) => (
                     <div key={i} className="p-6 rounded-xl border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.03)]">
                       <h3 className="font-display text-[17px] font-semibold mb-3 text-white">{f.q}</h3>
-                      <p className="text-[15px] text-[rgba(255,255,255,0.7)] font-light leading-[1.95]">{f.a}</p>
+                      <p className="text-[15px] text-[rgba(255,255,255,0.7)] font-light leading-[1.95]">{renderEditorialInline(f.a)}</p>
                     </div>
                   ))}
                 </div>
