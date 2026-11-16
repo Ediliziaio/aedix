@@ -1,0 +1,21 @@
+{
+  "title": "AI in azienda: definire il processo prima del progetto",
+  "intro": "Parti da un’attività concreta: input disponibili, risultato atteso, responsabilità e controlli necessari. Il confronto sul progetto serve a chiarire questo perimetro e ciò che richiede ancora una verifica.",
+  "links": [
+    {
+      "href": "/servizi",
+      "title": "Esamina il perimetro dei servizi",
+      "description": "Individua le attività proposte e le domande da approfondire sul tuo caso."
+    },
+    {
+      "href": "/metodo",
+      "title": "Leggi il metodo di lavoro",
+      "description": "Collega il problema iniziale ai passaggi di analisi e realizzazione."
+    },
+    {
+      "href": "/contatti",
+      "title": "Descrivi il processo da discutere",
+      "description": "Indica il passaggio da migliorare e quali informazioni puoi già rendere disponibili."
+    }
+  ]
+}

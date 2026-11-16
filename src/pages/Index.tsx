@@ -1,3 +1,4 @@
+import { PriorityPaths } from "@/components/PriorityPaths";
 import { useState, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
 import aedixLogo from "@/assets/aedix_logo.png";
@@ -1058,6 +1059,8 @@ const Index = () => {
           {/* ════════════════════════════════════════════════════
                CTA FINALE — No external dependencies
              ════════════════════════════════════════════════════ */}
+          <PriorityPaths />
+
           <section id="cta-finale" className="relative py-20 sm:py-28 lg:py-40 px-6 lg:px-12 text-center overflow-hidden">
             {/* Multi-layer gradient background */}
             <div className="absolute inset-0">
