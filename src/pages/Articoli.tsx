@@ -5,6 +5,7 @@ import { Clock, ArrowRight } from "lucide-react";
 import Layout from "@/components/Layout";
 import TiltCard from "@/components/TiltCard";
 import SEO from "@/components/SEO";
+import { articleTopics } from "@/data/articleTopics";
 
 const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) => {
   const ref = useRef(null);
@@ -388,8 +389,8 @@ const Articoli = () => {
   return (
     <>
       <SEO
-        title="Blog AEDIX — Sistemi AI ibridi, governance e crescita"
-        description="Guide pratiche, dati reali e strategie su sistemi AI ibridi, agenti AI, governance e AI Act per le aziende italiane. Aggiornato settimanalmente."
+        title="AI per PMI: guide, costi e automazione | AEDIX"
+        description="Guide sull'AI per PMI italiane: scegliere un progetto, confrontare costi e fornitori, automatizzare i processi e orientarsi tra AI Act e privacy."
         path="/articoli"
         jsonLd={{
           "@context": "https://schema.org",
@@ -408,15 +409,30 @@ const Articoli = () => {
           </FadeIn>
           <FadeIn delay={0.08}>
             <h1 className="font-display font-bold leading-[1.08] tracking-[-2px] mb-6" style={{ fontSize: "clamp(36px, 5vw, 64px)" }}>
-              Insight per chi vuole<br />
-              <span className="italic font-light text-primary">crescere davvero.</span>
+              Intelligenza artificiale<br />
+              <span className="italic font-light text-primary">per le PMI italiane.</span>
             </h1>
           </FadeIn>
           <FadeIn delay={0.16}>
             <p className="text-[18px] text-[rgba(255,255,255,0.7)] max-w-[600px] font-light mb-12">
-              Guide pratiche, dati reali e strategie concrete su sistemi AI ibridi, agenti AI, governance e AI Act — per le aziende italiane che vogliono mettere l'AI in produzione, non in slide.
+              Parti dalla domanda che devi risolvere: quale processo scegliere, quanto investire, come controllare un agente e quali aspetti organizzativi approfondire.
             </p>
           </FadeIn>
+
+          <nav aria-label="Percorsi di lettura sull'intelligenza artificiale" className="mb-12 grid sm:grid-cols-2 gap-x-10 gap-y-7">
+            {articleTopics.map((topic) => (
+              <section id={topic.id} key={topic.id} className="scroll-mt-28 border-t border-white/15 pt-5">
+                <h2 className="font-display text-lg font-semibold text-white mb-2">{topic.title}</h2>
+                <p className="text-sm text-white/65 leading-relaxed mb-3">{topic.description}</p>
+                <ul className="space-y-2">
+                  {topic.slugs.slice(0, 3).map((slug) => {
+                    const article = articles.find((item) => item.slug === slug);
+                    return article ? <li key={slug}><Link to={`/articoli/${slug}`} className="text-sm text-primary hover:text-white underline underline-offset-4">{article.title}</Link></li> : null;
+                  })}
+                </ul>
+              </section>
+            ))}
+          </nav>
 
           {/* Guide fondamentali — pillar in evidenza */}
           <FadeIn delay={0.18}>

@@ -6,6 +6,7 @@ import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 
 import { splitEditorialParagraphs as toParagraphs, renderEditorialInline } from "@/lib/editorialText";
+import { getArticleTopic, getRelatedArticleSlugs } from "@/data/articleTopics";
 
 const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) => {
   const ref = useRef(null);
@@ -1257,14 +1258,13 @@ const ArticoloDettaglio = () => {
 
           {/* Leggi anche — internal linking automatico (stessa categoria prima) */}
           {(() => {
-            const related = [
-              ...Object.entries(articleContent).filter(([s, a]) => s !== slug && a.category === article.category),
-              ...Object.entries(articleContent).filter(([s, a]) => s !== slug && a.category !== article.category),
-            ].slice(0, 3);
+            const related = getRelatedArticleSlugs(slug!, articleContent).map((relatedSlug) => [relatedSlug, articleContent[relatedSlug]] as const);
+            const topic = getArticleTopic(slug!);
             return related.length ? (
               <FadeIn>
                 <div className="mt-16">
                   <h2 className="font-display text-[20px] font-bold tracking-[-0.5px] mb-6">Leggi anche</h2>
+                  {topic && <p className="text-sm text-white/70 mb-5">Percorso: <Link to={`/articoli#${topic.id}`} className="text-primary underline underline-offset-4 hover:text-white">{topic.title}</Link></p>}
                   <div className="grid sm:grid-cols-3 gap-4">
                     {related.map(([rslug, r]) => (
                       <Link
