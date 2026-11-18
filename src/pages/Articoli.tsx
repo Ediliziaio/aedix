@@ -248,10 +248,10 @@ const articles = [
   {
     slug: "ai-generativa-pmi-italiane-2026",
     title: "AI generativa per PMI italiane: come usarla davvero nel 2026",
-    excerpt: "ChatGPT, Claude, Gemini cambiano il lavoro nelle PMI. 6 use case concreti — copy, preventivi, codice, analisi, formazione, customer care.",
+    excerpt: "Scegliere un processo, preparare le fonti, verificare gli errori e confrontare i costi: una guida operativa con esempi dichiarati e criteri di valutazione.",
     category: "AI",
     date: "4 Mag 2026",
-    readTime: "11 min",
+    readTime: "14 min",
     image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=80",
   },
   {
