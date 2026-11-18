@@ -1,6 +1,16 @@
 <!doctype html>
 <html lang="it">
   <head>
+    <!-- EIC consent-based analytics -->
+    <script defer src="/analytics-config.js"></script>
+    <script defer src="/analytics-loader.js"></script>
+    <script defer src="/analytics-consent.js"></script>
+    <!-- End EIC consent-based analytics -->
+
+
+
+
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -17,32 +27,6 @@
       return true;
     })();
     </script>
-
-    <!-- Google Tag Manager -->
-    <script>if (window.__aedixTrack) {(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-TJGQCMW4');}</script>
-    <!-- End Google Tag Manager -->
-
-    <!-- Meta Pixel Code -->
-    <script>
-    if (window.__aedixTrack) {
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '912028060826443');
-    fbq('track', 'PageView', {site: 'aedix.it'});
-    fbq('trackCustom', 'Pv_aedix', {site: 'aedix.it'});
-    }
-    </script>
-    <!-- End Meta Pixel Code -->
 
     <meta name="keywords" content="sviluppo software AI, azienda sviluppo software AI, sistemi AI ibridi, agenti AI su misura, software intelligenza artificiale aziende, integrazione AI ERP CRM, governance AI, AI Act imprese, automazione aziendale" />
     <meta name="author" content="AEDIX" />
@@ -179,18 +163,7 @@
     <!-- ═══════════════════════════════════════════
          GOOGLE ANALYTICS 4
     ═══════════════════════════════════════════ -->
-    <script>
-      if (window.__aedixTrack) {
-        var gaScript = document.createElement('script');
-        gaScript.async = true;
-        gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-FWYF8KBNP9';
-        document.head.appendChild(gaScript);
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-FWYF8KBNP9');
-      }
-    </script>
+
 
     <!-- ═══════════════════════════════════════════
          FONTS
@@ -201,15 +174,6 @@
   </head>
 
   <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJGQCMW4"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-    <!-- Meta Pixel (noscript) -->
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=912028060826443&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel (noscript) -->
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

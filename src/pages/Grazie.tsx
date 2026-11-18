@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 import { CheckCircle2, Clock, MessageSquare, CalendarCheck, ArrowRight, Phone, Mail } from "lucide-react";
@@ -22,14 +22,6 @@ const steps = [
 ];
 
 const Grazie = () => {
-  // Evento per GTM: conversione lead tracciabile sia come pageview /grazie
-  // sia come evento custom 'lead_form_submitted'
-  useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const w = window as any;
-    w.dataLayer = w.dataLayer || [];
-    w.dataLayer.push({ event: "lead_form_submitted" });
-  }, []);
 
   return (
     <>

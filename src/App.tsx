@@ -27,7 +27,7 @@ const queryClient = new QueryClient();
 // ─── Meta Pixel — eventi SPA ─────────────────────────────────
 // Il base code in index.html spara il primo PageView; qui gestiamo le
 // navigazioni client-side (che non ricaricano la pagina) e gli eventi
-// per route: Lead su /grazie, ViewContent sulla pagina prodotto.
+// per route: ViewContent sulla pagina prodotto.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const fbq = (...args: unknown[]) => (window as any).fbq?.(...args);
 
@@ -48,9 +48,7 @@ const MetaPixelTracker = () => {
       fbq("trackCustom", "Pv_aedix", { site: PIXEL_SITE });
     }
 
-    if (pathname === "/grazie") {
-      fbq("track", "Lead", { site: PIXEL_SITE, content_name: "Richiesta contatto AEDIX" });
-    } else if (pathname === "/edilizia-in-cloud") {
+    if (pathname === "/edilizia-in-cloud") {
       fbq("track", "ViewContent", { site: PIXEL_SITE, content_name: "Edilizia in Cloud", content_category: "Prodotto" });
     } else if (pathname === "/contatti") {
       fbq("track", "Contact", { site: PIXEL_SITE, content_name: "Pagina contatti AEDIX" });
