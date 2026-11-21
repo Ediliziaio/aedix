@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
+import AedixCoreHero from "@/components/ui/aedix-core-hero";
 
 // ─── FadeIn ─────────────────────────────────────────────────
 const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) => {
@@ -272,77 +273,15 @@ const Index = () => {
       <Layout>
         <div>
           {/* ════════════════════════════════════════════════════
-               HERO — Premium gradient mesh + dot grid
+               HERO — nucleo isometrico che si apre nei 5 strati del sistema
              ════════════════════════════════════════════════════ */}
-          <section className="relative min-h-screen flex flex-col justify-center pt-[112px] sm:pt-[140px] pb-24 px-6 lg:px-12 overflow-hidden">
-            {/* Layered background: gradient mesh + dot grid */}
-            <div className="absolute inset-0">
-              <div
-                className="absolute inset-0"
-                style={{
-                  background: "radial-gradient(ellipse at 20% 50%, rgba(0,212,255,0.06) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(246,190,9,0.05) 0%, transparent 50%), radial-gradient(ellipse at 50% 80%, rgba(168,85,247,0.04) 0%, transparent 50%)",
-                }}
-              />
-              <div className="absolute inset-0 dot-grid" />
-            </div>
-            <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-transparent to-background" />
+          <AedixCoreHero onHowItWorks={() => scrollTo("sistema-ibrido")} />
 
-            {/* Animated glow — parallax */}
-            <motion.div
-              className="absolute top-0 right-0 w-[800px] h-[800px] pointer-events-none"
-              style={{ background: "radial-gradient(circle, rgba(246,190,9,0.06) 0%, transparent 60%)" }}
-              animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
-              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            />
-
-            <div className="relative max-w-[1320px] mx-auto w-full">
-              <FadeIn>
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="w-10 h-px bg-primary" />
-                  <span className="font-mono text-[12px] uppercase tracking-[6px] text-primary">
-                    Sistemi AI ibridi per le aziende
-                  </span>
-                </div>
-              </FadeIn>
-
-              <FadeIn delay={0.1}>
-                <h1
-                  className="font-display font-bold leading-[1.04] tracking-[-3px] mb-8"
-                  style={{ fontSize: "clamp(40px, 6vw, 84px)" }}
-                >
-                  L'AI esegue.<br />
-                  <span className="italic font-light text-primary">Le persone garantiscono.</span>
-                </h1>
-              </FadeIn>
-
-              <FadeIn delay={0.2}>
-                <p className="text-[19px] leading-[1.75] text-[rgba(255,255,255,0.7)] max-w-[620px] font-light mb-10">
-                  Progettiamo sistemi AI ibridi per PMI e imprese italiane:{" "}
-                  <span className="text-white font-medium">software verticale sul vostro settore, agenti AI che eseguono i processi, supervisione umana su ogni risultato</span>.
-                  Operativi in settimane. Conformi by design.
-                </p>
-              </FadeIn>
-
-              <FadeIn delay={0.3}>
-                <div className="flex flex-wrap gap-4">
-                  <Link
-                    to="/contatti"
-                    className="shimmer-btn glow-btn bg-primary text-primary-foreground font-bold text-[13px] uppercase tracking-[2px] px-10 py-[18px] rounded-lg relative overflow-hidden inline-block"
-                  >
-                    Prenota una demo →
-                  </Link>
-                  <button
-                    onClick={() => scrollTo("sistema-ibrido")}
-                    className="border border-[rgba(255,255,255,0.15)] text-white font-bold text-[13px] uppercase tracking-[2px] px-10 py-[18px] rounded-lg hover:border-primary/50 hover:text-primary transition-all duration-300"
-                  >
-                    Come funziona
-                  </button>
-                </div>
-              </FadeIn>
-
+          <section className="relative px-6 lg:px-12 pb-16 sm:pb-20">
+            <div className="max-w-[1320px] mx-auto w-full">
               {/* Hero proof — il sistema al lavoro (pattern Decagon: mostra, non dichiarare) */}
               <FadeIn delay={0.4}>
-                <div className="mt-16 pt-12 border-t border-[rgba(255,255,255,0.06)]">
+                <div className="pt-10 border-t border-[rgba(255,255,255,0.06)]">
                   <span className="font-mono text-[10px] uppercase tracking-[3px] text-[rgba(255,255,255,0.35)] block mb-6">
                     Un weekend qualsiasi, dentro un sistema AEDIX
                   </span>
@@ -369,23 +308,6 @@ const Index = () => {
                       </div>
                     ))}
                   </div>
-                </div>
-              </FadeIn>
-
-              {/* Trust strip — practices, not badges */}
-              <FadeIn delay={0.5}>
-                <div className="mt-12 flex flex-wrap items-center gap-6">
-                  {[
-                    { icon: <BadgeCheck size={16} />, text: "GDPR & AI Act by design" },
-                    { icon: <Globe size={16} />, text: "Dati su infrastruttura EU" },
-                    { icon: <Zap size={16} />, text: "Attivazione in 3–14 giorni" },
-                    { icon: <Cpu size={16} />, text: "Testato sulle nostre aziende prima" },
-                  ].map((badge, i) => (
-                    <div key={i} className="flex items-center gap-2 text-[12px] text-[rgba(255,255,255,0.4)] font-light">
-                      <span className="text-primary/60">{badge.icon}</span>
-                      {badge.text}
-                    </div>
-                  ))}
                 </div>
               </FadeIn>
             </div>

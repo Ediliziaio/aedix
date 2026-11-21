@@ -9,6 +9,7 @@ import {
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import TiltCard from "@/components/TiltCard";
+import EicCasaDigitale from "@/components/ui/eic-casa-digitale";
 import eicLogo from "@/assets/edilizia-in-cloud-logo.png";
 import eicLogoFull from "@/assets/edilizia-in-cloud-logo-full.webp";
 
@@ -161,7 +162,7 @@ const EdiliziaInCloud = () => {
     <Layout>
       {/* ───── HERO ───── */}
       <section className="pt-[112px] sm:pt-[140px] pb-20 px-6 lg:px-12 overflow-hidden">
-        <div className="max-w-[1320px] mx-auto grid lg:grid-cols-2 gap-16 items-center">
+        <div className="max-w-[1320px] mx-auto grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-10 lg:gap-12 items-center">
           <div>
             <FadeIn>
               <div className="flex flex-wrap items-center gap-4 mb-7">
@@ -226,34 +227,9 @@ const EdiliziaInCloud = () => {
             </FadeIn>
           </div>
 
-          <FadeIn delay={0.18}>
-            <TiltCard className="rounded-lg" tiltAmount={6}>
-              <a href={PORTAL_URL} target="_blank" rel="noopener" title="Vai a ediliziaincloud.com — gestionale edilizia cloud" className="block">
-                <div
-                  className="relative rounded-xl overflow-hidden aspect-[4/3] flex flex-col items-center justify-center gap-6 px-10"
-                  style={{
-                    background: "linear-gradient(150deg, #ffffff 0%, #f4f6f9 55%, #e9edf3 100%)",
-                  }}
-                >
-                  <motion.img
-                    src={eicLogoFull}
-                    alt="EdiliziaInCloud — gestionale cloud per imprese edili italiane"
-                    className="w-[82%] max-w-[460px] h-auto"
-                    loading="lazy"
-                    animate={{ y: [0, -6, 0] }}
-                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                  />
-                  <span className="font-mono text-[11px] uppercase tracking-[3px] text-[#1e3a5f]/60">
-                    www.ediliziaincloud.com ↗
-                  </span>
-                  <div
-                    className="absolute -inset-4 rounded-2xl opacity-30 blur-3xl pointer-events-none"
-                    style={{ background: "radial-gradient(circle, rgba(249,115,22,0.25) 0%, transparent 70%)" }}
-                  />
-                </div>
-              </a>
-            </TiltCard>
-          </FadeIn>
+          <div className="lg:-mr-8 xl:-mr-16">
+            <EicCasaDigitale />
+          </div>
         </div>
       </section>
 

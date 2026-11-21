@@ -4,6 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { ArrowRight, ShieldCheck, Database, Eye, FileCheck, Lock, Scale, UserCheck, Server } from "lucide-react";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
+import SicurezzaScudo from "@/components/ui/sicurezza-scudo";
 
 const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) => {
   const ref = useRef(null);
@@ -185,8 +186,9 @@ const Sicurezza = () => {
       />
       <Layout>
         {/* Hero */}
-        <section className="pt-[140px] pb-16 px-6 lg:px-12">
-          <div className="max-w-[1320px] mx-auto">
+        <section className="pt-[112px] sm:pt-[130px] pb-16 px-6 lg:px-12 overflow-hidden">
+          <div className="max-w-[1320px] mx-auto grid lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] gap-10 lg:gap-12 items-center">
+            <div>
             <FadeIn>
               <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">Sicurezza & Conformità</span>
             </FadeIn>
@@ -204,6 +206,10 @@ const Sicurezza = () => {
                 go-live — non promessa dopo. Questa pagina risponde alle domande che farebbe il tuo legale.
               </p>
             </FadeIn>
+            </div>
+            <div className="lg:-mr-8 xl:-mr-16">
+              <SicurezzaScudo />
+            </div>
           </div>
         </section>
 
