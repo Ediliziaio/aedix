@@ -4,6 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { Shield, Users, Target, Heart, Building, Utensils, Wrench, ShoppingBag, ArrowRight, Code, Database, BrainCircuit, Server } from "lucide-react";
 import Layout from "@/components/Layout";
 import ParallaxImage from "@/components/ParallaxImage";
+import IsoDistretto from "@/components/ui/iso-distretto";
 import TiltCard from "@/components/TiltCard";
 import SEO from "@/components/SEO";
 
@@ -113,22 +114,19 @@ const PercheNoi = () => (
             </p>
           </FadeIn>
         </div>
-        <FadeIn delay={0.2}>
-          <TiltCard className="rounded-lg" tiltAmount={6}>
-            <div className="relative rounded-lg overflow-hidden aspect-[4/3]">
-              <motion.img
-                src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80"
-                alt="Ecosistema AEDIX di AI per PMI italiane — software, agenti, automazioni"
-                className="w-full h-full object-cover"
-                loading="lazy"
-                animate={{ scale: [1, 1.03, 1] }}
-                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-background/60" />
-            </div>
-            <div className="absolute -inset-4 rounded-2xl opacity-20 blur-2xl pointer-events-none" style={{ background: "radial-gradient(circle, hsl(var(--primary)) 0%, transparent 70%)" }} />
-          </TiltCard>
-        </FadeIn>
+        <div className="lg:-mr-8 xl:-mr-16">
+          <IsoDistretto
+            centro="AEDIX"
+            label="I settori in cui abbiamo costruito e provato i nostri sistemi, collegati al nucleo AEDIX"
+            hint="Passa su ogni settore"
+            moduli={[
+              { id: "edilizia", n: "01", title: "Edilizia", desc: "Preventivi, cantieri e margini: dove il sistema è nato", icon: Building, h: 150, oro: true },
+              { id: "retail", n: "03", title: "Retail", desc: "Vendite, clienti e magazzino", icon: ShoppingBag, h: 90 },
+              { id: "impianti", n: "02", title: "Impiantistica", desc: "Interventi, squadre e assistenza", icon: Wrench, h: 115 },
+              { id: "ristorazione", n: "04", title: "Ristorazione", desc: "Prenotazioni, turni e fornitori", icon: Utensils, h: 70 },
+            ]}
+          />
+        </div>
       </div>
     </section>
 

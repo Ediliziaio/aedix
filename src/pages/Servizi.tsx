@@ -3,6 +3,7 @@ import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Cloud, CheckCircle, ArrowRight, Brain, Rocket, BookOpen, ChevronDown, MessageSquare, Settings, BarChart3, X, Check, Layers, Bot, UserCheck, ShieldCheck, ScrollText, Lock, ArrowDown } from "lucide-react";
 import ParallaxImage from "@/components/ParallaxImage";
+import IsoDistretto from "@/components/ui/iso-distretto";
 import TiltCard from "@/components/TiltCard";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
@@ -143,7 +144,8 @@ const Servizi = () => (
         speed={0.2}
         overlay={<div className="absolute inset-0 bg-background/[0.92]" />}
       />
-      <div className="relative max-w-[1320px] mx-auto">
+      <div className="relative max-w-[1320px] mx-auto grid lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] gap-10 lg:gap-12 items-center">
+        <div>
         <FadeIn>
           <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">I Componenti del Sistema</span>
         </FadeIn>
@@ -158,6 +160,20 @@ const Servizi = () => (
             Non siamo una software house generica. Progettiamo sistemi AI ibridi per le aziende italiane: software verticale, agenti AI e persone che lavorano insieme. Puoi partire da un componente o costruire l'intero sistema.
           </p>
         </FadeIn>
+        </div>
+        <div className="lg:-mr-8 xl:-mr-16">
+          <IsoDistretto
+            centro="AEDIX"
+            label="I quattro componenti del sistema AEDIX attorno al nucleo, collegati dai dati"
+            hint="Passa su ogni componente"
+            moduli={[
+              { id: "saas", n: "01", title: "Piattaforme SaaS verticali", desc: "Gestionali nativi per il tuo settore", icon: Cloud, h: 120 },
+              { id: "marketing", n: "03", title: "Marketing e vendita", desc: "Campagne, funnel e contatti misurati", icon: Rocket, h: 90 },
+              { id: "agenti", n: "02", title: "Agenti AI operativi", desc: "Rispondono, qualificano, preparano: 24/7", icon: Brain, h: 150, oro: true },
+              { id: "formazione", n: "04", title: "Consulenza e formazione", desc: "Metodi provati su imprese reali", icon: BookOpen, h: 70 },
+            ]}
+          />
+        </div>
       </div>
     </section>
 

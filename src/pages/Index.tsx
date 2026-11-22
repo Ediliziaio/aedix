@@ -13,6 +13,7 @@ import {
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import AedixCoreHero from "@/components/ui/aedix-core-hero";
+import SistemaAlLavoro from "@/components/SistemaAlLavoro";
 
 // ─── FadeIn ─────────────────────────────────────────────────
 const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) => {
@@ -430,6 +431,8 @@ const Index = () => {
 
             </div>
           </section>
+
+          <SistemaAlLavoro />
 
           <SectionDivider />
 

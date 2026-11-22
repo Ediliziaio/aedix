@@ -6,6 +6,8 @@ import {
   ShieldCheck, Gauge, UserCheck, FlaskConical,
 } from "lucide-react";
 import Layout from "@/components/Layout";
+import IsoDistretto from "@/components/ui/iso-distretto";
+import { Database } from "lucide-react";
 import SEO from "@/components/SEO";
 
 const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) => {
@@ -121,12 +123,13 @@ const SviluppoSoftwareAI = () => (
           className="absolute inset-0 pointer-events-none"
           style={{ background: "radial-gradient(ellipse at 25% 30%, rgba(246,190,9,0.06) 0%, transparent 55%), radial-gradient(ellipse at 80% 70%, rgba(168,85,247,0.05) 0%, transparent 50%)" }}
         />
-        <div className="relative max-w-[1320px] mx-auto">
+        <div className="relative max-w-[1320px] mx-auto grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-10 lg:gap-12 items-center">
+          <div>
           <FadeIn>
             <span className="font-mono text-[11px] uppercase tracking-[5px] text-primary block mb-6">Sviluppo Software AI</span>
           </FadeIn>
           <FadeIn delay={0.08}>
-            <h1 className="font-display font-bold leading-[1.06] tracking-[-2px] mb-6 max-w-[900px]" style={{ fontSize: "clamp(36px, 5vw, 64px)" }}>
+            <h1 className="font-display font-bold leading-[1.06] tracking-[-2px] mb-6" style={{ fontSize: "clamp(36px, 5vw, 64px)" }}>
               Sviluppo software AI per aziende.<br />
               <span className="italic font-light text-primary">Fatto per andare in produzione.</span>
             </h1>
@@ -148,6 +151,20 @@ const SviluppoSoftwareAI = () => (
               </Link>
             </div>
           </FadeIn>
+          </div>
+          <div className="lg:-mr-8 xl:-mr-16">
+            <IsoDistretto
+              centro="AEDIX"
+              label="I quattro tipi di software AI che sviluppiamo, collegati al nucleo AEDIX"
+              hint="Passa su ogni software"
+              moduli={[
+                { id: "gestionali", n: "02", title: "Gestionali con AI nativa", desc: "L'AI dentro il software che usi ogni giorno", icon: Database, h: 120 },
+                { id: "integrazioni", n: "03", title: "Integrazione AI", desc: "Nei sistemi che hai già, senza rifare tutto", icon: Plug, h: 85 },
+                { id: "agenti", n: "01", title: "Agenti AI su misura", desc: "Lavorano sui tuoi dati, con un umano a controllare", icon: Bot, h: 150, oro: true },
+                { id: "saas", n: "04", title: "Prodotti SaaS", desc: "Dall'idea alla produzione", icon: Rocket, h: 70 },
+              ]}
+            />
+          </div>
         </div>
       </section>
 
