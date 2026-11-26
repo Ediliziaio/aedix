@@ -103,11 +103,11 @@ const articles = [
   },
   {
     slug: "rag-retrieval-augmented-generation-spiegato",
-    title: "RAG (Retrieval-Augmented Generation): cos'è e perché elimina le invenzioni dell'AI in azienda",
-    excerpt: "La tecnica che fa rispondere l'AI 'con il libro aperto' sui dati aziendali reali: come funziona il RAG passo per passo, quando sceglierlo rispetto al fine-tuning e che ruolo ha in un sistema AI ibrido.",
+    title: "RAG aziendale nel 2027: dati, fonti e controlli prima di partire",
+    excerpt: "Come valutare un RAG aziendale nel 2027: fonti aggiornate, permessi, citazioni e prove concrete. Con una scheda CSV gratuita per confrontare il progetto e il fornitore.",
     category: "AI",
     date: "14 Lug 2026",
-    readTime: "12 min",
+    readTime: "14 min",
     image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80",
   },
   {

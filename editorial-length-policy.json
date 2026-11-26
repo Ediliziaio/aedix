@@ -3,6 +3,7 @@
   "enforcePublishedOnOrAfter": "2026-11-07",
   "requiredSlugs": [
     "whatsapp-business-ai-pmi-italiane",
-    "ai-generativa-pmi-italiane-2026"
+    "ai-generativa-pmi-italiane-2026",
+    "rag-retrieval-augmented-generation-spiegato"
   ]
 }
